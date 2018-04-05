@@ -52,6 +52,7 @@ group :development do
   gem "pry"
   gem "pry-byebug"
   gem "listen", '~> 3.0.5'
+  gem "rack-cors"
 end
 
 group :test do

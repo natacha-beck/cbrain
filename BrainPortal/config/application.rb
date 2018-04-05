@@ -43,5 +43,14 @@ module CbrainRailsPortal
 
     config.action_controller.include_all_helpers = true
 
+    ### STB Added for API Swagger Testing
+    config.middleware.insert_before 0, Rack::Cors do
+	allow do
+    	origins 'localhost:3001'
+    	resource '*',
+      	headers: :any,
+     	 methods: %i(get post put patch delete options head)
+  	end
+     end
   end
 end
