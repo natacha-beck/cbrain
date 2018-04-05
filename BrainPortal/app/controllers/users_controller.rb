@@ -89,6 +89,12 @@ class UsersController < ApplicationController
         render :json => @user.for_api
       end
     end
+  rescue ActiveRecord::RecordNotFound => e
+    respond_to do |format|
+      format.html
+      format.json {render :json=>{message:e.message}, :status => :not_found}
+      format.xml {render :xml=>{message: e.message}, :status=> :not_found} 
+    end
   end
 
   def new #:nodoc:
@@ -179,7 +185,9 @@ class UsersController < ApplicationController
 
   # PUT /users/1
   # PUT /users/1.xml
+  # PUT /users/1.json
   def update #:nodoc:
+    binding.pry
     @user          = User.where(:id => params[:id]).includes(:groups).first
     cb_error "You don't have permission to view this page.", :redirect => start_page_path unless edit_permission?(@user)
 
@@ -262,6 +270,7 @@ class UsersController < ApplicationController
     end
   end
 
+  
   def destroy #:nodoc:
     if current_user.has_role? :admin_user
       @user = User.find(params[:id])
