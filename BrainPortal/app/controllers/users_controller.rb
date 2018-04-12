@@ -73,8 +73,8 @@ class UsersController < ApplicationController
   # GET /user/1.json
   def show #:nodoc:
     @user = User.find(params[:id])
-
-    cb_error "You don't have permission to view this page.", :redirect  => start_page_path unless edit_permission?(@user)
+   
+    cb_error "You don't have permission to view this user.", :redirect  => start_page_path unless edit_permission?(@user)
 
     @default_data_provider  = DataProvider.find_by_id(@user.meta["pref_data_provider_id"])
     @default_bourreau       = Bourreau.find_by_id(@user.meta["pref_bourreau_id"])
@@ -88,12 +88,6 @@ class UsersController < ApplicationController
       format.json do
         render :json => @user.for_api
       end
-    end
-  rescue ActiveRecord::RecordNotFound => e
-    respond_to do |format|
-      format.html
-      format.json {render :json=>{message:e.message}, :status => :not_found}
-      format.xml {render :xml=>{message: e.message}, :status=> :not_found} 
     end
   end
 
@@ -183,13 +177,12 @@ class UsersController < ApplicationController
     cb_error "You don't have permission to view this page.", :redirect => start_page_path unless edit_permission?(@user)
   end
 
-  # PUT /users/1
-  # PUT /users/1.xml
-  # PUT /users/1.json
+  # PATCH /users/1
+  # PATCH /users/1.xml
+  # PATCH /users/1.json
   def update #:nodoc:
-    binding.pry
     @user          = User.where(:id => params[:id]).includes(:groups).first
-    cb_error "You don't have permission to view this page.", :redirect => start_page_path unless edit_permission?(@user)
+    cb_error "You don't have permission to update this user.", :redirect => start_page_path unless edit_permission?(@user)
 
     new_user_attr = user_params
     if new_user_attr[:group_ids] # the ID adjustment logic in this paragraph is awful FIXME
@@ -270,7 +263,9 @@ class UsersController < ApplicationController
     end
   end
 
-  
+  # DELETE /users/1
+  # DELETE /users/1.xml
+  # DELETE /users/1.json
   def destroy #:nodoc:
     if current_user.has_role? :admin_user
       @user = User.find(params[:id])
@@ -288,17 +283,37 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
       format.json { head :ok }
     end
-  rescue ActiveRecord::DeleteRestrictionError => e
-    flash[:error]  = "User not destroyed: #{e.message}"
-
-    respond_to do |format|
-      format.html { redirect_to :action => :index }
-      format.js   { redirect_to :action => :index, :format => :js}
-      format.xml  { head :conflict }
-      format.json { head :conflict}
-    end
+  rescue Exception => e
+      puts "exception class #{e.class}"
+#    if e.class == ActiveRecord::RecordNotFound
+#      respond_to do |format|
+#        format.html
+#        format.json {render :json=>{message:e.message}, :status => :not_found}
+#        format.xml {render :xml=>{message: e.message}, :status=> :not_found} 
+#      end
+#    elsif e.class == ActiveRecord::DeleteRestrictionError
+#      flash[:error]  = "User not destroyed: #{e.message}"
+#      respond_to do |format|
+#        format.html { redirect_to :action => :index }
+#        format.js   { redirect_to :action => :index, :format => :js}
+#        format.xml  { head :conflict }
+#        format.json { head :conflict}
+#      end
+#    end
   end
-
+#    
+#  end
+#  rescue ActiveRecord::DeleteRestrictionError => e
+#    flash[:error]  = "User not destroyed: #{e.message}"
+#
+#    respond_to do |format|
+#      format.html { redirect_to :action => :index }
+#      format.js   { redirect_to :action => :index, :format => :js}
+#      format.xml  { head :conflict }
+#      format.json { head :conflict}
+#    end
+#  end
+  
   def switch #:nodoc:
     if current_user.has_role? :admin_user
       @user = User.find(params[:id])
@@ -387,7 +402,6 @@ class UsersController < ApplicationController
     Rails.logger.error ex.to_s
     return false
   end
-
 
 
 end
