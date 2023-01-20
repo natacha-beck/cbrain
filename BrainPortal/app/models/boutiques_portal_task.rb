@@ -276,7 +276,7 @@ class BoutiquesPortalTask < PortalTask
     # then we will generate 7 tasks in total.
     # --------------------------------------
     if descriptor.file_inputs.size == 1
-            input = descriptor.file_inputs.first
+      input = descriptor.file_inputs.first
 
       fillTask = lambda do |userfile,tsk,extra_params=nil|
         tsk.invoke_params[input.id] = userfile.id
