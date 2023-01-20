@@ -3,7 +3,7 @@
 # CBRAIN Project
 #
 # Copyright (C) 2008-2021
-# The Royal Institution for the Advancement of Learning
+# The Royal Institution for the Advancement of Lesarning
 # McGill University
 #
 # This program is free software: you can redistribute it and/or modify
@@ -111,7 +111,7 @@ class BoutiquesPortalTask < PortalTask
         "#{iname} #{ioptional}\n"
       }.join("")
 
-    if num_in_files < num_needed_inputs || num_in_files > num_needed_inputs+num_opt_inputs
+    if !with_single_file_input && (num_in_files < num_needed_inputs || num_in_files > num_needed_inputs+num_opt_inputs)
       message = "This task requires #{num_needed_inputs} mandatory file(s) and #{num_opt_inputs} optional file(s)\n" +
         input_infos
       cb_error message
@@ -514,23 +514,25 @@ class BoutiquesPortalTask < PortalTask
       # Make sure the file ID is valid, accessible, not already used and
       # of the correct type.
       when :file
-        unless (Integer(value) rescue nil)
+        if !(Integer(value) rescue nil) && !with_single_file_input
           params_errors.add(invokename, ": invalid or missing userfile")
           next nil # remove bad value
         end
 
-        file = Userfile.find_accessible_by_user(value, self.user, :access_requested => file_access_symbol()) rescue nil
-        unless file
-          params_errors.add(invokename, ": cannot find userfile (ID #{value})")
-          next nil # remove bad value
-        end
+        values = value.blank? ? self.params[:interface_userfile_ids] : [value]
+        values.each do |value|
+          file = Userfile.find_accessible_by_user(value, self.user, :access_requested => file_access_symbol()) rescue nil
+          unless file
+            params_errors.add(invokename, ": cannot find userfile (ID #{value})")
+            next nil # remove bad value
+          end
 
-        if @taken_files.include?(file.id)
-          params_errors.add(invokename, ": file name already in use (#{file.name})")
-        else
-          @taken_files.add(file.id)
+          if @taken_files.include?(file.id)
+            params_errors.add(invokename, ": file name already in use (#{file.name})")
+          else
+            @taken_files.add(file.id)
+          end
         end
-
       end
 
       value
@@ -638,6 +640,12 @@ class BoutiquesPortalTask < PortalTask
   # for output.
   def file_access_symbol
     @_file_access ||= (self.class.properties[:readonly_input_files].present? || self.tool_config.try(:inputs_readonly) ? :read : :write)
+  end
+
+  private
+
+  def with_single_file_input
+    self.descriptor_for_form["inputs"].select{|x| x["type"] == "File"}.size == 1
   end
 
 end
