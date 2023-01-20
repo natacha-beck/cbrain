@@ -3,7 +3,7 @@
 # CBRAIN Project
 #
 # Copyright (C) 2008-2021
-# The Royal Institution for the Advancement of Lesarning
+# The Royal Institution for the Advancement of Learning
 # McGill University
 #
 # This program is free software: you can redistribute it and/or modify
@@ -276,7 +276,7 @@ class BoutiquesPortalTask < PortalTask
     # then we will generate 7 tasks in total.
     # --------------------------------------
     if descriptor.file_inputs.size == 1
-      input = descriptor.file_inputs.first
+            input = descriptor.file_inputs.first
 
       fillTask = lambda do |userfile,tsk,extra_params=nil|
         tsk.invoke_params[input.id] = userfile.id
