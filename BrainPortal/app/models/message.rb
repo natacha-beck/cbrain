@@ -98,21 +98,21 @@ class Message < ApplicationRecord
 
       # Find or create message object
       mess = user.messages.where(
-               :message_type => type,
-               :header       => header,
-               :description  => description,
-               :critical     => critical
+               :message_type        => type,
+               :header              => header,
+               :description         => description,
+               :critical            => critical
              ).first ||
              self.new(
-               :user_id      => user.id,
-               :message_type => type,
-               :header       => header,
-               :description  => description,
-               :expiry       => expiry,
-               :read         => false,
-               :critical     => critical,
-               :group_id     => group_id,
-               :sender_id    => sender_id
+               :user_id             => user.id,
+               :message_type        => type,
+               :header              => header,
+               :description         => description,
+               :expiry              => expiry,
+               :read                => false,
+               :critical            => critical,
+               :invitation_group_id => group_id,
+               :sender_id           => sender_id
              )
 
       # If the message is a pure repeat of an existing message,

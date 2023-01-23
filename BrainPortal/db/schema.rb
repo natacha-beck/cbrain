@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221007094232) do
+ActiveRecord::Schema.define(version: 20230120112207) do
 
   create_table "access_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "name",        null: false
@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(version: 20221007094232) do
     t.index ["key"], name: "index_help_documents_on_key", unique: true, using: :btree
   end
 
-  create_table "large_session_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "large_session_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT  CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "session_id",                               null: false
     t.text     "data",       limit: 65535
     t.datetime "created_at"
@@ -218,18 +218,18 @@ ActiveRecord::Schema.define(version: 20221007094232) do
 
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "header"
-    t.text     "description",   limit: 65535
-    t.text     "variable_text", limit: 65535
+    t.text     "description",         limit: 65535
+    t.text     "variable_text",       limit: 65535
     t.string   "message_type"
-    t.boolean  "read",                        default: false, null: false
+    t.boolean  "read",                              default: false, null: false
     t.integer  "user_id"
     t.datetime "expiry"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "last_sent"
-    t.boolean  "critical",                    default: false, null: false
-    t.boolean  "display",                     default: false, null: false
-    t.integer  "group_id"
+    t.boolean  "critical",                          default: false, null: false
+    t.boolean  "display",                           default: false, null: false
+    t.integer  "invitation_group_id"
     t.string   "type"
     t.boolean  "active"
     t.integer  "sender_id"
