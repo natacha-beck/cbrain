@@ -519,12 +519,11 @@ class BoutiquesPortalTask < PortalTask
           next nil # remove bad value
         end
 
-        values = value.blank? ? self.params[:interface_userfile_ids] : [value]
-        values.each do |value|
-          file = Userfile.find_accessible_by_user(value, self.user, :access_requested => file_access_symbol()) rescue nil
+        file_ids = value.blank? ? self.params[:interface_userfile_ids] : [value]
+        file_ids.each do |file_id|
+          file = Userfile.find_accessible_by_user(file_id, self.user, :access_requested => file_access_symbol()) rescue nil
           unless file
-            params_errors.add(invokename, ": cannot find userfile (ID #{value})")
-            next nil # remove bad value
+            params_errors.add(invokename, ": cannot find userfile (ID #{file_id})")
           end
 
           if @taken_files.include?(file.id)
