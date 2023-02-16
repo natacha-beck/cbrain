@@ -111,7 +111,7 @@ class BoutiquesPortalTask < PortalTask
         "#{iname} #{ioptional}\n"
       }.join("")
 
-    if !with_single_file_input && (num_in_files < num_needed_inputs || num_in_files > num_needed_inputs+num_opt_inputs)
+    if !single_file_input? && (num_in_files < num_needed_inputs || num_in_files > num_needed_inputs + num_opt_inputs)
       message = "This task requires #{num_needed_inputs} mandatory file(s) and #{num_opt_inputs} optional file(s)\n" +
         input_infos
       cb_error message
@@ -514,24 +514,26 @@ class BoutiquesPortalTask < PortalTask
       # Make sure the file ID is valid, accessible, not already used and
       # of the correct type.
       when :file
-        if !(Integer(value) rescue nil) && !with_single_file_input
+        if !(Integer(value) rescue nil) && !single_file_input?
           params_errors.add(invokename, ": invalid or missing userfile")
           next nil # remove bad value
         end
 
         file_ids = value.blank? ? self.params[:interface_userfile_ids] : [value]
-        file_ids.each do |file_id|
-          file = Userfile.find_accessible_by_user(file_id, self.user, :access_requested => file_access_symbol()) rescue nil
-          unless file
-            params_errors.add(invokename, ": cannot find userfile (ID #{file_id})")
-          end
+        file_ids = Userfile.find_all_accessible_by_user( current_user,
+                                                         :access_requested => file_access_symbol
+                                                       ).where(:id => file_ids).pluck(&:id) rescue nil
 
+        next nil if file_ids.blank? # remove bad value
+
+        file_ids.each do |file_id|
           if @taken_files.include?(file.id)
             params_errors.add(invokename, ": file name already in use (#{file.name})")
           else
             @taken_files.add(file.id)
           end
         end
+
       end
 
       value
@@ -643,8 +645,8 @@ class BoutiquesPortalTask < PortalTask
 
   private
 
-  def with_single_file_input
-    self.descriptor_for_form["inputs"].select{|x| x["type"] == "File"}.size == 1
+  def single_file_input?()
+    @single_file_input ||= self.descriptor_for_form.inputs.select{|x| x["type"] == "File"}.size == 1
   end
 
 end
