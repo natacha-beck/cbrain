@@ -645,8 +645,9 @@ class BoutiquesPortalTask < PortalTask
 
   private
 
-  def single_file_input?()
-    @single_file_input ||= self.descriptor_for_form.inputs.select{|x| x["type"] == "File"}.size == 1
+  def single_file_input?
+    return @single_file_input if ! @single_file_input.nil?
+    @single_file_input = self.descriptor_for_form.inputs.count { |x| x.type == 'File' } == 1
   end
 
 end
