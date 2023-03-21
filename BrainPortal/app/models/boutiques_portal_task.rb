@@ -763,9 +763,10 @@ class BoutiquesPortalTask < PortalTask
       rev_info    = module_name::Revision_info
       "#{rev_info.basename} rev. #{rev_info.short_commit} #{rev_info.time} (author: #{rev_info.author})"
     end
-  
+
   private
 
+  # Check if the descriptor has a single file input.
   def single_file_input?
     return @single_file_input if ! @single_file_input.nil?
     @single_file_input = self.descriptor_for_form.inputs.count { |x| x.type == 'File' } == 1
