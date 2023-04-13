@@ -298,42 +298,23 @@ class BoutiquesPortalTask < PortalTask
       tasklist = self.params[:interface_userfile_ids].map do |userfile_id|
         f = Userfile.find_accessible_by_user( userfile_id, self.user, :access_requested => file_access_symbol() )
 
-        if single_file_input?
-          # Expand cbcsvs and generate tasks from them
-          if f.is_a?( CbrainFileList )
-            ufiles               = f.userfiles_accessible_by_user!( self.user, nil, nil, file_access_symbol() )
-            ordered_extra_params = f.is_a?(ExtendedCbrainFileList) ? f.ordered_params : []
+        # One task for that file
+        if (!single_file_input? && (! f.is_a?( CbrainFileList ) || input.list)) ||
+           ( single_file_input? &&  ! f.is_a?( CbrainFileList )) # in case of a list input, we *do* assign it the CbFileList
+          task = self.dup
+          fillTask.( f, task )
+        else # One task per userfile in the CbrainFileList
+          ufiles               = f.userfiles_accessible_by_user!( self.user, nil, nil, file_access_symbol() )
+          ordered_extra_params = f.is_a?(ExtendedCbrainFileList) ? f.ordered_params : []
 
-            # Fill subtasks array
-            subtasks = []
-            ufiles.each_with_index do |u, index|
-              next if u.nil?
-              subtasks << fillTask.( u, self.dup, ordered_extra_params[index])
-            end
-
-            subtasks # an array of tasks
-            # Set and sanitize the one file parameter for each id for regular files
-          else
-            fillTask.( f, self.dup )
+          # Fill subtasks array
+          subtasks = []
+          ufiles.each_with_index do |u, index|
+            next if u.nil?
+            subtasks << fillTask.( u, self.dup, ordered_extra_params[index])
           end
-        else
-          # One task for that file
-          if (! f.is_a?( CbrainFileList ) || input.list) # in case of a list input, we *do* assign it the CbFileList
-            task = self.dup
-            fillTask.( f, task )
-          else # One task per userfile in the CbrainFileList
-            ufiles               = f.userfiles_accessible_by_user!( self.user, nil, nil, file_access_symbol() )
-            ordered_extra_params = f.is_a?(ExtendedCbrainFileList) ? f.ordered_params : []
 
-            # Fill subtasks array
-            subtasks = []
-            ufiles.each_with_index do |u, index|
-              next if u.nil?
-              subtasks << fillTask.( u, self.dup, ordered_extra_params[index])
-            end
-
-            subtasks # an array of tasks
-          end
+          subtasks # an array of tasks
         end
       end
 
