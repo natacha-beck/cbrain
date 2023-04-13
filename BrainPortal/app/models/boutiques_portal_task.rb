@@ -113,7 +113,7 @@ class BoutiquesPortalTask < PortalTask
         "#{iname} #{ioptional}\n"
       }.join("")
 
-    if num_in_files < num_needed_inputs || num_in_files > num_needed_inputs+num_opt_inputs
+    if !single_file_input? && (num_in_files < num_needed_inputs || num_in_files > num_needed_inputs+num_opt_inputs)
       message = "This task requires #{num_needed_inputs} mandatory file(s) and #{num_opt_inputs} optional file(s)\n" +
         input_infos
       cb_error message
@@ -298,22 +298,42 @@ class BoutiquesPortalTask < PortalTask
       tasklist = self.params[:interface_userfile_ids].map do |userfile_id|
         f = Userfile.find_accessible_by_user( userfile_id, self.user, :access_requested => file_access_symbol() )
 
-        # One task for that file
-        if (! f.is_a?( CbrainFileList ) || input.list) # in case of a list input, we *do* assign it the CbFileList
-          task = self.dup
-          fillTask.( f, task )
-        else # One task per userfile in the CbrainFileList
-          ufiles               = f.userfiles_accessible_by_user!( self.user, nil, nil, file_access_symbol() )
-          ordered_extra_params = f.is_a?(ExtendedCbrainFileList) ? f.ordered_params : []
+        if single_file_input?
+          # Expand cbcsvs and generate tasks from them
+          if f.is_a?( CbrainFileList )
+            ufiles               = f.userfiles_accessible_by_user!( self.user, nil, nil, file_access_symbol() )
+            ordered_extra_params = f.is_a?(ExtendedCbrainFileList) ? f.ordered_params : []
 
-          # Fill subtasks array
-          subtasks = []
-          ufiles.each_with_index do |u, index|
-            next if u.nil?
-            subtasks << fillTask.( u, self.dup, ordered_extra_params[index])
+            # Fill subtasks array
+            subtasks = []
+            ufiles.each_with_index do |u, index|
+              next if u.nil?
+              subtasks << fillTask.( u, self.dup, ordered_extra_params[index])
+            end
+
+            subtasks # an array of tasks
+            # Set and sanitize the one file parameter for each id for regular files
+          else
+            fillTask.( f, self.dup )
           end
+        else
+          # One task for that file
+          if (! f.is_a?( CbrainFileList ) || input.list) # in case of a list input, we *do* assign it the CbFileList
+            task = self.dup
+            fillTask.( f, task )
+          else # One task per userfile in the CbrainFileList
+            ufiles               = f.userfiles_accessible_by_user!( self.user, nil, nil, file_access_symbol() )
+            ordered_extra_params = f.is_a?(ExtendedCbrainFileList) ? f.ordered_params : []
 
-          subtasks # an array of tasks
+            # Fill subtasks array
+            subtasks = []
+            ufiles.each_with_index do |u, index|
+              next if u.nil?
+              subtasks << fillTask.( u, self.dup, ordered_extra_params[index])
+            end
+
+            subtasks # an array of tasks
+          end
         end
       end
 
@@ -522,21 +542,27 @@ class BoutiquesPortalTask < PortalTask
       # Make sure the file ID is valid, accessible, not already used and
       # of the correct type.
       when :file
-        unless (Integer(value) rescue nil)
+        if !(Integer(value) rescue nil) && !single_file_input?
           params_errors.add(invokename, ": invalid or missing userfile")
           next nil # remove bad value
         end
 
-        file = Userfile.find_accessible_by_user(value, self.user, :access_requested => file_access_symbol()) rescue nil
-        unless file
-          params_errors.add(invokename, ": cannot find userfile (ID #{value})")
+        file_ids = value.blank? ? self.params[:interface_userfile_ids] : [value]
+        file_ids = Userfile.find_all_accessible_by_user( self.user,
+                                                         :access_requested => file_access_symbol
+                                                       ).where(:id => file_ids).pluck(:id, :name) rescue nil
+
+        if !file_ids.present?
+          params_errors.add(invokename, ": invalid or missing userfile")
           next nil # remove bad value
         end
 
-        if @taken_files.include?(file.id)
-          params_errors.add(invokename, ": file name already in use (#{file.name})")
-        else
-          @taken_files.add(file.id)
+        file_ids.each do |file_id, file_name|
+          if @taken_files.include?(file_id)
+            params_errors.add(invokename, ": file name already in use (#{file_name})")
+          else
+            @taken_files.add(file_id)
+          end
         end
 
       end
@@ -760,6 +786,14 @@ class BoutiquesPortalTask < PortalTask
       rev_info    = module_name::Revision_info
       "#{rev_info.basename} rev. #{rev_info.short_commit} #{rev_info.time} (author: #{rev_info.author})"
     end
+  end
+
+  private
+
+  # Check if the descriptor has a single file input.
+  def single_file_input?
+    return @single_file_input if ! @single_file_input.nil?
+    @single_file_input = self.descriptor_for_form.inputs.count { |x| x.type == 'File' } == 1
   end
 
 end
