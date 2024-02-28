@@ -122,7 +122,7 @@ for (;@ARGV;) {
 # Validate command-line options #
 #################################
 
-$VERBOSE=4;
+$VERBOSE=5;
 &Usage if @ARGV != 0 && $ARGV[0] =~ /^-/;
 $TEST_SUBSTRING=shift if @ARGV;
 &Usage if @ARGV != 0;
