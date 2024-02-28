@@ -261,6 +261,10 @@ class ParseReq #:nodoc:
     # fix some inconsistencies in serializing json for true/false
     clean = clean.gsub(/:(true|false)/,':"\1"')
     # finaly, our customizable zappable substrings
+    puts "+clean+" 
+    puts clean.inspect
+    puts "+zap_regex+"
+    puts @zap_regex.inspect
     (@zap_regex || []).each do |sregex|
       #puts_yellow "==== Cleaning #{sregex}"
       regex = Regexp.new(sregex)
