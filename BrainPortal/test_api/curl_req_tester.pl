@@ -415,6 +415,12 @@ sub filter_content {
   my ($content,$regex_list) = @_;
   $content =~ s/:(true|false)/:"$1"/g;
   foreach my $regex ('\s+', '"\d\d\d\d-\d\d-\d\d[T\s]\d\d:\d\d:\d\d[\d\.Z]*"', @$regex_list) {
+    print "------content------\n";
+    print $content;
+    print "\n";
+    print "------regex------\n";
+    print $regex;
+    print "\n";
     $content =~ s/$regex//g;
   }
   return $content;
