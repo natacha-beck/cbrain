@@ -105,7 +105,7 @@ class OidcConfig
 
   # Returns all the enabled configurations, or an empty array of none exist.
   def self.all
-    @oidc_configs
+    @oidc_configs || []
   end
 
   # Returns the names for all the configs
