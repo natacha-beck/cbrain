@@ -1,0 +1,119 @@
+fr:
+
+  custom_filters:
+
+    common:
+      filtering_by_date: ""
+      archiving_status: ""
+      owners: ""
+      dont_filter_description: ""
+
+      match_type:
+        match: ""
+        match_exactly: ""
+        contain: ""
+        begin: ""
+        end: ""
+
+      archiving:
+        dont_filter: ""
+        archived: ""
+        not_archived: ""
+        on_cluster: ""
+        as_file: ""
+
+      userfile:
+        filename: ""
+        dont_filter_name: ""
+        parent_name_contains: ""
+        lists_children: ""
+        child_name_contains: ""
+        lists_parents: ""
+        dont_filter_size: ""
+        synchronization_status: ""
+
+      task:
+        work_directory_status: ""
+        wd_status:
+          dont_filter: ""
+          shared: ""
+          not_shared: ""
+          exists: ""
+          none: ""
+
+    custom_filter_li:
+      links:
+        edit_delete: ""
+
+    custom_filter_list:
+      headings:
+        by_custom_filter: ""
+      links:
+        create_custom_filter: ""
+
+    new_task_custom_filter:
+      by:
+        task_types: ""
+        status: ""
+        description: ""
+        owners: ""
+        projects: ""
+        execution_servers: ""
+        filtering_by_date: ""
+        archiving_status: ""
+        work_directory_status: ""
+
+    new_userfile_custom_filter:
+      by:
+        filename: ""
+        parent_name_contains_html: ""
+        child_name_contains_html: ""
+        file_types: ""
+        filtering_by_date: ""
+        size: ""
+        owners: ""
+        projects: ""
+        data_providers: ""
+        archiving_status: ""
+        synchronization_status: ""
+        tags: ""
+
+    new:
+      headings:
+        main: ""
+      labels:
+        filter_name: ""
+      errors:
+       custom_filter: ""
+      submit: ""
+
+    task_custom_filter:
+      headings:
+        types: ""
+        status: ""
+        description: ""
+        owners: ""
+        projects: ""
+        execution_servers: ""
+        archiving_status: ""
+        work_directory_status: ""
+        filtering_by_date: ""
+
+    userfile_custom_filter:
+      headings:
+        filename: ""
+        parent_name_contains_html: ""
+        child_name_contains_html: ""
+        by_file_types: ""
+        size: ""
+        owner: ""
+        projects: ""
+        data_providers: ""
+        archiving_status: ""
+        synchronization_status: ""
+        tags: ""
+        filtering_by_date: ""
+
+    show:
+      errors:
+        update: ""

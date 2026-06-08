@@ -1,0 +1,33 @@
+fr:
+  shared:
+
+    common:
+      do_not_filter: ""
+
+    active_filters:
+      active_filters: ""
+
+    date_range_info:
+      from_to: ""
+
+    dynamic_table:
+      no_records_found: ""
+      filter: ""
+      columns: ""
+      per_page: ""
+
+    error_messages:
+      header_message: ""
+      message: ""
+
+    group_tables:
+      labels:
+        work_groups: ""
+        invisible_groups: ""
+
+    persistent_selection:
+      currently_selected: ""
+      select_all: ""
+      select_all_on_all_pages_tooltip: ""
+      clear_tooltip: ""
+

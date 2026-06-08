@@ -1,0 +1,315 @@
+fr:
+  userfiles:
+
+    common:
+      download: "Télécharger"
+      copy: "Copier"
+      move: "Déplacer"
+      rename: "Renommer"
+      compress: "Compresser"
+      uncompress: "Décompresser"
+      properties: "Propriétés"
+      synchronize: "Synchroniser"
+      mark_newer: "Marquer comme plus récent"
+      upload: "Importer"
+      and_go: " (et passer au fichier suivant)"
+      exception: "Exception:"
+      read_only: "Lecture seule"
+      read_write: "Lecture/Écriture"
+      read: "Lecture"
+      size_bytes: "%{size} octets"
+      created_at: "Créé le"
+      qc: "Contrôle qualité"
+
+    default_qc_panel:
+      not_synced: "Ce fichier doit être synchronisé localement pour afficher les données de contrôle qualité."
+      no_qc_data: "Ce fichier ne semble pas contenir de données de contrôle qualité, ou aucun modèle n'est disponible pour effectuer le contrôle qualité de ce type de fichier."
+
+    dialogs:
+      titles:
+        upload_sf: "Importation - Fichier unique"
+        file_properties: "Propriétés du fichier"
+        new_collection: "Nouvelle collection"
+
+      blanks:
+        keep_current_parentheses: "(Conserver %{attribute} actuel)"
+
+      placeholders:
+        dp: "Un fournisseur de données..."
+        group: "Un projet..."
+        tags: "Des étiquettes..."
+        file_type: "Un type de fichier..."
+        keep_current: "Conserver %{attribute} actuel"
+
+      labels:
+        extract: "Extraire"
+        as_single_collection: "Comme une seule collection"
+        as_multiple_files: "Comme plusieurs fichiers"
+        advanced_options: "Options avancées..."
+        detect_as: "Détecter comme"
+        allow_modification: "Autoriser la modification par les autres membres du projet"
+        overwrite: "Écraser les fichiers existants portant le même nom"
+        clear_tags: "Effacer les étiquettes"
+        hidden_html: "Masqué (<span class='pp-hid-ind'>H</span>)"
+        locked_html: "Verrouillé (<span class='pp-ro-ind'>I</span>)"
+      copy: ""
+      move: ""
+      rename: ""
+      compress: ""
+      uncompress: ""
+      properties: ""
+      synchronize: ""
+      mark_newer: ""
+      upload: ""
+      and_go: ""
+      exception: ""
+      read_only: ""
+      read_write: ""
+      read: ""
+      size_bytes: ""
+      created_at: ""
+
+    default_qc_panel:
+      not_synced: ""
+      no_qc_data: ""
+
+    dialogs:
+      titles:
+        upload_sf: ""
+        file_properties: ""
+        new_collection: ""
+
+      blanks:
+        keep_current_parentheses: ""
+
+      placeholders:
+        dp: ""
+        group: ""
+        tags: ""
+        file_type: ""
+        keep_current: ""
+
+      labels:
+        extract: ""
+        as_single_collection: ""
+        as_multiple_files: ""
+        advanced_options: ""
+        detect_as: ""
+        allow_modification: ""
+        overwrite: ""
+        clear_tags: ""
+        hidden_html: ""
+        locked_html: ""
+
+      divs:
+        hidden_html: |
+          Hidden files are invisible by default, and are usually reserved for
+          maintenance, internal and archiving purposes.
+        locked: |
+            Locked files cannot be modified or moved across data providers.
+
+      confirmations:
+        delete_file_html: ""
+        delete_tag_html: ""
+
+      actions:
+        proceed: ""
+
+      new_collection: ""
+      autodetect: ""
+      unknown_file_type: ""
+      qc_note: ""
+      invalid: ""
+
+    file_menu:
+      static_actions:
+        launch: ""
+        upload: ""
+        show_only_my_files: ""
+        show_all_files: ""
+
+      dynamic_actions:
+        download: ""
+        copy: ""
+        move: ""
+        rename: ""
+        compress: ""
+        uncompress: ""
+
+      menu_actions:
+        more: ""
+        custom_filters: ""
+        new_collection: ""
+        export_as_csv: ""
+        create_file_list: ""
+        show_only_my_files: ""
+        show_all_files: ""
+        hide_hidden_files: ""
+        show_hidden_files: ""
+        list_view: ""
+        tree_view: ""
+
+    filter_items:
+      new_filter: ""
+      has_no_parent: ""
+      has_no_children: ""
+
+    quality_control_panel:
+      legends:
+        navigation_info: ""
+        file_tags: ""
+        file_description: ""
+
+      submit:
+        previous_file: ""
+        next_file: ""
+        pass  : ""
+        fail: ""
+
+      error_messages:
+        qc_error: ""
+
+      full_list_of_tags: ""
+
+    resource_usage:
+      section:
+        disk_space_history: ""
+      headings:
+        space_delta: ""
+
+    syncstatus:
+      last_synchronized_date: ""
+      last_accessed_date: ""
+      transfer_started: ""
+      state_occurred: ""
+
+    tags_table:
+      placeholders:
+        group: ""
+
+    tools_interface:
+      titles:
+        toolsDialog: ""
+
+      headings:
+        no_tools_admin:  ""
+        no_tools_others: ""
+
+      labels:
+        all_tools: ""
+        software_package: ""
+
+      links:
+        tool_website: ""
+
+    userfiles_display:
+      entry:
+        one: ""
+        other: ""
+      own_files_only: ""
+      show_total:
+        hidden: ""
+        archived: ""
+        locked: ""
+      columns:
+        type_icon: ""
+        filename: ""
+        file_type: ""
+        owner: ""
+        creation_date: ""
+        size: ""
+        project_access: ""
+        tags: ""
+        group: ""
+        description: ""
+        data_provider: ""
+
+      search_by_name: ""
+      was_html: ""
+
+    index:
+      title: ""
+      legends:
+        sync_symbols: ""
+
+    quality_control:
+      title: ""
+      links:
+        finished: ""
+      buttons:
+        one_panel: ""
+      loading_message:
+        loading_panel: ""
+
+    show:
+      title: ""
+      titles:
+        file_log: ""
+
+      links:
+        download_collection: ""
+        download_file: ""
+
+      error_messages:
+        suggested_type: ""
+        update: ""
+        viewer: ""
+
+      cells:
+        zenodo_publication: ""
+        parent: ""
+        children: ""
+
+      zenodo_publication:
+        published: ""
+        in_progress: ""
+
+      legends:
+        content: ""
+
+      content:
+        archived: ""
+        viewers_disabled: ""
+        cannot_view: ""
+        non_viewable_dp_html: |
+          (This file cannot be viewed as it is stored on Data Provider
+          %{dp_link}
+          which is marked as <strong>non-viewable</strong>)
+        not_syncable_dp_html: |
+          (This file cannot be viewed as it is stored on Data Provider
+          %{dp_link}
+          which is configured to <strong>not allow synchronization</strong> <em>at all</em>)
+        corrupted_html: |
+          <span style="background-color: pink;">
+            (The content of this file seems to be corrupted. This might be the result
+            of a bad data transfer while it was being created or a filesystem failure.
+            There isn't much you can do about this, although if the file was produced
+            by a task, consider restarting the task's Post Processing stage.)
+          </span>
+        sync_not_allowed_html: |
+          (This file cannot be viewed as it is stored on Data Provider
+          %{dp_link}
+          which is configured to <strong>not allow synchronization</strong> to <em>this Portal</em>)
+        offline_dp_html: |
+          (This data is not currently synchronized and its Data Provider
+          %{dp_link}
+          is offline, so its content is not viewable for the moment)
+        sync_in_progress: ""
+        sync_start_html: |
+          (This data file is not currently synchronized. Click
+          %{link}
+          to start the synchronization process.
+          This may allow you to view displayable content.)
+        sync_start_collection_html: |
+          (This data file is not currently synchronized. Click
+          %{link}
+          to start the synchronization process.
+          This may allow you to view displayable content and extract files from this collection.)
+        no_viewer_code_html: |
+          (The contents of this file cannot be viewed: no viewer code available at this moment
+          for files of type '%{type}')
+        change_view: ""
+
+      was_html: ""
+      cached: ""
+      here: ""

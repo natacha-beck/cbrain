@@ -1,0 +1,92 @@
+fr:
+
+  messages:
+
+    common:
+      mark_as_html: ""
+      updating: ""
+      deleting: ""
+
+      labels:
+        system: ""
+        state_read: ""
+        state_unread: ""
+        expiry_date: ""
+
+      time_ago:
+        ten_minutes: ""
+        one_hour: ""
+        one_day: ""
+        two_days: ""
+        one_week: ""
+        one_month: ""
+        two_months: ""
+        one_year: ""
+
+      col:
+        sender: ""
+        recipient: ""
+        last_updated: ""
+        operations: ""
+
+      message_count:
+        one: ""
+        other: ""
+
+    message_details:
+      paragraphs:
+        expires: ""
+        no_details: ""
+
+    message_display:
+      rescue: ""
+
+    message_index_display:
+      links:
+        leave_message: ""
+      buttons:
+        delete_checked: ""
+      scopes:
+        unread_link: ""
+        read_link: ""
+      labels:
+        base: ""
+      columns:
+        criticality:
+          critical: ""
+          not_critical: ""
+        type: ""
+        message: ""
+        sender: ""
+        recipient: ""
+        last_updated: ""
+        operations: ""
+
+    index:
+      title: ""
+      unread_count:
+        one: ""
+        other: ""
+
+    new_dashboard:
+      title: ""
+      headings:
+        main: ""
+      labels:
+        dashboard: ""
+      explanations:
+        dashboard_html: |
+          For dashboard messages, whatever is entered here will be substituted literally
+          in the page's code. So you can use whatever HTML elements you want, but make sure
+          you know what you're doing. For NeuroHub, we recommend surrounding the entire text
+          with at least one &lt;P&gt; element.
+
+    new:
+      title: ""
+      links:
+        new_cbrain_dashboard: ""
+        new_neurohub_dashboard: ""
+      to_users_of_project: ""
+      labels:
+        send_email: ""
+

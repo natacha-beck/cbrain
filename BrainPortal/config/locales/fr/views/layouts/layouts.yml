@@ -1,0 +1,56 @@
+fr:
+    layouts:
+
+      common:
+        usage: ""
+
+      section_account:
+        links:
+          dashboard: ""
+          my_account: ""
+          resource: ""
+          full_list: ""
+          help_site: ""
+          email_support: ""
+          sign_out: ""
+          sign_in: ""
+
+        labels:
+          unread_message:
+            one: ""
+            other: ""
+          revision: ""
+          branch: ""
+          last_updated_html: ""
+          as: ""
+
+        tooltips:
+          email_support_html: ""
+
+      section_cookie_notif:
+        legend: ""
+        strong: ""
+        small_html: ""
+        unagree: ""
+
+      section_footer:
+        powered_by: ""
+        credits: ""
+
+      section_menu:
+        all: ""
+        quick_project_switcher: ""
+
+        links:
+          default_private_project: ""
+          all_files_tasks: ""
+          full_project_list: ""
+          select_project: ""
+          profiles: ""
+
+        placeholders:
+          search: ""
+
+        labels:
+          signups: ""
+          ongoing: ""

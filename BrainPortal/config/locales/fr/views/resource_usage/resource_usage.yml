@@ -1,0 +1,84 @@
+fr:
+  resource_usage:
+
+    common:
+      task_walltime: ""
+      task_cpu_time: ""
+      task_final_status: ""
+
+    index:
+      title: ""
+
+    resource_usage_table:
+      title:
+        file_deltas: ""
+
+      buttons:
+        userfile_disk_space: ""
+
+      legends:
+        table_description: ""
+        usage_summary: ""
+        additional_filtering: ""
+
+      paragraphs:
+        description_intro_html: |
+          <p class="medium_paragraphs">
+          This is a <em>very wide</em> report table. It contains
+          resource usage records for disk space and time consumed.
+          Feel free to hide columns using the <strong>+</strong>
+          menu at the right side of the main table header.
+        description_space_userfile_html: |
+          It displays the <span style="color: green">changes of the sizes</span> of all the files,
+          existing as well as deleted.
+        description_cputime_html: |
+          It displays the <span style="color: green">CPU time</span> accumulated by tasks.
+        description_walltime_html: |
+          It displays the <span style="color: green">wall time</span> accumulated by tasks.
+        description_space_task_html: |
+          It displays the <span style="color: green">disk space</span> in the work directory,
+          as well as the <span style="color: green">final status</span> of past tasks. The disk space
+          is not guaranteed to be accurate, as this is an expensive resource to compute
+          and is only provided FYI. The real, main purpose of this report is to gather statistics about the
+          final <strong>status</strong> of tasks.
+        description_cached_html: |
+          <p class="medium_paragraphs">
+          Columns labeled <strong>Cached</strong> record pieces of information
+          about resources <em>as they were at the time the record was made</em>.
+          If a resource was destroyed (e.g. a non-<strong>Cached</strong> column is empty), these stay behind
+          and provide filtering options. It makes it possible to gather statistics about
+          these deleted resources.
+
+      labels:
+        only_deleted_items: ""
+        positive_size_delta: ""
+        negative_size_delta: ""
+        task_type: ""
+
+      submits:
+        refresh_table: ""
+
+      columns:
+        date: ""
+        disk_space: ""
+        time: ""
+        cached_owner_type: ""
+        cached_owner_login: ""
+        cached_project_type: ""
+        cached_project_name: ""
+        cached_server_name: ""
+        cached_userfile_type: ""
+        cached_userfile_name: ""
+        cached_provider_type: ""
+        cached_provider_name: ""
+        cached_task_type: ""
+        cached_task_status: ""
+        cached_tool_name: ""
+        cached_version: ""
+
+      usage_record_count:
+        one: ""
+        other: ""
+      total: ""
+      average: ""
+      by_creation_date: ""

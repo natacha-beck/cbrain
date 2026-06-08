@@ -1,0 +1,608 @@
+fr:
+
+  bourreaux:
+
+    common:
+      cache_trust_expire_select:
+        never: ""
+        six_hours: ""
+        twelve_hours: ""
+        one_day: ""
+        three_days: ""
+        one_week: ""
+        two_weeks: ""
+        one_month: ""
+        two_months: ""
+        three_months: ""
+        six_months: ""
+
+      header_workers_instances: ""
+      workers_instances_select:
+        none: ""
+
+      header_workers_chk_time: ""
+      workers_instances_select:
+        none: ""
+
+      header_workers_log_to: ""
+      workers_log_to_select:
+        combined_file: ""
+        separate_files: ""
+        rails_log: ""
+        rails_stdout: ""
+        rails_stderr: ""
+        rails_stdout_and_stderr: ""
+        no_logging: ""
+
+      header_workers_verbose: ""
+      workers_verbose_select:
+        normal: ""
+        debug_info: ""
+
+    bourreaux_display:
+      columns:
+        server_type: ""
+        server_name: ""
+        live_revision: ""
+        owner: ""
+        project: ""
+        time_zone: ""
+        online: ""
+        tasks: ""
+        tasks_space: ""
+        cache_space:
+          all: ""
+          own: ""
+        description: ""
+        status_page_url: ""
+        tools: ""
+        control_tunnel: ""
+        uptime: ""
+        task_workers: ""
+        activity_workers: ""
+
+      unk:
+        env: ""
+        par: ""
+
+      status:
+        open: ""
+        dead: ""
+        down: ""
+        since_for: ""
+
+      task_workers:
+        workers: ""
+        workers_processing: ""
+
+      activity_workers:
+        workers: ""
+        workers_processing: ""
+
+      links:
+        create_new_server: ""
+        user_access_report: ""
+        disk_cache_report: ""
+        task_workdir_size_report: ""
+        access_to_data_providers: ""
+
+      buttons:
+        start:
+          tunnels: ""
+          execution_server: ""
+          task_workers: ""
+          activity_workers: ""
+        stop:
+          activity_workers: ""
+          task_workers: ""
+          execution_server: ""
+          tunnels: ""
+
+      dropdowns:
+        start_services: ""
+        stop_services: ""
+
+      confirms:
+        stop:
+          activity_workers: ""
+          task_workers: ""
+          bourreau: ""
+          tunnels: ""
+
+
+      # Start services panel
+      start_services:
+        paragraphs:
+          introduction_html: |
+            <p class="">
+              These buttons start the different layers of services required to
+              boot an Execution Server. They are listed in the same order as they
+              need to be started. The first three buttons
+              only apply to Execution Servers, while <strong>Start Activity Workers</strong>
+              applies to both Execution Servers and Portals.
+            </p>
+            <p class="">
+              Refer the the last four columns of the table to find out what service
+              are currently operational. The four buttons in this pannel map
+              to them in the same order.
+            </p>
+            <p class="">
+              Also note that your browser blocks while these requests are being processed;
+              be patient and check your browser's progress bar. Do not perform long operations
+              on multiple Execution Servers to avoid timeouts.
+            </p>
+          tunnel_html: |
+            <p class="">
+              The tunnel is the main communication channel between the Portal
+              and the remote server where the Execution Server is configured. It is
+              necessary for the Execution Server and the Task Workers. Starting the
+              tunnel will mark the Execution Server as "" in the database.
+              Note that you can also start the tunnel with the ""
+              button. Consider starting just the tunnel as a way to verify that the network
+              parameters are valid (e.g. to check hostnames, ports, firewalls, etc).
+            </p>
+          execution_server_html: |
+            <p class="">
+              The Execution Server requires the tunnel, above. Note that as convenience
+              feature, if the tunnel is not started, starting the Execution Server will also
+              start the tunnel first.
+            </p>
+          start_task_workers_description_html: |
+            <p class="">
+              Task workers require a Tunnel and the Execution Server to be up.
+            </p>
+          start_activity_workers_description_html: |
+            <p class="">
+              Activity workers are the only service that can be started or stopped
+              on Portals too. On portals the workers don't require any of the other layers
+              above. On Execution Servers these workers require both the Tunnel and the
+              Execution Server to be running.
+            </p>
+
+      stop_services:
+        processing_in_orange_text: ""
+        processing: ""
+        not_safe: ""
+        paragraphs:
+          stop_services_description_html: |
+            <p class="">
+              These buttons stop the different layers of services associated with
+              an Execution Server. They are listed in the same order as they
+              need to be stopped. The last three buttons
+              only apply to Execution Servers, while <strong>Stop Activity Workers</strong>
+              applies to both Execution Servers and Portals.
+            </p>
+            <p class="">
+              Refer the the last four columns of the table to find out what service
+              are currently operational. The four buttons in this pannel map
+              to them in <em>reverse order</em> (right to left).
+            </p>
+            <p class="">
+              Note that stopping the Workers (any type) is an action that asks
+              them to shut down gracefully. If they are processing something, they will finish it
+              first. The last two columns of the table indicate if they are currently busy
+              with the word %{html_colorize_text}.
+              In some cases it can take a long time for the workers to stop. Refreshing this
+              page will tell you when they are stopped, but remember that the page's content
+              is normally only updated once every 30 seconds.
+            </p>
+            <p class="">
+              Also note that your browser blocks while these requests are being processed;
+              be patient and check your browser's progress bar. Do not perform long operations
+              on multiple Execution Servers to avoid timeouts.
+            </p>
+          stop_activity_workers_description_html: |
+            <p class="">
+              Activity Workers can run on both Portals and Execution Servers. Stopping them
+              will send them a signal to finish their current processing actions and then exit.
+            </p>
+          stop_task_workers_description_html: |
+            <p class="">
+              Stopping Task Workers will send them a signal to finish what they are doing
+              and then exit. This can take some time.
+            </p>
+          stop_execution_server_description_html: |
+            <p class="">
+              Stopping an Execution Server will also stop the Task Workers <strong>and</strong> Activity Workers running on it.
+              Make sure they are not actively %{processing} something.
+            </p>
+          stop_tunnels_description_html:
+            <p class="">
+              Remember that is it %{not_safe} to stop Tunnels if
+              any of the Workers are currently %{processing} something.
+            </p>
+
+    load_info:
+      delay:
+        instant: ""
+        superb: ""
+        good: ""
+        mediocre: ""
+        bad: ""
+        awful: ""
+      number_of:
+        active_tasks: ""
+        queued_tasks: ""
+        running_tasks: ""
+      last_wait_time: ""
+      queue_info: ""
+      more_info: ""
+
+    notes:
+      show_configuration_notes: ""
+      hide_configuration_notes: ""
+      notesbody_html: |
+        <div id="">
+
+            <h3>Some Notes About Configuring A Execution Server</h3>
+
+            An Execution Server is a remote Rails application that is used by the
+            BrainPortal. Like all Rails applications, it runs on some host
+            somewhere, it listens to HTTP connections on some port and needs
+            to connect to the same database server as the BrainPortal.
+
+            <p>
+
+            Unlike the BrainPortal, the HTTP connections it expects are not
+            from a user's browser, but they are XML requests issued by the
+            BrainPortal using a Rails protocol called ActiveResource. There
+            are several ways that the BrainPortal can be told how to connect to
+            and manage the Execution Server, which explains all the fields in this form.
+
+        </div>
+
+    runtime_info:
+      headings:
+       runtime_information: ""
+      cells:
+        rails_environment: ""
+        rails_revision: ""
+        disk_code_revision: ""
+        rails_server_uptime: ""
+        process:
+          start:
+            revision: ""
+            last_change_author: ""
+            last_change_revision: ""
+            last_change_date: ""
+          remote_host:
+            name: ""
+            ip_address: ""
+            os_type: ""
+            uptime: ""
+        worker_pids: ""
+        number_of_tasks_running: ""
+        workers_last_change_author: ""
+        cluster_management_system_type: ""
+        workers_last_change_revision: ""
+        cluster_management_system_revision: ""
+        workers_last_change_date: ""
+        ssh_public_key: ""
+      server_status:
+        down: ""
+        server_status: ""
+      rails_server_uptime:
+        up_since: ""
+        for: ""
+
+    index:
+      title: ""
+
+    new:
+      title: ""
+
+      headings:
+        main: ""
+
+      divs:
+        name_html: |
+          <div class="">
+            Important note: this name must also be changed accordingly in the config file
+            <em>Bourreau/config/initializers/config_bourreau.rb</em>
+            for this server to restart properly later on.
+          </div>
+        system_from_email_html: |
+          <div class="">
+            If set, messages sent automatically by this system will contain this return address.
+          </div>
+        description_html: |
+          <div class="">
+            The first line should be a short summary, and the rest are for any special notes for the users.
+          </div>
+        dp_cache_dir_html: |
+          <div class="">Warning! Changing this field will result in resetting the synchronization
+              status of all files from all Data Providers! Also, the Rails app will have to
+              be restarted, and all files in that directory will be erased!</div>
+        spaced_dp_ignore_patterns_html: |
+          <div class="">
+            Separate several patterns with spaces; each pattern can contain single '*'s, but no '/'s or special characters.
+          </div>
+        cache_trust_expire_html: |
+          <div class="">
+            This means that in the execution server's cache, files that have been recorded
+            as 'InSync' but were last accessed more than this amount of time will be considered untrustworthy
+            and will be re-synchronized the next time they are accessed. Set this to a value less than <em>N</em>
+            if the cluster's file policy, for instance, deletes all scratch files older than <em>N</em> days.
+          </div>
+        cms_shared_dir_html: |
+          <div class="">
+            Mandatory. This directory must be visible and writable from all nodes.
+            This is were the work subdirectories for all tasks will be created.
+          </div>
+        cms_default_queue_html: |
+          <div class="">
+            Optional.
+          </div>
+        cms_extra_qsub_args_html: |
+          <div class="">
+            Optional. Careful, this is inserted as-is in the command-line for submitting jobs.
+          </div>
+        workers_verbose_html: |
+          <div class="">
+            This option has no effect if the logs are sent to the RAILS log.
+          </div>
+
+      labels:
+        system_from_email: ""
+        owner: ""
+        group: ""
+        status: ""
+        rr_timeout: ""
+        time_zone: ""
+        ssh_control_host: ""
+        ssh_control_user: ""
+        ssh_control_port: ""
+        ssh_control_rails_dir: ""
+        jump_host: ""
+        jump_user: ""
+        jump_port: ""
+        spaced_dp_ignore_patterns: ""
+        dp_cache_dir: ""
+        cms_class: ""
+        cms_shared_dir: ""
+        cms_default_queue: ""
+        cms_extra_qsub_args: ""
+        cache_trust_expire: ""
+        workers_instances: ""
+        workers_chk_time: ""
+        workers_log_to: ""
+        workers_verbose: ""
+
+      status:
+        online: ""
+        offline: ""
+        prompt: ""
+
+      titles:
+        time_zone: ""
+
+      legends:
+        ssh_remote_control_configuration: ""
+        optional_ssh_jump_host_configuration: ""
+        cache_management_configuration: ""
+        tool_version_configuration: ""
+        cluster_management_system_configuration: ""
+        task_workers_configuration: ""
+        task_limits: ""
+
+      tool_version_configuration_explanation: ""
+      task_limits_explanation: ""
+
+      cms_class_select:
+        unconfigured: ""
+        scir_sge: ""
+        scir_pbs: ""
+        scir_moab: ""
+        scir_sharcnet: ""
+        scir_lsf: ""
+        scir_slurm: ""
+        scir_gcloud_batch: ""
+        scir_unix: ""
+
+
+      submit: ""
+
+    rr_access_dp:
+      title: ""
+      headings:
+        main: ""
+
+      paragraphs:
+        rr_access_explanation_html: |
+          <p class="">
+          This page shows which Servers (rows) can access which Data Providers (columns).
+          </p>
+          <p class="">
+          If you want to launch tasks on a particular Execution Server, make sure they are
+          configured to access files on Data Providers marked by green circles (&nbsp;%{o_icon}&nbsp;).
+          </p>
+          <p class="">
+          Data Provider identified below their name with %{not_syncable}
+          indicate their files can still be accessed through streaming APIs, but can never be fully
+          synchronized on any server.
+          </p>
+          <p class="">
+          Cells marked with %{no_access}
+          indicate servers that are not allowed to access files on the Data Provider
+          at all, in any way (streaming or synchronized), even if the Data Provider seems alive.
+          </p>
+      headings:
+        servers: ""
+        data_providers: ""
+        name: ""
+        type: ""
+        last_checked: ""
+      links:
+        refresh_all: ""
+      status:
+        offline: ""
+        not_syncable: ""
+        read_only: ""
+        no_access: ""
+        alive: ""
+        down: ""
+      legends:
+        data_provider_status: ""
+      data_providers_offline: ""
+      note_html: |
+        <strong>Note: </strong>Clicking on <em>Refresh</em> triggers a background process on the server
+        that will poll each Data Provider; this can take several minutes to complete.
+
+    rr_access:
+      title: ""
+      headings:
+        main: ""
+      legends:
+        accessible: ""
+        not_accessible: ""
+
+    rr_disk_usage:
+      title: ""
+      titles:
+        server_log: ""
+      headings:
+        main: ""
+        no_entries: ""
+        filter: ""
+      entry:
+        one: ""
+        other: ""
+      file:
+        one: ""
+        other: ""
+      entries_and_files_html: ""
+      unknown_count:
+        one: ""
+        other: ""
+      active_task:
+        one: ""
+        other: ""
+      all_on: ""
+      submits:
+        cleanup_selected: ""
+      of_type: ""
+      none_means_any_html: ""
+      last_accessed: ""
+      submit: ""
+
+    show:
+      titles:
+        portal: ""
+        execution_server: ""
+
+      links:
+        task_stats_by_status: ""
+        task_stats_by_type: ""
+        no_tool_config: ""
+
+      headings:
+        cache_expiration: ""
+        workers_instances: ""
+        workers_chk_time: ""
+        workers_log_to: ""
+        workers_verbose: ""
+        message_update_error: ""
+        external_status_page_url: ""
+        base_portal_url: ""
+        user_manual_url: ""
+        neurohub_base_url: ""
+        small_logo: ""
+        large_logo: ""
+        large_upload_url: ""
+        upload_size_limit: ""
+        mail_configuration: ""
+        support_email: ""
+        system_from_email: ""
+        nh_support_email: ""
+        nh_system_from_email: ""
+        error_notifications: ""
+        ssh_connection_config: ""
+        ssh_hostname: ""
+        rails_server_directory: ""
+        ssh_user: ""
+        ssh_port: ""
+        local_control_port: ""
+        ssh_jumphost: ""
+        jumphost_hostname: ""
+        jumphost_user: ""
+        jumphost_port: ""
+        reverse_service_config: ""
+        use_reverse_service: ""
+        reverse_service_hostname: ""
+        reverse_service_port: ""
+        reverse_service_user: ""
+        reverse_service_db_socket: ""
+        reverse_service_ssh_agent: ""
+        activity_workers_config: ""
+        activity_workers_number: ""
+        cache_management: ""
+        path_to_dp_caches: ""
+        ignore_patterns: ""
+        dp_options: ""
+        persistent_ssh_masters: ""
+        cluster_config: ""
+        type_of_cluster: ""
+        default_queue_name: ""
+        extra_qsub_args: ""
+        path_shared_work_dir: ""
+        task_workers_config: ""
+        number_of_workers: ""
+        container_config: ""
+        docker_executable_name: ""
+        singularity_executable_name: ""
+
+      cells:
+        status: ""
+        owner: ""
+        unset: ""
+        group: ""
+        revision_info_client: ""
+        common_config_all_tasks: ""
+
+      field_explanations:
+        description: ""
+        system_from_email: ""
+        cms_shared_dir_html: ""
+        cms_default_queue: ""
+        cms_extra_qsub_args: ""
+        dp_cache_warning: ""
+        ignore_patterns: ""
+        name_note_bourreau_html: ""
+        name_note_portal_html: ""
+        license_agreements: ""
+        external_status_page: ""
+        user_manual_url: ""
+        base_portal_url_html: ""
+        neurohub_base_url_html: ""
+        large_upload_url: ""
+        upload_size_limit: ""
+        support_email_html: ""
+        nh_support_email_html: ""
+        nh_system_from_email: ""
+        activity_workers_explanation_html: ""
+        cache_expiration_html: ""
+        cms_extra_qsub_args: ""
+        docker_executable_name: ""
+        singularity_executable_name: ""
+
+      all_admins: ""
+
+      paragraphs:
+        reverse_service_description_html: ""
+        reverse_service_defaults_html: ""
+        persistent_ssh_explanation: ""
+
+      default_value: ""
+
+      unknown_check_config: ""
+      activity_workers_number_select:
+        none: ""
+        recommended_bourreaux: ""
+        recommended_portals: ""
+      like_right_now: ""
+      options:
+        always: ""
+        never: ""
+        unconfigured: ""
+      content:
+        not_configured: ""

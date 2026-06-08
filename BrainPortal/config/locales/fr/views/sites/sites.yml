@@ -1,0 +1,73 @@
+fr:
+  sites:
+
+    sites_table:
+      links:
+        create_new_site: ""
+      headings:
+        main:
+          one: ""
+          other: ""
+      columns:
+        name: ""
+        description: ""
+        type: ""
+        site_manager: ""
+        number_of_users: ""
+        number_of_projects: ""
+
+    index:
+      title: ""
+
+    new:
+      title: ""
+      headings:
+        main: ""
+      titles:
+        brief_description_title: ""
+      labels:
+        description: ""
+      paragraphs:
+        brief_description_html: |
+          <div class="field_explanation">The first line should be a short summary, and the rest are for any special notes for the users.</div>
+      lock_status:
+        active: ""
+        locked: ""
+      datas:
+        login: ""
+        regular_user: ""
+        site_manager: ""
+      buttons:
+        groups: ""
+      submit: ""
+      hide: ""
+
+    show:
+      title: ""
+      headings:
+        could_not_be_updated: ""
+        resources: ""
+        groups: ""
+        data_providers: ""
+        remote_resources: ""
+      paragraphs:
+        description_html: |
+          <div class="field_explanation">The first line should be a short summary, and the rest are for any special notes for the users.</div><br>
+      cells:
+        manager: ""
+        users: ""
+        projects: ""
+        userfiles: ""
+        data_providers: ""
+        remote_resources: ""
+      datas:
+        login: ""
+        regular_user: ""
+        site_manager: ""
+      labels:
+        users: ""
+      submits:
+        update_users: ""
+        update_projects: ""
+      titles:
+        site_log: ""

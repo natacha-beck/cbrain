@@ -1,0 +1,61 @@
+fr:
+  sessions:
+
+    mandatory_oidc:
+      title: ""
+      headings:
+        before_message_html: ""
+        explanations: ""
+        allowed_providers: ""
+
+      paragraphs:
+        explanations: |
+          <p class="short_paragraphs">
+          When you click on the button below, your browser will be redirected
+          to an identity provider login page; from there you can choose one of the
+          supported identity providers. This will in turn redirect you
+          to the provider's own login page. Once you've successfully authenticated
+          there, your browser will be redirected back here to finalize
+          the link with your CBRAIN account.
+          </p>
+        no_provider: |
+          <p class="short_paragraphs">
+          No identity provider is currently available for your account.
+          Please contact the CBRAIN administrator for more information.
+          </p>
+        already_logged_in: |
+          <p class="short_paragraphs">
+          If you already are logged in using a different identity provider, you
+          might want to log out first. This can be accomplished by the button below:
+          </p>
+
+      any_provider: ""
+
+      links:
+        login_with: ""
+        logout_from: ""
+
+    new:
+      title: ""
+
+      divs:
+        only_available_html: |
+          <div class="field_explanation">
+            (Only available if you have already linked your<br>
+            CBRAIN account to a %{name} identity)
+          </div>
+      labels:
+        login: ""
+        password: ""
+
+      submit:
+        sign_in: ""
+
+      links:
+        forgot_password: ""
+        sign_in_with: ""
+        request_account: ""
+        full_list: ""
+
+      or: ""
+      not_a_user: ""

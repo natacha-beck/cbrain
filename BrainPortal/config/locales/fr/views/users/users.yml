@@ -1,0 +1,214 @@
+fr:
+  users:
+
+    common:
+      select_site: ""
+      used: ""
+      unkn: ""
+
+    users_table:
+      links:
+        create_user: ""
+        active_count: ""
+        locked_count: ""
+        access: ""
+      columns:
+        login: ""
+        full_name: ""
+        email: ""
+        position: ""
+        affiliation: ""
+        last_connection: ""
+        groups: ""
+        role: ""
+        site: ""
+        city: ""
+        country: ""
+        timezone: ""
+        files: ""
+        tasks: ""
+        switch: ""
+        access: ""
+      user_count:
+        one: ""
+        other: ""
+      unlocked: ""
+      locked: ""
+      label_of: ""
+      last_connection: ""
+      project_count:
+        one: ""
+        other: ""
+      role: ""
+      access: ""
+      access_q: ""
+
+    change_password:
+      title: ""
+      headings:
+        main: ""
+        message: ""
+      labels:
+        new_password: ""
+        confirm_new_password: ""
+        force_password_reset: ""
+
+    index:
+      title: ""
+
+    new:
+      title: ""
+      headings:
+        main: ""
+        basic_information: ""
+        access_profile: ""
+        project_membership: ""
+      labels:
+        full_name: ""
+        login: ""
+        email: ""
+        position: ""
+        affiliation: ""
+        city: ""
+        country: ""
+        time_zone: ""
+        type: ""
+        site: ""
+        pref_data_provider_id: ""
+        allowed_globus_provider_names: ""
+        password: ""
+        confirm_password: ""
+        no_password_reset: ""
+      paragraphs:
+        login_html: |
+          <span class="">For <strong>Tom Jones</strong>, use <strong>tjones</strong>, not 'tom' or 'jones'.</span>
+        dp_html: |
+          <span class="field_explanation">If set, make sure it is a Data Provider that will be accessible to the user</span>
+        openid_html: |
+          <span class="field_explanation">
+            If set, must be exact OpenID identity provider names separated by commas
+            A single '*' is also allowed to mean any provider name.
+          </span>
+      submit: ""
+
+    new_token:
+      title: ""
+      headings:
+        main: ""
+      titles:
+        notes: ""
+        copy_tooltip: ""
+      paragraphs:
+        generated_intro: ""
+        token_html: |
+          If you are a developer and want to automate working
+          with CBRAIN or NeuroHub, this token will be needed
+          to access the APIs.
+          <p>
+          Refer to the CBRAIN API documentation
+          for more information.
+          <p>
+      labels:
+        copy: ""
+      li:
+        validity: ""
+        renewal: ""
+        ip_lock_html: ""
+        ip_invalid_html: ""
+        copy_html: ""
+
+    request_password:
+      title: ""
+      headings:
+        main: ""
+      labels:
+        login: ""
+        email: ""
+      submit: ""
+
+    show:
+      title: ""
+      titles:
+        user_activity_report: ""
+      links:
+        tool_access_reports: ""
+        switch_to_user: ""
+        report_maker: ""
+        change_password: ""
+        generate_api_token: ""
+        unlink_identity: ""
+        link_identity: ""
+        neurohub_interface: ""
+      prompts:
+        select_site: ""
+      cells:
+        last_connected: ""
+        never: ""
+        public_key: ""
+        provider: ""
+        orcid_identity: ""
+        active_sessions: ""
+        files: ""
+        tasks: ""
+        data_providers: ""
+        historical_storage: ""
+        historical_cpu_time: ""
+        tools: ""
+        portal: ""
+        execution: ""
+        installation_sites: ""
+      headings:
+        message: ""
+        pref_data_provider_id: ""
+        pref_bourreau_id: ""
+        account_locked: ""
+        ip_whitelist: ""
+        allowed_globus_provider_names: ""
+        ssh_key: ""
+        sessions_tokens: ""
+        zenodo_publishing: ""
+        zenodo_sandbox_token: ""
+        zenodo_official_token: ""
+        license_agreements: ""
+        linked_identities: ""
+        provider_name: ""
+        provider_user: ""
+        ip: ""
+        last_access: ""
+        resources: ""
+        access_profiles: ""
+        groups: ""
+        project_name: ""
+        project_type: ""
+        members: ""
+      paragraphs:
+        ip_whitelist_html: |
+          <div class="">
+            Comma-separated list of allowed source IPs (X.X.X.X/XX) for the user to connect from.
+          </div>
+        allowed_globus_provider_names_html: |
+          <div class="field_explanation">
+            If set, must be a list of OpenID identity provider names separated by commas. A single '*' is
+            also allowed to mean any provider name.
+          </div>
+        zenodo_sandbox_token_html: |
+          <div class="wide_field_explanation">
+            This token can be used for creating <strong>temporary/test</strong> Zenodo data deposits.<p>
+            You can create a token at <a href="https://sandbox.zenodo.org/account/settings/applications/" target="_blank">https://sandbox.zenodo.org/account/settings/applications/</a>.
+          </div>
+        zenodo_main_token_html: |
+          <div class="wide_field_explanation">
+            This token can be used for creating <strong>real, official and permanent</strong> Zenodo data deposits.<p>
+            You can create a token at <a href="https://zenodo.org/account/settings/applications/" target="_blank">https://zenodo.org/account/settings/applications/</a>.
+          </div>
+      datas:
+        last_pushed: ""
+        push: ""
+        no_ip_yet: ""
+      confirms:
+        unlink: ""
+      no_identity: ""
+      orcid_id: ""
+      no_orcid: ""
+      orcid_note_html: ""
+      submit: ""

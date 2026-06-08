@@ -1,0 +1,42 @@
+fr:
+  access_profiles:
+
+    access_profiles_table:
+      links:
+        create_profile: ""
+      columns:
+        name: ""
+        color: ""
+        description: ""
+        projects: ""
+
+      white: ""
+
+    index:
+      title: ""
+
+    show:
+      titles:
+        add_new_access_profile: ""
+        access_profile: ""
+        access_profile_log: ""
+
+      error_messages:
+       saved: ""
+      cells:
+        name: ""
+        color: ""
+
+      headings:
+        with_this_profile: ""
+        project_membership: ""
+        projects_in_this_profile: ""
+
+      explanations:
+        css_html: ""
+        private: ""
+        change: ""
+
+      user_types:
+        normal: ""
+        locked: ""

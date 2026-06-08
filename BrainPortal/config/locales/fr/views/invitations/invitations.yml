@@ -1,0 +1,6 @@
+fr:
+  invitations:
+
+    new:
+      send_invitations: ""
+      no_users_available: ""

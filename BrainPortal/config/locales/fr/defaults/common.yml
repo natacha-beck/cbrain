@@ -1,0 +1,65 @@
+fr:
+  ago_time: "depuis %{time}"
+
+  unknown: "Inconnu"
+  unset: "(Non défini)"
+  yes: "Oui"
+  offline: "Hors ligne"
+  none: "Aucun"
+  show: "Afficher"
+  edit: "Modifier"
+  help: "Aide"
+  browse: "Parcourir"
+  cancel: "Annuler"
+  switch: "Changer"
+  clear: "Effacer"
+  refresh: "Rafraîchir"
+
+  delete: "Supprimer"
+  deleted: "Supprimé"
+
+  save: "Enregistrer"
+  saved: "Enregistré"
+
+  create: "Créer"
+  created: "Créé"
+
+  update: "Mettre à jour"
+  updated: "Mis à jour"
+  last_updated: "Dernière mise à jour"
+
+  active_users: "Utilisateurs actifs"
+  locked_users: "Utilisateurs verrouillés"
+
+  search_by_name: "Rechercher par nom:"
+  confirm_delete: "Êtes-vous sûr de vouloir supprimer %{name}?"
+
+  dataset:
+      one: "Jeu de données"
+      other: "Jeux de données"
+
+  agree: "J'accepte"
+
+  clear_options:
+      month: "Il y a un mois"
+      week: "Il y a une semaine"
+      day: "Il y a un jour"
+      hour: "Il y a une heure"
+      now: "Maintenant! (Y compris la vôtre!)"
+
+  login: "Connexion"
+  owner: "Propriétaire"
+  version:
+    one: "Version"
+    other: "Versions"
+  tool_version: "Version de l'outil"
+
+  parameters:
+    one: "Paramètre"
+    other: "Paramètres"
+  summary: "Résumé"
+
+  status: "Statut:"
+
+  time_zone: "Fuseau horaire"
+  all: "Tous"

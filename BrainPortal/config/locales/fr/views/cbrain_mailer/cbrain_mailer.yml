@@ -1,0 +1,35 @@
+fr:
+
+  cbrain_mailer:
+
+    common:
+      closing: ""
+      admins: ""
+      thank_you: ""
+      access_service: ""
+
+
+    forgotten_password:
+      greeting: ""
+      password_reset: ""
+      temporary_notice: ""
+
+    registration_confirmation:
+      welcome: ""
+      account_set_up: ""
+      username: ""
+      temporary_password: ""
+      password_change_notice: ""
+
+    signup_notify_admin:
+      someone_asking: ""
+      none_provided: ""
+      comments_intro: ""
+      review_application: ""
+      system_signature: ""
+
+    signup_request_confirmation:
+      automated_message: ""
+      confirm_email: ""
+      disregard: ""
+      once_confirmed: ""

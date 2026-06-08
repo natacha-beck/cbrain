@@ -1,0 +1,50 @@
+fr:
+  exception_logs:
+
+      index:
+        title: ""
+
+      exception_logs_table:
+        submit:
+          delete_checked: ""
+          delete_name: ""
+
+        message_count:
+          one: ""
+          other: ""
+
+        columns:
+          exception: ""
+          message: ""
+          controller: ""
+          action: ""
+          user: ""
+          revision: ""
+          raised_at: ""
+
+      show:
+        title: ""
+
+        submit:
+          delete_message: ""
+
+        headings:
+          request: ""
+          session: ""
+          headers: ""
+
+        cells:
+          raised_at: ""
+          url: ""
+          method: ""
+          parameters: ""
+          format: ""
+          user: ""
+          start_time_revision: ""
+
+        legends:
+          backtrace: ""
+
+        exception_message: ""
+        not_signed_in: ""
+

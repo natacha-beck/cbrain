@@ -1,0 +1,220 @@
+fr:
+
+  background_activities:
+
+    common:
+      dynamic_items_list: ""
+
+    background_activity_table:
+      toggles:
+        about: ""
+
+      submits:
+        cancel_activities: ""
+        suspend_activities: ""
+        unsuspend_activities: ""
+        destroy_activities: ""
+        activate_now: ""
+        retry_failed: ""
+
+      confirms:
+        cancel: ""
+        suspend: ""
+        unsuspend: ""
+        destroy: ""
+        activate: ""
+        retry: ""
+
+      links:
+        create_scheduled: ""
+        hide_scheduled: ""
+        refresh_list: ""
+        show: ""
+
+      legends:
+        about: ""
+
+      paragraphs:
+        about_general_top_html: |
+          <p class="long_paragraphs">
+          This page shows "background activities" as progress bars. Each
+          activity applies a single operation to a set of things (usually,
+          files or tasks). These activities are often the result of clicking
+          on buttons in other pages, when you get a message that <em>something
+          was started in background</em>. Activities that are in progress
+          are shown with glowing borders. Individual operations within an
+          activity can succeed or fail. Sometimes, the failure is not
+          significant (e.g. trying to compress a file that is already
+          compressed).
+          <p class="long_paragraphs">
+          You can cancel activities, but remember that cancelled activities
+          can never be restarted. You will have to redo whatever operation
+          created the activity.
+          <p class="long_paragraphs">
+          Older, finished "background activities" are generally cleaned
+          up after one week and will disappear from this list.
+        about_admin_html: |
+          <p class="long_paragraphs">
+          As an admin, you can create maintenance activities that can be
+          scheduled for later. See the accompanying form for more help. You
+          can also suspend activities; these are resumable. You can suspend
+          activities that are in progress, or scheduled in the future.
+        about_general_bottom_html: |
+          <p class="long_paragraphs">
+          The progress bars in this page are <strong>not live</strong>, so
+          you need to click the <em>Refresh</em> button to get an update
+          on the progress of your activities.
+
+      columns:
+        user: ""
+        server: ""
+        status: ""
+        activity_type: ""
+        scheduled_at: ""
+        repeat: ""
+        retries: ""
+        last_update: ""
+        progress: ""
+        show: ""
+
+      labels:
+        type_filter: ""
+
+      scheduled_at:
+        in_time: ""
+        overdue_by: ""
+      retries:
+        allowed:
+          one: ""
+          other: ""
+        next:
+          one: ""
+          other: ""
+
+      on_word: ""
+
+      items_count:
+        one: ""
+        other: ""
+
+      tooltips:
+        messages: ""
+
+    RubyRunner:
+      legends:
+        ruby_code: ""
+
+    index:
+      title: ""
+
+    new:
+      title: ""
+      headings:
+        main: ""
+      errors:
+          activity: ""
+
+      labels:
+        repeat: ""
+        remove_task_workdirs: ""
+        file_custom_filter: ""
+        task_custom_filter: ""
+        clean_cache: ""
+        last_accessed: ""
+        belonging_users: ""
+        not_users: ""
+        of_type: ""
+        not_type: ""
+        erase_bacs: ""
+        finished_older: ""
+        verify_dp: ""
+        fake_activity: ""
+        min_seconds: ""
+        max_seconds: ""
+        num_oks: ""
+        num_fails: ""
+        num_excs: ""
+        ruby_runner: ""
+        prepare: ""
+        before: ""
+        process_html: ""
+        after: ""
+        server: ""
+        start_date: ""
+        start_now_html: ""
+        move: ""
+        copy: ""
+        archive_task_workdirs: ""
+        compress: ""
+        uncompress: ""
+
+
+      selects:
+        data_provider: ""
+        filter: ""
+        dps: ""
+
+      paragraphs:
+        remember_file_filter_html: |
+          This activity type is only for experienced CBRAIN system developers
+          who understands the <strong>BackgroundActivity</strong> framework.
+        move_crush: ""
+        filter_intro: ""
+        for_files_html: ""
+        for_tasks_html: ""
+        move_to: ""
+        remember_task_filter_html: ""
+        archive_blank_note: ""
+        ruby_runner_intro_html: ""
+        process_explanation: |
+          Consider adding a short description of what your RubyRunner code does
+          on the very first line of comment; this will be shown as a description
+          of the BackgroundActivity within the index page.
+
+      repeat_options:
+        prompt: ""
+        one_shot: ""
+        every_30min: ""
+        every_hour: ""
+        every_12h: ""
+        every_24h: ""
+        tomorrow: ""
+        monday: ""
+        tuesday: ""
+        wednesday: ""
+        thursday: ""
+        friday: ""
+        saturday: ""
+        sunday: ""
+
+      legends:
+        filter: ""
+        or_word: ""
+        files: ""
+
+      repeat_at_html: ""
+
+      days_ago: ""
+      system_dps: ""
+      user_dps: ""
+      submit: ""
+
+    show:
+      headings:
+        main: ""
+      cells:
+        type: ""
+        status: ""
+        user: ""
+        execution_server: ""
+        total_items: ""
+        num_successes: ""
+        num_processed: ""
+        num_failures: ""
+      legends:
+        items: ""
+      all_of_them: ""
+      none_question: ""
+      none: ""
+      none_yet: ""
+
