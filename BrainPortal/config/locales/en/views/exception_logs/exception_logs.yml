@@ -1,4 +1,34 @@
 en:
   exception_logs:
 
-    common:
+      common:
+        raised_at: "Raised at"
+        method: "Method"
+        format: "Format"
+
+      index:
+        title: "Exception Logs"
+
+      exception_logs_table:
+        delete_checked: "Delete Checked Exceptions"
+        confirm_delete_name: "the selected logs"
+        message_count:
+          one: "1 message"
+          other: "%{count} messages"
+        col_message: "Message"
+        col_controller: "Controller"
+        col_action: "Action"
+        col_revision: "Revision"
+
+      show:
+        title: "Exception Info"
+        confirm_delete_name: "this exception report"
+        in_html: "in %{location}"
+        header_request: "Request"
+        url: "URL"
+        parameters: "Parameters"
+        not_signed_in: "(Not signed in)"
+        start_time_revision: "Start time revision"
+        backtrace: "Backtrace"
+        header_session: "Session"
+        header_headers: "Headers"
