@@ -2,3 +2,58 @@ en:
   resource_usage:
 
     common:
+      task_walltime: "Task Walltime"
+      task_cpu_time: "Task CPU Time"
+      task_final_status: "Task Final Status"
+
+    index:
+      title: "Resource Usage"
+
+    resource_usage_table:
+      title:
+        file_deltas: "File Deltas"
+
+      btn:
+        userfile_disk_space: "Userfile Disk Space"
+
+      p_header_table_description: "Table Description"
+      p_description_intro_html: "This is a <em>very wide</em> report table. It contains resource usage records for disk space and time consumed. Feel free to hide columns using the <strong>+</strong> menu at the right side of the main table header."
+      p_description_space_userfile_html: "It displays the <span style='color: green'>changes of the sizes</span> of all the files, existing as well as deleted."
+      p_description_cputime_html: "It displays the <span style='color: green'>CPU time</span> accumulated by tasks."
+      p_description_walltime_html: "It displays the <span style='color: green'>'wall' time</span> accumulated by tasks."
+      p_description_space_task_html: "It displays the <span style='color: green'>disk space</span> in the work directory, as well as the <span style='color: green'>final status</span> of past tasks. The disk space is not garanteed to be accurate, as this is a expensive resource to compute and is only provided FYI. The real, main purpose of this report is to gather statistics about the final <strong>status</strong> of tasks."
+      p_description_cached_html: "Columns labeled <strong>Cached</strong> record pieces of information about resources <em>as they were at the time the record was made</em>. If a resource was destroyed (e.g. a non-<strong>Cached</strong> column is empty), these stay behind and provide filtering options. It makes it possible to gather statistics about these deleted resources."
+
+      header_usage_summary: "Usage Summary (including filters)"
+      usage_record_count:
+        one: "1 usage record"
+        other: "%{count} usage records"
+      total: "Total"
+      average: "Average"
+
+      header_additional_filtering: "Additional filtering"
+      by_creation_date: "By creation date"
+      only_deleted_items: "Only deleted items."
+      positive_size_delta: "With positive size delta."
+      negative_size_delta: "With negative size delta."
+      refresh_table: "Refresh Table"
+
+      col:
+        date: "Date"
+        disk_space: "Disk Space"
+        time: "Time"
+        cached_owner_type: "Cached Owner Type"
+        cached_owner_login: "Cached Owner Login"
+        cached_project_type: "Cached Project Type"
+        cached_project_name: "Cached Project Name"
+        cached_server_name: "Cached Server Name"
+        cached_userfile_type: "Cached Userfile Type"
+        cached_userfile_name: "Cached Userfile Name"
+        cached_provider_type: "Cached Provider Type"
+        cached_provider_name: "Cached Provider Name"
+        cached_task_type: "Cached Task Type"
+        cached_task_status: "Cached Task Status"
+        cached_tool_name: "Cached Tool Name"
+        cached_version: "Cached Version"
+
+      task_type_label: "%{label} (of %{base})"

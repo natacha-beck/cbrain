@@ -1,4 +1,124 @@
 fr:
+
   quotas:
-    
     common:
+      config_count:
+        one: ""
+        other: ""
+      default_all_users: ""
+      col:
+        my_usage: ""
+        details: ""
+        operations: ""
+      status_ok: ""
+      status_exceeded: ""
+      show_edit: ""
+      show_edit_label: ""
+      table: ""
+      situation: ""
+      quota_record: ""
+      confirm_delete_name: ""
+
+    cpu_quotas_table:
+      config_count:
+        one: ""
+        other: ""
+      default_all_users_in_project: ""
+      default_all_servers: ""
+      varies_by_server: ""
+      col:
+        max_weekly_cpu: ""
+        max_monthly_cpu: ""
+        max_cpu_total: ""
+        max_active_tasks: ""
+
+    cpu_report:
+      title: ""
+      back_to_cpu_quotas: ""
+      th:
+        usage_week: ""
+        limit_week: ""
+        usage_month: ""
+        limit_month: ""
+        usage_all: ""
+        limit_all: ""
+      exceeded_week: ""
+      exceeded_month: ""
+      exceeded_ever: ""
+      show_edit_cpu_quota: ""
+
+    disk_quotas_table:
+      config_count:
+        one: ""
+        other: ""
+      col:
+        max_size: ""
+        max_files: ""
+      disk_usage_html: ""
+
+    disk_report:
+      title: ""
+      back_to_disk_quotas: ""
+      th:
+        size: ""
+        size_quota: ""
+        num_files: ""
+        num_files_quota: ""
+      label_user_quota: ""
+      label_dp_quota: ""
+
+    show_cpu_quota:
+      title_create: ""
+      title_edit: ""
+      cpu_quotas_table: ""
+      new_cpu_quota: ""
+      header_record: ""
+      any_project: ""
+      any_execution_server: ""
+      field_explanation_user: ""
+      field_explanation_project: ""
+      field_explanation_execution_server: ""
+      header_max_cpu_week: ""
+      header_max_cpu_month: ""
+      header_max_cpu_total: ""
+      header_max_active_tasks: ""
+      field_explanation_max_cpu_week_html: ""
+      field_explanation_see_week: ""
+      field_explanation_max_active_tasks: ""
+      log_title: ""
+
+    show_disk_quota:
+      title_create: ""
+      title_edit: ""
+      disk_quotas_table: ""
+      new_quota_same_user: ""
+      new_quota_same_provider: ""
+      header_record: ""
+      blank_select_data_provider: ""
+      header_max_disk_space: ""
+      header_max_num_files: ""
+      field_explanation_max_bytes_html: ""
+      field_explanation_max_files_html: ""
+      log_title: ""
+
+    index:
+      title: ""
+      mode:
+        disk: ""
+        cpu: ""
+      about: ""
+      exceeded_report: ""
+      new_entry: ""
+      switch_to_disk: ""
+      switch_to_cpu: ""
+      header_about_disk: ""
+      about_disk_html: ""
+      header_about_cpu: ""
+      about_cpu_p1_html: ""
+      about_cpu_p2_html: ""
+      about_cpu_p3_html: ""
+
+    report:
+
+    show:
+
