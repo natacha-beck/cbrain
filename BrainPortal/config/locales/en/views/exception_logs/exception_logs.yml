@@ -15,10 +15,11 @@ en:
         message_count:
           one: "1 message"
           other: "%{count} messages"
-        col_message: "Message"
-        col_controller: "Controller"
-        col_action: "Action"
-        col_revision: "Revision"
+        col:
+          message: "Message"
+          controller: "Controller"
+          action: "Action"
+          revision: "Revision"
 
       show:
         title: "Exception Info"

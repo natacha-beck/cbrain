@@ -69,11 +69,11 @@
         :filters  => default_filters_for(@base_scope, :exception_class)
       ) { |e| link_to e.exception_class, e }
 
-      t.column(t('.col_message'), :message) { |e| crop_text_to(75, e.message) }
+      t.column(t('.col.message'), :message) { |e| crop_text_to(75, e.message) }
 
       generic_column.(t('exception_logs.common.method'), :request_method)
-      generic_column.(t('.col_controller'),              :request_controller)
-      generic_column.(t('.col_action'),                  :request_action)
+      generic_column.(t('.col.controller'),              :request_controller)
+      generic_column.(t('.col.action'),                  :request_action)
       generic_column.(t('exception_logs.common.format'), :request_format)
 
       t.column(t('activerecord.models.user', count: 1), :user,
@@ -81,7 +81,7 @@
         :filters  => default_filters_for(@view_scope, User)
       ) { |e| link_to_user_with_tooltip(e.user) }
 
-      generic_column.(t('.col_revision'),   :revision_no)
+      generic_column.(t('.col.revision'),   :revision_no)
 
       t.column(t('exception_logs.common.raised_at'), :created_at,
         :sortable => true

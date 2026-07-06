@@ -5,6 +5,7 @@ en:
   unset: "(Unset)"
   yes: "Yes"
   offline: "Offline"
+  online: "Online"
   none: "None"
   show: "Show"
   edit: "Edit"
@@ -61,7 +62,10 @@ en:
     other: "Parameters"
   summary: "Summary"
 
-  status: "Status:"
+  status_with_colon: "Status:"
+  status: "Status"
 
   time_zone: "Time Zone"
   all: "All"
+
+  show_hide: "(show/hide)"

@@ -23,7 +23,7 @@
 -%>
 
 <h2><%= t('.h2') %>
-<%= show_hide_toggle t('tasks.common.show_hide'), ".control_box", :class => 'task_help_link', :slide_effect => true, :slide_duration => 'fast' %>
+<%= show_hide_toggle t('show_hide'), ".control_box", :class => 'task_help_link', :slide_effect => true, :slide_duration => 'fast' %>
 </h2>
 
 <table class="simple control_box<%= " hidden" if (! @task.new_record?) && @task.status != "Duplicated" %>">
