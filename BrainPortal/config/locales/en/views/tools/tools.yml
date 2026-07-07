@@ -1,4 +1,86 @@
 en:
+
   tools:
 
     common:
+      title_cbrain_task_class: "PortalTask subclass which implements this tool."
+      header:
+        name: "Tool Name"
+        belongs_to: "Belongs to"
+        available_to_project: "Available to members of project"
+        category: "Category"
+        license_agreements: "License agreements"
+        description: "Description"
+        package_name: "Package name"
+        tool_type: "Tool type"
+        comma_separated_tags: "Comma separated tags"
+        url: "Tool URL"
+        select_menu_text: "Text for select box on the userfiles page"
+      label:
+        name: "Tool Name:"
+        belongs_to: "Belongs to:"
+        available_to_project: "Available to members of project:"
+        category: "Category:"
+        license_agreements: "License agreements:"
+        description: "Description:"
+        package_name: "Package name:"
+        tool_type: "Tool type:"
+        comma_separated_tags: "Comma separated tags:"
+        url: "Tool URL:"
+        select_menu_text: "Text for select box on the userfiles page:"
+      field_explanation:
+        license_agreements: "Enter one agreement name per line. Note that only alphanumeric characters, underscores (_) and dashes (-) are accepted."
+
+    form_fields:
+      header:
+        general_info: "General info"
+        cbrain_task_class_name: "CbrainTask Class name"
+      field_explanation:
+        description: "The first line is a short summary, and the rest are for any special notes for the users."
+      common_config_label: "Common configuration this tool on all servers:"
+      versions_installed_label: "Versions installed on the following execution servers:"
+      no_versions_configured: "(No specific versions configured)."
+      versions_configured:
+        one: "1 version configured."
+        other: "%{count} versions configured."
+      add_new: "Add new"
+      version_config_name: "version configuration '%{name}'"
+      cpu_count:
+        one: "1 cpu"
+        other: "%{count} cpus"
+
+    tool_config_select:
+      no_online_server: "No online server for this tool!"
+      select_server_version: "Select Server & Version"
+      server_version_label_html: "Server&nbsp;&amp;&nbsp;Version:"
+      launch: "Launch %{name}"
+
+    tools_table:
+      create_new_tool: "Create New Tool"
+      autoload_tools: "Autoload Tools"
+      autoload_tools_title: "Registers all subclasses of PortalTask as Tools"
+      access_reports: "Access Reports"
+      tool_versions_list: "Tool Versions List"
+    version_count:
+      one: "(1 version)"
+      other: "(%{count} versions)"
+      col:
+        execution_versions: "Execution & Versions"
+        access: "Access?"
+        info: "Info"
+
+    edit:
+      title: "Tool Info"
+      log_title: "Tool Log"
+
+    index:
+      title: "Tools"
+
+    new:
+      title: "Add New Tool"
+      label:
+        cbrain_task_class: "CbrainTask Class:"
+      field_explanation:
+        description: "The first line should be a short summary, and the rest are for any special notes for the users."
+      submit_create: "Create new tool"
+

@@ -1,4 +1,86 @@
 fr:
+
   tools:
 
     common:
+      title_cbrain_task_class: ""
+      header:
+        name: ""
+        belongs_to: ""
+        available_to_project: ""
+        category: ""
+        license_agreements: ""
+        description: ""
+        package_name: ""
+        tool_type: ""
+        comma_separated_tags: ""
+        url: ""
+        select_menu_text: ""
+      label:
+        name: ""
+        belongs_to: ""
+        available_to_project: ""
+        category: ""
+        license_agreements: ""
+        description: ""
+        package_name: ""
+        tool_type: ""
+        comma_separated_tags: ""
+        url: ""
+        select_menu_text: ""
+      field_explanation:
+        license_agreements: ""
+
+    form_fields:
+      header:
+        general_info: ""
+        cbrain_task_class_name: ""
+      field_explanation:
+        description: ""
+      common_config_label: ""
+      versions_installed_label: ""
+      no_versions_configured: ""
+      versions_configured:
+        one: ""
+        other: ""
+      add_new: ""
+      version_config_name: ""
+      cpu_count:
+        one: ""
+        other: ""
+
+    tool_config_select:
+      no_online_server: ""
+      select_server_version: ""
+      server_version_label_html: ""
+      launch: ""
+
+    tools_table:
+      create_new_tool: ""
+      autoload_tools: ""
+      autoload_tools_title: ""
+      access_reports: ""
+      tool_versions_list: ""
+    version_count:
+      one: ""
+      other: ""
+      col:
+        execution_versions: ""
+        access: ""
+        info: ""
+
+    edit:
+      title: ""
+      log_title: ""
+
+    index:
+      title: ""
+
+    new:
+      title: ""
+      label:
+        cbrain_task_class: ""
+      field_explanation:
+        description: ""
+      submit_create: ""
+
