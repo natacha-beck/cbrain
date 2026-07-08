@@ -1,4 +1,72 @@
 fr:
+
   messages:
 
     common:
+      mark_as_html: ""
+      updating: ""
+      deleting: ""
+      critical: ""
+      not_critical: ""
+      label_of_base: ""
+      leave_message: ""
+      delete_checked: ""
+
+      label:
+        system: ""
+        state_read: ""
+        state_unread: ""
+        expiry_date: ""
+
+      time_ago:
+        ten_minutes: ""
+        one_hour: ""
+        one_day: ""
+        two_days: ""
+        one_week: ""
+        one_month: ""
+        two_months: ""
+        one_year: ""
+
+      col:
+        sender: ""
+        recipient: ""
+        last_updated: ""
+        operations: ""
+
+      message_count:
+        one: ""
+        other: ""
+
+    flash_display:
+
+    message_details:
+      expires: ""
+      no_details: ""
+
+    message_display:
+      rescue: ""
+
+    message_index_display:
+      unread_link: ""
+      read_link: ""
+
+      ago_suffix: ""
+
+    index:
+      title: ""
+      unread_count:
+        one: ""
+        other: ""
+
+    new:
+      title: ""
+      new_cbrain_dashboard: ""
+      new_neurohub_dashboard: ""
+      to_users_of_project: ""
+      send_email: ""
+
+    new_dashboard:
+      title: ""
+      dashboard_html: ""
+      field_explanation_description_html: ""

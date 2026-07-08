@@ -1,4 +1,72 @@
 en:
+
   messages:
 
     common:
+      mark_as_html: "Mark&nbsp;as&nbsp;%{state}"
+      updating: "Updating..."
+      deleting: "Deleting..."
+      critical: "Critical"
+      not_critical: "Not critical"
+      label_of_base: "%{label} (of %{base})"
+      leave_message: "Leave Message"
+      delete_checked: "Delete Checked Messages"
+
+      label:
+        system: "System"
+        state_read: "Read"
+        state_unread: "Unread"
+        expiry_date: "Expiration date (current time: %{time})"
+
+      time_ago:
+        ten_minutes: "Ten minutes"
+        one_hour: "One hour"
+        one_day: "One day"
+        two_days: "Two days"
+        one_week: "One week"
+        one_month: "One month"
+        two_months: "Two months"
+        one_year: "One year"
+
+      col:
+        sender: "Sender"
+        recipient: "Recipient"
+        last_updated: "Last Updated"
+        operations: "Operations"
+
+      message_count:
+        one: "1 message"
+        other: "%{count} messages"
+
+    flash_display:
+
+    message_details:
+      expires: "Expires:"
+      no_details: "(No Details)"
+
+    message_display:
+      rescue: "Oh oh. Talk to devs!"
+
+    message_index_display:
+      unread_link: "%{count} unread"
+      read_link: "%{count} read"
+
+      ago_suffix: "%{label} ago"
+
+    index:
+      title: "Messaging Center"
+      unread_count:
+        one: "1 unread message"
+        other: "%{count} unread messages"
+
+    new:
+      title: "Add New Message"
+      new_cbrain_dashboard: "New CBRAIN Dashboard Message"
+      new_neurohub_dashboard: "New NeuroHub Dashboard Message"
+      to_users_of_project: "To users of project:"
+      send_email: "Send E-mail"
+
+    new_dashboard:
+      title: "Add New Dashboard Message"
+      dashboard_html: "Dashboard<br>"
+      field_explanation_description_html: "For dashboard messages, whatever is entered here will be substituted literally in the page's code. So you can use whatever HTML elements you want, but make sure you know what you're doing. For NeuroHub, we recommand surrounding the entire text with at least one &lt;P&gt; element."
