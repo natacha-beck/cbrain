@@ -3,7 +3,7 @@ fr:
   tools:
 
     common:
-      title_cbrain_task_class: ""
+      title_cbrain_task_class: "xxxxxxx"
       header:
         name: ""
         belongs_to: ""
