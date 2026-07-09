@@ -25,57 +25,57 @@
 <% custom_filter ||= @custom_filter %>
 
 <p>
-Filename<br>
-<%= select :data, :file_name_type, [["Don't filter name", ''], ['Matches', 'match'], ['Contains', 'contain'], ['Begins with', 'begin'], ['Ends with', 'end']], :selected => custom_filter.data_file_name_type%>
+<%= t('custom_filters.common.userfile.filename') %><br>
+<%= select :data, :file_name_type, [[t('custom_filters.common.userfile.dont_filter_name'), ''], [t('custom_filters.common.match_type.match'), 'match'], [t('custom_filters.common.match_type.contain'), 'contain'], [t('custom_filters.common.match_type.begin'), 'begin'], [t('custom_filters.common.match_type.end'), 'end']], :selected => custom_filter.data_file_name_type%>
 <%= text_field_tag "data[file_name_term]", custom_filter.data_file_name_term %>
 
 <p>
-Parent name contains <small>(lists children)</small>:<br>
+<%= t('custom_filters.common.userfile.parent_name_contains') %> <small><%= t('custom_filters.common.userfile.lists_children') %></small>:<br>
 <%= text_field_tag "data[parent_name_like]", custom_filter.data_parent_name_like %>
 
 <p>
-Child name contains <small>(lists parents)</small>:<br>
+<%= t('custom_filters.common.userfile.child_name_contains') %> <small><%= t('custom_filters.common.userfile.lists_parents') %></small>:<br>
 <%= text_field_tag "data[child_name_like]", custom_filter.data_child_name_like %>
 
 
 <p>
-  File types<br>
+  <%= t('.file_types') %><br>
   <%= userfile_type_select("data[types]", {:selector => custom_filter.data_types}, :include_blank => true, :multiple => true ) %>
 </p>
 
-Filtering by date<br>
+<%= t('custom_filters.common.filtering_by_date') %><br>
 <%= date_range_panel(custom_filter[:data] || {}, "data") %>
 <p>
-Size<br>
-<%= select :data, :size_type, [["Don't filter size", ''], ['<', "1"], ['>', "2"]], :selected  => custom_filter.data_size_type %>
+<%= t('activerecord.attributes.size') %><br>
+<%= select :data, :size_type, [[t('custom_filters.common.userfile.dont_filter_size'), ''], ['<', "1"], ['>', "2"]], :selected  => custom_filter.data_size_type %>
 <%= text_field_tag "data[size_term]", @custom_filter.data_size_type == "" ? "" : @custom_filter.data_size_term %> kb
 
 <p>
-Owners<br>
+<%= t('custom_filters.common.owners') %><br>
 <%= user_select("data[user_ids]", { :selector => custom_filter.data_user_ids }, { :include_blank => true, :multiple => true })  %>
 
 <p>
-Projects<br>
+<%= t('activerecord.models.group.other') %><br>
 <%= group_select("data[group_ids]", { :selector => custom_filter.data_group_ids}, { :include_blank => true, :multiple => true })  %>
 
 <p>
-  Data Providers<br>
+  <%= t('activerecord.models.data_provider.other') %><br>
   <%= data_provider_select("data[data_provider_ids]", { :selector => custom_filter.data_data_provider_ids || '!' }, { :include_blank => true, :multiple => true })  %>
 </p>
 
 <p>
-Archiving status<br>
+<%= t('custom_filters.common.archiving_status') %><br>
 <%= select :data, :archiving_status,
 [
-  ["Don't filter by archiving status", ''         ],
-  ["Archived",                         'archived' ],
-  ["Not archived",                     'none'     ],
+  [t('custom_filters.common.archiving.dont_filter'), ''         ],
+  [t('custom_filters.common.archiving.archived'),    'archived' ],
+  [t('custom_filters.common.archiving.not_archived'),'none'     ],
 ],
 :selected => custom_filter.data_archiving_status
 %>
 
 <p>
-  Synchronization status<br>
+  <%= t('custom_filters.common.userfile.synchronization_status') %><br>
   <%=
   select_tag "data[sync_status]", options_for_select(["InSync","ProvNewer","CacheNewer","Corrupted","ToCache","ToProvider"], :selected => custom_filter.data_sync_status),
               :multiple => true, :size => 6, :selected => custom_filter.data_sync_status
@@ -83,7 +83,7 @@ Archiving status<br>
 </p>
 
 <% if current_user.available_tags.count > 0 %>
-  Tags <br>
+  <%= t('activerecord.models.tag.other') %> <br>
   <%=
   select_tag "data[tag_ids]", options_for_select((current_user.available_tags.map { |tags| [tags.name, tags.id] }), :selected => custom_filter.data_tag_ids),
               :multiple => true, :size => 6, :selected => custom_filter.data_tag_ids

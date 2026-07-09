@@ -48,13 +48,24 @@ fr:
       by_custom_filter: ""
       create_custom_filter: ""
 
+    new_userfile_custom_filter:
+      file_types: ""
+
     new_task_custom_filter:
       task_types: ""
 
     new:
       title: ""
       filter_name: ""
+      custom_filter: ""
 
     task_custom_filter:
       header:
         types: ""
+
+    userfile_custom_filter:
+      header:
+        by_file_types: ""
+
+    show:
+      update_error: ""

@@ -94,7 +94,7 @@
     <!-- Create full report for resource with versus having at least one tool_config -->
     <% if versus_with_tcs.present? %>
       <tr>
-        <th><%= for_tool ? t('.header.execution_servers') : t('.header.tools') %> </th>
+        <th><%= for_tool ? t('activerecord.models.execution_server.other') : t('activerecord.models.tools.other') %> </th>
         <th><%= t('.header.versions_configured') %></th>
         <th><%= t('.header.projects_in_effect') %></th>
         <th class="left_align"><%= t('.header.users_access_summary') %> </th>

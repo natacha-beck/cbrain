@@ -77,7 +77,7 @@
 
 <br>
 
-<% result_table.(:rrs, t('.execution_servers')) do |rr, r, c| %>
+<% result_table.(:rrs, t('activerecord.models.execution_server.other')) do |rr, r, c| %>
   <%= link_to_bourreau_if_accessible(rr) %>
   <% task_count = current_user.cbrain_tasks.real_tasks.where(:bourreau_id => rr.id).count %>
   <% if task_count > 0 %>

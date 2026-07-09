@@ -460,7 +460,7 @@
 
           <% if @model_atts.include?(:bourreau_id) %>
             <tr class="report_fix_attributes">
-            <th><%= t('portal.search.execution_servers') %>:</th>
+            <th><%= t('activerecord.models.execution_server.other') %>:</th>
             <td><%= bourreau_select      :bourreau_id,      { :selector => params[:bourreau_id],      :offline_is_ok => true }, :multiple => true, :size => 5 %></td>
             </tr>
           <% end %>
