@@ -22,9 +22,9 @@
 #
 -%>
 
-<% title 'Batch action results' %>
+<% title t('.title') %>
 
-<h1>Batch action summary results</h1>
+<h1><%= t('.heading') %></h1>
 
 <%
    @results.compact!
@@ -41,5 +41,5 @@
 
 <p>
 
-You can go <%= link_to "back to the request list", :action => :index %>.
+<%= t('.go_back_html', link: link_to(t('.back_to_list'), :action => :index)) %>
 

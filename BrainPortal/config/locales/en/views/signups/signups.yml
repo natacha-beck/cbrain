@@ -1,4 +1,151 @@
 en:
+
   signups:
 
     common:
+      comment: "Comments or special requests:"
+
+    result_action_one:
+      result_for: "Result for %{name}, %{institution}"
+
+    signups_table:
+      new_request: "New Request"
+      delete_confirm: "Delete the selected signup requests?"
+      adjust_login: "Adjust Login"
+      resend_confirm_email: "Resend Confirm Email"
+      toggle_hidden: "Toggle Hidden"
+      hide_hidden_records: "Hide Hidden Records"
+      show_all_records: "Show All Records"
+      latest_todo: "Latest TODO"
+      not_approved: "(Not approved)"
+      updated_at: "Updated: %{time}"
+      username: "Username"
+      signup_request:
+        one:   "%{count} signup"
+        other: "%{count} signups"
+      header:
+        comments: "Comments"
+        private_comments: "Private Comments"
+        in_cbrain: "In CBRAIN"
+        origin: "Origin"
+        approved_by: "Approved By"
+
+    status:
+      approved_by: "Approved by: %{name}"
+      approved_at: "Approved at: %{time}"
+      email_confirmed: "Email confirmed."
+      email_unconfirmed: "(Email unconfirmed)"
+      conflicting_email: "(Conflicting email)"
+      login_conflict: "(Login conflict)"
+      approve: "(Approve)"
+
+    confirm_button:
+      title: "Confirm Your Request"
+      heading: "Please confirm your new account request."
+      thank_you: "Thank you for following the link from CBRAIN in your mailbox."
+      instructions: "To ensure you are indeed the owner of the email address that has requested the creation of an account on CBRAIN, please complete the final required step by clicking the button below. This will tell the CBRAIN administrators that your request is legitimate and official."
+      confirm_request: "Confirm request"
+
+    confirm:
+      title: "Request Confirmed"
+      heading: "Confirmed!"
+      thank_you: "Thank you. You've confirmed your email address."
+      review_notice: "Now it's up to the administrators to review your request and you'll be notified if and when they approve it."
+      propose_view_html: "In the meantime you can %{look} at your request, or even %{edit} it."
+      have_a_look: "have a look"
+      nothing_else: "(There is nothing else to do here, you might as well have a coffee and read the news)"
+
+    index:
+      title: "Account Signup Requests"
+
+    multi_action:
+      title: "Batch action results"
+      heading: "Batch action summary results"
+      go_back_html: "You can go %{link}."
+      back_to_list: "back to the request list"
+
+    new:
+      title: "New Account Request"
+      mandatory_fields_html: "Fields with an asterisk (*) are mandatory."
+      personal_info: "Personal Info"
+
+      label:
+        title: "Title:"
+        first: "* First Name:"
+        middle: "Middle Name:"
+        last: "* Last Name:"
+        login: "* Preferred 'login' name:"
+        institution: "* Name of Institution/Organization:"
+        department: "* Department"
+        position: "* Current position or role:"
+        affiliation: "* Current affiliation:"
+        email: "* Institutional Email address:"
+        street1: "Institution Street Address (line 1):"
+        street2: "Institution Street Address (line 2):"
+        city: "* City of Institution:"
+        province: "* Province/State:"
+        country: "* Country:"
+        postal_code: "Postal/ZIP Code:"
+        admin_comment: "Private, admin-only comments:"
+      explanation:
+        title_html: "for example: 'Mrs.', 'Mr', 'Dr.', etc."
+        login_html: "one letter + alphanums. <strong>By convention</strong>: the first letter of your first name + last name. For example, John Doe login: 'jdoe'"
+        email_html: "Please supply the address of <strong class=\"warning\"> your research institution.</strong> Requests with non-institutional address or email will be <strong>ignored</strong>"
+        comment_html: "Please tell us the name of the laboratory you work for, the name of its Principal Investigator (if not you), and if possible anyone else you know in your lab who are already CBRAIN users. <br> We'll use this information to create or add you to a <em>Site</em> within CBRAIN."
+      position_options:
+        faculty: "Faculty"
+        postdoctoral: "Postdoctoral"
+        phd_candidate: "PhD. candidate"
+        masters_student: "Masters student"
+        student: "Student"
+        researcher: "Researcher"
+        other: "Other"
+      affiliation_options:
+        academic: "Academic"
+        private_sector: "Private sector"
+        government: "Government"
+        non_profit: "Non-profit"
+        other: "Other"
+      institution_info: "Institution Info"
+      select_one: "(select one)"
+      request_account: "Request Account"
+      update_request: "Update Request"
+      privacy_note: "Privacy note"
+      privacy_text_html: "The information you supply in this form is only used in order to review your application and, <br> when approved, to automatically generate your user account. <br> This information will not be used in any other way, or passed on to any other entities or persons."
+      contact_html: "For more information, contact %{email}."
+
+    show:
+      title: "Account Request Info"
+      heading: "Account Request Summary"
+      made_from_portal_html: "This account request was made from portal %{portal} using the form located on %{form_page}."
+      admin_can_edit_html: "As an administrator, you can %{link} this request."
+      login_conflict: "This user's login conflicts with a user already in the system."
+      can_approve_html: "You can also %{link} this request."
+      approve: "approve"
+      not_confirmed: "The user has not yet confirmed their email address."
+      confirmed: "The user has confirmed the email address."
+      resend_admin_html: "If the user hasn't received the confirmation email, you can ask for another %{link} to be sent again."
+      email_confirmation_request: "email confirmation request"
+      edit_session_note_html: "You can %{link} this form, but this option will only be available while you are using the same browser session you used for submitting this form originally. Do it now while you can!"
+      confirmation_sent: "A confirmation email has been sent to the address you provided. Once you receive it, please click on the provided link so we can confirm your identity."
+      resend_user_html: "If you haven't received the email, you can ask for another %{link} to be sent to you."
+      delete_html: "You can %{link} this request."
+      delete: "delete"
+      delete_confirm: "Are you sure you want to delete the request of \"%{name}\" ?"
+      summary_intro: "Below is a summary of the information in this account request."
+      none: "(none)"
+      full_name: "Full Name:"
+      login: "Preferred 'login' name:"
+      institution: "Name of Institution/Organization:"
+      department: "Department:"
+      position: "Position or role:"
+      affiliation: "Affiliation:"
+      email: "Email address:"
+      street1: "Street Address (line 1):"
+      street2: "Street Address (line 2):"
+      city: "City:"
+      province: "Province/State:"
+      country: "Country:"
+      postal_code: "Postal Code:"
+      admin_comments: "Admin Comments"
+      status_of_request: "Status of request:"

@@ -1,4 +1,151 @@
 fr:
+
   signups:
 
     common:
+      comment: ""
+
+    result_action_one:
+      result_for: ""
+
+    signups_table:
+      new_request: ""
+      delete_confirm: ""
+      adjust_login: ""
+      resend_confirm_email: ""
+      toggle_hidden: ""
+      hide_hidden_records: ""
+      show_all_records: ""
+      latest_todo: ""
+      not_approved: ""
+      updated_at: ""
+      username: ""
+      signup_request:
+        one:   ""
+        other: ""
+      header:
+        comments: ""
+        private_comments: ""
+        in_cbrain: ""
+        origin: ""
+        approved_by: ""
+
+    status:
+      approved_by: ""
+      approved_at: ""
+      email_confirmed: ""
+      email_unconfirmed: ""
+      conflicting_email: ""
+      login_conflict: ""
+      approve: ""
+
+    confirm_button:
+      title: ""
+      heading: ""
+      thank_you: ""
+      instructions: ""
+      confirm_request: ""
+
+    confirm:
+      title: ""
+      heading: ""
+      thank_you: ""
+      review_notice: ""
+      propose_view_html: ""
+      have_a_look: ""
+      nothing_else: ""
+
+    index:
+      title: ""
+
+    multi_action:
+      title: ""
+      heading: ""
+      go_back_html: ""
+      back_to_list: ""
+
+    new:
+      title: ""
+      mandatory_fields_html: ""
+      personal_info: ""
+
+      label:
+        title: ""
+        first: ""
+        middle: ""
+        last: ""
+        login: ""
+        institution: ""
+        department: ""
+        position: ""
+        affiliation: ""
+        email: ""
+        street1: ""
+        street2: ""
+        city: ""
+        province: ""
+        country: ""
+        postal_code: ""
+        admin_comment: ""
+      explanation:
+        title_html: ""
+        login_html: ""
+        email_html: ""
+        comment_html: ""
+      position_options:
+        faculty: ""
+        postdoctoral: ""
+        phd_candidate: ""
+        masters_student: ""
+        student: ""
+        researcher: ""
+        other: ""
+      affiliation_options:
+        academic: ""
+        private_sector: ""
+        government: ""
+        non_profit: ""
+        other: ""
+      institution_info: ""
+      select_one: ""
+      request_account: ""
+      update_request: ""
+      privacy_note: ""
+      privacy_text_html: ""
+      contact_html: ""
+
+    show:
+      title: ""
+      heading: ""
+      made_from_portal_html: ""
+      admin_can_edit_html: ""
+      login_conflict: ""
+      can_approve_html: ""
+      approve: ""
+      not_confirmed: ""
+      confirmed: ""
+      resend_admin_html: ""
+      email_confirmation_request: ""
+      edit_session_note_html: ""
+      confirmation_sent: ""
+      resend_user_html: ""
+      delete_html: ""
+      delete: ""
+      delete_confirm: ""
+      summary_intro: ""
+      none: ""
+      full_name: ""
+      login: ""
+      institution: ""
+      department: ""
+      position: ""
+      affiliation: ""
+      email: ""
+      street1: ""
+      street2: ""
+      city: ""
+      province: ""
+      country: ""
+      postal_code: ""
+      admin_comments: ""
+      status_of_request: ""

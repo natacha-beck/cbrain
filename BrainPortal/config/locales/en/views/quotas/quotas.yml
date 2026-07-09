@@ -121,4 +121,5 @@ en:
     report:
 
     show:
+      update_error: "custom filter could not be updated."
 
