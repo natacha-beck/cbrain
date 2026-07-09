@@ -24,85 +24,80 @@
 
 <!-- TODO: This page is not translated yet. It is a simple copy of the English version. -->
 
-<h1>Introduction To Access Profiles</h1>
+<h1>Introduction au profil d'accès</h1>
 
 <p class="medium_paragraphs">
 
-Access profiles are way to simplify how users are assigned to projects.
+Les profils d'accès permettent de simplifier l'affectation des utilisateurs aux projets.
 
 <p class="medium_paragraphs">
 
-An access profile is basically a set of arbitrary projects. When a user is created
-or modified, it can be assigned to one (or several) access profiles, and thus
-it becomes a member of all the projects in these access profiles.
+Un profil d'accès est essentiellement un ensemble de projets. Lorsqu'un utilisateur est créé 
+ou modifié, il peut être associé à un ou plusieurs profils d'accès. En étant associé à ces profils d'accès, 
+l'utilisateur devient automatiquement membre de tous les projets inclus dans ces profils.
 
 <p class="medium_paragraphs">
 
-For the sake of clarity, let's use three terms to link the three concepts
-of <em>users</em>, <em>projects</em> and <em>access profiles</em>.
+Pour clarifier, utilisons trois termes pour faire le lien entre ces trois concepts.
+ <em>utilisateurs</em>, <em>projets</em> et <em>profils d'accès</em>.
 
 <ul>
-  <li><em>Users</em> are <strong>members</strong> of <em>projects</em></li>
-  <li><em>Projects</em> are <strong>assigned</strong> to <em>access profiles</em></li>
-  <li><em>Users</em> are <strong>linked</strong> to <em>access profiles</em></li>
+  <li><em>Utilisateurs</em> sont <strong>membres</strong> de <em>projets</em></li>
+  <li><em>Projets</em> sont <strong>attribués</strong> aux <em>profils d'accès</em></li>
+  <li><em>Utilisateurs</em> sont <strong>liés</strong> aux <em>profils d'accès</em></li>
 </ul>
 
 <p class="medium_paragraphs">
 
-It is possible for a project to be assigned to several access profiles,
-and for a user to be linked to these profiles with the redundant project.
-In that case, the user stays a member of the project as long as that project
-is assigned to at least one of these profiles. In other words, the set
-of projects that the user is a member of is the <strong>union</strong>
-of all the projects of all his linked access profiles.
-
+Un même projet peut être attribué à plusieurs profils d'accès, et un utilisateur peut être associé
+à plusieurs de ces profils. Si un projet est attribué à plusieurs profils auxquels l'utilisateur est associé, 
+celui-ci demeure membre du projet tant qu'il est attribué à au moins un de ces profils. 
+Autrement dit, l'ensemble des projets dont un utilisateur est membre correspond à l' <strong>union</strong> 
+de tous les projets attribués aux profils d'accès auxquels il est associé.
+  
 <p class="medium_paragraphs">
 
-Access profiles and all their properties are never visible to normal users.
-As far as they are concerned, they are members of projects, and that is all.
+Les profils d'accès et l'ensemble de leurs propriétés ne sont jamais visibles pour les utilisateurs standard.
+Pour ces utilisateurs, seule leur appartenance aux projets est visible.
 
 <h4>Creating an Access Profile</h4>
 
 <p class="medium_paragraphs">
 
-When creating a new access profile, the admin can set a color to help
-differentiate it from other access profiles. Projects can also immediately
-be assigned to it.
+Lors de la création d'un nouveau profil d'accès, l'administrateur peut lui attribuer une couleur afin 
+de le distinguer des autres profils d'accès. Il peut également lui attribuer des projets dès sa création
 
-<h4>Deleting an Access Profile</h4>
-
-<p class="medium_paragraphs">
-
-Removing an access profile will not delete the projects assigned to it.
-However, all users who were linked to the profile will no longer
-be members of the projects assigned to that profile
-(except those projects that may be assigned to other access profiles).
-
-<h4>Adjusting an Access Profile: adjusting the projects</h4>
+<h4>Suppression d'un profil d'accès</h4>
 
 <p class="medium_paragraphs">
 
-Adjusting the set of project assigned to an access profile will (by default) immediately
-affect all users linked to that access profile. If new projects are
-assigned to the profiles, the users will become members of them. If projects
-are de-assigned to the profile, the users MAY lose membership of them.
+La suppression d'un profil d'accès n'entraîne pas la suppression des projets qui lui sont attribués. 
+Cependant, tous les utilisateurs associés à ce profil ne seront plus membres des projets qui lui étaient attribués, 
+à l'exception des projets également attribués à d'autres profils d'accès.
+
+<h4>Modification d'un profil d'accès : gestion des projets</h4>
 
 <p class="medium_paragraphs">
 
-When using the form, the admin can select which users will be affected by
-the changes using the checkboxes at the bottom of the project list. If
-a checkbox is not checked for a user, that user's project memberships
-will not be changed at all no matter what modifications are made
-to the access profile.
-
-<h4>Adjusting an Access Profile: adjusting the users</h4>
+La modification de l'ensemble des projets attribués à un profil d'accès prend effet immédiatement (par défaut) pour 
+tous les utilisateurs associés à ce profil d'accès. Si de nouveaux projets sont attribués au profil, les utilisateurs 
+en deviennent automatiquement membres. Si des projets sont retirés du profil, les utilisateurs peuvent perdre leur
+appartenance à ces projets.
 
 <p class="medium_paragraphs">
 
-Adjusting the list of users linked to an access profile will affect
-all those users: they will either become members of all the projects in
-the profile (if the user is added) or might lose access to all these
-projects.
+Dans le formulaire, l'administrateur peut sélectionner, à l'aide des cases à cocher situées au bas de la liste des projets, 
+les utilisateurs qui seront affectés par les modifications. Si la case à cocher d'un utilisateur n'est pas sélectionnée, 
+son appartenance aux projets ne sera pas modifiée, quelles que soient les modifications apportées au profil d'accès.
+
+<h4>Modification d'un profil d'accès : gestion des utilisateurs</h4>
+
+<p class="medium_paragraphs">
+
+La modification de la liste des utilisateurs associés à un profil d'accès
+affectera tous les utilisateurs concernés : ils deviendront membres de tous 
+les projets de ce profil d'accès (si l'utilisateur est ajouté) ou 
+pourront perdre l'accès à l'ensemble de ces projets.
 
 <p class="medium_paragraphs">
 
