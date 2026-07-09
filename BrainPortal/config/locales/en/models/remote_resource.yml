@@ -6,7 +6,9 @@ en:
           other: "Servers"
         portal: "Portal"
         execution: "Execution"
-        execution_server: "Execution Server"
+        execution_server:
+          one: "Execution Server"
+          other: "Execution Servers"
         resource:
           one: "Resource"
           other: "Resources"

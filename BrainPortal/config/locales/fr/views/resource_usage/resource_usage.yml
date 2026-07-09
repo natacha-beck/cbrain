@@ -2,3 +2,58 @@ fr:
   resource_usage:
 
     common:
+      task_walltime: ""
+      task_cpu_time: ""
+      task_final_status: ""
+
+    index:
+      title: ""
+
+    resource_usage_table:
+      title:
+        file_deltas: ""
+
+      btn:
+        userfile_disk_space: ""
+
+      p_header_table_description: ""
+      p_description_intro_html: ""
+      p_description_space_userfile_html: ""
+      p_description_cputime_html: ""
+      p_description_walltime_html: ""
+      p_description_space_task_html: ""
+      p_description_cached_html: ""
+
+      header_usage_summary: ""
+      usage_record_count:
+        one: ""
+        other: ""
+      total: ""
+      average: ""
+
+      header_additional_filtering: ""
+      by_creation_date: ""
+      only_deleted_items: ""
+      positive_size_delta: ""
+      negative_size_delta: ""
+      refresh_table: ""
+
+      col:
+        date: ""
+        disk_space: ""
+        time: ""
+        cached_owner_type: ""
+        cached_owner_login: ""
+        cached_project_type: ""
+        cached_project_name: ""
+        cached_server_name: ""
+        cached_userfile_type: ""
+        cached_userfile_name: ""
+        cached_provider_type: ""
+        cached_provider_name: ""
+        cached_task_type: ""
+        cached_task_status: ""
+        cached_tool_name: ""
+        cached_version: ""
+
+      task_type_label: ""

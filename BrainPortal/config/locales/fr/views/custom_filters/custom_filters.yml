@@ -1,4 +1,60 @@
 fr:
+
   custom_filters:
 
     common:
+      filtering_by_date: ""
+      archiving_status: ""
+      owners: ""
+      dont_filter_description: ""
+
+      match_type:
+        match: ""
+        match_exactly: ""
+        contain: ""
+        begin: ""
+        end: ""
+
+      archiving:
+        dont_filter: ""
+        archived: ""
+        not_archived: ""
+        on_cluster: ""
+        as_file: ""
+
+      userfile:
+        filename: ""
+        dont_filter_name: ""
+        parent_name_contains: ""
+        lists_children: ""
+        child_name_contains: ""
+        lists_parents: ""
+        dont_filter_size: ""
+        synchronization_status: ""
+
+      task:
+        work_directory_status: ""
+        wd_status:
+          dont_filter: ""
+          shared: ""
+          not_shared: ""
+          exists: ""
+          none: ""
+
+    custom_filter_li:
+      edit_delete: ""
+
+    custom_filter_list:
+      by_custom_filter: ""
+      create_custom_filter: ""
+
+    new_task_custom_filter:
+      task_types: ""
+
+    new:
+      title: ""
+      filter_name: ""
+
+    task_custom_filter:
+      header:
+        types: ""
