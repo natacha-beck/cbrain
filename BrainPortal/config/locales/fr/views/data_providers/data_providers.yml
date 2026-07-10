@@ -1,4 +1,382 @@
 fr:
+
   data_providers:
 
     common:
+      "no": ""
+      portal_ssh_key_title: ""
+      labels:
+        mode: ""
+        syncability: ""
+      syncability:
+        fully_syncable: ""
+        not_syncable: ""
+      mode:
+        read_only: ""
+        read_write: ""
+      create_new_dp: ""
+      field_explanation:
+        description: ""
+      description: ""
+      name: ""
+      remote_dir: ""
+      cloud_config: ""
+      containerized_config: ""
+      physical_data_location: ""
+      other_properties: ""
+      ssh_params: ""
+      any_users: ""
+      unknown_key: ""
+
+    data_providers_table:
+      create_system_dp: ""
+      create_personal_dp: ""
+      check_all: ""
+      user_access_report: ""
+      transfer_restrictions_report: ""
+      disk_usage_report: ""
+      disk_quotas: ""
+      official_storage: ""
+      user_site_storage: ""
+
+    delete_button:
+      button: ""
+      explanation_html: ""
+      submit: ""
+
+    dp_browse_table:
+      title_html: ""
+      browsing_as_html: ""
+      register_files_as: ""
+      and_directories_as: ""
+      unacceptable: ""
+      belongs_to_html: ""
+      registered: ""
+      registered_with_owner_html: ""
+      col:
+        changedir: ""
+        last_modified: ""
+        registered: ""
+        note: ""
+
+    dp_report_table:
+      col:
+        issue: ""
+        severity: ""
+        action: ""
+      of_count: ""
+
+    dp_show_path:
+      top: ""
+      browse_path: ""
+
+
+    dp_types_explained:
+      content_html: |
+        This document describes the different types of Data Providers
+        implemented in CBRAIN. Not all of them are useful. In production
+        environments, the recommended type is the <strong>EnCbrainSmartDataProvider</strong>
+        for official data storage and <strong>FlatDirSshDataProvider</strong> for user-specific
+        personal storage.
+
+        <p>
+        Many provider types come in three variations:
+
+        <dl>
+          <dt>Local</dt>
+          <dd><em>Type</em><strong>Local</strong>DataProviders
+          store their information on the local file system where the CBRAIN service
+          resides; as such it means that the files will not be accessible from
+          other remote components of the CBRAIN installation, for instance
+          Execution Servers located on other hosts or supercomputers. Their
+          advantage is that they are fast to access, and the CBRAIN portal will
+          not have to make a local copy of any of the files to work on them
+          or visualize them.
+          </dd>
+
+          <dt>Ssh</dt>
+          <dd><em>Type</em><strong>Ssh</strong>DataProviders
+          store their information on file system located on a remote UNIX machine
+          accessible using a SSH account; a file's content is fetched and cached using
+          SFTP or the <em>rsync</em> command and copied locally whenever any
+          component of CBRAIN (including the portal) need to access it.
+          </dd>
+
+          <dt>Smart</dt>
+          <dd><em>Type</em><strong>Smart</strong>DataProviders
+          are intelligent in that they will act as either a <strong>Local</strong> or
+          <strong>Ssh</strong> variant of the same type. The choice is made by
+          each CBRAIN component (Portal, Execution server) independently. Each
+          component compares the hostname where it runs to the <em>Remote Hostname</em>
+          configured for the DataProvider; if they match, the <strong>Smart</strong>
+          DataProvider will act as a <strong>Local</strong> one, bypassing any form
+          of caching. If they don't match, it will act as a <strong>Ssh</strong> one,
+          therefore transferring files and caching them as needed.
+          </dd>
+        </dl>
+
+        <hr>
+
+        The rest of this document describes the different types available, which
+        differ in <em>what kind of file structure</em> they use to store the
+        files of the users.
+
+        <strong>FlatDir*DataProvider:</strong>
+        The provider's files are stored in a flat directory, one
+        level deep, directly specified by the object's <em>Remote Directory</em>
+        attribute. The file "" is this stored in a path like this:
+        <pre>    /remote_dir/hello</pre>
+        Note that for historical reasons, the <strong>SshDataProvider</strong>
+        is a synonym for <strong>FlatDirSshDataProvider</strong>.
+
+        <p>
+
+        <strong>EnCbrain*DataProvider:</strong> The
+        files are stored in a path uniquely determined by
+        the file's ID. A file named "" with ID 41233 will be stored
+        like this:
+        <pre>    /root_dir/04/12/33/hello</pre>
+        Such data providers have the advantage that files can be renamed and
+        reassigned to new owners with minimal modifications on the filesystem's
+        structure. The EnCbrain*DataProviders are the officially recommended
+        data providers for production deployment. The data directory where
+        files are stored are <em>not meant to be accessed and modified by
+        external means</em>, that means no users are supposed to access
+        the files directly in there.
+        <p>
+
+        <strong>Vault*DataProvider:</strong>
+        The provider's files are stored in a flat directory, two levels
+        deep, directly specified by the object's <em>Remote Directory</em>
+        attribute and the user's login name. The file ""
+        of user "" is thus stored into a path like this:
+        <pre>    /remote_dir/myuser/hello</pre>
+        On such data providers, it is not possible to reassign ownership
+        of a file.
+        <p>
+
+        <strong>IncomingVault*DataProvider:</strong> This class behaves like the
+        VaultSshDataProvider, except that it is browsable. When browsing, only
+        the subdirectory named like the login name of the current user will
+        be visible. It is perfect for accessing
+        a jailed <em>Remote Directory</em> for incoming content, where users
+        can upload files to these subdirectories on other channels. A typical
+        setup would also use the <em>Remote Directory</em> as the root for
+        an incoming SFTP or FTP server (this is in fact the reason why this
+        type of provider is named like this).
+        <p>
+
+        <strong>S3DataProvider:</strong> This class connects to Amazon's S3
+        cloud storage service. The files will be stored in a bucket named
+        "" where name is the name of the Data Provider.
+        Usage of this Data Provider requires obtaining an access key
+        and secret token. Do not rename this Data Provider if files
+        are registered with it, unless you also rename the bucket! All
+        FileCollections are uploaded and downloaded as .tar.gz files, so
+        this DP is not particularly efficient for large datasets.
+
+        <p>
+
+        <strong> S3FlatDataProvider:</strong> This is a class that connects to
+        Amazon's S3 cloud storage service using the new AWS SDK for S3 Version 3.0.
+        A Bucket and a Starting Path must be specified that have already been created
+        through AWS.  Usage of this Data Provider also requires obtaining an access key
+        and secret token for Amazon Web Services.  For more information, please visit
+        <a href="">https://aws.amazon.com</a> for more details.
+        File will stored as objects in the S3Object store and the data provider mainly
+        acts like a FlatDataProvider.
+
+        <p>
+
+        <strong>SingSquashfsDataProvider</strong> This class connects to a set of
+        one or several squashfs files (all named with <em>.squashfs</em> extensions) through
+        a Singularity container handler. The requirements are:<br>
+        <ul>
+          <li>that all the squashfs files are in the <em>Physical Data Location</em>,
+          <li>the Singularity image is also there and named <em>%{singularity_image}</em>,
+          <li>that this image contains a basic Linux system with at least <em>rsync</em> installed in it,
+          <li>and that the path to the data root inside the container must be provided in the <em>Containerized Data Path</em> under the <em>Containerized Storage Configuration</em> section.
+        </ul>
+        Note that this DP is already 'smart' in that if the <em>Remote Host</em>
+        configured for it matches the current host, it will not perform its
+        data operation through a SSH master.
+
+    one_data_provider_table:
+      loading: ""
+      check: ""
+      report: ""
+      col:
+        online: ""
+        alive: ""
+        inconsistency: ""
+
+    register_button:
+      button: ""
+      explanation_html: ""
+      recommendation_html: ""
+      must_move_html: ""
+      cleanup_html: ""
+      when_registering_html: ""
+      assign_project: ""
+      move_or_copy: ""
+      to: ""
+      info: ""
+      submit: ""
+      select_project: ""
+      move_option: ""
+      copy_option: ""
+      do_nothing: ""
+      select_another_dp: ""
+      notes:
+        title_html: ""
+        start: ""
+        no_modify: ""
+        copy_progress_html: ""
+        copy_done_html: ""
+        move_done: ""
+        ignored: ""
+
+    show_user_key:
+      instructions_title: ""
+      intro: ""
+      experts_html: ""
+      newcomers_html: ""
+      no_security_risk: ""
+      your_key_title: ""
+      error_fetching: ""
+      download_link: ""
+
+    unregister_button:
+      button: ""
+      explanation_html: ""
+      submit: ""
+
+    view_option_button:
+      view_options: ""
+      browse_as_another_user: ""
+
+    browse:
+      title: ""
+      refresh_list: ""
+
+    dp_access:
+      title: ""
+      heading: ""
+      accessible: ""
+      not_accessible: ""
+
+    dp_transfers:
+      title: ""
+      heading: ""
+      intro_html: ""
+      first_symbol_html: ""
+      second_symbol_html: ""
+      whether:
+        online: ""
+        mode: ""
+        access: ""
+      annotations_html: ""
+      offline: ""
+      read_only: ""
+      no_access: ""
+      destination_dp: ""
+      source_dp: ""
+      legend_title: ""
+      allowed: ""
+      not_allowed: ""
+
+    index:
+      title: ""
+
+    new_personal:
+      title: ""
+      heading: ""
+      field_explanation:
+        name: ""
+        group_html: ""
+      titles:
+        group: ""
+        remote_host: ""
+        remote_user: ""
+        remote_port: ""
+
+    new:
+      title: ""
+      select_provider_type: ""
+      type_info_toggle: ""
+      portal_key_note: ""
+      labels:
+        bucket_name: ""
+        client_path_start: ""
+        endpoint: ""
+        region: ""
+        meta_must_move: ""
+        meta_browse_gid: ""
+        meta_no_uploads: ""
+        meta_no_viewers: ""
+      titles:
+        time_zone: ""
+        type: ""
+        owner: ""
+        group: ""
+        online: ""
+        read_only: ""
+        not_syncable: ""
+        remote_host: ""
+        alternate_host: ""
+        remote_user: ""
+        remote_port: ""
+        containerized_path: ""
+        cloud_identifier: ""
+        cloud_token: ""
+        cloud_bucket: ""
+        cloud_path_start: ""
+        cloud_endpoint: ""
+        cloud_region: ""
+        datalad_url: ""
+        datalad_path: ""
+      legends:
+        ssh_params: ""
+        datalad_config: ""
+      field_explanation:
+        bucket_name: ""
+
+    report:
+      title: ""
+      heading_html: ""
+      reload_report: ""
+      submit: ""
+
+    show:
+      title: ""
+      inconsistency_report: ""
+      file_registration_statistics: ""
+      test_configuration: ""
+      delete_confirm: ""
+      update_error: ""
+      revision_info_dp: ""
+      revision_info_type_html: ""
+      official_storage_html: ""
+      user_site_storage_html: ""
+      portals_html: ""
+      execution_servers_html: ""
+      cannot_sync_html: ""
+      portal_key_note: ""
+      log_title: ""
+      headers:
+        datalad_config: ""
+        client_bucket_name: ""
+        client_path_start: ""
+        endpoint: ""
+        region: ""
+        datalad_url: ""
+        datalad_path: ""
+        no_uploads: ""
+        no_viewers: ""
+        must_move: ""
+        copy_move_targets: ""
+        browse_gid: ""
+        accessed_by_servers: ""
+      field_explanation:
+        license_agreements: ""
+        alternate_host: ""

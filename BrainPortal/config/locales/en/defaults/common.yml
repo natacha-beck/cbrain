@@ -15,6 +15,9 @@ en:
   switch: "Switch"
   clear: "Clear"
   refresh: "Refresh"
+  select_placeholder: "..."
+
+  no_information: "There is no information to show at this time."
 
   delete: "Delete"
   deleted: "Deleted"

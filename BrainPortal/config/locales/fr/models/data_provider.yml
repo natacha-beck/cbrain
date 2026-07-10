@@ -4,3 +4,18 @@ fr:
         data_provider:
           one: "Fournisseur de données"
           other: "Fournisseurs de données"
+      attributes:
+        data_provider:
+          name: ""
+          description: ""
+          type: ""
+          remote_host: ""
+          alternate_host: ""
+          remote_user: ""
+          remote_port: ""
+          remote_dir: ""
+          containerized_path: ""
+          cloud_storage_client_identifier: ""
+          cloud_storage_client_token: ""
+          datalad_repository_url: ""
+          datalad_relative_path: ""
