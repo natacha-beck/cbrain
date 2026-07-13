@@ -57,7 +57,7 @@
       <% end %>,
 
       <%= colored_pretty_size(@userfiles_total_size) %>
-      <%= show_total.(@hidden_total,    t('.hidden'),   hidden_icon) %>
+      <%= show_total.(@hidden_total,    t('hidden'),    hidden_icon) %>
       <%= show_total.(@archived_total,  t('.archived'), archived_icon) %>
       <%= show_total.(@immutable_total, t('.locked'),   immutable_icon) %>
     )

@@ -152,7 +152,7 @@
       <%= hijacker_submit_button(t('.unarchive_tasks'),    :url => url_for(:action  => :operation, :operation => 'unarchive'),    :method  => :post, :datatype => :script, :class => "button") %>
       <br/>
       <br/>
-      <%= t('.optional_destination_dp') %>
+      <%= t('.optional_destination_dp_html') %>
       <%= data_provider_select :archive_dp_id, { :selector => "" }, :include_blank => "" %>
 
       <% if current_user.has_role?(:admin_user) %>

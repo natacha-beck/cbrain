@@ -97,7 +97,7 @@
 
     t.column(t('.online'), :online,
       :sortable => true
-    ) { |r| red_if(! r.online?, t('yes'), t('offline')) }
+    ) { |r| red_if(! r.online?, t('yes_word'), t('offline')) }
 
     t.column(t('activerecord.models.cbrain_task.other'), :tasks, &(lambda do |r|
       return unless r.is_a?(Bourreau)

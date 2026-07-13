@@ -223,7 +223,7 @@ en:
       cms_extra_qsub_args_label: "Extra cluster submission options"
 
       task_workers_configuration_legend: "Task Workers Configuration"
-      field_explanation_workers_verbose_html: "This option has no affect if the logs are sent to the RAILS log."
+      field_explanation_workers_verbose_html: "This option has no effect if the logs are sent to the RAILS log."
       task_limits_legend: "Task Limits"
       field_explanation_task_limits_html: "Task limits can be set once the Execution Server is created."
       submit_new_server: "Create New Server"
@@ -349,7 +349,7 @@ en:
       header_persistent_ssh_masters: "Use persistent SSH masters for SSH-based DataProviders"
       always: "Always"
       never: "Never"
-      p_persistent_ssh_explanation: "When set to 'always', the SSH connections to a data provider's host will persist after the first use. This makes successive data transfers a bit faster because the connection doesn't have to be re-opened every time it is needed. The default it to have this behavior ON ('always') for portals and OFF ('never') for execution servers."
+      p_persistent_ssh_explanation: "When set to 'always', the SSH connections to a data provider's host will persist after the first use. This makes successive data transfers a bit faster because the connection doesn't have to be re-opened every time it is needed. The default is to have this behavior ON ('always') for portals and OFF ('never') for execution servers."
       header_cluster_config: "Cluster Configuration"
       header_type_of_cluster: "Type of cluster"
       unconfigured: "(Unconfigured)"

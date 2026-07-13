@@ -72,13 +72,13 @@
 
     t.column(t('.col.online'), :online,
       :sortable => true
-    ) { |dp| red_if(!dp.online?, t('yes'), t('data_providers.common.no')) }
+    ) { |dp| red_if(!dp.online?, t('yes_word'), t('data_providers.common.no_word')) }
   %>
 
   <% t.column(t('.col.alive'), :alive) do |dp| %>
     <% if dp.online? %>
       <% if dp.alive_cached_valid? %>
-        <%= red_if( !dp.is_alive_with_caching?, t('yes'), t('data_providers.common.no')) %>
+        <%= red_if( !dp.is_alive_with_caching?, t('yes_word'), t('data_providers.common.no_word')) %>
       <% else %>
         <span class="dp_alive_btn" id="<%= "alive" + h(dp.id) %>">
           <%= on_click_ajax_replace( { :element   => "span",
@@ -95,7 +95,7 @@
         </span>
       <% end %>
     <% else %>
-      <%= t('data_providers.common.no') %>
+      <%= t('data_providers.common.no_word') %>
     <% end %>
   <% end %>
 

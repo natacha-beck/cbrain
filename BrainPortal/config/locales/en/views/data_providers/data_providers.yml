@@ -3,7 +3,7 @@ en:
   data_providers:
 
     common:
-      "no": "No"
+      no_word: "No"
       portal_ssh_key_title: "Public SSH Key for this CBRAIN Portal"
       labels:
         mode: "Mode"
@@ -212,9 +212,9 @@ en:
     register_button:
       button: "Register Files"
       explanation_html: "This panel allows you to <strong>register</strong> files that are present on the remote Data Provider, but not yet known by the CBRAIN interface. Once registered, a file will be visible in the <strong>Files</strong> manager, and can be used for launching tasks."
-      recommendation_html: "We recommand that you use this Data Provider only to transfer data in and out of CBRAIN. When registering files, as you can see below, you can have them automatically moved or copied to another official CBRAIN Data Provider."
+      recommendation_html: "We recommend that you use this Data Provider only to transfer data in and out of CBRAIN. When registering files, as you can see below, you can have them automatically moved or copied to another official CBRAIN Data Provider."
       must_move_html: "<strong>In fact, this particular Data Provider leaves you no choice</strong> and you MUST select another Data Provider where your files will be copied or moved."
-      cleanup_html: "Once files are copied to another official Data Provider, we recommand you clean up the files here using the <strong>Delete Files</strong> panel, further right."
+      cleanup_html: "Once files are copied to another official Data Provider, we recommend you clean up the files here using the <strong>Delete Files</strong> panel, further right."
       when_registering_html: "<strong>When registering, automatically...</strong>"
       assign_project: "&darr; ... assign them to project ... &darr;"
       move_or_copy: "&darr; ... move or copy them ... &darr;"
@@ -271,8 +271,8 @@ en:
       first_symbol_html: "<strong>First symbol</strong>: This one indicate restrictions for transferring files between Data Provider pairs, independently of the states of any other resources. The restrictions are not necessarily symmetrical: it's possible to configure Data Providers A and B such that transfers from A &rarr; B are allowed (%{ok}) while transfers from B &rarr; A are not (%{no})."
       second_symbol_html: "<strong>Second symbol</strong>: Since transfers are performed by a CBRAIN Portal, there are three other factors to take into account:"
       whether:
-        online: "whether or not Data Providers are <em>online</em> or <em>offline</em>;"
-        mode: "whether or not Data Providers are <em>read/write</em> or <em>read only</em>;"
+        online_html: "whether or not Data Providers are <em>online</em> or <em>offline</em>;"
+        mode_html: "whether or not Data Providers are <em>read/write</em> or <em>read only</em>;"
         access: "whether or not the current Portal has itself access to each Data Provider."
       annotations_html: "In such cases, Data Providers will be annotated with %{offline}, %{read_only} and/or %{no_access}. If all three properties allow the file transfers, the second symbol will be %{ok}; otherwise it will be %{no}."
       offline: "(offline)"

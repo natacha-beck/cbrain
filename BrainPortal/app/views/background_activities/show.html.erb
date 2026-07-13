@@ -72,7 +72,7 @@
         elsif @bac.current_item == 0
           t('.none_yet')
         elsif @bac.items.size == @bac.current_item
-          t('.all_of_them', count: @bac.num_failures)
+          t('.all_of_them', count: @bac.current_item)
         else
           @bac.current_item
         end

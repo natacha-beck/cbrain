@@ -3,7 +3,7 @@ en:
 
   unknown: "Unknown"
   unset: "(Unset)"
-  yes: "Yes"
+  yes_word: "Yes"
   offline: "Offline"
   online: "Online"
   none: "None"

@@ -136,7 +136,7 @@
 
       t.column(t('.col.registered'), :registered) do |f|
           userfile = f.userfile
-          next t('data_providers.common.no') unless userfile
+          next t('data_providers.common.no_word') unless userfile
 
           owner = t('.belongs_to_html', login: userfile.user.login) unless
             userfile.user_id == current_user.id
