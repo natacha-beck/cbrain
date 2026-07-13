@@ -1,5 +1,7 @@
 en:
+
   groups:
+
     common:
       creator: "Creator"
       select_site: "(Select a site)"

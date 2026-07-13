@@ -1,5 +1,7 @@
 en:
+
   activerecord:
+
     attributes:
       category: "Category"
       city: "City"

@@ -1,24 +1,11 @@
 en:
+
     layouts:
 
       common:
         quotas: "Quotas"
         tool_versions: "Tool Versions"
         usage: "Usage"
-
-      cbrain_application:
-
-      log_report:
-
-      neurohub_application:
-
-      neurohub_flash_message:
-
-      neurohub_footer:
-
-      neurohub_navbar:
-
-      neurohub_secondary_navbar:
 
       section_account:
         dashboard: "Dashboard"
@@ -47,14 +34,6 @@ en:
       section_footer:
         powered_by: "Powered by %{name}"
         credits: "Credits"
-
-      section_main:
-
-      application:
-
-      mailer_html:
-
-      mailer_text:
 
       section_menu:
         all: "All"

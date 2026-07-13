@@ -38,8 +38,6 @@ en:
         one: "1 message"
         other: "%{count} messages"
 
-    flash_display:
-
     message_details:
       expires: "Expires:"
       no_details: "(No Details)"

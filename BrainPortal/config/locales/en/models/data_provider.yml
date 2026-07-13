@@ -1,9 +1,12 @@
 en:
+
   activerecord:
+
       models:
         data_provider:
           one: "Data Provider"
           other: "Data Providers"
+
       attributes:
         data_provider:
           name: "Name"

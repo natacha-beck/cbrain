@@ -1,5 +1,7 @@
 en:
+
   users:
+
     common:
       select_site: "(Select a site)"
       used: "%{size} used"

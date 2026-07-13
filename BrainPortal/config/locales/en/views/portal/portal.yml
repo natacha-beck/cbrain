@@ -1,4 +1,5 @@
 en:
+
   portal:
 
     common:
@@ -6,10 +7,6 @@ en:
       availability: "Availability"
       open: "Generally open"
       restricted: "Restricted/on demand"
-
-    available_datasets_table:
-
-    available_tools_table:
 
     logo_footer:
       supported_by: "Supported By The Following Organizations"
@@ -251,4 +248,3 @@ en:
       from: "From"
       with: "with"
       unset: "(Unset)"
-

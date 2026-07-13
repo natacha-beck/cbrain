@@ -1,4 +1,5 @@
 en:
+
   userfiles:
 
     common:
@@ -22,8 +23,6 @@ en:
       read: "Read"
       size_bytes: "%{size} bytes"
       created_at: "Created at"
-
-    context_menu:
 
     default_qc_panel:
       not_synced: "This file must be synced locally to view QC data."
@@ -99,8 +98,6 @@ en:
       transfer_started: "Transfer Started:"
       state_occurred: "State Occurred:"
 
-    tags_table:
-
     tools_interface:
       title: "Select Tool"
       search: "Search:"
@@ -131,10 +128,6 @@ en:
       size: "Size"
       was_html: "(was: %{size} in %{file_count})"
       project_access: "Project Access"
-
-    viewer_errors:
-
-    display:
 
     index:
       title: "Files"

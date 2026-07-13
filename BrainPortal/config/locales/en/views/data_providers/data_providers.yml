@@ -70,7 +70,6 @@ en:
       top: "(top)"
       browse_path: "Browse Path:"
 
-
     dp_types_explained:
       content_html: |
         This document describes the different types of Data Providers

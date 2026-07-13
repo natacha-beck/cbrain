@@ -1,6 +1,8 @@
 en:
+
   activerecord:
-      models:
-        tag:
-          one: "Tag"
-          other: "Tags"
+
+    models:
+      tag:
+        one: "Tag"
+        other: "Tags"

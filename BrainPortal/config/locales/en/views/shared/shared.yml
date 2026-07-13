@@ -5,12 +5,8 @@ en:
       clear: "Clear"
       do_not_filter: "Do not filter"
 
-    access_profile_checkbox_table:
-
     active_filters:
       active_filters: "Active Filters"
-
-    color_picker:
 
     date_range_info:
       created: "created"
@@ -46,8 +42,6 @@ en:
       create: "Create"
       update: "Update"
 
-    show_table_context:
-
     show_table:
       modified_at: "Modified at"
       project_permission: "Project permission on file"
@@ -60,5 +54,3 @@ en:
       remote_path: "Remote Data Provider path"
       public: "Public"
       not_assignable: "Not assignable"
-
-    users_checkbox_table:
