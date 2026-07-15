@@ -1,12 +1,41 @@
 en:
+
+  labels:
+    user_colon:
+      one: "User:"
+      other: "Users:"
+    group_colon:
+      one: "Group:"
+      other: "Groups:"
+    tool_colon:
+      one: "Tool:"
+      other: "Tools:"
+    data_provider_colon:
+      one: "Data Provider:"
+      other: "Data Providers:"
+    execution_server_colon:
+      one: "Execution Server:"
+      other: "Execution Servers:"
+    type_colon:
+      one: "Type:"
+      other: "Types:"
+    status_colon:
+      one: "Status:"
+      other: "Statuses:"
+    year_month_colon: "Year/Month:"
+    dates_colon: "Dates:"
+    search_colon: "Search:"
+
   ago_time: "%{time} ago"
 
   unknown: "Unknown"
-  unset: "(Unset)"
+  unknown_parentheses: "(Unknown)"
+  unset_parentheses: "(Unset)"
   yes_word: "Yes"
   offline: "Offline"
   online: "Online"
   none: "None"
+  none_parentheses: "(None)"
   show: "Show"
   edit: "Edit"
   help: "Help"

@@ -26,8 +26,8 @@
 
 <%= form_tag(search_path, :method => :get) do %>
 
-   <strong><%= t('.search_label') %></strong> <%= text_field_tag :search, @search.presence, :placeholder => t('.search_placeholder') %>
-   <span class="field_explanation"><%= t('.explanation_html', limit: @limit) %></span>
+   <strong><%= t('labels.search_colon') %></strong> <%= text_field_tag :search, @search.presence, :placeholder => t('.placeholders.search') %>
+   <span class="field_explanation"><%= t('.explanations.search', limit: @limit) %></span>
    <p>
 <% end %>
 
@@ -41,7 +41,7 @@
   <% result = result.limit(@limit).to_a if result.is_a?(ActiveRecord::Relation) %>
   <% return if result.blank? %>
   <div class="generalbox no_wrap">
-  <h4><%= title || t('activerecord.models.#{name.to_s.singularize}.other', default: name.to_s.humanize) %><%= t('.found', count: result.size) %></h4>
+  <h4><%= title || t('activerecord.models.#{name.to_s.singularize}.other', default: name.to_s.humanize) %><%= t('.results.found', count: result.size) %></h4>
   <%=
     array_to_table(result[0, @limit], {
       :rows            => 10,
@@ -67,12 +67,12 @@
 
 <% result_table.(:users) do |user, r, c| %>
   <%= user.full_name %> (<%= link_to_user_if_accessible(user) %>)
-  <%= link_to "(#{t('.switch')})", switch_user_path(user), :method  => :post, :class => 'action_link' if current_user.has_role?(:admin_user) %>
+  <%= link_to t('.actions.switch'), switch_user_path(user), :method  => :post, :class => 'action_link' if current_user.has_role?(:admin_user) %>
 <% end %>
 
 <% result_table.(:groups, t('activerecord.models.group.other')) do |group, r, c| %>
   <%= link_to_group_if_accessible(group) %> (<%= group.creator.try(:login) %>)
-  <%= link_to "(#{t('.switch')})", { :controller => :groups, :action => :switch, :id => group.id } , :method  => :post, :class => 'action_link' %>
+  <%= link_to t('.actions.switch'), { :controller => :groups, :action => :switch, :id => group.id } , :method  => :post, :class => 'action_link' %>
 <% end %>
 
 <br>
@@ -96,7 +96,7 @@
     (<%= index_count_filter(
       file_count, :userfiles,
       { :user_id => current_user.id, :data_provider_id => dp.id }
-    ) %> <%= t('.registered_files') %>)
+    ) %> <%= t('.results.registered_files') %>)
   <% end %>
 <% end %>
 
@@ -114,7 +114,7 @@
   <% end %>
 <% end %>
 
-<% result_table.(:tcs, t('.tool_versions')) do |tc, r, c| %>
+<% result_table.(:tcs, t('.results.tool_versions')) do |tc, r, c| %>
   <% if current_user.has_role?(:admin_user) %>
     <%= tc.tool.name %>@<%= tc.bourreau.name%> : <%= link_to tc.version_name, tool_config_path(tc) %>
   <%  else %>
