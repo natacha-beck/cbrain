@@ -26,33 +26,13 @@
 
 <div class="credit_box">
 
-  <h3><%= t('.header') %></h3>
+  <h3><%= t('.headings.statement') %></h3>
 
   <!-- Text by Bryan Caron -->
 
-  <%= t('.p1_html') %>
+  <%= t('.paragraphs.statement_html') %>
 
-
-  <p>
-
-  <%= t('.p2_html') %>
-
-  <p>
-
-  <%= t('.p3_html') %>
-
-  <p>
-
-  <%=
-    t('.p4_html',
-      release_link:     link_to(t('.md_file'), "https://github.com/aces/cbrain/blob/master/Release-Notes.md")
-    )
-  %>
-
-
-  <p>
-
-  <small><%= t('.last_updated') %> 2021-05-03</small>
+  <%= t('.footer.last_updated_html', date: '2021-05-03') %>
 
 </div>
 
