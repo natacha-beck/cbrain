@@ -47,7 +47,7 @@
       </div>
 
       <% sync_statuses = ['InSync', 'ProvNewer', 'CacheNewer', 'Corrupted', 'ToCache', 'ToProvider'] %>
-      <%= center_legend(t('.sync_symbols'), sync_statuses.map { |s| [status_html_symbol(s), s] }) %>
+      <%= center_legend(t('.legends.sync_symbols'), sync_statuses.map { |s| [status_html_symbol(s), s] }) %>
     </div>
   <% end %>
 

@@ -1,9 +1,8 @@
 en:
+
   bourreaux:
 
     common:
-      no_information: "There is no information to show at this time."
-
       field_explanation_description: "The first line should be a short summary, and the rest are for any special notes for the users."
       field_explanation_system_from_email: "If set, messages sent automatically by this system will contain this return address."
       field_explanation_cms_shared_dir_html: "Mandatory. This directory must be visible and writable from all nodes.<br />This is were the work subdirectories for all tasks will be created."
@@ -11,7 +10,6 @@ en:
       field_explanation_cms_extra_qsub_args_html: "Optional. Careful, this is inserted as-is in the command-line for submitting jobs."
       field_explanation_dp_cache_warning_html: "Warning! Changing this field will result in resetting the synchronization status of all files from all Data Providers! Also, the Rails app will have to be restarted, and all files in that directory will be erased!"
       field_explanation_ignore_patterns_html: "Separate several patterns with spaces; each pattern can contain single '*'s, but no '/'s or special characters."
-
       header_cache_expiration: "Cache Expiration Timeout (in seconds)"
       cache_trust_expire_select:
         never: "Never"
@@ -25,11 +23,9 @@ en:
         two_months: "Two months"
         three_months: "Three months"
         six_months: "Six months"
-
       header_workers_instances: "Number of Workers"
       workers_instances_select:
         none: "None (for debug)"
-
       header_workers_chk_time: "Check interval"
       workers_chk_time_select:
         five_seconds: "5 seconds"
@@ -40,7 +36,6 @@ en:
         five_minutes: "5 minutes"
         fifteen_minutes: "15 minutes"
         one_hour: "1 hour"
-
       header_workers_log_to: "Log destination"
       workers_log_to_select:
         combined_file: "Combined file (recommended)"
@@ -228,7 +223,7 @@ en:
       cms_extra_qsub_args_label: "Extra cluster submission options"
 
       task_workers_configuration_legend: "Task Workers Configuration"
-      field_explanation_workers_verbose_html: "This option has no affect if the logs are sent to the RAILS log."
+      field_explanation_workers_verbose_html: "This option has no effect if the logs are sent to the RAILS log."
       task_limits_legend: "Task Limits"
       field_explanation_task_limits_html: "Task limits can be set once the Execution Server is created."
       submit_new_server: "Create New Server"
@@ -354,7 +349,7 @@ en:
       header_persistent_ssh_masters: "Use persistent SSH masters for SSH-based DataProviders"
       always: "Always"
       never: "Never"
-      p_persistent_ssh_explanation: "When set to 'always', the SSH connections to a data provider's host will persist after the first use. This makes successive data transfers a bit faster because the connection doesn't have to be re-opened every time it is needed. The default it to have this behavior ON ('always') for portals and OFF ('never') for execution servers."
+      p_persistent_ssh_explanation: "When set to 'always', the SSH connections to a data provider's host will persist after the first use. This makes successive data transfers a bit faster because the connection doesn't have to be re-opened every time it is needed. The default is to have this behavior ON ('always') for portals and OFF ('never') for execution servers."
       header_cluster_config: "Cluster Configuration"
       header_type_of_cluster: "Type of cluster"
       unconfigured: "(Unconfigured)"

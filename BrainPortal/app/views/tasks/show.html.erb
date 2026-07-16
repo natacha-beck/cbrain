@@ -30,7 +30,7 @@
 
     <!-- EDIT -->
     <% if (@task.status =~ /Completed|Failed|Duplicated|Terminated/) && (! @task.class.properties[:cannot_be_edited]) %>
-      <%= link_to t('.edit_parameters'), { :action => 'edit', :id => @task.id }, :class  => "button menu_button"  %>
+      <%= link_to t('.links.edit_parameters'), { :action => 'edit', :id => @task.id }, :class  => "button menu_button"  %>
     <% end %>
 
     <!-- REFRESH -->
@@ -40,41 +40,41 @@
 
     <!-- FAILURE RECOVERY -->
     <% if @task.status =~ /^Failed*/ %>
-      <%= link_to t('.retry_failed'), { :action => 'operation', :operation => 'recover', 'tasklist[]' => @task.id }, :class  => "button menu_button", :method => :post %>
+      <%= link_to t('.links.retry_failed'), { :action => 'operation', :operation => 'recover', 'tasklist[]' => @task.id }, :class  => "button menu_button", :method => :post %>
     <% end %>
 
     <!-- RESTART -->
     <% if @task.status =~ /Completed|Terminated|Duplicated/ %>
-      <%= link_to t('.restart_at_setup'), { :action => 'operation', :operation => 'restart_setup', 'tasklist[]' => @task.id }, :class  => "button menu_button", :method => :post %>
+      <%= link_to t('.links.restart_at_setup'), { :action => 'operation', :operation => 'restart_setup', 'tasklist[]' => @task.id }, :class  => "button menu_button", :method => :post %>
     <% end %>
 
     <% if @task.status == 'Completed' %>
-      <%= link_to t('.restart_on_cluster'), { :action => 'operation', :operation => 'restart_cluster', 'tasklist[]' => @task.id }, :class  => "button menu_button", :method => :post %>
-      <%= link_to t('.restart_at_post_processing'), { :action => 'operation', :operation => 'restart_postprocess', 'tasklist[]' => @task.id }, :class  => "button menu_button", :method => :post %>
+      <%= link_to t('.links.restart_on_cluster'), { :action => 'operation', :operation => 'restart_cluster', 'tasklist[]' => @task.id }, :class  => "button menu_button", :method => :post %>
+      <%= link_to t('.links.restart_at_post_processing'), { :action => 'operation', :operation => 'restart_postprocess', 'tasklist[]' => @task.id }, :class  => "button menu_button", :method => :post %>
     <% end %>
 
     <!-- ARCHIVING -->
     <% if CbrainTask::COMPLETED_STATUS.include?(@task.status) && @task.full_cluster_workdir.present? && @task.archived_status.nil? %>
-      <%= link_to t('.archive_on_cluster'), url_for(:action  => :operation, :operation => 'archive', 'tasklist[]' => @task.id), :method  => :post, :datatype => :script, :class => "button" %>
+      <%= link_to t('.links.archive_on_cluster'), url_for(:action  => :operation, :operation => 'archive', 'tasklist[]' => @task.id), :method  => :post, :datatype => :script, :class => "button" %>
     <% end %>
 
     <% if CbrainTask::COMPLETED_STATUS.include?(@task.status) && @task.archived_status.present? %>
-      <%= link_to t('.unarchive'), url_for(:action  => :operation, :operation => 'unarchive', 'tasklist[]' => @task.id), :method  => :post, :datatype => :script, :class => "button" %>
+      <%= link_to t('.links.unarchive'), url_for(:action  => :operation, :operation => 'unarchive', 'tasklist[]' => @task.id), :method  => :post, :datatype => :script, :class => "button" %>
     <% end %>
 
     <!-- TERMINATE & REMOVE -->
     <% if CbrainTask::QUEUED_STATUS.include?(@task.status) or CbrainTask::PROCESSING_STATUS.include?(@task.status) %>
-      <%= link_to t('.terminate_task'), { :action => 'operation', :operation => 'terminate', 'tasklist[]' => @task.id }, :data => { :confirm => t('.confirm_terminate_task') }, :class  => "button menu_button", :method => :post %>
+      <%= link_to t('.links.terminate_task'), { :action => 'operation', :operation => 'terminate', 'tasklist[]' => @task.id }, :data => { :confirm => t('.confirm.terminate_task') }, :class  => "button menu_button", :method => :post %>
     <% end %>
 
     <% if CbrainTask::FAILED_STATUS.include?(@task.status) or CbrainTask::COMPLETED_STATUS.include?(@task.status) %>
-      <%= link_to t('.remove_work_directory'), url_for(:action  => :operation, :operation => 'zap_wd', 'tasklist[]' => @task.id),
+      <%= link_to t('.links.remove_work_directory'), url_for(:action  => :operation, :operation => 'zap_wd', 'tasklist[]' => @task.id),
                                                   :method   => :post,
                                                   :class    => "button",
                                                   :data     =>
-                  { :confirm => t('.confirm_rm_wd') }
+                  { :confirm => t('.confirm.remove_work_directory') }
       %>
-      <%= link_to t('.save_work_directory'), url_for(:action    => :operation, :operation => 'save_wd', 'tasklist[]' => @task.id),
+      <%= link_to t('.links.save_work_directory'), url_for(:action    => :operation, :operation => 'save_wd', 'tasklist[]' => @task.id),
                                                   :method   => :post,
                                                   :class    => "button"
       %>
@@ -82,15 +82,15 @@
 
     <!-- ZENODO -->
     <% if @task.status =~ /Completed/ && current_user.zenodo_main_token.present? %>
-      <%= link_to t('.publish_to_zenodo'), zenodo_task_path(@task), :class => "button menu_button" %>
+      <%= link_to t('.links.publish_to_zenodo'), zenodo_task_path(@task), :class => "button menu_button" %>
     <% end %>
 
   <% end %>
 
   <% if ((CbrainTask::QUEUED_STATUS | CbrainTask::FAILED_STATUS | CbrainTask::COMPLETED_STATUS).include?(@task.status)) && (@task.bourreau&.online? || @task.cluster_workdir_size.nil?) %>
-    <% confirm  = t('.confirm_rm_task') %>
-    <% confirm += t('.rm_task_note') if @task.workdir_archive %>
-    <%= link_to t('.rm_task'),  { :action => 'operation', :operation => 'delete', 'tasklist[]' => @task.id }, :data => { :confirm => confirm }, :class  => "button menu_button", :method => :post %>
+    <% confirm  = t('.confirm.remove_task') %>
+    <% confirm += t('.confirm.remove_task_note') if @task.workdir_archive %>
+    <%= link_to t('.links.remove_task'),  { :action => 'operation', :operation => 'delete', 'tasklist[]' => @task.id }, :data => { :confirm => confirm }, :class  => "button menu_button", :method => :post %>
   <% end %>
 
 </div><!-- menu_bar -->
@@ -99,43 +99,43 @@
 
   <%= show_table(@task) do |t| %>
 
-    <% t.cell(t('.task_name')) do %>
+    <% t.cell(t('.cells.task_name')) do %>
       <%= @task.name %><%= " (#{@task.pretty_name})" if @task.name != @task.pretty_name %>
     <% end %>
-    <% t.cell(t('.task_description')) { h(@task.description).gsub("\n", "<br>").html_safe } %>
+    <% t.cell(t('.cells.task_description')) { h(@task.description).gsub("\n", "<br>").html_safe } %>
 
-    <% t.cell(t('activerecord.models.execution_server')) { link_to_bourreau_if_accessible(@task.bourreau) }  %>
-    <% t.cell(t('owner')) { link_to_user_with_tooltip(@task.user) } %>
+    <% t.cell(t('.cells.execution_server')) { link_to_bourreau_if_accessible(@task.bourreau) }  %>
+    <% t.cell(t('.cells.owner')) { link_to_user_with_tooltip(@task.user) } %>
 
-    <% t.cell(t('tool_version')) do %>
+    <% t.cell(t('.cells.tool_version')) do %>
       <% if current_user.has_role?(:admin_user) && @task.tool_config %>
         <%= link_to @task.tool_config.version_name, tool_config_path(@task.tool_config) %>
       <% else %>
         <%= @task.tool_config.version_name %>
       <% end %>
     <% end %>
-    <% t.cell(t('activerecord.models.group.one')) { link_to_group_if_accessible(@task.group) } %>
+    <% t.cell(t('.cells.group')) { link_to_group_if_accessible(@task.group) } %>
 
-    <% t.cell(t('.current_status')) do %>
+    <% t.cell(t('.cells.current_status')) do %>
       <%= colored_status(@task.status) %>
     <% end %>
-    <% t.cell(t('.time_submitted')) { to_localtime(@task.created_at,:datetime) }%>
+    <% t.cell(t('.cells.time_submitted')) { to_localtime(@task.created_at,:datetime) }%>
 
     <% t.attribute_cell(:run_number) %>
-    <% t.cell(t('last_updated')) { to_localtime(@task.updated_at,:datetime) }%>
+    <% t.cell(t('.cells.last_updated')) { to_localtime(@task.updated_at,:datetime) }%>
 
-    <% t.cell(t('.data_provider_for_results')) { link_to_data_provider_if_accessible(@task.results_data_provider_id) } %>
-    <% t.cell(t('.zenodo_publication')) do %>
+    <% t.cell(t('.cells.data_provider_for_results')) { link_to_data_provider_if_accessible(@task.results_data_provider_id) } %>
+    <% t.cell(t('.cells.zenodo_publication')) do %>
       <% if @task.zenodo_doi.present? %>
         <% if @task.zenodo_doi.starts_with?( ZenodoHelper::ZenodoSandboxDOIPrefix ) %>
-          <%= t('tasks.common.published') %> <%= link_to_deposit(@task.zenodo_deposit_id) %>
+          <%= t('.zenodo_publication.published') %> <%= link_to_deposit(@task.zenodo_deposit_id) %>
         <% else %>
-          <%= t('tasks.common.published') %> <%= link_to_zenodo_doi(@task.zenodo_doi) %>
+          <%= t('.zenodo_publication.published') %> <%= link_to_zenodo_doi(@task.zenodo_doi) %>
         <% end %>
       <% elsif @task.zenodo_deposit_id.present? %>
-          <%= t('.in_progress') %> <%= link_to_deposit(@task.zenodo_deposit_id) %>
+          <%= t('.zenodo_publication.in_progress') %> <%= link_to_deposit(@task.zenodo_deposit_id) %>
       <% else %>
-          <%= t('none') %>.
+          <%= t('.zenodo_publication.none') %>.
       <% end %>
     <% end %>
 
@@ -143,32 +143,32 @@
 
     <% if current_user.has_role?(:admin_user) %>
 
-      <% t.attribute_cell(:cluster_jobid, :header => t('.cluster_job_id')) %>
+      <% t.attribute_cell(:cluster_jobid, :header => t('.headings.cluster_job_id')) %>
       <% t.empty_cell %>
 
-      <% t.cell(t('.cluster_job_work_directory'), :show_width => 2) { @task.full_cluster_workdir || t('.not_yet_created_or_erased') } %>
+      <% t.cell(t('.cells.cluster_job_work_directory'), :show_width => 2) { @task.full_cluster_workdir || t('.cells.not_yet_created_or_erased') } %>
     <% end %>
 
-    <% t.cell(t('.size_of_work_directory')) do %>
+    <% t.cell(t('.cells.size_of_work_directory')) do %>
       <% if @task.share_wd_tid %>
         ( <%= t('.shared_with_task') %> <%= link_to_task_if_accessible(@task.share_wd_tid) %> )
       <% elsif @task.cluster_workdir %>
         <%= colored_pretty_size(@task.cluster_workdir_size, :blank => t('unknown')) %>
       <% else %>
-        (<%= t('none') %>)
+        <%= t('none_parentheses') %>
       <% end %>
     <% end %>
 
-    <% t.cell(t('.archiving_status')) do %>
+    <% t.cell(t('.cells.archiving_status')) do %>
       <% as = @task.archived_status %>
       <%= colored_archived_status(as) %>
       <% if ! as %>
-        <%= t('.not_archived') %>
+        <%= t('.archiving_status.not') %>
       <% elsif as == :workdir %>
-        <%= t('.archived_on_cluster') %>
+        <%= t('.archiving_status.on_cluster') %>
       <% else %>
         <% ar_file = @task.workdir_archive %>
-        <%= t('.archived_as_file', link: link_to_userfile_if_accessible(ar_file) ) %> <%= colored_pretty_size(ar_file.size) if ar_file %>
+        <%= t('.archiving_status.as_file', link: link_to_userfile_if_accessible(ar_file) ) %> <%= colored_pretty_size(ar_file.size) if ar_file %>
       <% end %>
     <% end %>
 
@@ -186,16 +186,16 @@
             %>
             <%= render :partial => task_partial(:show_params), :locals => locals %>
           <% rescue ActionView::MissingTemplate %>
-            <%= t('.problem_loading_summary_view_no_template_html') %>
+            <%= t('.rescue.no_template_html') %>
           <% rescue => ex %>
-            <%= t('.problem_loading_summary_view_template_error_html') %>
-            <% Message.send_internal_error_message(nil, t('.show_summary_of_params_for_task', name: @task.name) ,ex) rescue true %>
+            <%= t('.rescue.template_error_html') %>
+            <% Message.send_internal_error_message(nil, t('.rescue.show_summary_of_params_for_task', name: @task.name) ,ex) rescue true %>
           <% end %>
 
           <% if @task.batch_id && @task_batch_count > 1 %>
           <p>
             <%= t('.in_the_task_manager') %>
-            <%= link_to t('.list_of_tasks', count: @task_batch_count), tasks_path(scope_filter_params(@scope, :set, {
+            <%= link_to t('.links.list_of_tasks', count: @task_batch_count), tasks_path(scope_filter_params(@scope, :set, {
               :attribute => 'batch_id',
               :value     => @task.batch_id
             })) %>
@@ -204,40 +204,26 @@
           <% end %>
         <% end %>
 
-        <%= tb.tab(t('.parameters_in_yaml')) do %>
-          <p class="medium_paragraphs">
-            <%= t('.parameters_description_html') %>
-          </p>
+        <%= tb.tab(t('.tabs.parameters_in_yaml')) do %>
+          <%= t('.paragraphs.parameters_description_html') %>
           <% yamltext = @task.params.to_yaml(
                         :root        => "Params", # no longer supported
                         :indentation => 4,
                         :line_width  => -1)
-                      .gsub(/!ruby.*/,"") rescue t('.error_rendering_yaml')
+                      .gsub(/!ruby.*/,"") rescue t('.rescue.error_rendering_yaml')
           %>
           <pre><%= yamltext %></pre>
         <% end %>
 
-        <%= tb.tab(t('.parameters_in_json')) do %>
-          <p class="medium_paragraphs">
-            <%= t('.parameters_description_html') %>
+        <%= tb.tab(t('.tabs.parameters_in_json')) do %>
+            <%= t('.paragraphs.parameters_in_json') %>
           </p>
           <% jsontext = JSON.pretty_generate(@task.params) %>
           <pre><%= jsontext %></pre>
         <% end %>
 
-        <%= tb.tab(t('.full_task_object_in_json')) do %>
-          <p class="medium_paragraphs">
-            <%= t('.full_task_object_in_json_description_1_html') %>
-          </p>
-          <p class="medium_paragraphs">
-            <%= t('.full_task_object_in_json_description_2_html') %>
-          </p>
-          <p class="medium_paragraphs">
-            <%= t('.full_task_object_in_json_description_3_html') %>
-          </p>
-          <p class="medium_paragraphs">
-            <%= t('.full_task_object_in_json_description_4_html') %>
-          </p>
+        <%= tb.tab(t('.tabs.full_task_object_in_json')) do %>
+          <%= t('.paragraphs.full_task_object_in_json_html') %>
           <% obj_atts = @task.attributes.with_indifferent_access
               .slice(
                 :user_id, :group_id, :bourreau_id, :tool_config_id, :results_data_provider_id,
@@ -256,7 +242,7 @@
 
 
   <fieldset>
-    <legend><%= t('.processing_log') %></legend>
+    <legend><%= t('.legends.processing_log') %></legend>
     <pre><%= @task.getlog -%></pre>
   </fieldset>
 
@@ -276,18 +262,18 @@
   <% unless for_setup.empty? && for_postpro.empty? %>
 
     <fieldset>
-      <legend><%= t('.prerequisites') %></legend>
+      <legend><%= t('.legends.prerequisites') %></legend>
 
       <table class="simple show_task_prerequisites">
         <% if for_setup.size > 0 %>
           <tr>
-            <th class="center_align_heading" colspan="2"><%= t('.setup_prerequisites') %></th>
+            <th class="center_align_heading" colspan="2"><%= t('.headings.setup_prerequisites') %></th>
           </tr>
           <%= render :partial => 'show_prereqs', :locals  => { :for_this  => for_setup } %>
         <% end %>
         <% if for_postpro.size > 0 %>
           <tr>
-            <th class="center_align_heading" colspan="2"><%= t('.post_processing_prerequisites') %></th>
+            <th class="center_align_heading" colspan="2"><%= t('.headings.post_processing_prerequisites') %></th>
           </tr>
           <%= render :partial => 'show_prereqs', :locals  => { :for_this  => for_postpro } %>
         <% end %>
@@ -312,7 +298,7 @@
   %>
 
   <fieldset>
-    <legend><%= t('.cluster_job_captured_output') %></legend>
+    <legend><%= t('.legends.cluster_job_captured_output') %></legend>
 
     <% if @task.workdir_archived? %>
       <%= t('.outputs_not_available') %>
@@ -331,7 +317,7 @@
 
       <%= build_tabs do |tb| %>
         <% all_lim = 999999 %>
-        <%= tb.tab(t('.stdout')) do %>
+        <%= tb.tab(t('.tabs.stdout')) do %>
           <% if @stdout_lim <= prettystdout.count("\n") && @stdout_lim != all_lim %>
             <% new_lim = @stdout_lim * 2 %>
             <strong><%= t('.stdout_lim', stdout_lim: @stdout_lim) %></strong>
@@ -341,7 +327,7 @@
           <pre class="standard_out"><%= prettystdout -%></pre>
         <% end %>
 
-        <%= tb.tab(t('.stderr')) do %>
+        <%= tb.tab(t('.tabs.stderr')) do %>
           <% if @stderr_lim <= prettystderr.count("\n") &&  @stderr_lim != all_lim %>
             <% new_lim = @stderr_lim * 2 %>
             <strong><%= t('.stderr_lim', stderr_lim: @stderr_lim) %></strong>
@@ -352,10 +338,10 @@
         <% end %>
 
         <% if current_user.has_role?(:admin_user) %>
-          <%= tb.tab(t('.script')) do %>
+          <%= tb.tab(t('.tabs.script')) do %>
             <pre class="script_preview"><%= prettyscript %></pre>
           <% end %>
-          <%= tb.tab(t('.runtime_info')) do %>
+          <%= tb.tab(t('.tabs.runtime_info')) do %>
             <pre class="script_preview"><%= prettyrtinfo %></pre>
           <% end %>
         <% end %>

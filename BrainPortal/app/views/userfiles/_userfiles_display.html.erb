@@ -36,7 +36,7 @@
         :name      => 'userfiles',
         :param     => 'file_ids[]',
         :watch     => 'th.dt-sel > .dt-sel-check',
-        :item_name => t('activerecord.models.userfile.one'),
+        :item_name => 'file',
         :all_url   => userfiles_path(:ids_only => 1),
         :initial_clear => @force_clear_persistent,
       })
@@ -57,9 +57,9 @@
       <% end %>,
 
       <%= colored_pretty_size(@userfiles_total_size) %>
-      <%= show_total.(@hidden_total,    t('.hidden'),   hidden_icon) %>
-      <%= show_total.(@archived_total,  t('.archived'), archived_icon) %>
-      <%= show_total.(@immutable_total, t('.locked'),   immutable_icon) %>
+      <%= show_total.(@hidden_total,    t('.show_total.hidden'),    hidden_icon) %>
+      <%= show_total.(@archived_total,  t('.show_total.archived'), archived_icon) %>
+      <%= show_total.(@immutable_total, t('.show_total.locked'),   immutable_icon) %>
     )
   </div>
   <div class="pagination_right_side">
@@ -98,7 +98,7 @@
 
   <%
     t.column('', :type_icon,
-      :pretty_name => t('.type_icon')
+      :pretty_name => t('.columns.type_icon')
     ) do |u|
   %>
     <% if u.is_a?(FileCollection) %>
@@ -109,7 +109,7 @@
   <% end %>
 
   <%
-    t.column(t('.filename'), :name,
+    t.column(t('.columns.filename'), :name,
       :sortable => true
     ) do |u|
       filename_listing(u,
@@ -118,29 +118,29 @@
       )
     end
 
-    t.column(t('.file_type'), :type,
+    t.column(t('.columns.file_type'), :type,
       :field_name => :pretty_type,
       :sortable   => true,
       :filters    => default_filters_for(@base_scope, @custom_scope, :type)
     )
 
-    t.column(t('owner'), :login,
+    t.column(t('.columns.owner'), :login,
       :sortable => true,
       :filters  => default_filters_for(@base_scope, @custom_scope, User)
     ) { |u| link_to_user_if_accessible(u.user) }
 
-    t.column(t('.creation_date'), :creation_date,
+    t.column(t('.columns.creation_date'), :creation_date,
       :sortable => true
     ) do |u|
       html_tool_tip(to_localtime(u.created_at, :date), :offset_x => 0, :offset_y => 20) do
-        ("#{t('created')} #{u.created_at.in_time_zone.strftime("%a %b %d, %Y at %H:%M:%S %Z")} <br />" +
-         "#{t('updated')} #{u.updated_at.in_time_zone.strftime("%a %b %d, %Y at %H:%M:%S %Z")}").html_safe
+        ("#{t('created_colon')} #{u.created_at.in_time_zone.strftime("%a %b %d, %Y at %H:%M:%S %Z")} <br />" +
+         "#{t('updated_colon')} #{u.updated_at.in_time_zone.strftime("%a %b %d, %Y at %H:%M:%S %Z")}").html_safe
       end
     end
   %>
 
   <%
-    t.column(t('.size'), :size,
+    t.column(t('.columns.size'), :size,
       :sortable => true
     ) do |u|
   %>
@@ -170,7 +170,7 @@
       end
     ).try(:value) || []).dup
 
-    t.column(t('activerecord.models.tag.other'), :tags,
+    t.column(t('.columns.tags'), :tags,
       :filters       => @tag_filters,
       :filter_target => lambda do |column, filter|
         ({
@@ -191,7 +191,7 @@
     end
 
     unless current_project
-      t.column(t('activerecord.models.group.other'), :group,
+      t.column(t('.columns.group'), :group,
         :sortable => true,
         :filters  => default_filters_for(@base_scope, @custom_scope, Group)
       ) do |u|
@@ -199,20 +199,20 @@
       end
     end
 
-    t.column(t('.project_access'), :group_writable,
+    t.column(t('.columns.project_access'), :group_writable,
       :sortable => true
     ) do |u|
       u.group_writable ? t('userfiles.common.read_write') : t('userfiles.common.read_only') if u.group
     end
 
-    t.column(t('activerecord.models.data_provider.other'), :data_provider,
+    t.column(t('.columns.data_provider'), :data_provider,
       :sortable => true,
       :filters  => default_filters_for(@base_scope, @custom_scope, DataProvider)
     ) do |u|
       link_to_data_provider_if_accessible(u.data_provider)
     end
 
-    t.column(t('activerecord.attributes.description')) do |u|
+    t.column(t('.columns.description')) do |u|
       html_tool_tip(crop_text_to(40, u.description), :offset_x => 0, :offset_y => 20) do
         simple_format(u.description, :sanitize => true)
       end if u.description.present?

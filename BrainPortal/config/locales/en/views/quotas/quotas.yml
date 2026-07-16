@@ -1,6 +1,7 @@
 en:
 
   quotas:
+
     common:
       config_count:
         one: "1 quota configuration"
@@ -114,11 +115,9 @@ en:
       header_about_disk: "About Disk Quotas"
       about_disk_html: "This page shows the limits for the amount of disk space and number of files that can be stored on each DataProvider. Each row is a quota entry that applies to a user or all users, for a particular DataProvider. When a user exceeds the one of the two limits for a DataProvider, the user will no longer be able to create new files."
       header_about_cpu: "About CPU Quotas"
-      about_cpu_p1_html: "This page shows the limits for the amount of CPU processing time that a user can historically accumulate. There are three rolling windows: for the CPU time accummulated over the past week, over the past month, and over the entire lifetime of the user's account."
+      about_cpu_p1_html: "This page shows the limits for the amount of CPU processing time that a user can historically accumulate. There are three rolling windows: for the CPU time accumulated over the past week, over the past month, and over the entire lifetime of the user's account."
       about_cpu_p2_html: "Each row contains a quota entry with all three limits. Quotas can apply to one or several Execution Servers, and can apply to a single specific user, all users, or all the users of a particular project."
       about_cpu_p3_html: "When a user has exceeded their quota on an Execution Server, their tasks in status 'New' will not be set up, and they will stay in 'New' until the quota window has moved ahead far enough to free some time."
-
-    report:
 
     show:
       update_error: "custom filter could not be updated."

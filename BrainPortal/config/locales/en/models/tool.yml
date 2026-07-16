@@ -1,6 +1,6 @@
 en:
   activerecord:
-      models:
-        tool:
-          one: "Tool"
-          other: "Tools"
+    models:
+      tool:
+        one: "Tool"
+        other: "Tools"

@@ -28,7 +28,7 @@
 
 <% if @rrs.empty? || @dps.empty? %>
 
-<%= t('bourreaux.common.no_information') %>
+<%= t('no_information') %>
 
 <% else %>
 
@@ -123,7 +123,7 @@ rr_can_refresh = @rrs.select { |b| b.online? && b.has_owner_access?(current_user
 
   </table>
 
-  <%= center_legend(t('.data_provider_status'), [ [o_icon, t('.alive')], [times_icon, t('.down')], [html_colorize('?','purple'), t('bourreaux.common.no_information')] ] ) %>
+  <%= center_legend(t('.data_provider_status'), [ [o_icon, t('.alive')], [times_icon, t('.down')], [html_colorize('?','purple'), t('no_information')] ] ) %>
 
   <% if false && !dps_offline.empty? %>
     <% # commented out %>

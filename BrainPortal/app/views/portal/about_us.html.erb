@@ -35,8 +35,10 @@
   <br>
   <strong><%= t('.last_changed') %></strong> <%= to_localtime(@revinfo['Last Changed Date'],:datetime) %>
   <br>
-  <strong><%= t('.up_since') %></strong> <%= to_localtime(CBRAIN::Startup_LocalTime,:datetime) %> (<%= t('for') %> <%= pretty_elapsed((Time.now.localtime - CBRAIN::Startup_LocalTime).to_i) %>)
-
+  <%= t('.up_since_html',
+    started_at: to_localtime(CBRAIN::Startup_LocalTime, :datetime),
+    uptime: pretty_elapsed((Time.now.localtime - CBRAIN::Startup_LocalTime).to_i)
+  ) %>
   <% plugins_basenames = Pathname(CBRAIN::Plugins_Dir)
                          .children
                          .select(&:directory?)

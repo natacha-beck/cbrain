@@ -1,8 +1,8 @@
 en:
   activerecord:
-      models:
-        access_profile:
-          one: "Access Profile"
-          other: "Access Profiles"
+    models:
+      access_profile:
+        one: "Access Profile"
+        other: "Access Profiles"
 
 

@@ -1,5 +1,7 @@
 en:
+
   users:
+
     common:
       select_site: "(Select a site)"
       used: "%{size} used"
@@ -44,9 +46,9 @@ en:
       notes_title: "A few notes about this token"
       note_validity: "This token will only be valid for %{duration}."
       note_renewal: "Every time a request is made with it, it becomes valid for another %{duration}."
-      note_ip_lock: "The first time it is used, the IP address of the connecting client will be<br />recorded and only connections from that IP address will be valid."
-      note_ip_invalid: "If a subsequent connection comes from any other IP address at any time,<br />the token will immediately be invalidated."
-      note_copy: "To copy the token to your clipboard, simply click the copy button located to the right of the token. The token will be saved to your clipboard.<br />Please do not forget to paste and save the token. You will not be able to see it again."
+      note_ip_lock_html: "The first time it is used, the IP address of the connecting client will be<br />recorded and only connections from that IP address will be valid."
+      note_ip_invalid_html: "If a subsequent connection comes from any other IP address at any time,<br />the token will immediately be invalidated."
+      note_copy_html: "To copy the token to your clipboard, simply click the copy button located to the right of the token. The token will be saved to your clipboard.<br />Please do not forget to paste and save the token. You will not be able to see it again."
 
     new:
       title: "Add New User"

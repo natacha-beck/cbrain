@@ -38,8 +38,6 @@ en:
         one: "1 message"
         other: "%{count} messages"
 
-    flash_display:
-
     message_details:
       expires: "Expires:"
       no_details: "(No Details)"
@@ -69,4 +67,4 @@ en:
     new_dashboard:
       title: "Add New Dashboard Message"
       dashboard_html: "Dashboard<br>"
-      field_explanation_description_html: "For dashboard messages, whatever is entered here will be substituted literally in the page's code. So you can use whatever HTML elements you want, but make sure you know what you're doing. For NeuroHub, we recommand surrounding the entire text with at least one &lt;P&gt; element."
+      field_explanation_description_html: "For dashboard messages, whatever is entered here will be substituted literally in the page's code. So you can use whatever HTML elements you want, but make sure you know what you're doing. For NeuroHub, we recommend surrounding the entire text with at least one &lt;P&gt; element."

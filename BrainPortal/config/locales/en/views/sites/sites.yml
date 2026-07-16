@@ -1,11 +1,12 @@
 en:
+
   sites:
+
     common:
       managers: "Managers"
       regular_user: "Regular User"
       site_manager: "Site Manager"
       brief_description: "The first line should be a short summary, and the rest are for any special notes for the users."
-
 
     sites_table:
       create_new_site: "Create new site"

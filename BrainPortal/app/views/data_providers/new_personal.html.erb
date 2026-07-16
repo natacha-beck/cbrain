@@ -22,9 +22,9 @@
 #
 -%>
 
-<% title 'Add New Personal Data Provider' %>
+<% title t('.title') %>
 
-<h2>Add New Personal SSH-based Data Provider</h2>
+<h2><%= t('.heading') %></h2>
 
 <%= error_messages_for(@provider) %>
 
@@ -40,56 +40,56 @@
 
   <div class="generalbox">
 
-    <div title="The name of the data provider.">
-      <%= f.label :name, "Name" %><br>
+    <div title="<%= t('data_providers.common.name') %>">
+      <%= f.label :name, t('activerecord.attributes.data_provider.name') %><br>
       <%= f.text_field :name %>
-      <div class="field_explanation">This should be a simple identifier with no special characters or spaces</div>
+      <div class="field_explanation"><%= t('.field_explanation.name') %></div>
     </div>
 
     <p>
 
-    <div title="Brief description of the data provider.">
-      <%= f.label :description, "Description" %><br>
+    <div title="<%= t('t('data_providers.common.description')') %>">
+      <%= f.label :description, t('activerecord.attributes.data_provider.description') %><br>
       <%= f.text_area :description, :rows => 3, :cols => 85 %>
-      <div class="field_explanation">The first line should be a short summary, and the rest are for any special notes for the users.</div>
+      <div class="field_explanation"><%= t('data_providers.common.field_explanation.description') %></div>
     </div>
 
     <p>
 
-    <div title="Project ownership of this data provider. Project members will have access to the provider, but will not be able configure it.">
-      <%= f.label :group_id, "Project" %><br>
+    <div title="<%= t('.titles.group') %>">
+      <%= f.label :group_id, t('activerecord.models.group.one') %><br>
       <%= group_select("data_provider[group_id]", { :groups => @groups, :selector => @provider.group_id.to_s }) %>
-      <div class="field_explanation">This will control which users within CBRAIN can view and access the files on your storage. The default and recommended project is your own private project, '<%= current_user.own_group.name %>'.</div>
+      <div class="field_explanation"><%= t('.field_explanation.group_html', group: current_user.own_group.name) %></div>
     </div>
 
     <p>
 
     <fieldset class="groupentry">
-      <legend>SSH parameters</legend>
+      <legend><%= t('data_providers.common.ssh_params') %></legend>
 
-      <div title="Name of the remote machine on which the data provider is located.">
-        <%= f.label :remote_host, "Remote Hostname" %><br>
+      <div title="<%= t('.titles.remote_host') %>">
+        <%= f.label :remote_host, t('activerecord.attributes.data_provider.remote_host') %><br>
         <%= f.text_field :remote_host, :size => 40 %>
       </div>
 
       <p>
 
-      <div title="Username on the remote machine where the data provider is located.">
-        <%= f.label :remote_user, "Remote Username" %><br>
+      <div title="<%= t('.titles.remote_user') %>">
+        <%= f.label :remote_user, t('activerecord.attributes.data_provider.remote_user') %><br>
         <%= f.text_field :remote_user, :size => 40 %>
       </div>
 
       <p>
 
-      <div title="Port number used to access remote machine on which the data provider is located. ">
-        <%= f.label :remote_port, "Remote Port Number" %><br>
+      <div title="<%= t('.titles.remote_port') %>">
+        <%= f.label :remote_port, t('activerecord.attributes.data_provider.remote_port') %><br>
         <%= f.text_field :remote_port, :size => 6 %>
       </div>
 
       <p>
 
-      <div title="Directory used for storing files">
-        <%= f.label :remote_dir, "Full Directory Path" %><br>
+      <div title="<%= t('data_providers.common.description') %>">
+        <%= f.label :remote_dir, t('activerecord.attributes.data_provider.remote_dir') %><br>
         <%= f.text_field :remote_dir, :size => 80 %>
       </div>
 
@@ -102,7 +102,7 @@
 
   <p>
 
-  <%= submit_tag 'Create New Data Provider' %></p>
+  <%= submit_tag t('data_providers.common.create_new_dp') %></p>
 
 <% end %>
 

@@ -1,4 +1,150 @@
 fr:
+
   background_activities:
 
     common:
+      dynamic_items_list: ""
+
+    background_activity_table:
+      about: ""
+      cancel_activities: ""
+      cancel_confirm: ""
+      suspend_activities: ""
+      suspend_confirm: ""
+      unsuspend_activities: ""
+      unsuspend_confirm: ""
+      destroy_activities: ""
+      destroy_confirm: ""
+      activate_now: ""
+      activate_confirm: ""
+      retry_failed: ""
+      retry_confirm: ""
+      create_scheduled: ""
+      hide_scheduled: ""
+      refresh_list: ""
+      legend:
+        about: ""
+      p:
+        intro_html: 'This page shows "" as progress bars. Each activity applies a single operation to a set of things (usually, files or tasks). These activities are often the result of clicking on buttons in other pages, when you get a message that <em>something was started in background</em>. Activities that are in progress are shown with glowing borders. Individual operations within an activity can succeed or fail. Sometimes, the failure is not significant (e.g. trying to compress a file that is already compressed).'
+        cancel_note: ""
+        cleanup_note: 'Older, finished "" are generally cleaned up after one week and will disappear from this list.'
+        admin_note: ""
+        refresh_note_html: ""
+      col:
+        activity_type: ""
+        scheduled_at: ""
+        repeat: ""
+        retries: ""
+        progress: ""
+      label:
+        type_filter: ""
+      in_time: ""
+      overdue_by: ""
+      retries_allowed:
+        one: ""
+        other: ""
+      next_retry:
+        one: ""
+        other: ""
+      on_server: ""
+      items_count:
+        one: ""
+        other: ""
+      messages: ""
+
+    RubyRunner:
+      legend:
+        ruby_code: ""
+
+    index:
+      title: ""
+
+    new:
+      title: ""
+      activity: ""
+      select_data_provider: ""
+      select_filter: ""
+
+      p:
+        remember_file_filter_html: ""
+        move_crush: ""
+        filter_intro: ""
+        for_files_html: ""
+        for_tasks_html: ""
+
+      remember_task_filter_html: ""
+      server: ""
+      start_date: ""
+      start_now_html: ""
+
+      repeat_options:
+        prompt: ""
+        one_shot: ""
+        every_30min: ""
+        every_hour: ""
+        every_12h: ""
+        every_24h: ""
+        tomorrow: ""
+        monday: ""
+        tuesday: ""
+        wednesday: ""
+        thursday: ""
+        friday: ""
+        saturday: ""
+        sunday: ""
+      repeat_at_html: ""
+      or_word: ""
+      move: ""
+      copy: ""
+      files: ""
+      move_to: ""
+      label:
+        repeat: ""
+        remove_task_workdirs: ""
+        file_custom_filter: ""
+        task_custom_filter: ""
+        clean_cache: ""
+        last_accessed: ""
+        belonging_users: ""
+        not_users: ""
+        of_type: ""
+        not_type: ""
+        erase_bacs: ""
+        finished_older: ""
+        verify_dp: ""
+        fake_activity: ""
+        min_seconds: ""
+        max_seconds: ""
+        num_oks: ""
+        num_fails: ""
+        num_excs: ""
+        ruby_runner: ""
+        prepare: ""
+        before: ""
+        process_html: ""
+        after: ""
+      archive_task_workdirs: ""
+      archive_blank_note: ""
+      compress: ""
+      uncompress: ""
+      legend:
+        filter: ""
+      days_ago: ""
+      system_dps: ""
+      user_dps: ""
+      select_dps: ""
+      ruby_runner_intro_html: ""
+      process_explanation: ""
+      submit: ""
+
+    show:
+      total_items: ""
+      num_successes: ""
+      num_processed: ""
+      num_failures: ""
+      none_question: ""
+      none: ""
+      none_yet: ""
+      all_of_them: ""
+      legend:
+        items: ""

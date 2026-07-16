@@ -48,23 +48,9 @@
 <%= stylesheet_link_tag    asset_path('stylesheets/tablesorter_themes/blue/style') %>
 <%= javascript_include_tag asset_path('javascripts/jquery.tablesorter.min') %>
 
-<h2><%= t('.header') %></h2>
+<h2><%= t('.headings.main') %></h2>
 
-<p class="medium_paragraphs">
-<%= t('.description_html') %>
-
-</p>
-
-<ul>
-  <li><%= t('.step_1_html') %>
-  </li>
-  <li><%= t('.step_2_html') %>
-  </li>
-  <li><%= t('.step_3_html') %>
-  </li>
-  <li><%= t('.step_4_html') %>
-  </li>
-</ul>
+<%= t('.paragraphs.steps_html') %>
 
 
 <%= form_tag( report_path , :method => :get) do %>
@@ -101,7 +87,7 @@
           )
         )
     %>
-    <%= submit_tag(t('.lookup_btn')) %>
+    <%= submit_tag(t('.actions.lookup_btn')) %>
 </div>
 
 <br>
@@ -112,7 +98,7 @@
     <p>
       <br>
       <br>
-      <%= select_tag(:row_type, options_for_select( [ [ t('.select_row'), "" ] ] + restricted_att_list, params[:row_type] )) if att_ok %>&nbsp;&nbsp;
+      <%= select_tag(:row_type, options_for_select( [ [ t('.selectors.select_row'), "" ] ] + restricted_att_list, params[:row_type] )) if att_ok %>&nbsp;&nbsp;
     </p>
   </div>
 
@@ -120,7 +106,7 @@
 
     <div>
       <p>
-        <%= select_tag(:col_type, options_for_select( [ [ t('.select_col'), "" ] ] + restricted_att_list, params[:col_type] )) if att_ok %>
+        <%= select_tag(:col_type, options_for_select( [ [ t('.selectors.select_col'), "" ] ] + restricted_att_list, params[:col_type] )) if att_ok %>
       </p>
     </div>
 
@@ -176,7 +162,7 @@
                <%= disk_space_info_display(size || 0) do %>
                  <%= pretty_size(size) %></br>
                  <%=
-                   scope_filter_link("#{t('.entry', count: num_entries)} / #{t('.file', count: sum_files)}",
+                   scope_filter_link("#{t('.counters.entry', count: num_entries)} / #{t('.counters.file', count: sum_files)}",
                      'userfiles#index', :replace,
                      @filter_fixed.merge(td_filters).map do |attr, value|
                        { :a => attr, :v => value }
@@ -185,7 +171,7 @@
                    )
                  %>
                  <% if num_size_unk > 0 %>
-                   </br><%= html_colorize(t('.file_unk', count: num_size_unk)) %>
+                   </br><%= html_colorize(t('.counters.file_unk', count: num_size_unk)) %>
                  <% end %>
                <% end %>
       <%
@@ -227,7 +213,7 @@
              att_count, att_numfiles = vector
              capture do
       %>
-             <%= "#{t('.entry', count: att_count)} / #{t('.file', count: att_numfiles)}" %>
+             <%= "#{t('.counters.entry', count: att_count)} / #{t('.counters.file', count: att_numfiles)}" %>
       <%
              end # capture
            end # proc
@@ -266,10 +252,10 @@
           <tr>
             <th<%= th_att %>></th>
             <% @table_col_values.each do |col_key| %>
-              <th<%= th_att %>><div<%= th_div_att %>><%= col_key.nil? ? "(#{t('none')})" : col_proc.call(col_key) %></div></th>
+              <th<%= th_att %>><div<%= th_div_att %>><%= col_key.nil? ? t('none_parentheses') : col_proc.call(col_key) %></div></th>
             <% end %>
             <% if @table_col_values.size > 1 %>
-              <th<%= th_att %>><div<%= th_div_att %>><%= t('.total') %></div></th>
+              <th<%= th_att %>><div<%= th_div_att %>><%= t('.counters.total') %></div></th>
             <% end %>
             <% if left_header_column %>
               <th<%= th_att %>></th>
@@ -299,7 +285,7 @@
                end
              end
           %>
-          <th data-sortvalue="<%= row_sort_value %>"><%= row_key.nil? ? "(#{t('none')})" : row_proc.call(row_key) %></th>
+          <th data-sortvalue="<%= row_sort_value %>"><%= row_key.nil? ? t('none_parentheses') : row_proc.call(row_key) %></th>
           <% @table_col_values.each do |col_key| %>
             <%
                total_of_col[col_key] ||= Array.new(vector_size,0)
@@ -318,7 +304,7 @@
             <td data-sortvalue="<%= total_of_row.presence || 0 %>"><%= td_content_proc.call(total_of_row, { @filter_row_key => row_key }) %></td>
           <% end %>
           <% if left_header_column %>
-          <th data-sortvalue="<%= row_sort_value %>"><%= row_key.nil? ? "(#{t('none')})" : row_proc.call(row_key) %></th>
+          <th data-sortvalue="<%= row_sort_value %>"><%= row_key.nil? ? t('none_parentheses') : row_proc.call(row_key) %></th>
           <% end %>
           </tr>
         <% end %>
@@ -333,7 +319,7 @@
 
         <% if @table_row_values.size > 1 %>
         <tr>
-          <th><%= t('.total') %></th>
+          <th><%= t('.counters.total') %></th>
           <% @table_col_values.each do |col_key| %>
             <% col_tot = total_of_col[col_key] %>
             <td><%= td_content_proc.call(col_tot, { @filter_col_key => col_key }) %></td>
@@ -342,7 +328,7 @@
             <td><%= td_content_proc.call(total_total, {}) %></td>
           <% end %>
           <% if left_header_column %>
-            <th><%= t('.total') %></th>
+            <th><%= t('.counters.total') %></th>
           <% end %>
         </tr>
         <% end %>
@@ -367,10 +353,10 @@
           <tr>
             <th></th>
             <% @table_col_values.each do |col_key| %>
-              <th<%= bot_th_att %>><div<%= bot_th_div_att %>><%= col_key.nil? ? "(#{t('none')})" : col_proc.call(col_key) %></div></th>
+              <th<%= bot_th_att %>><div<%= bot_th_div_att %>><%= col_key.nil? ? t('none_parentheses') : col_proc.call(col_key) %></div></th>
             <% end %>
             <% if @table_col_values.size > 1 %>
-              <th<%= bot_th_att %>><div<%= bot_th_div_att %>><%= t('.total') %></div></th>
+              <th<%= bot_th_att %>><div<%= bot_th_div_att %>><%= t('.counters.total') %></div></th>
             <% end %>
             <% if left_header_column %>
               <th></th>
@@ -408,11 +394,11 @@
 
     <% elsif @table_ok %>
       <p class="groupentry">
-      <%= t('.no_objects_html', no_objects: html_colorize(t('.no_objects_red'), "red")) %>
+      <%= t('.empty_state.no_objects_html', no_objects: html_colorize(t('.empty_state.no_objects_red'), "red")) %>
       </p>
     <% else %>
       <p class="groupentry">
-      <%= t('.waiting_html') %>
+      <%= t('.empty_state.waiting_html') %>
       </p>
     <% end %>
 
@@ -420,11 +406,11 @@
 
   <% if @table_ok %>
     <p>
-    <%= submit_tag(t('.refresh_btn'),    :name => :refresh) %>
-    <%= submit_tag(t('.flip_btn'), :name => :flip) %>
+    <%= submit_tag(t('.actions.refresh_btn'),    :name => :refresh) %>
+    <%= submit_tag(t('.actions.flip_btn'), :name => :flip) %>
   <% else %>
     <p>
-    <%= submit_tag(t('.generate_btn'), :name => :generate) if att_ok %>
+    <%= submit_tag(t('.actions.generate_btn'), :name => :generate) if att_ok %>
   <% end %>
 
   <% if @model_atts.present? && @model_atts.detect { |x| x.to_s =~ /user_id|group_id|data_provider_id|bourreau_id|type|status/ } %>
@@ -434,40 +420,40 @@
       <table class="simple">
 
       <tr>
-        <th class="centered" colspan="2"><%= t('.optional_fix_html') %></th>
+        <th class="centered" colspan="2"><%= t('.notes.optional_fix_html') %></th>
       </tr>
 
           <% if @model_atts.include?(:user_id) %>
             <tr class="report_fix_attributes">
-              <th><%= t('activerecord.models.user.other') %>:</th>
+              <th><%= t('labels.user_colon.other') %></th>
               <td><%= user_select          :user_id,          { :selector => params[:user_id] },                                  :multiple => true, :size => 5 %></td>
             </tr>
           <% end %>
 
           <% if @model_atts.include?(:group_id) %>
             <tr class="report_fix_attributes">
-            <th><%= t('activerecord.models.group.other') %>:</th>
+            <th><%= t('labels.group_colon.other') %></th>
             <td><%= group_select         :group_id,         { :selector => params[:group_id] },                                 :multiple => true, :size => 5 %></td>
             </tr>
           <% end %>
 
           <% if @model_atts.include?(:data_provider_id) %>
             <tr class="report_fix_attributes">
-            <th><%= t('.filter_dp') %></th>
+              <th><%= t('labels.data_provider_colon.other') %></th>
             <td><%= data_provider_select :data_provider_id, { :selector => params[:data_provider_id], :offline_is_ok => true }, :multiple => true, :size => 5 %></td>
             </tr>
           <% end %>
 
           <% if @model_atts.include?(:bourreau_id) %>
             <tr class="report_fix_attributes">
-            <th><%= t('activerecord.models.execution_server.other') %>:</th>
+            <th><%= t('labels.execution_server_colon.other') %></th>
             <td><%= bourreau_select      :bourreau_id,      { :selector => params[:bourreau_id],      :offline_is_ok => true }, :multiple => true, :size => 5 %></td>
             </tr>
           <% end %>
 
           <% if @model_atts.include?(:type) %>
             <tr class="report_fix_attributes">
-            <th><%= t('.filter_types') %></th>
+            <th><%= t('labels.type_colon.other') %></th>
             <td>
             <% if @model <= Userfile %>
               <%= userfile_type_select :type, {:selector => params[:type]} , :multiple => true, :size => 5 %>
@@ -484,23 +470,23 @@
 
           <% if @model_atts.include?(:status) %>
             <tr class="report_fix_attributes">
-            <th><%= t('.filter_status') %></th>
+            <th><%= t('labels.status_colon.other') %></th>
               <td><%= task_status_select :status, {:selector => params[:status]}, :multiple => true, :size => 5 %></td>
             </tr>
           <% end %>
 
           <% if @model_atts.include?(:yearmonth) %>
             <tr class="report_fix_attributes">
-            <th><%= t('.filter_ym') %></th>
+            <th><%= t('labels.year_month_colon') %></th>
               <td><%= select_tag :yearmonth, options_for_select(@model.group(:yearmonth).order(:yearmonth).pluck(:yearmonth), { :selector => params[:status] }), :multiple => true, :size => 5 %></td>
             </tr>
           <% end %>
 
           <% if ! @model == DataUsage %>
             <tr>
-              <th><%= t('.filter_dates') %></th>
+            <th><%= t('labels.dates_colon') %></th>
               <td colspan="2"><%= date_range_panel(date_filtering) %>
-                <%= t('.date_note_html') %>
+                <%= t('.notes.date_html') %>
              </td>
             </tr>
           <% end %>

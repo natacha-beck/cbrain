@@ -26,71 +26,24 @@
 
 <div class="credit_box">
 
-  <h3><%= t('.citing') %></h3>
+  <h3><%= t('.headings.citing') %></h3>
 
-    <%= t('.p1_html') %>
+  <%= t('.paragraphs.citing_html') %>
 
-    <p>
+  <h3><%= t('.headings.project_info') %></h3>
 
-    <div class="groupentry">
+  <%= t('.paragraphs.project_info_html') %>
 
-      <%=
-        t('.citation_html',
-        link: link_to(
-            t('.citation_link_text'),
-            "http://journal.frontiersin.org/article/10.3389/fninf.2014.00054/abstract",
-            class: "action_link",
-            target: "_blank"
-          )
-        )
-      %>
-
-    </div>
-
-  <h3><%= t('.project_info') %></h3>
-
-    <%=
-      t('.project_desc_1_html',
-        mcin_link: link_to(
-          t('.mcin_website'),
-          "http://mcin-cnim.ca/neuroimagingtechnologies/cbrain/",
-          class: "action_link"
-        )
-      )
-    %><br/>
-
-    <%=
-      t('.project_desc_2_html',
-        github_link: link_to(
-          t('.github'),
-          "https://github.com/aces/cbrain",
-          class: "action_link"
-        )
-      )
-    %>
 </div>
 
 <div class="box_spacer"></div>
 
 <div class="credit_box">
 
-    <h3><%= t('.credits_box') %></h3>
+    <h3><%= t('.headings.credits_box') %></h3>
 
-      <ul type="none">
-        <li><strong><%= t('.role_pi') %></strong> Alan C. Evans, Montreal Neurological Institute, McGill University</li>
-        <li><strong><%= t('.role_pm') %></strong> Reza Adalat</li>
-        <li><strong><%= t('.role_tm') %></strong> Shawn T. Brown, Marc Rousseau</li>
-        <li><strong><%= t('.role_sa') %></strong> Pierre Rioux, Tarek Sherif, Tristan Glatard</li>
-        <li><strong><%= t('.role_ld') %></strong> Pierre Rioux, Tarek Sherif, Nicolas Kassis, Natacha Beck, Tristan Glatard, Andrew Doyle</li>
-        <li><strong><%= t('.role_ad') %></strong> Angela McCloskey, R&eacute;mi Bernard, Tristan Aumentado-Armstrong, Anton Zoubarev, Mathieu Desrosiers, Ehsan Afkhami, Armin Taheri</li>
-        <li><strong><%= t('.role_ux') %></strong> Najmeh Khalili-Mahani</li>
-        <li><strong><%= t('.role_it') %></strong> Alden Woodward, Chris Steele, Pamela Patterson, Pierre Rioux</li>
-        <li><strong><%= t('.role_cons') %></strong> Samir Das, Penelope Kostopoulos, Pierre Bellec, Robert Vincent, Christine Rogers, Claude Lepage, Linsday Lewis, Carolina Makowski</li>
-        <li><strong><%= t('.role_license') %></strong> <a class="action_link" href="/about_us"><%= t('.available_here') %></a></li>
-      </ul>
+    <%= t('.paragraphs.credits_box_html') %>
 
-      <p>
-      <%= t('.p2_html') %>
 </div>
 
 <%= render :partial => 'logo_footer' %>

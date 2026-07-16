@@ -24,92 +24,92 @@
 
 <div class="menu_bar">
 
-  <%= button_with_dropdown_menu(t('.update_attributes')) do %>
+  <%= button_with_dropdown_menu(t('.dropdown.update_attributes')) do %>
     <% if !current_user.has_role?(:normal_user) %>
-      <%= t('.change_owner') %>
-      <%= user_select('cbrain_task[user_id]', {}, { :include_blank => t('.select_another_owner') } ) %>
+      <%= t('.change.owner') %>
+      <%= user_select('cbrain_task[user_id]', {}, { :include_blank => t('.blanks.select_another_owner') } ) %>
       <%= hijacker_submit_button(t('update'), :url => url_for(:action => :update_multiple, :update_user_id => 1), :method => :post, :datatype => :script, :class => "button") %>
       <hr>
     <% end %>
-    <%= t('.change_group') %>
-    <%= group_select('cbrain_task[group_id]', {}, { :include_blank => t('.select_another_group') } ) %>
+    <%= t('.change.group') %>
+    <%= group_select('cbrain_task[group_id]', {}, { :include_blank => t('.blanks.select_another_group') } ) %>
     <%= hijacker_submit_button(t('update'), :url => url_for(:action => :update_multiple, :update_group_id => 1), :method => :post, :datatype => :script, :class => "button") %>
     <hr>
-    <%= t('.change_data_provider') %>
-    <%= data_provider_select('cbrain_task[results_data_provider_id]', {}, { :include_blank => t('.select_another_data_provider') } ) %>
+    <%= t('.change.data_provider') %>
+    <%= data_provider_select('cbrain_task[results_data_provider_id]', {}, { :include_blank => t('.blanks.select_another_data_provider') } ) %>
     <%= hijacker_submit_button(t('update'), :url => url_for(:action => :update_multiple, :update_results_data_provider_id => 1), :method => :post, :datatype => :script, :class => "button") %>
     <hr>
-    <%= t('.change_tool_version') %>
-    <%= tool_config_select('cbrain_task[tool_config_id]', {}, :include_blank => t('.select_another_tool_version')  ) %>
+    <%= t('.change.tool_version') %>
+    <%= tool_config_select('cbrain_task[tool_config_id]', {}, :include_blank => t('.blanks.select_another_tool_version')  ) %>
     <%= hijacker_submit_button(t('update'), :url => url_for(:action => :update_multiple, :update_tool_config_id => 1), :method => :post, :datatype => :script, :class => "button") %>
   <% end %>
 
 
-  <%= button_with_dropdown_menu(t('.for_failed_tasks')) do %>
+  <%= button_with_dropdown_menu(t('.dropdown.for_failed_tasks')) do %>
     <p class="dropmenu_info">
-      <%= t('.for_failed_tasks_p_html') %>
+      <%= t('.paragraphs.for_failed_tasks_html') %>
     </p>
     <p class="centered">
-      <%= hijacker_submit_button(t('.trigger_error_recovery'), :url => url_for(:action  => :operation, :operation => 'recover'), :method  => :post, :datatype => :script, :class => "button") %>
+      <%= hijacker_submit_button(t('.hijacker.trigger_error_recovery'), :url => url_for(:action  => :operation, :operation => 'recover'), :method  => :post, :datatype => :script, :class => "button") %>
     <p/>
   <% end %>
 
 
-  <%= button_with_dropdown_menu(t('.for_completed_tasks')) do %>
+  <%= button_with_dropdown_menu(t('.dropdown.for_completed_tasks')) do %>
     <p class="dropmenu_info">
-      <%= t('.for_completed_tasks_p_html') %>
+      <%= t('.paragraphs.for_completed_tasks_intro_html') %>
     </p>
     <p class="dropmenu_info">
-      <%= t('.for_completed_tasks_ul_html') %>
+      <%= t('.paragraphs.for_completed_tasks_list_html') %>
     </p>
     <p class="centered">
       <strong><%= t('.restart_at') %></strong><br/>
-      <%= hijacker_submit_button(t('.setup_stage'),           :url => url_for(:action  => :operation, :operation => 'restart_setup'),       :method  => :post, :datatype => :script, :class => "button") %>
-      <%= hijacker_submit_button(t('.cluster_stage'),         :url => url_for(:action  => :operation, :operation => 'restart_cluster'),     :method  => :post, :datatype => :script, :class => "button") %>
-      <%= hijacker_submit_button(t('.post_processing_stage'), :url => url_for(:action  => :operation, :operation => 'restart_postprocess'), :method  => :post, :datatype => :script, :class => "button") %>
+      <%= hijacker_submit_button(t('.hijacker.setup_stage'),           :url => url_for(:action  => :operation, :operation => 'restart_setup'),       :method  => :post, :datatype => :script, :class => "button") %>
+      <%= hijacker_submit_button(t('.hijacker.cluster_stage'),         :url => url_for(:action  => :operation, :operation => 'restart_cluster'),     :method  => :post, :datatype => :script, :class => "button") %>
+      <%= hijacker_submit_button(t('.hijacker.post_processing_stage'), :url => url_for(:action  => :operation, :operation => 'restart_postprocess'), :method  => :post, :datatype => :script, :class => "button") %>
     <p/>
     <p class="dropmenu_info">
-      <%= t('.for_completed_tasks_note_html') %>
+      <%= t('.paragraphs.for_completed_tasks_note_html') %>
 
     </p>
     <p class="centered">
-      <%= hijacker_submit_button(t('.duplicate_tasks'), :url => url_for(:action  => :operation, :operation => 'duplicate'), :method  => :post, :datatype => :script, :class => "button") %>
+      <%= hijacker_submit_button(t('.hijacker.duplicate_tasks'), :url => url_for(:action  => :operation, :operation => 'duplicate'), :method  => :post, :datatype => :script, :class => "button") %>
       <%= t('.on_execution_server') %><%= bourreau_select :dup_bourreau_id %>
     <p/>
   <% end %>
 
 
-  <%= button_with_dropdown_menu(t('.terminating_and_cleaning_up')) do %>
+  <%= button_with_dropdown_menu(t('.dropdown.terminating_and_cleaning_up')) do %>
     <p class="dropmenu_info">
-      <%= t('.terminating_and_cleaning_up_p_html') %>
+      <%= t('.paragraphs.terminating_and_cleaning_up_html') %>
     </p>
     <p class="centered">
       <%=
-        hijacker_submit_button(t('.terminate_tasks'), :url => url_for(:action  => :operation, :operation => 'terminate'),
+        hijacker_submit_button(t('.hijacker.terminate_tasks'), :url => url_for(:action  => :operation, :operation => 'terminate'),
                                                   :method  => :post,
                                                   :datatype => :script,
                                                   :class => "button",
-                                                  :confirm => t('.confirm_terminate_tasks')
+                                                  :confirm => t('.confirm.terminate_tasks')
                                                   )
       %>
     </p>
     <p class="dropmenu_info">
-      <%= t('.remove_work_directories_note_html') %>
+      <%= t('.paragraphs.remove_work_directories_note_html') %>
 
     <p/>
     <p class="centered">
       <%=
-        hijacker_submit_button(t('.remove_work_directories'), :url => url_for(:action  => :operation, :operation => 'zap_wd'),
+        hijacker_submit_button(t('.hijacker.remove_work_directories'), :url => url_for(:action  => :operation, :operation => 'zap_wd'),
                                                   :method  => :post,
                                                   :datatype => :script,
                                                   :class => "button",
-                                                  :confirm => t('.confirm_remove_work_directories')
+                                                  :confirm => t('.confirm.remove_work_directories')
                                                   )
       %>
     <p/>
     <p class="dropmenu_info">
       <%=
-        t('.remove_tasks_p_html',
+        t('.paragraphs.remove_tasks_html',
           workdir_status: colored_archived_status(:workdir),
           userfile_status: colored_archived_status(:userfile))
       %>
@@ -117,42 +117,42 @@
     </p>
     <p class="centered">
       <%=
-        hijacker_submit_button(t('.remove_tasks'),:url => url_for(:action  => :operation, :operation => 'delete'),
+        hijacker_submit_button(t('.hijacker.remove_tasks'),:url => url_for(:action  => :operation, :operation => 'delete'),
                                                   :method  => :post,
                                                   :datatype => :script,
                                                   :class => "button",
-                                                  :confirm => t('.confirm_remove_tasks')
+                                                  :confirm => t('.confirm.remove_tasks')
                               )
       %>
     <p/>
   <% end %>
 
 
-  <%= button_with_dropdown_menu(t('.archiving')) do %>
+  <%= button_with_dropdown_menu(t('.dropdown.archiving')) do %>
     <p class="dropmenu_info">
-      <%= t('.archiving_p_1_html') %>
+      <%= t('.paragraphs.archiving_1_html') %>
     </p>
     <p class="dropmenu_info">
-      <%= t('.archiving_p_2_html') %>
+      <%= t('.paragraphs.archiving_2_html') %>
     </p>
     <p class="dropmenu_info">
       <%=
-        t('.archiving_p_3_html',
+        t('.paragraphs.archiving_3_html',
           workdir_status: colored_archived_status(:workdir),
           type: TaskWorkdirArchive.pretty_type,
           userfile_status: colored_archived_status(:userfile))
       %>
     </p>
     <p class="dropmenu_info">
-      <%= t('.archiving_p_4_html') %>
+      <%= t('.paragraphs.archiving_4_html') %>
     </p>
     <p class="centered">
-      <%= hijacker_submit_button(t('.archive_on_cluster'), :url => url_for(:action  => :operation, :operation => 'archive'),      :method  => :post, :datatype => :script, :class => "button") %>
-      <%= hijacker_submit_button(t('.archive_as_file'),    :url => url_for(:action  => :operation, :operation => 'archive_file'), :method  => :post, :datatype => :script, :class => "button") %>
-      <%= hijacker_submit_button(t('.unarchive_tasks'),    :url => url_for(:action  => :operation, :operation => 'unarchive'),    :method  => :post, :datatype => :script, :class => "button") %>
+      <%= hijacker_submit_button(t('.hijacker.archive_on_cluster'), :url => url_for(:action  => :operation, :operation => 'archive'),      :method  => :post, :datatype => :script, :class => "button") %>
+      <%= hijacker_submit_button(t('.hijacker.archive_as_file'),    :url => url_for(:action  => :operation, :operation => 'archive_file'), :method  => :post, :datatype => :script, :class => "button") %>
+      <%= hijacker_submit_button(t('.hijacker.unarchive_tasks'),    :url => url_for(:action  => :operation, :operation => 'unarchive'),    :method  => :post, :datatype => :script, :class => "button") %>
       <br/>
       <br/>
-      <%= t('.optional_destination_dp') %>
+      <%= t('.optional_destination_dp_html') %>
       <%= data_provider_select :archive_dp_id, { :selector => "" }, :include_blank => "" %>
 
       <% if current_user.has_role?(:admin_user) %>
@@ -163,7 +163,7 @@
 
   <% end %>
 
-  <%= button_with_dropdown_menu(t('.filters'), :content_id => 'tasks_filters') do %>
+  <%= button_with_dropdown_menu(t('.dropdown.filters'), :content_id => 'tasks_filters') do %>
     <%= render :partial => 'tasks/filters' %>
   <% end %>
 

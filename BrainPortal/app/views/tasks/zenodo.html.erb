@@ -2,7 +2,7 @@
 <% title t('.title', name: @task.name) %>
 
 <div class="menu_bar">
-  <%= link_to t('.task_info'), task_path(@task.id), :class => "button menu_button" %>
+  <%= link_to t('.links.task_info'), task_path(@task.id), :class => "button menu_button" %>
   <% if @task.zenodo_deposit_id.present? && @task.zenodo_doi.blank? %>
     <%= link_to t('refresh'), zenodo_task_path(@task), :class => "button menu_button" %>
   <% end %>
@@ -24,11 +24,11 @@
 <% status_label = lambda do |hklass, message| %>
     <%= t('status') %>
     <% if hklass =~ /_complete/ %>
-      <%= green_checkmark_icon %> <%= message || t('.complete') %>
+      <%= green_checkmark_icon %> <%= message || t('.status.complete') %>
     <% elsif hklass =~ /_inprogress/ %>
-      <%= orange_uparrow_icon %>  <%= message || t('.in_progress') %>
+      <%= orange_uparrow_icon %>  <%= message || t('.status.in_progress') %>
     <% elsif hklass =~ /_incomplete/ %>
-      <%= red_x_cross_icon %>     <%= message || t('.incomplete') %>
+      <%= red_x_cross_icon %>     <%= message || t('.status.incomplete') %>
     <% else %>
       <span class="warning"><%= t('unknown').upcase %>!</span>
     <% end %>
@@ -41,13 +41,13 @@
 %>
 
 <fieldset class="<%= step_1_status %>">
-  <legend><%= t('.step_1') %></legend>
+  <legend><%= t('.legends.prepare') %></legend>
   <%= status_label.(step_1_status, nil) %>
   <p>
   <% if step_1_status == "zenodo_complete" %>
-    <%= t('.step_1_1_description_html', link: link_to t('.zenodo_deposit_editor'), url_for_deposit(@task.zenodo_deposit_id)) %>
+    <%= t('.paragraphs.prepare.complete_html', link: link_to t('.links.zenodo_deposit_editor'), url_for_deposit(@task.zenodo_deposit_id)) %>
   <% else %>
-    <%= t('.step_1_2_description_html') %>
+    <%= t('.paragraphs.prepare.incomplete_html') %>
   <% end %>
 </fieldset>
 
@@ -60,7 +60,7 @@
 %>
 
 <fieldset class="<%= step_2_status %>">
-  <legend><%= t('.step_2') %></legend>
+  <legend><%= t('.legends.upload') %></legend>
   <%= status_label.(step_2_status, nil) %>
   <p>
   <ul>
@@ -69,21 +69,21 @@
       <% if userfile %>
         <% if userfile.zenodo_doi.present? %>
           <% if userfile.zenodo_doi == @task.zenodo_doi %>
-            <%= status_label.("zenodo_complete", t('tasks.common.published')) %>
+            <%= status_label.("zenodo_complete", t('labels.published_colon')) %>
           <% else %>
-            <%= t('.step_2_description_html', link: link_to_zenodo_doi(userfile.zenodo_doi)) %>
+            <%= t('.paragraphs.upload.incomplete_html', link: link_to_zenodo_doi(userfile.zenodo_doi)) %>
           <% end %>
         <% elsif userfile.zenodo_deposit_id.present? %>
           <% if userfile.zenodo_deposit_id == @task.zenodo_deposit_id %>
-            <%= status_label.("zenodo_complete", t('.uploaded')) %>
+            <%= status_label.("zenodo_complete", t('upload_colon')) %>
           <% else %>
-            <%= status_label.("zenodo_incomplete", t('.conflict')) %>
+            <%= status_label.("zenodo_incomplete", t('conflict_colon')) %>
           <% end %>
         <% else %>
-          <%= status_label.("zenodo_inprogress", t('.scheduled_for_upload')) %>
+          <%= status_label.("zenodo_inprogress", t('.prepare.scheduled_for_upload')) %>
         <% end %>
       <% else %>
-        <%= status_label.("zenodo_incomplete", t('.will_be_ignored') ) %>
+        <%= status_label.("zenodo_incomplete", t('.prepare.will_be_ignored') ) %>
       <% end %>
       <%= link_to_userfile_if_accessible(userfile) %>
       <% if userfile %>
@@ -94,10 +94,10 @@
   </ul>
   <% if step_1_status != "zenodo_complete" %>
     <p>
-    <%= t('.waiting_for_initial_deposit') %>
+    <%= t('.upload.waiting_for_initial_deposit') %>
   <% elsif step_2_status != "zenodo_complete" %>
     <p>
-    <%= t('.it_can_take_some_time') %>
+    <%= t('.upload.it_can_take_some_time') %>
   <% end %>
 </fieldset>
 
@@ -110,24 +110,24 @@
 %>
 
 <fieldset class="<%= step_3_status %>">
-  <legend><%= t('.step_3') %></legend>
+  <legend><%= t('.legends.publish') %></legend>
   <%= status_label.(step_3_status, nil) %>
   <p>
   <% if step_1_status == "zenodo_complete" && step_2_status == "zenodo_complete" %>
     <% if @task.zenodo_doi.present? %>
-      <%= t('.step_3_1_description_html', doi: @task.zenodo_doi) %>
+      <%= t('.publish.doi_1_html', doi: @task.zenodo_doi) %>
       <p>
       <%= link_to_zenodo_doi(@task.zenodo_doi) %>
       <p>
-      <%= t('.step_3_2_description_html', link: link_to_deposit(@task.zenodo_deposit_id)) %>
+      <%= t('.publish.doi_2_html', link: link_to_deposit(@task.zenodo_deposit_id)) %>
     <% else %>
-      <%= t('.step_3_3_description_html', link: link_to_deposit(@task.zenodo_deposit_id)) %>
+      <%= t('.publish.no_doi_1_html', link: link_to_deposit(@task.zenodo_deposit_id)) %>
       <p>
-      <% refresh_link = link_to t('.refresh_message'), zenodo_task_path(@task) %>
-      <%= t('.step_3_4_description_html', link: refresh_link) %>
+      <% refresh_link = link_to t('.links.refresh_message'), zenodo_task_path(@task) %>
+      <%= t('.publish.no_doi_2_html', link: refresh_link) %>
     <% end %>
   <% else %>
-    <%= t('.waiting_for_steps_1_and_2') %>
+    <%= t('.publish.waiting') %>
   <% end %>
 </fieldset>
 
@@ -142,17 +142,17 @@
   <p>
 
   <fieldset class="zenodo_incomplete">
-    <legend><%= t('.reset_deposit_html') %></legend>
-    <%= t('.reset_deposit_1_description_html') %>
+    <legend><%= t('.legends.reset_deposit_html') %></legend>
+    <%= t('.reset.deposit_1_description_html') %>
     <p>
-    <%= t('.reset_deposit_2_description_html') %>
+    <%= t('.reset.deposit_2_description_html') %>
     <p>
-    <%= link_to t('.reset_deposit_button'), reset_zenodo_task_path(@task.id),
+    <%= link_to t('.links.reset_deposit'), reset_zenodo_task_path(@task.id),
           {
             :class  => "button menu_button",
             :method => :post,
             :data   => {
-              :confirm => t('.reset_deposit_confirmation')
+              :confirm => t('.reset.deposit_confirmation')
             },
           }
     %>
