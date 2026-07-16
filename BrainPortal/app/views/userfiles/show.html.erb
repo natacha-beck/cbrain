@@ -32,7 +32,7 @@
     <span class="vertical_bar"></span>
   <% end %>
   <% if @userfile.can_be_accessed_by?(current_user, requested_access = :read) %>
-    <%= link_to(@userfile.is_a?(FileCollection) ? t('.download_collection') : t('.download_file'), { :action => 'download', :file_ids => [@userfile.id] }, :class => "button menu_button", :method  => :get) %>
+    <%= link_to(@userfile.is_a?(FileCollection) ? t('.links.download_collection') : t('.links.download_file'), { :action => 'download', :file_ids => [@userfile.id] }, :class => "button menu_button", :method  => :get) %>
     <span class="vertical_bar"></span>
   <% end %>
 
@@ -46,7 +46,7 @@
 </div>
 
 <br>
-<%= error_messages_for @userfile, :header_message => t('.update_error', name: @userfile.name ) %>
+<%= error_messages_for @userfile, :header_message => t('.error_messages.update', name: @userfile.name ) %>
 <div class="display_inline_block" style="min-width: 50%">
   <%= show_table(@userfile, :as => :userfile, :edit_condition => is_editable_by_current_user ) do |t| %>
 
@@ -70,7 +70,7 @@
         <%= userfile_type_select("userfile[type]", {:userfile_types => u_type, :selector => @userfile.class.name}) %>
       <% end %>
       <% if @userfile.class.to_s =~ /^(SingleFile|FileCollection)$/ && @userfile.suggested_file_type &&  @userfile.suggested_file_type != @userfile.class %>
-        (<span class="warning"><%= t('.suggested_type_html', type: @userfile.suggested_file_type.pretty_type ) %></span>)
+        (<span class="warning"><%= t('.error_messages.suggested_type', type: @userfile.suggested_file_type.pretty_type ) %></span>)
       <% end %>
     <% end %>
 
@@ -151,15 +151,15 @@
       <%= immutable_icon %>
     <% end %>
 
-    <% t.cell(t('.zenodo_publication')) do %>
+    <% t.cell(t('.cells.zenodo_publication')) do %>
       <% if @userfile.zenodo_doi.present? %>
         <% if @userfile.zenodo_doi.starts_with?( ZenodoHelper::ZenodoSandboxDOIPrefix ) %>
-          <%= t('.published', link: link_to_deposit(@userfile.zenodo_deposit_id)) %>
+          <%= t('.zenodo_publication.published', link: link_to_deposit(@userfile.zenodo_deposit_id)) %>
         <% else %>
-          <%= t('.published', link: link_to_zenodo_doi(@userfile.zenodo_doi)) %>
+          <%= t('.zenodo_publication.published', link: link_to_zenodo_doi(@userfile.zenodo_doi)) %>
         <% end %>
       <% elsif @userfile.zenodo_deposit_id.present? %>
-          <%= t('.in_progress', link: link_to_deposit(@userfile.zenodo_deposit_id)) %>
+          <%= t('.zenodo_publication.in_progress', link: link_to_deposit(@userfile.zenodo_deposit_id)) %>
       <% else %>
           <%= t('none') %>.
       <% end %>
@@ -167,13 +167,13 @@
     <% t.empty_cell %>
 
     <% if @userfile.parent %>
-      <% t.cell(t('.parent')) { link_to_userfile_if_accessible(@userfile.parent) } %>
+      <% t.cell(t('.cells.parent')) { link_to_userfile_if_accessible(@userfile.parent) } %>
       <% t.empty_cell %>
     <% end %>
 
     <% children = @userfile.children.order(:name).all.to_a %>
     <% if children.size > 0 %>
-      <% t.cell(t('.children'), :show_width => 2) do %>
+      <% t.cell(t('.cells.children'), :show_width => 2) do %>
         <%= array_to_table(children, :table_class => 'simple', :min_data => 3, :cols => 3, :fill_by_columns => true ) do |u,r,c| %>
           <%= link_to_userfile_if_accessible(u) %>
         <% end %>
@@ -205,50 +205,47 @@
 
 
   <fieldset>
-    <legend><%= t('.content') %></legend>
+    <legend><%= t('.legends.content') %></legend>
 
     <% if @userfile.archived? %>
 
-      <%= html_colorize(t('.archived_html', type: @userfile.pretty_type), 'red') %><br>
-      <%= t('.viewers_disabled') %>
+      <%= html_colorize(t('.content.archived', type: @userfile.pretty_type), 'red') %><br>
+      <%= t('.content.viewers_disabled') %>
 
     <% elsif ! @userfile.can_be_accessed_by?(current_user, :read) %>
 
-        <%= t('.cannot_view') %>
+        <%= t('.content.cannot_view') %>
 
     <% elsif @userfile.data_provider.meta[:no_viewers] %>
 
-        <%= t('.non_viewable_dp_html') %>
+        <%= t('.content.non_viewable_dp_html') %>
 
     <% elsif @userfile.data_provider.not_syncable? %>
 
-        <%= t('.not_syncable_dp_html') %>
+        <%= t('.content.not_syncable_dp_html') %>
 
     <% elsif @sync_status == "Corrupted" %>
 
         <span style="background-color: pink;">
-          <%= t('.corrupted_html') %>
+          <%= t('.content.corrupted_html') %>
         </span>
 
     <% elsif ! @userfile.data_provider.rr_allowed_syncing? %>
 
-        <%= t('.sync_not_allowed_html') %>
+        <%= t('.content.sync_not_allowed_html') %>
 
     <% elsif (! @userfile.is_locally_synced?) && (! @userfile.data_provider.online?) %>
 
-        <%= t('.offline_dp_html') %>
+        <%= t('.content.offline_dp_html') %>
 
     <% elsif ! @userfile.is_locally_synced? %>
 
-          <% if @sync_status =~ /^To/ %>
-            <%= t('.sync_in_progress') %>
-          <% else %>
-            <%=
-              t('.sync_start_html',
-                link: link_to(t('.here'), sync_multiple_userfiles_path(file_ids: [@userfile.id], back_to_show_page: 1), method: :post),
-                collection_text: @userfile.is_a?(FileCollection) ? t('.extract_collection') : "")
-            %>
-          <% end %>
+        <% if @sync_status =~ /^To/ %>
+          <%= t('.content.sync_in_progress') %>
+        <% else %>
+          <% key = @userfile.is_a?(FileCollection) ? '.content.sync_start_collection_html' : '.content.sync_start_html' %>
+          <%= t(key, link: link_to(t('.here'), sync_multiple_userfiles_path(:file_ids => [@userfile.id], :back_to_show_page => 1), :method => :post)) %>
+        <% end %>
 
     <% elsif @userfile.viewers_with_applied_conditions.blank? %>
 
@@ -257,7 +254,7 @@
     <% else %>
 
         <% if @userfile.viewers_with_applied_conditions.size > 1 %>
-            <%= t('.change_view') %>
+            <%= t('.content.change_view') %>
             <%= select_tag "viewer", options_for_select(@userfile.viewers_with_applied_conditions.map { |v| [v.name, v.name] }, (@viewer.try(:name) || @userfile.class.name.underscore)),
                            :class        => :request_on_change,
                            "data-target" => "#userfile_viewer",
@@ -279,7 +276,7 @@
               <% end %>
             <% rescue ActionView::Template::Error => e %>
               <span class="warning">
-                <%= t('.viewer_error') %>
+                <%= t('.error_messages.viewer') %>
               </span>
               <% raise e.original_exception unless Rails.env == 'production' %>
               <% ExceptionLog.log_exception(e.original_exception, current_user, request) %>
@@ -294,6 +291,6 @@
 </div>
 
 <P>
-<%= render :partial => "layouts/log_report", :locals  => { :log  => @log, :title => t('.file_log') } %>
+<%= render :partial => "layouts/log_report", :locals  => { :log  => @log, :title => t('.titles.file_log') } %>
 <p>
 <%= render :partial => "resource_usage" %>

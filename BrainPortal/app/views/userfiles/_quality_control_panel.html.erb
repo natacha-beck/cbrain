@@ -33,25 +33,25 @@
 <!-- User control buttons -->
 
   <fieldset class="display_inline_block">
-    <legend><%= t('.navigation_info', current: @current_index + 1, total: @filelist.size) %></legend>
+    <legend><%= t('.legends.navigation_info', current: @current_index + 1, total: @filelist.size) %></legend>
     <%= link_to_userfile_if_accessible(@userfile, current_user, :html_options => { :target => '_blank' }) %>
     <p>
     <% not_first_file = @current_index != 0 %>
     <% not_last_file  = @current_index < @filelist.size - 1 %>
     <% if  not_first_file %>
-      <%= submit_button t('.previous_file'), :name => :previous %>
+      <%= submit_button t('.submit.previous_file'), :name => :previous %>
     <% end %>
     <% if not_last_file %>
-      <%= submit_button t('.next_file'), :name => :next %>
+      <%= submit_button t('.submit.next_file'), :name => :next %>
     <% end %>
   </fieldset>
 
   <br>
 
   <fieldset class="display_inline_block">
-    <legend><%= t('.file_tags') %></legend>
-    <%= submit_button t('.pass'),    :name => :pass %>
-    <%= submit_button t('.fail'),    :name => :fail %>
+    <legend><%= t('.legends.file_tags') %></legend>
+    <%= submit_button t('.submit.pass'),     :name => :pass %>
+    <%= submit_button t('.submit.fail'),     :name => :fail %>
     <%= submit_button t('unknown').downcase, :name => :unknown %>
     <br>
     <%= t('.full_list_of_tags') %><br>
@@ -62,7 +62,7 @@
   </fieldset>
 
   <fieldset class="display_inline_block">
-    <legend><%= t('.file_description') %></legend>
+    <legend><%= t('.legends.file_description') %></legend>
     <%= text_area_tag "userfile[description]", @userfile.description, :rows => 5, :cols => 40 %>
   </fieldset>
 
@@ -79,7 +79,7 @@
 <% begin %>
   <%= render :file => @qc_view_file %>
 <% rescue => ex %>
-  <%= t('.qc_error') %>
+  <%= t('.error_messages.qc_error') %>
   <% if current_user.has_role? :admin_user %>
     <pre>
     <%= t('userfiles.common.exception') %> <%= ex.class %> : <%= ex.message %>

@@ -1,7 +1,5 @@
 en:
-
   activerecord:
-
     models:
       tool:
         one: "Tool"

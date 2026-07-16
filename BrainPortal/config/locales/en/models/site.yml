@@ -1,7 +1,5 @@
 en:
-
   activerecord:
-
     models:
       site:
         one: "Site"

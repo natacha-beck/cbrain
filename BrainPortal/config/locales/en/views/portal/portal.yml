@@ -262,7 +262,6 @@ en:
       results:
         found: "(found: %{count})"
         registered_files: "Registered files"
-        tool_versions: "Tool Versions"
 
     swagger:
       title: "CBRAIN API"
@@ -321,7 +320,6 @@ en:
         unknown_browser: "unknown browser"
         unknown_os: "unknown OS"
         on_word: "on"
-        from: "From"
         with: "with"
 
       sessions:

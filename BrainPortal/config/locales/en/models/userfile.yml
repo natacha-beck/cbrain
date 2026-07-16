@@ -1,7 +1,5 @@
 en:
-
   activerecord:
-
     models:
       userfile:
         one: "File"

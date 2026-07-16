@@ -1,9 +1,6 @@
 en:
-
   activerecord:
-
-      models:
-
-        group:
-          one: "Project"
-          other: "Projects"
+    models:
+      group:
+        one: "Project"
+        other: "Projects"
