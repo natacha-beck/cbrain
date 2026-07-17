@@ -2,252 +2,373 @@ fr:
   portal:
 
     common:
-      name_description: "Nom et description"
-      availability: "Disponibilité"
-      open: "Généralement ouvert"
-      restricted: "Restreint/sur demande"
-
-    available_datasets_table:
-
-    available_tools_table:
+      name_description: ""
+      availability: ""
+      open: ""
+      restricted: ""
 
     logo_footer:
-      supported_by: "Soutenu par les organisations suivantes"
+      supported_by: ""
 
     about_us:
-      title: "À propos"
-      header: "À propos de nous"
-      platform_revision: "Informations sur la révision de la plateforme"
-      last_author: "Dernier auteur ayant modifié le portail:"
-      last_revision: "Dernière révision du portail:"
-      last_changed: "Dernière date de modification du portail:"
-      up_since: "Portail en ligne depuis:"
-      plugins_revision_header: "Informations sur la révision des plugins CBRAIN"
-      plugins_package: "Package de plugins: %{plugin}"
-      platform_info: "Informations sur la plateforme"
-      env_vars: "Variables d'environnement"
-      licensing_info: "Informations sur les licences"
-      credits_link_html: "Les crédits pour le projet peuvent être trouvés sur la page %{credits_link}, ainsi que sur la page %{github_link}."
-      credits: "crédits"
-      github_contributors: "Contributeurs GitHub"
-      gnu_license: "Licence publique GNU"
-      gnu_desc_html: "La base de code de CBRAIN est distribuée sous la licence publique GNU (GPL).<br/>Copyright Alan C. Evans - McGill University 2008-2022<br/>Une copie du texte de la licence peut être trouvée ici."
-      other_licenses: "Autres licences"
-      other_desc_html: "Certains packages ou bibliothèques développés par des entités externes<br/>sont utilisés dans la base de code de CBRAIN ; voici un résumé de leurs<br/>respectives licences."
-      error_getting_license: "Erreur lors de l'obtention du fichier de licence."
-      for: "pour: "
+      title: ""
+      header: ""
+      platform_revision: ""
+      last_author: ""
+      last_revision: ""
+      last_changed: ""
+      up_since_html: ""
+      plugins_revision_header: ""
+      plugins_package: ""
+      platform_info: ""
+      env_vars: ""
+      licensing_info: ""
+      credits_link_html: ""
+      credits: ""
+      github_contributors: ""
+      gnu_license: ""
+      gnu_desc_html: ""
+      other_licenses: ""
+      other_desc_html: ""
+      error_getting_license: ""
 
     available:
-      title: "Liste des outils et des ensembles de données"
-      note_html: "Ces tableaux répertorient tous les outils et ensembles de données configurés sur ce portail CBRAIN.<br />Ils ne sont pas tous disponibles pour tous les utilisateurs."
+      title: ""
+      note_html: ""
 
     credits:
-      title: "Crédits"
-      citing: "Citer CBRAIN"
-      p1_html: "Les résultats publiés à partir de données recueillies ou traitées avec une installation de CBRAIN<br />devraient citer la référence suivante:"
-      citation_html: "<strong>Sherif T, Rioux P, Rousseau M-E, Kassis N, Beck N, Adalat R, Das S, Glatard T and Evans AC (2014)</strong><br /><em>CBRAIN: a web-based, distributed computing platform for collaborative neuroimaging research.</em><br />%{link}"
-      citation_link_text: "Front. Neuroinform. 8:54. doi: 10.3389/fninf.2014.00054"
-      project_desc_1_html: "L'origine et le but de cette plateforme sont décrits plus en détail sur le %{mcin_link} (Centre de neurosciences intégratives de McGill)."
-      mcin_website: "Site Web du MCIN"
-      project_desc_2_html: "Le code du projet est maintenu et distribué sur %{github_link}."
-      github: "GitHub"
-      project_info: "Informations sur le projet CBRAIN"
-      credits_box: "Crédits de développement logiciel"
-      role_pi: "Investigateur principal:"
-      role_pm: "Chef de programme:"
-      role_tm: "Responsables technologiques:"
-      role_sa: "Architecture système:"
-      role_ld: "Développeurs principaux:"
-      role_ad: "Développeurs supplémentaires:"
-      role_ux: "Conception UX supplémentaire, tests, documentation:"
-      role_it: "Équipe informatique:"
-      role_cons: "Consultants:"
-      role_license: "Informations sur la plateforme et les licences:"
-      available_here: "(Disponible ici)"
-      p2_html: "L'équipe CBRAIN tient à remercier tous les utilisateurs du <strong>service CBRAIN original</strong><br />au McGill pour leurs précieux commentaires et leur soutien."
+      title: ""
+
+      headings:
+        citing: ""
+        project_info: ""
+        credits_box: ""
+
+      paragraphs:
+        citing_html: |
+          Results published from data gathered or processed with a CBRAIN
+          installation should cite the following reference:
+
+          <p>
+
+          <div class="groupentry">
+
+            <strong>Sherif T, Rioux P, Rousseau M-E, Kassis N, Beck N, Adalat R, Das S, Glatard T and Evans AC (2014)</strong><br>
+            <em>CBRAIN: a web-based, distributed computing platform for collaborative neuroimaging research.</em><br>
+            <a class="action_link" target="_blank" href="http://journal.frontiersin.org/article/10.3389/fninf.2014.00054/abstract">Front. Neuroinform. 8:54. doi: 10.3389/fninf.2014.00054</a>
+
+          </div>
+        project_info_html: |
+          This platform's origin and purpose is described further at the <a class="action_link" href="http://mcin-cnim.ca/neuroimagingtechnologies/cbrain/">MCIN website</a> (McGill Centre for Integrative Neuroscience).<br>
+
+          The code for the project is maintained and distributed on <a class="action_link" href="https://github.com/aces/cbrain">GitHub</a>.
+        credits_box_html: |
+          <ul type="none">
+            <li><strong>Principal Investigator:</strong> Alan C. Evans, Montreal Neurological Institute, McGill University</li>
+            <li><strong>Program Manager:</strong> Reza Adalat</li>
+            <li><strong>Technology Managers:</strong> Shawn T. Brown, Marc Rousseau</li>
+            <li><strong>System Architecture:</strong> Pierre Rioux, Tarek Sherif, Tristan Glatard</li>
+            <li><strong>Lead Developers:</strong> Pierre Rioux, Tarek Sherif, Nicolas Kassis, Natacha Beck, Tristan Glatard, Andrew Doyle</li>
+            <li><strong>Additional Developers:</strong> Angela McCloskey, R&eacute;mi Bernard, Tristan Aumentado-Armstrong, Anton Zoubarev, Mathieu Desrosiers, Ehsan Afkhami, Armin Taheri</li>
+            <li><strong>Additional UX Design, Testing, Documentation:</strong> Najmeh Khalili-Mahani</li>
+            <li><strong>IT Team:</strong> Alden Woodward, Chris Steele, Pamela Patterson, Pierre Rioux</li>
+            <li><strong>Consultants:</strong> Samir Das, Penelope Kostopoulos, Pierre Bellec, Robert Vincent, Christine Rogers, Claude Lepage, Linsday Lewis, Carolina Makowski</li>
+            <li><strong>Platform and licensing information:</strong> <a class="action_link" href="/about_us">(Available here)</a></li>
+          </ul>
+
+          <p>
+          The CBRAIN team would like to thank all users of the <strong>original CBRAIN service</strong>
+          at McGill for their invaluable feedback and support.
 
     portal_log:
-      title: "Journaux du portail"
-      lines_to_show_html: "Nombre de lignes à afficher: %{dropdown}"
-      min_request_time_html: "Temps de requête minimum (ms): %{dropdown}"
-      filter: "Filtre:"
-      by_user_html: "Par utilisateur: %{dropdown}"
-      by_instance_html: "Par nom d'instance: %{textfield}"
-      by_method_html: "Par méthode: %{dropdown}"
-      by_controller_html: "Par contrôleur: %{dropdown}"
-      hide_lines: "Masquer les lignes:"
-      started_html: "'Started': %{checkbox}"
-      processing_html: "'Processing': %{checkbox}"
-      parameters_html: "'Parameters': %{checkbox}"
-      rendered_html: "'Rendered': %{checkbox}"
-      redirected_html: "'Redirected': %{checkbox}"
-      user_html: "'User': %{checkbox}"
-      completed_html: "'Completed': %{checkbox}"
-      sql_html: "'SQL': %{checkbox}"
-      load_html: "'Load': %{checkbox}"
-      exists_html: "'Exists': %{checkbox}"
-      cache_html: "'CACHE': %{checkbox}"
+      filters:
+        lines_to_show_html: ""
+        min_request_time_html: ""
+        filter: ""
+        by_user_html: ""
+        by_instance_html: ""
+        by_method_html: ""
+        by_controller_html: ""
 
-    report:
-      title: "Rapports tabulaires"
-      header: "Générateur de rapports tabulaires automatiques"
-      description_html: "Ce formulaire vous permet de générer de nombreux types de rapports<br />sous forme de tableau. Procédez comme suit:"
-      step_1_html: "<strong>Sélectionnez le type de rapport</strong> dans la zone grise. La plupart des rapports<br />compteront le nombre d'objets accessibles, mais certains d'entre eux<br />effectueront une somme de certains attributs."
-      step_2_html: "<strong>Cliquez sur « Rechercher colonnes et lignes »</strong> et le formulaire s'ajustera<br />pour vous montrer quels attributs vous pouvez sélectionner pour les lignes et les colonnes de<br />votre tableau."
-      step_3_html: "<strong>Sélectionnez un attribut pour les lignes et les colonnes</strong> en utilisant chacune des cases<br />de sélection affichées en haut et à gauche de la zone de tableau."
-      step_4_html: "<strong>Cliquez sur « Générer le rapport »</strong> et le tableau sera créé avec<br />des liens directs vers les pages d'index appropriées pour vos objets. Vous pouvez<br />modifier les propriétés du rapport et le générer à nouveau à tout moment."
-      lookup_btn: "Rechercher colonnes et lignes"
-      refresh_btn: "Actualiser le rapport"
-      flip_btn: "Inverser lignes/colonnes"
-      generate_btn: "Générer le rapport"
-      select_row: "(Sélectionner le type de ligne)"
-      select_col: "(Sélectionner le type de colonne)"
-      total: "Total"
-      no_objects_html: "%{no_objects} trouvé(s) pour ce rapport.<br/>Essayez avec d'autres paramètres de rapport."
-      no_objects_red: "aucun objet"
-      waiting_html: "Le rapport apparaîtra ici une fois que vous aurez sélectionné<br/> le contenu du tableau et les types de lignes et de colonnes appropriés."
-      optional_fix_html: "<strong>Optionnel:</strong> fixer certains attributs:"
-      filter_dp: "Fournisseur de données:"
-      filter_types: "Types:"
-      filter_status: "Statut:"
-      filter_ym: "Année/Mois:"
-      filter_dates: "Dates:"
-      date_note_html: "<small>(Note: les liens dans le rapport n'incluront PAS les restrictions de date)</small>"
-      entry:
-        one: "1 entrée"
-        other: "%{count} entrées"
-      file:
-        one: "1 fichier"
-        other: "%{count} fichiers"
-      file_unk:
-        one: "1 fichier taille inconnue"
-        other: "%{count} fichiers taille inconnue"
-      report_types:
-        select: "(Sélectionner le type de rapport)"
-        files_count: "Fichiers - nombre"
-        files_sum: "Fichiers - somme des tailles"
-        files_total: "Fichiers - total des fichiers dans les collections"
-        files_combined: "Fichiers - rapport combiné"
-        tasks_count: "Tâches - nombre"
-        tasks_sum: "Tâches - somme de l'espace de travail"
-        tasks_combined: "Tâches - rapport combiné"
-        servers_count: "Serveurs - nombre"
-        dp_count: "Fournisseurs de données - nombre"
-        users_count: "Utilisateurs - nombre"
-        projects_count: "Projets - nombre"
-        tools_count: "Outils - nombre"
-        tv_count: "Versions d'outils - nombre"
-        du_views: "Utilisation des données - vues de fichiers"
-        du_downloads: "Utilisation des données - téléchargements de fichiers"
-        du_copies: "Utilisation des données - copies de fichiers"
-        du_processed: "Utilisation des données - fichiers traités"
-
-    show_license:
-      error_fetching: "(Erreur lors de la récupération du texte de la licence)"
-      already_signed: "Vous avez déjà signé cet accord."
-      disagree: "Je ne suis pas d'accord"
-
-    swagger:
-      title: "CBRAIN API"
-      page_description: "Cette page décrit l'API CBRAIN"
-      more_info_html: "Pour plus d'informations sur les travaux en cours sur l'API veuillez consulter le %{api_issues_link} sur %{github_link}."
-      api_issues: "Problèmes de l'API"
-      github_repo: "Le dépôt GitHub de CBRAIN"
-      spec_files_html: "Les fichiers %{yaml_link} ou %{json_link} de cette spécification peuvent être ouverts sur %{swaggerhub_link}."
-      generate_code: "Cela vous permettra de générer du code client et d'inspecter la même documentation<br />que celle qui est affichée ici."
-      client_languages_html: "En particulier, cela vous permettra de générer des bibliothèques clientes dans toutes sortes de langages, tels que <em>Python</em>, <em>Perl</em>, <em>Java</em>, <em>Swift</em> et même <em><strong>Ruby</strong></em>."
-      latest_version_html: "Voici un lien direct vers la %{latest_version_link} du développeur."
-      latest_version: "dernière version sur SwaggerHub"
+      toggles:
+        hide_lines: ""
+        started_html: ""
+        processing_html: ""
+        parameters_html: ""
+        rendered_html: ""
+        redirected_html: ""
+        user_html: ""
+        completed_html: ""
+        sql_html: ""
+        load_html: ""
+        exists_html: ""
+        cache_html: ""
 
     provenance:
-      title:   "Provenance"
-      header:  "Déclaration de provenance de CBRAIN"
-      p1_html: "Les nouvelles fonctionnalités et les corrections de bugs sont testées et publiées dans la branche de développement dès leur achèvement. Les tests d'intégration continue sont effectués de manière automatisée et appliqués à tout code incorporé dans le référentiel de développement. Toutes les demandes de tirage sont examinées et validées par l'équipe de développement senior avant d'être acceptées ou retournées pour subir une modification et des tests supplémentaires par le développeur soumettant."
-      p2_html: "Les versions majeures sont faites pour amalgamer ensemble des collections de corrections de bugs, de correctifs et de nouvelles fonctionnalités évalués comme bénéfiques pour l'émission en tant que version cumulative intégrée pour une utilisation communautaire. Les versions majeures sont effectuées par le développeur principal de CBRAIN et autorisées avec le directeur de l'équipe CBRAIN."
-      p3_html: "Chaque version contient un ensemble associé de notes de version documentant clairement les nouvelles fonctionnalités et les problèmes qui sont abordés dans une version donnée."
-      p4_html: "%{release_link}<br />sont disponibles dans le référentiel GitHub de CBRAIN."
-      md_file: "Notes de version"
-      last_updated: "Document mis à jour pour la dernière fois:"
+      title: ""
 
-    search:
-      title: "Recherche"
-      search_label: "Rechercher:"
-      search_placeholder: "Recherchez n'importe quoi"
-      explanation_html: "Cela recherchera des fichiers, des tâches, des utilisateurs, des outils<br />, des projets, etc. par ID, par nom ou par description. %{limit} résultats maximum affichés."
-      found: "(trouvé: %{count})"
-      switch: "switch"
-      execution_servers: "Serveurs d'exécution"
-      registered_files: "Fichiers enregistrés"
-      tool_versions: "Versions des outils"
+      headings:
+        statement: ""
+
+      paragraphs:
+        statement_html: |
+          New features and bug fixes are tested and released into the
+          development branch upon completion.  Continuous integration testing
+          is performed in an automated fashion and is applied to all code
+          incorporated into the development repository.  All pull requests
+          are reviewed and validated by the senior development team before
+          either being accepted or returned so as to undergo further
+          modification and testing by the submitting developer.
+
+          <p>
+
+          Major releases are made so as amalgamate together collections of
+          bug fixes, patches and new features assessed as beneficial for
+          issuance as a cumulative, integrated release for community use.
+          Major releases are performed by the CBRAIN Lead Developer and
+          authorized together with the CBRAIN Team Director.
+
+          <p>
+
+          Each release contains an associated set of release notes documentation
+          clearly identifying the new features and issues that are addressed
+          within a given release.
+
+          <p>
+
+          <a href="https://github.com/aces/cbrain/blob/master/Release-Notes.md">Release Notes</a>
+          are available in the CBRAIN GitHub repository.
+
+          <p>
+
+      footer:
+        last_updated_html: ""
+
+    report:
+      title: ""
+
+      headings:
+        main: ""
+
+      paragraphs:
+        steps_html: |
+          <p class="medium_paragraphs">
+          This form allows you to generate many different kind of reports
+          in a tabular layout. Proceed as follow:
+          </p>
+
+          <ul>
+            <li><strong>Select the type of report</strong> in the grey box. Most reports
+                will count the number of objects accessible to you, but some of them
+                will perform summation of some attributes.
+            </li>
+            <li><strong>Click on "Lookup columns and rows"</strong> and the form will be adjusted
+                to show you which attributes you can select for the rows and columns of
+                your table.
+            </li>
+            <li><strong>Select an attribute for the rows and columns</strong> using each of the selection
+                boxes shown at the top and left of the table area.
+            </li>
+            <li><strong>Click on "Generate Report"</strong> and the table will be created with
+                hot links to the appropriate index pages for your objects. You can
+                modify the report's properties and regenerate it anew any time you want.
+            </li>
+          </ul>
+
+      report_types:
+        select: ""
+        files_count: ""
+        files_sum: ""
+        files_total: ""
+        files_combined: ""
+        tasks_count: ""
+        tasks_sum: ""
+        tasks_combined: ""
+        servers_count: ""
+        dp_count: ""
+        users_count: ""
+        projects_count: ""
+        tools_count: ""
+        tv_count: ""
+        du_views: ""
+        du_downloads: ""
+        du_copies: ""
+        du_processed: ""
+
+      actions:
+        lookup_btn: ""
+        refresh_btn: ""
+        flip_btn: ""
+        generate_btn: ""
+
+      selectors:
+        select_row: ""
+        select_col: ""
+
+      counters:
+        total: ""
+        entry:
+          one: ""
+          other: ""
+        file:
+          one: ""
+          other: ""
+        file_unk:
+          one: ""
+          other: ""
+
+      empty_state:
+        no_objects_html: ""
+        no_objects_red: ""
+        waiting_html: ""
+
+      notes:
+        optional_fix_html: ""
+        date_html: ""
 
     stats:
-      title: "Statistiques détaillées du service"
-      header: "Statistiques du service Web CBRAIN"
-      total_by_client: "Totaux par type de client"
-      client_type: "Type de client"
-      successes: "Succès"
-      failures: "Échecs"
-      totals_by_controller_html: "Totaux par contrôleur &amp; action"
-      controller: "Contrôleur"
-      action: "Action"
-      total_by_status: "Totaux par codes de statut HTTP"
-      status_code: "Code de statut"
-      count: "Nombre"
-      last_reset: "Compteurs réinitialisés le:"
+      title: ""
+
+      headings:
+        main: ""
+        by_client: ""
+        by_controller_html: ""
+        by_status: ""
+
+      columns:
+        client_type: ""
+        successes: ""
+        failures: ""
+        controller: ""
+        action: ""
+        status_code: ""
+        count: ""
+
+      footer:
+        last_reset: ""
+
+    search:
+      title: ""
+
+      placeholders:
+        search: ""
+
+      explanations:
+        search: ""
+
+      actions:
+        switch: ""
+
+      results:
+        found: ""
+        registered_files: ""
+
+    swagger:
+      title: ""
+
+      content_html: |
+        <div class="generalbox">
+        <big><strong>This page describes the CBRAIN API</strong></big>
+
+        <p class="medium_paragraphs">
+        For more information about the work in progress on the API, please look up the
+        <a href="https://github.com/aces/cbrain/issues?q=is%3Aopen+is%3Aissue+label%3AAPI">API issues</a>
+        on
+        <a href="https://github.com/aces/cbrain">CBRAIN's GitHub repository</a>.
+
+        <p class="medium_paragraphs">
+        This specification's <a href="/swagger.yaml">YAML</a> or <a href="/swagger.json">JSON</a> files can be opened
+        at <a href="https://app.swaggerhub.com/home">SwaggerHUB</a>.
+
+        <p class="medium_paragraphs">
+        This will provide you a way to generate client code and inspect the same documentation
+        that is shown here.
+        In particular, this will allow you to generate client libraries in all sorts of
+        marvelous exotic languages, such as <em>Python</em>, <em>Perl</em>, <em>Java</em>, <em>Swift</em> and even <em><strong>Ruby</strong></em>.
+        <p class="medium_paragraphs">
+        Here is a direct link to the developer's <a href="https://app.swaggerhub.com/apis/prioux/CBRAIN/%{spec_version}">latest version on SwaggerHub</a>.
+        </div>
 
     welcome:
-      welcome: "Bienvenue"
-      welcome_to: "Bienvenue sur %{name}"
-      session_title: "Sessions"
-      news: "Actualités CBRAIN"
-      posted_at: "Publié le: %{created_at}"
-      system_info: "Informations système"
-      instance_name_html: "<strong>Nom de l'instance du portail:</strong> %{name}"
-      unlock: "Déverrouiller ce portail"
-      unlock_confirm: "Êtes-vous sûr de vouloir déverrouiller ce portail ?"
-      lock_message: "(message de verrouillage)"
-      lock: "Verrouiller ce portail"
-      lock_confirm: "Êtes-vous sûr de vouloir verrouiller ce portail ?"
-      online_users: "Utilisateurs actuellement en ligne: "
-      recent_activity: "Activité récente:"
-      view_logs: "(Voir les journaux)"
-      active: "Actif"
-      active_count_html: "(%{count} actifs)"
-      logged_out: "Déconnecté"
-      unknown_browser: "navigateur inconnu"
-      unknown_os: "OS inconnu"
-      sessions_count: "Il y a actuellement %{count} entrées dans la table des sessions."
-      clear_sessions: "Effacer les sessions plus anciennes que"
-      clear_confirm: "Êtes-vous sûr de vouloir effacer les sessions ?"
-      exceptions_logged: "Des exceptions internes ont été enregistrées:"
-      exceptions_past_day:
-        one: "1 exception au cours du dernier jour."
-        other: "%{count} exceptions au cours du dernier jour."
-      exceptions_past_three_days:
-        one: "1 exception au cours des trois derniers jours."
-        other: "%{count} exceptions au cours des trois derniers jours."
-      exceptions_past_week:
-        one: "1 exception au cours de la dernière semaine."
-        other: "%{count} exceptions au cours de la dernière semaine."
-      exceptions_total:
-        one: "1 exception au total."
-        other: "%{count} exceptions au total."
-      show_exceptions: "Afficher les exceptions"
-      account_info: "Informations du compte"
-      login_name: "Votre identifiant:"
-      full_name: "Votre nom complet:"
-      site_affiliation: "Votre affiliation de site:"
-      time_zone: "Votre fuseau horaire:"
-      current_time: "Votre heure actuelle:"
-      tools_available_info_html: "Outils à votre disposition (%{available} sur %{total}, %{link}):"
-      full_tools_list: "liste complète de tous les outils ici"
-      projects: "Projets auxquels vous appartenez:"
-      default_provider: "Votre fournisseur de données par défaut:"
-      default_server: "Votre serveur d'exécution par défaut:"
-      latest_tasks: "Dernières tâches mises à jour"
-      none_active: "(Aucune active)"
-      latest_files: "Derniers fichiers mis à jour"
-      on: "sur"
-      from: "De"
-      with: "avec"
-      unset: "(Non défini)"
+      title: ""
+
+      headings:
+        main: ""
+        news: ""
+        system_info: ""
+        sessions: ""
+        account_info: ""
+        tools_available_info_html: ""
+        latest_tasks: ""
+        latest_files: ""
+
+      news:
+        posted_at: ""
+
+      system_info:
+        instance_name_html: ""
+        unlock: ""
+        unlock_confirm: ""
+        lock_message: ""
+        lock: ""
+        lock_confirm: ""
+        online_users: ""
+        recent_activity: ""
+        active: ""
+        logged_out: ""
+        unknown_unknown: ""
+        unknown_browser: ""
+        unknown_os: ""
+        on_word: ""
+        with: ""
+
+      sessions:
+        sessions_count: ""
+        clear_sessions: ""
+        clear_confirm: ""
+
+      exceptions:
+        logged: ""
+        past_day:
+          one: ""
+          other: ""
+        past_three_days:
+          one: ""
+          other: ""
+        past_week:
+          one: ""
+          other: ""
+        total:
+          one: ""
+          other: ""
+
+      account_info:
+        login_name: ""
+        full_name: ""
+        site_affiliation: ""
+        time_zone: ""
+        current_time: ""
+
+      defaults:
+        projects: ""
+        provider: ""
+        server: ""
+
+      latest_tasks:
+        active_count: ""
+        none_active: ""
+
+      links:
+        system_info:
+          view_logs: ""
+        full_tools_list: ""
+        exceptions:
+          show: ""
+
+    show_license:
+      error_fetching: ""
+      already_signed: ""
+      disagree: ""
+
+
+

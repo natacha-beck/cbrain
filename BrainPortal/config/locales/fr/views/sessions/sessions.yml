@@ -2,26 +2,60 @@ fr:
   sessions:
 
     mandatory_oidc:
-      title: "Lien obligatoire avec un fournisseur d'identité"
-      before_message_html: "Avant de pouvoir continuer, votre compte CBRAIN <em>doit</em> être lié à un fournisseur d'identité."
-      explanations: "Explications"
-      p_explanations: "Lorsque vous cliquez sur le bouton ci-dessous, votre navigateur sera redirigé vers une page de connexion d'un fournisseur d'identité ; de là, vous pouvez choisir l'un des fournisseurs d'identité pris en charge. Cela vous redirigera à son tour vers la propre page de connexion du fournisseur. Une fois que vous vous êtes authentifié avec succès là-bas, votre navigateur sera redirigé ici pour finaliser le lien avec votre compte CBRAIN."
-      allowed_providers: "Les fournisseurs d'identité autorisés pour votre compte sont:"
-      any_provider: "(Tout fournisseur d'identité)"
-      p_no_provider: "Aucun fournisseur d'identité n'est actuellement disponible pour votre compte. Veuillez contacter l'administrateur de CBRAIN pour plus d'informations."
-      login_with: "Se connecter avec %{name}"
-      p_already_logged_in: "Si vous êtes déjà connecté en utilisant un autre fournisseur d'identité, vous voudrez peut-être vous déconnecter d'abord. Cela peut être accompli par le bouton ci-dessous:"
-      logout_from: "Se déconnecter de %{name}"
+      title: ""
+      headings:
+        before_message_html: ""
+        explanations: ""
+        allowed_providers: ""
+
+      paragraphs:
+        explanations: |
+          <p class="short_paragraphs">
+          When you click on the button below, your browser will be redirected
+          to an identity provider login page; from there you can choose one of the
+          supported identity providers. This will in turn redirect you
+          to the provider's own login page. Once you've successfully authenticated
+          there, your browser will be redirected back here to finalize
+          the link with your CBRAIN account.
+          </p>
+        no_provider: |
+          <p class="short_paragraphs">
+          No identity provider is currently available for your account.
+          Please contact the CBRAIN administrator for more information.
+          </p>
+        already_logged_in: |
+          <p class="short_paragraphs">
+          If you already are logged in using a different identity provider, you
+          might want to log out first. This can be accomplished by the button below:
+          </p>
+
+      any_provider: ""
+
+      links:
+        login_with: ""
+        logout_from: ""
 
     new:
-      title: "Connexion"
-      login: "Identifiant"
-      password: "Mot de passe"
-      sign_in: "Se connecter"
-      forgot_password: "Mot de passe oublié ?"
-      or: "OU"
-      sign_in_with: "Se connecter avec %{name}"
-      only_available_html: "(Disponible uniquement si vous avez déjà lié votre<br />compte CBRAIN à une identité %{name})"
-      not_a_user: "Pas encore utilisateur ?"
-      request_account: "Demandez un compte."
-      full_list: "Liste complète de tous les outils et jeux de données"
+      title: ""
+
+      divs:
+        only_available_html: |
+          <div class="field_explanation">
+            (Only available if you have already linked your<br>
+            CBRAIN account to a %{name} identity)
+          </div>
+      labels:
+        login: ""
+        password: ""
+
+      submit:
+        sign_in: ""
+
+      links:
+        forgot_password: ""
+        sign_in_with: ""
+        request_account: ""
+        full_list: ""
+
+      or: ""
+      not_a_user: ""

@@ -1,35 +1,50 @@
 fr:
   exception_logs:
 
-      common:
-        raised_at: ""
-        method: ""
-        format: ""
-
       index:
         title: ""
 
       exception_logs_table:
-        delete_checked: ""
-        confirm_delete_name: ""
+        submit:
+          delete_checked: ""
+          delete_name: ""
+
         message_count:
           one: ""
           other: ""
-        col:
+
+        columns:
+          exception: ""
           message: ""
           controller: ""
           action: ""
+          user: ""
           revision: ""
+          raised_at: ""
 
       show:
         title: ""
-        confirm_delete_name: ""
-        in_html: ""
-        header_request: ""
-        url: ""
-        parameters: ""
+
+        submit:
+          delete_message: ""
+
+        headings:
+          request: ""
+          session: ""
+          headers: ""
+
+        cells:
+          raised_at: ""
+          url: ""
+          method: ""
+          parameters: ""
+          format: ""
+          user: ""
+          start_time_revision: ""
+
+        legends:
+          backtrace: ""
+
+        exception_message: ""
         not_signed_in: ""
-        start_time_revision: ""
-        backtrace: ""
-        header_session: ""
-        header_headers: ""
+

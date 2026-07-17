@@ -2,21 +2,41 @@ fr:
   access_profiles:
 
     access_profiles_table:
-      create_profile: "Créer un profil d'accès"
-      white: "blanc"
+      links:
+        create_profile: ""
+      columns:
+        name: ""
+        color: ""
+        description: ""
+        projects: ""
+
+      white: ""
 
     index:
-      title: "Profils d'accès"
+      title: ""
 
     show:
-      add_new_access_profile: "Ajouter un nouveau profil d'accès"
-      saved_error: "Le profil d'accès n'a pas pu être %{action}."
-      css_explanation_html: "Utilisez une couleur <strong>pâle</strong> conforme au CSS:<br>ex. <em>#ff0</em> ou <em>yellow</em> etc."
-      private_note: "Ce sont vos notes privées à propos de ce profil."
-      change_note: "Lors de l'ajout ou de la suppression de projets, appliquer le changement aux utilisateurs:"
-      normal_users: "Utilisateurs normaux"
-      locked_users: "Utilisateurs verrouillés"
-      project_membership: "Adhésion au projet"
-      projects_in_this_profile: "Projets dans ce profil"
-      with_this_profile: "Utilisateurs avec ce profil"
-      access_profile_log: "Journal du profil d'accès"
+      titles:
+        add_new_access_profile: ""
+        access_profile: ""
+        access_profile_log: ""
+
+      error_messages:
+       saved: ""
+      cells:
+        name: ""
+        color: ""
+
+      headings:
+        with_this_profile: ""
+        project_membership: ""
+        projects_in_this_profile: ""
+
+      explanations:
+        css_html: ""
+        private: ""
+        change: ""
+
+      user_types:
+        normal: ""
+        locked: ""
