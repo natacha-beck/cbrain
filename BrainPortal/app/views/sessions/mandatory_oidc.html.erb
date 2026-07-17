@@ -24,15 +24,13 @@
 
 <% title t('.title') %>
 
-<h2><%= t('.before_message_html') %></h2>
+<h2><%= t('.headings.before_message_html') %></h2>
 
-<h5><%= t('.explanations') %></h5>
+<h5><%= t('.headings.explanations') %></h5>
 
-<p class="short_paragraphs">
-  <%= t('.p_explanations') %>
-</p>
+<%= t('.paragraphs.explanations') %>
 
-<h5><%= t('.allowed_providers') %></h5>
+<h5><%= t('.headings.allowed_providers') %></h5>
 
 <ul>
   <% @allowed_prov_names.each do |provname| %>
@@ -44,21 +42,21 @@
 
 <% if @oidc_configs.empty? %>
   <p class="short_paragraphs">
-    <%= t('.p_no_provider') %>
+    <%= t('.paragraphs.no_provider') %>
   </p>
 <% end %>
 
 <% @oidc_configs.each do |oidc| %>
-  <%= link_to t('.login_with', name: oidc.name), @oidc_uris[oidc.name], :class => 'button globus_button' %></br></br>
+  <%= link_to t('.links.login_with', name: oidc.name), @oidc_uris[oidc.name], :class => 'button globus_button' %></br></br>
 <% end %>
 
 <% if !@oidc_configs.empty? %>
 <p class="short_paragraphs">
-  <%= t('.p_already_logged_in') %>
+  <%= t('.paragraphs.already_logged_in') %>
 <p>
 <% end %>
 
 <% @oidc_configs.each do |oidc| %>
-  <%= link_to t('.logout_from', name: oidc.name), oidc.logout_uri, :class => 'button globus_button' %></br></br>
+  <%= link_to t('.links.logout_from', name: oidc.name), oidc.logout_uri, :class => 'button globus_button' %></br></br>
 <% end %>
 

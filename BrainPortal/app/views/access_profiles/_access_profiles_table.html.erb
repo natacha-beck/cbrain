@@ -23,8 +23,8 @@
 -%>
 
 <div class="menu_bar">
-  <%= link_to t('.create_profile'), new_access_profile_path, :class => "button menu_button" %>
-  <%= overlay_ajax_link t('help'), "/doc/access_profiles/access_profiles.html", :class  => "button" %>
+  <%= link_to t('.links.create_profile'), new_access_profile_path, :class => "button menu_button" %>
+  <%= overlay_ajax_link t('help'), "/doc/#{I18n.locale}/access_profiles/access_profiles.html", :class  => "button" %>
 </div>
 
 <div class="centered">(<%= AccessProfile.model_name.human(count: @access_profiles.count) %>)</div>

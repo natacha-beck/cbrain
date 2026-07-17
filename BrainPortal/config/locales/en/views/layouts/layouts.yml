@@ -48,7 +48,6 @@ en:
           select_project: "(Click here to select a Project and access Files and Tasks)"
           profiles: "Profiles"
 
-
         placeholders:
           search: "Search for anything"
 

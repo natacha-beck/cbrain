@@ -48,9 +48,9 @@
           <% end %>
 
           <div class="project_select_spacer"></div>
-          <%= link_to t('.default_private_project', group_name: current_user.own_group.name), {:controller => :groups, :action => :switch, :id  => current_user.own_group.id.to_s}, {:method => :post, :class => "button"} %>
-          <%= link_to t('.all_files_tasks'), {:controller => :groups, :action => :switch, :id  => "all"}, {:method => :post, :class => "button"} %>
-          <%= link_to t('.full_project_list'), groups_path, :class => "button" %>
+          <%= link_to t('.links.default_private_project', group_name: current_user.own_group.name), {:controller => :groups, :action => :switch, :id  => current_user.own_group.id.to_s}, {:method => :post, :class => "button"} %>
+          <%= link_to t('.links.all_files_tasks'), {:controller => :groups, :action => :switch, :id  => "all"}, {:method => :post, :class => "button"} %>
+          <%= link_to t('.links.full_project_list'), groups_path, :class => "button" %>
       <% end %>
 
     <% end %>
@@ -63,7 +63,7 @@
   <% if current_user && page_is_not?("portal#search") %>
     <div id="cbsearch">
       <%= form_tag search_path, :method => :get do %>
-        <%= text_field_tag :search, nil, :placeholder => t('.search_placeholder') %>
+        <%= text_field_tag :search, nil, :placeholder => t('.placeholders.search') %>
       <% end %>
     </div>
   <% end %>
@@ -73,7 +73,7 @@
        <ul>
          <% if cbrain_session[:active_group_id].blank? && page_is_not?("groups#index","portal#show_license") %>
            <li class="unselected">
-             <%= link_to t('.select_project'), groups_path, :class => 'active_bac' %>
+             <%= link_to t('.links.select_project'), groups_path, :class => 'active_bac' %>
            </li>
          <% end %>
          <% if !current_user.has_role?(:normal_user) || (cbrain_session[:active_group_id] && page_is_not?("groups#index")) %>
@@ -102,18 +102,18 @@
              <%= link_to t('activerecord.models.tool.other'), tools_path %>
            </li>
            <li <%= set_selected(params[:controller], :tool_configs) %>>
-             <%= link_to t('layouts.common.tool_versions'), tool_configs_path %>
+             <%= link_to t('tool_version.other'), tool_configs_path %>
            </li>
            <li <%= set_selected(params[:controller], :users) %>>
              <%= link_to t('activerecord.models.user.other'), users_path %>
            </li>
            <li <%= set_selected(params[:controller], :quotas) %>>
-             <%= link_to t('layouts.common.quotas'), quotas_path %>
+             <%= link_to t('activerecord.models.quota.other'), quotas_path %>
            </li>
          <% end %>
          <% if current_user.has_role?(:admin_user) %>
            <li <%= set_selected(params[:controller], :access_profiles) %>>
-             <%= link_to t('.profiles'), access_profiles_path %>
+             <%= link_to t('.links.profiles'), access_profiles_path %>
            </li>
            <li <%= set_selected(params[:controller], :resource_usage) %>>
              <%= link_to t('layouts.common.usage'), resource_usage_index_path %>
@@ -126,7 +126,7 @@
            </li>
            <li <%= set_selected(params[:controller], :signups) %>>
              <%=
-               label = t('.signups'); label_class = ""
+               label = t('.labels.signups'); label_class = ""
                signup_waiting = Signup.where(:hidden => false, :approved_at => nil, :confirmed => true).count
                if signup_waiting > 0
                  label += " (#{signup_waiting})"
@@ -140,7 +140,7 @@
          <% if !current_user.has_role?(:normal_user) || (cbrain_session[:active_group_id] && page_is_not?("groups#index")) %>
            <li <%= set_selected(params[:controller], :background_activities) %>>
              <%=
-               label = t('.ongoing'); label_class = ""
+               label = t('.labels.ongoing'); label_class = ""
                if @count_background_activities_in_progress.present? && @count_background_activities_in_progress > 0
                  label += " (#{@count_background_activities_in_progress})"
                  label_class = "active_bac"

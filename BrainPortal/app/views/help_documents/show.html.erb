@@ -26,15 +26,15 @@
   <% if HelpDocument.can_edit?(current_user) %>
     <%= stylesheet_link_tag "codemirror", "codemirror-neo" %>
 
-    <button class="show" style="display:none"><%= t('show') %></button>
-    <button class="edit" style="display:none"><%= t('edit') %></button>
-    <button class="save" style="display:none"><%= t('save') %></button>
-    <button class="remove" style="display:none"><%= t('.remove') %></button>
+    <button class="show"   style="display:none"><%= t('.buttons.show') %></button>
+    <button class="edit"   style="display:none"><%= t('.buttons.edit') %></button>
+    <button class="save"   style="display:none"><%= t('.buttons.save') %></button>
+    <button class="remove" style="display:none"><%= t('.buttons.remove') %></button>
 
     <div class="editor" style="display:none"></div>
 
     <div class="empty" style="display:none">
-      <%= t('.description_p1_html') %>
+      <%= t('.description_html') %>
     </div>
   <% end %>
 

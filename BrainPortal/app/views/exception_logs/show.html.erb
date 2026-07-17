@@ -28,38 +28,38 @@
 
   <%= form_tag(url_for(:action => :destroy), :method => :delete) do %>
     <%= hidden_field_tag "exception_log_ids[]", @exception_log.id %>
-    <%= submit_tag t('delete'), :class => "button", :data => { :confirm => t('confirm_delete', name: t('.confirm_delete_name')) } %>
+    <%= submit_tag t('delete'), :class => "button", :data => { :confirm => t('.submit.delete_message') } %>
   <% end %>
 
   <div class="exception_spaced exception_description">
     <span class="exception_header"><%= @exception_log.exception_class %>: </span><span class="exception_message"><%= @exception_log.message %></span>
-    <div class="exception_spaced exception_message"><%= t('.in_html', location: "<strong>#{@exception_log.request_controller}/#{@exception_log.request_action}</strong>") %></div>
+    <div class="exception_spaced exception_message"><%= t('.exception_message', location: "#{@exception_log.request_controller}/#{@exception_log.request_action}") %></div>
   </div>
 
-  <%= show_table(@exception_log, :width => 1, :header => t('.header_request')) do |t| %>
-    <% t.cell(t('exception_logs.common.raised_at'))                  { to_localtime(@exception_log.created_at,:datetime) } %>
-    <% t.cell(t('.url'))                                             { @exception_log.request[:url] } %>
-    <% t.cell(t('exception_logs.common.method'))                     { @exception_log.request_method } %>
-    <% t.cell(t('.parameters'), :td_options => { :class => "wrap" }) { @exception_log.request[:parameters] } %>
-    <% t.cell(t('.format'))                                          { @exception_log.request[:format] } %>
-    <% t.cell(t('activerecord.models.user', count: 1))               { @exception_log.user.try(:login) || t('.not_signed_in') } %>
-    <% t.cell(t('.start_time_revision'))                             { @exception_log.revision_no} %>
+  <%= show_table(@exception_log, :width => 1, :header => t('.headings.request')) do |t| %>
+    <% t.cell(t('.cells.raised_at'))                                       { to_localtime(@exception_log.created_at,:datetime) } %>
+    <% t.cell(t('.cells.url'))                                             { @exception_log.request[:url] } %>
+    <% t.cell(t('.cells.method'))                                          { @exception_log.request_method } %>
+    <% t.cell(t('.cells.parameters'), :td_options => { :class => "wrap" }) { @exception_log.request[:parameters] } %>
+    <% t.cell(t('.cells.format'))                                          { @exception_log.request[:format] } %>
+    <% t.cell(t('.cells.user'))                                            { @exception_log.user.try(:login) || t('.not_signed_in') } %>
+    <% t.cell(t('.cells.start_time_revision'))                             { @exception_log.revision_no} %>
   <% end %>
 
   <fieldset>
-    <legend><%= t('.backtrace') %></legend>
+    <legend><%= t('.legends.backtrace') %></legend>
     <div class="exception_description">
       <pre><%= @exception_log.backtrace.join("\n") %></pre>
     </div>
   </fieldset>
 
-  <%= show_table(@exception_log, :width => 2, :header => t('.header_session')) do |t| %>
+  <%= show_table(@exception_log, :width => 2, :header => t('.headings.session')) do |t| %>
     <% @exception_log.session.keys.sort.each do |k| %>
       <% t.cell(k, :td_options => { :class => "wrap" }) { @exception_log.session[k] } %>
     <% end %>
   <% end %>
 
-  <%= show_table(@exception_log, :width => 2, :header => t('.header_headers')) do |t| %>
+  <%= show_table(@exception_log, :width => 2, :header => t('.headings.headers')) do |t| %>
     <% @exception_log.request_headers.keys.sort.each do |k| %>
       <% t.cell(k, :td_options => { :class => "wrap" }) { @exception_log.request_headers[k] } %>
     <% end %>
