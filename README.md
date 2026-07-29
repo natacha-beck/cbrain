@@ -1,7 +1,7 @@
 
 ![Continuous Integration](https://github.com/aces/cbrain/workflows/cbrain_ci/badge.svg)
 
-## CBRAIN
+## CBRAIN heilou
 
 CBRAIN is a collaborative, web-enabled grid platform built to
 facilitate research on large, distributed datasets by managing user
