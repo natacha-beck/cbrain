@@ -2,55 +2,55 @@ fr:
     layouts:
 
       common:
-        usage: ""
+        usage: "Usage"
 
       section_account:
         links:
-          dashboard: ""
-          my_account: ""
-          resource: ""
-          full_list: ""
-          help_site: ""
-          email_support: ""
-          sign_out: ""
-          sign_in: ""
+          dashboard: "Tableau de bord"
+          my_account: "Mon compte"
+          resource: "Ressource"
+          full_list: "Liste complète des outils et des jeux de données"
+          help_site: "Site d'aide"
+          email_support: "Assistance par courriel"
+          sign_out: "Se déconnecter"
+          sign_in: "Se connecter"
 
         labels:
           unread_message:
-            one: ""
-            other: ""
-          revision: ""
-          branch: ""
-          last_updated_html: ""
-          as: ""
+            one: "Message non lu"
+            other: "unread messages""
+          revision: "Rev: %{rev}"
+          branch: "Branche : %{name"
+          last_updated_html: "dernière mise à jour il y a <span class=\"elapsed\">%{time}</span>"
+          as: "Connecté en tant que %{name}"
 
         tooltips:
-          email_support_html: ""
+          email_support_html: "Pour obtenir de l'assistance par courriel concernant cette plateforme, y compris de l'aide<br />pour les tâches ayant échoué et le transfert de fichiers, veuillez cliquer ici<br />ou écrire à : %{email}"
 
       section_cookie_notif:
-        legend: ""
-        strong: ""
-        small_html: ""
-        unagree: ""
+        legend: "Notification relative aux cookies"
+        strong: "Ce site utilise un cookie pour se souvenir de vous."
+        small_html: "Ceci est sécuritaire et privé. Les informations du témoin sont échangées uniquement entre votre navigateur et ce site.<br />Aucune information n'est transmise à d'autres sites, personnes ou tiers."
+        unagree: "(Bouton de débogage pour supprimer l'accord)"
 
       section_footer:
-        powered_by: ""
-        credits: ""
+        powered_by: "Propulsé par %{name}"
+        credits: "Credits"
 
       section_menu:
-        all: ""
-        quick_project_switcher: ""
+        all: "Tous"
+        quick_project_switcher: "Sélecteur rapide de projet"
 
         links:
-          default_private_project: ""
-          all_files_tasks: ""
-          full_project_list: ""
-          select_project: ""
-          profiles: ""
+          default_private_project: "%{group_name} (projet privé par défaut)"
+          all_files_tasks: "Tous (aucun projet particulier : voir tous les fichiers et toutes les tâches)"
+          full_project_list: "(Liste complète des projets)"
+          select_project: "(Cliquez ici pour sélectionner un projet et accéder aux fichiers et aux tâches.)"
+          profiles: "Profils"
 
         placeholders:
-          search: ""
+          search: "Rechercher tout"
 
         labels:
-          signups: ""
-          ongoing: ""
+          signups: "Inscriptions"
+          ongoing: "En cours"
