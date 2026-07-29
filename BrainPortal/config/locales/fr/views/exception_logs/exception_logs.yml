@@ -2,49 +2,49 @@ fr:
   exception_logs:
 
       index:
-        title: ""
+        title: "Logs des exceptions"
 
       exception_logs_table:
         submit:
-          delete_checked: ""
-          delete_name: ""
+          delete_checked: "Supprimer les exceptions sélectionnées"
+          delete_name: "les logs sélectionnés"
 
         message_count:
-          one: ""
-          other: ""
+          one: "1 message"
+          other: "%{count} messages"
 
         columns:
-          exception: ""
-          message: ""
-          controller: ""
-          action: ""
-          user: ""
-          revision: ""
-          raised_at: ""
+          exception: "Exception"
+          message: "Message"
+          controller: "Controller"
+          action: "Action"
+          user: "Utilisateur"
+          revision: "Révision"
+          raised_at: "Survenue le"
 
       show:
-        title: ""
+        title: "Informations sur l'exception"
 
         submit:
-          delete_message: ""
+          delete_message: "ce rapport d'exception"
 
         headings:
-          request: ""
-          session: ""
-          headers: ""
+          request: "Requête"
+          session: "Session"
+          headers: "Headers"
 
         cells:
-          raised_at: ""
-          url: ""
-          method: ""
-          parameters: ""
-          format: ""
-          user: ""
-          start_time_revision: ""
+          raised_at: "Survenue le"
+          url: "URL"
+          method: "Méthode"
+          parameters: "Paramètres"
+          format: "Format"
+          user: "Utilisateur"
+          start_time_revision: "Heure de début de la révision"
 
         legends:
-          backtrace: ""
+          backtrace: "Pile d'appels"
 
-        exception_message: ""
-        not_signed_in: ""
+        exception_message: "dans <strong>%{location}</strong>"
+        not_signed_in: "(Non connecté)"
 
