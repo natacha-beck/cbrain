@@ -3,7 +3,7 @@ fr:
 
     access_profiles_table:
       links:
-        create_profile: ""
+        create_profile: "xxx"
       columns:
         name: ""
         color: ""
