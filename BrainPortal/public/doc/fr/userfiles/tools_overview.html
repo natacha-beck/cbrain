@@ -22,38 +22,36 @@
 #
 -->
 
-<!-- TODO: This page is not translated yet. It is a simple copy of the English version. -->
-
-<h1>Available Scientific Minc Tools</h1><br>
+<h1>Outils scientifiques MINC disponibles</h1><br>
 
 <b>Civet</b><br>
-    By default, CIVET will run on multispectral (T1, T2 and Proton Density weighted) data. Symmetry tools can be invoked optionally. Running on T1 images only, running without ANIMAL, and adding custom registration models (e.g. for registering paediatric data) are other main options. CIVET will calculate Cortical Thickness at each vertex using the t_link metric (in both registered and native spaces) on hemispheric surfaces that have been non-linearly registered. The default surfaces are made of 81,920 polygons and 40,962 vertices each. CIVET will also produce regional thickness maps as well as surface areas based on the intersection of ANIMAL with the surfaces of the cortex.
+    Par défaut, CIVET s'exécute sur des données multispectrales (pondérées en T1, T2 et densité de protons). Les outils de symétrie peuvent être activés en option. L'exécution sur des images T1 uniquement, l'exécution sans ANIMAL et l'ajout de modèles d'enregistrement personnalisés (par exemple, pour l'enregistrement de données pédiatriques) constituent d'autres options principales. CIVET calcule l'épaisseur corticale à chaque sommet à l'aide de la métrique <i>t_link</i> (dans les espaces enregistré et natif) sur des surfaces hémisphériques ayant fait l'objet d'un enregistrement non linéaire. Les surfaces par défaut sont constituées de 81,920 polygones et de 40,962 sommets chacune. CIVET produit également des cartes régionales d'épaisseur ainsi que des mesures de surface fondées sur l'intersection d'ANIMAL avec les surfaces du cortex.
 <br>
 <br>
-    A recent area of development is the introduction of automated quality control steps as optional post-processing procedures to run after data had been processed in CIVET. Since CIVET is now composed of 'modules' that are controlled by a 'shell', and each module consists of a group of related stages, quality control becomes potentially possible at the module-level. Modularization was introduced in order to better manage CIVET, which would otherwise be a relatively huge script.
-<br>
+    Un développement récent consiste en l'introduction d'étapes automatisées de contrôle de la qualité, proposées comme procédures de post-traitement facultatives à exécuter une fois les données traitées par CIVET. Comme CIVET est désormais composé de « modules » contrôlés par un « shell » et que chaque module regroupe plusieurs étapes connexes, le contrôle de la qualité peut désormais être effectué au niveau des modules. Cette modularisation a été introduite afin de faciliter la gestion de CIVET, qui serait autrement constitué d'un script relativement volumineux.
+<br>    
 <br>
 <b>Mincmath</b>
 <br>
-    Mincmath will perform simple, voxel-by-voxel math operations, on one or more Minc files of the same shape and having the same coordinate sampling to produce a single output file. Operations can be unary (operate on one file), binary (two input files) or cumulative (operate on two or more input files). Cumulative operations can also be performed across a specified dimension of the input files.
+    Mincmath effectue de simples opérations mathématiques voxel par voxel sur un ou plusieurs fichiers MINC ayant la même forme et le même échantillonnage des coordonnées afin de produire un seul fichier de sortie. Les opérations peuvent être unaires (sur un seul fichier), binaires (sur deux fichiers d'entrée) ou cumulatives (sur deux fichiers d'entrée ou plus). Les opérations cumulatives peuvent également être effectuées selon une dimension spécifiée des fichiers d'entrée. <br>   
 <br>
 <br>
 
 <b>Mincaverage</b>
 <br>
-    Mincaverage averages Minc files together. A range of optional behaviour is permitted as well: pre-normalizing volumes, creating a standard deviation volume, averaging over a specified dimension of the input files.
+    Mincaverage calcule la moyenne de plusieurs fichiers MINC. Diverses options sont également disponibles, notamment : la normalisation préalable des volumes, la création d'un volume d'écart-type et le calcul de la moyenne selon une dimension spécifiée des fichiers d'entrée. 
 <br>
 <br>
 
 <b>Mincpik</b>
 <br>
-    Mincpik generates image files from MINC volumes using the Imagemagick convert utility.
+    Mincpik génère des fichiers d'image à partir de volumes MINC à l'aide de l'utilitaire <i>convert</i> d'ImageMagick.
 <br>
 <br>
 
 <b>Mincresample</b>
 <br>
-    Mincresample will resample a Minc file along new spatial dimensions with new voxel positions. Each volume in the input file (given by the spatial dimensions xspace, yspace and zspace) is resampled according to the command-line options. Non-spatial dimensions are preserved in their original order, but spatial dimensions can be re-ordered to give transverse, sagittal or coronal images. The new voxel values are calculated using tri-linear, tri-cubic or nearest-neighbour interpolation.
+    Mincresample rééchantillonne un fichier MINC selon de nouvelles dimensions spatiales et de nouvelles positions de voxels. Chaque volume du fichier d'entrée (défini par les dimensions spatiales <i>xspace</i>, <i>yspace</i> et <i>zspace</i>) est rééchantillonné conformément aux options de la ligne de commande. Les dimensions non spatiales sont conservées dans leur ordre d'origine, tandis que les dimensions spatiales peuvent être réordonnées afin de produire des images transversales, sagittales ou coronales. Les nouvelles valeurs des voxels sont calculées au moyen d'une interpolation trilinéaire, tricubique ou par plus proche voisin.
 <br>
 <br>
 

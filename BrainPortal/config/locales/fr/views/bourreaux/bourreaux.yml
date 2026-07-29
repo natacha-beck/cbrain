@@ -3,36 +3,44 @@ fr:
   bourreaux:
 
     common:
+      no_information: ""
       cache_trust_expire_select:
-        never: ""
-        six_hours: ""
-        twelve_hours: ""
-        one_day: ""
-        three_days: ""
-        one_week: ""
-        two_weeks: ""
-        one_month: ""
-        two_months: ""
-        three_months: ""
-        six_months: ""
+        never: "Jamais"
+        six_hours: "Six heures"
+        twelve_hours: "Douze heures"
+        one_day: "Un jour"
+        three_days: "Trois jours"
+        one_week: "Une semaine"
+        two_weeks: "Deux semaines"
+        one_month: "Un mois"
+        two_months: "Deux mois"
+        three_months: "Trois mois"
+        six_months: "Six mois"
 
-      header_workers_instances: ""
+      header_workers_instances: "Nombre de workers"
       workers_instances_select:
-        none: ""
+        none: "Aucun (pour le débogage)"
 
-      header_workers_chk_time: ""
-      workers_instances_select:
-        none: ""
+      header_workers_chk_time: "Intervalle de vérification"
+      workers_chk_time_select:
+        five_seconds: "Cinq secondes"
+        ten_seconds: "Dix secondes"
+        thirty_seconds: "Trente secondes"
+        one_minute: "Une minute"
+        two_minutes: "Deux minutes"
+        five_minutes: "Cinq minutes"
+        fifteen_minutes: "Quinze minutes"
+        one_hour: "Une heure"
 
-      header_workers_log_to: ""
+      header_workers_log_to: "Destination des logs"
       workers_log_to_select:
-        combined_file: ""
-        separate_files: ""
-        rails_log: ""
-        rails_stdout: ""
-        rails_stderr: ""
-        rails_stdout_and_stderr: ""
-        no_logging: ""
+        combined_file: "Fichier combiné (recommandé)"
+        separate_files: "Fichiers séparé"
+        rails_log: "Log Rails"
+        rails_stdout: "Sortie standard (stdout) de RAILS"
+        rails_stderr: "Sortie d'erreur standard (stderr) de RAILS"
+        rails_stdout_and_stderr: "Sortie standard (stdout) et sortie d'erreur standard (stderr) de RAILS"
+        no_logging: "Aucun log"
 
       header_workers_verbose: ""
       workers_verbose_select:
