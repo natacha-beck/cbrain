@@ -5,7 +5,7 @@ fr:
       links:
         create_profile: "xxx"
       columns:
-        name: ""
+        name: "yyy"
         color: ""
         description: ""
         projects: ""
