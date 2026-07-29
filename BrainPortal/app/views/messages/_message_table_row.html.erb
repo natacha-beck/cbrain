@@ -38,7 +38,7 @@
     </div>
   </td>
   <td>
-    <%= mess.sender.try(:login) || t('messages.common.label.system') %>
+    <%= mess.sender.try(:login) || t('messages.common.labels.system') %>
   </td>
   <% unless current_user.has_role?(:normal_user) %>
     <td>
@@ -50,7 +50,7 @@
   </td>
   <td class="operations">
     <%=
-      delete_button("<span class=\"read_unread\">#{t('messages.common.mark_as_html', state: mess.read ? t('messages.common.label.state_unread') : t('messages.common.label.state_read'))}</span>".html_safe,
+      delete_button("<span class=\"read_unread\">#{t('messages.common.mark_as_html', state: mess.read ? t('messages.common.labels.state_unread') : t('messages.common.labels.state_read'))}</span>".html_safe,
         message_path(mess, :read => (!mess.read).to_s),
         :class           => 'action_link',
         :method          => "PUT",

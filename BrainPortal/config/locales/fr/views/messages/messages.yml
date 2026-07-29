@@ -6,13 +6,8 @@ fr:
       mark_as_html: ""
       updating: ""
       deleting: ""
-      critical: ""
-      not_critical: ""
-      label_of_base: ""
-      leave_message: ""
-      delete_checked: ""
 
-      label:
+      labels:
         system: ""
         state_read: ""
         state_unread: ""
@@ -38,20 +33,34 @@ fr:
         one: ""
         other: ""
 
-    flash_display:
-
     message_details:
-      expires: ""
-      no_details: ""
+      paragraphs:
+        expires: ""
+        no_details: ""
 
     message_display:
       rescue: ""
 
     message_index_display:
-      unread_link: ""
-      read_link: ""
-
-      ago_suffix: ""
+      links:
+        leave_message: ""
+      buttons:
+        delete_checked: ""
+      scopes:
+        unread_link: ""
+        read_link: ""
+      labels:
+        base: ""
+      columns:
+        criticality:
+          critical: ""
+          not_critical: ""
+        type: ""
+        message: ""
+        sender: ""
+        recipient: ""
+        last_updated: ""
+        operations: ""
 
     index:
       title: ""
@@ -59,14 +68,25 @@ fr:
         one: ""
         other: ""
 
-    new:
-      title: ""
-      new_cbrain_dashboard: ""
-      new_neurohub_dashboard: ""
-      to_users_of_project: ""
-      send_email: ""
-
     new_dashboard:
       title: ""
-      dashboard_html: ""
-      field_explanation_description_html: ""
+      headings:
+        main: ""
+      labels:
+        dashboard: ""
+      explanations:
+        dashboard_html: |
+          For dashboard messages, whatever is entered here will be substituted literally
+          in the page's code. So you can use whatever HTML elements you want, but make sure
+          you know what you're doing. For NeuroHub, we recommend surrounding the entire text
+          with at least one &lt;P&gt; element.
+
+    new:
+      title: ""
+      links:
+        new_cbrain_dashboard: ""
+        new_neurohub_dashboard: ""
+      to_users_of_project: ""
+      labels:
+        send_email: ""
+
