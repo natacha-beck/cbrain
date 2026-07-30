@@ -25,7 +25,7 @@
 
 <% title t('.title') %>
 
-<h2><%= t('.title') %></h2>
+<h2><%= t('.headings.main') %></h2>
 
 <%= error_messages_for @bourreau, :object_name => t('activerecord.models.remote_resource.one').downcase %>
 
@@ -33,33 +33,31 @@
 
   <div class="generalbox">
 
-        <p><%= f.label      :name %><br/>
-           <%= f.text_field :name %><br/>
-        <div class="field_explanation">
-          <%= t('.field_explanation_name_html') %>
-        </div>
+         <p><%= f.label      :name %><br/>
+            <%= f.text_field :name %><br/>
+            <%= t('.divs.name_html') %>
 
-        <p><%= f.label      :system_from_email, t('.system_from_email_label') %><br/>
-           <%= f.text_field :system_from_email %><br/>
-        <div class="field_explanation"><%= t('bourreaux.common.field_explanation_system_from_email') %></div>
+         <p><%= f.label      :system_from_email, t('.labels.system_from_email') %><br/>
+            <%= f.text_field :system_from_email %><br/>
+            <%= t('.divs.system_from_email_html') %>
 
         <p><%= f.label     :description %><br/>
            <%= f.text_area :description, :rows => 10, :cols => 40 %><br/>
-        <div class="field_explanation"><%= t('bourreaux.common.field_explanation_description') %></div>
+           <%= t('.divs.description_html') %>
 
-        <p><%= f.label :user_id, t('owner') %><br/>
+        <p><%= f.label :user_id, t('.labels.owner') %><br/>
            <%= user_select("bourreau[user_id]", { :selector => @bourreau }, { :disabled => ! current_user.has_role?(:admin_user) } ) %>
 
-        <p><%= f.label :group_id, t('activerecord.models.group.one') %><br/>
+        <p><%= f.label :group_id, t('.labels.group') %><br/>
            <%= group_select("bourreau[group_id]", :selector => @bourreau) %>
 
-        <p><%= f.label  :online, t('status_with_colon') %><br/>
-           <%= f.select :online, { t('.online') => true, t('.offline') => false }, :prompt => t('.select_status') %>
+        <p><%= f.label  :online, t('.labels.status') %><br/>
+           <%= f.select :online, { t('.status.online') => true, t('.status.offline') => false }, :prompt => t('.status.prompt') %>
 
-        <p><%= f.label      :rr_timeout, t('.rr_timeout_label') %><br/>
+        <p><%= f.label      :rr_timeout, t('.labels.rr_timeout') %><br/>
            <%= f.text_field :rr_timeout, :size => 5 %>
 
-        <span title=<%= t('.time_zone_span') %>>
+        <span title="<%= t('.titles.time_zone') %>">
           <p><%= f.label            :time_zone, t('time_zone') %><br/>
              <%= f.time_zone_select :time_zone,
                ActiveSupport::TimeZone.all.select { |t| t.name =~ /canada/i },
@@ -71,42 +69,40 @@
         <p>
 
         <fieldset class="groupentry">
-          <legend><%= t('.ssh_remote_control_configuration_legend') %></legend>
-          <p><%= f.label      :ssh_control_host, t('.ssh_control_host_label')  %><br/>
+          <legend><%= t('.legends.ssh_remote_control_configuration') %></legend>
+          <p><%= f.label      :ssh_control_host, t('.labels.ssh_control_host')  %><br/>
              <%= f.text_field :ssh_control_host, :size => 30 %>
-          <p><%= f.label      :ssh_control_user, t('.ssh_control_user_label') %><br/>
+          <p><%= f.label      :ssh_control_user, t('.labels.ssh_control_user') %><br/>
              <%= f.text_field :ssh_control_user, :size => 10 %>
-          <p><%= f.label      :ssh_control_port, t('.ssh_control_port_label') %><br/>
+          <p><%= f.label      :ssh_control_port, t('.labels.ssh_control_port') %><br/>
              <%= f.text_field :ssh_control_port, :size => 6 %>
-          <p><%= f.label      :ssh_control_rails_dir, t('.ssh_control_rails_dir_label') %><br/>
+          <p><%= f.label      :ssh_control_rails_dir, t('.labels.ssh_control_rails_dir') %><br/>
              <%= f.text_field :ssh_control_rails_dir, :size => 60 %>
         </fieldset>
 
         <p>
 
         <fieldset class="groupentry">
-          <legend><%= t('.optional_ssh_jump_host_configuration_legend') %></legend>
-          <p><%= f.label       :jumphost_host, t('.jump_host_label') %><br/>
-              <%= f.text_field :jumphost_host, :size => 30 %><br/>
-          <p><%= f.label       :jumphost_user, t('.jump_user_label') %><br/>
-              <%= f.text_field :jumphost_user, :size => 10 %><br/>
-          <p><%= f.label       :jumphost_port, t('.jump_port_label') %><br/>
-              <%= f.text_field :jumphost_port, :size => 6 %><br/>
+          <legend><%= t('.legends.optional_ssh_jump_host_configuration') %></legend>
+          <p><%= f.label      :jumphost_host, t('.labels.jump_host') %><br/>
+             <%= f.text_field :jumphost_host, :size => 30 %><br/>
+          <p><%= f.label      :jumphost_user, t('.labels.jump_user') %><br/>
+             <%= f.text_field :jumphost_user, :size => 10 %><br/>
+          <p><%= f.label      :jumphost_port, t('.labels.jump_port') %><br/>
+             <%= f.text_field :jumphost_port, :size => 6 %><br/>
         </fieldset>
 
         <p>
 
         <fieldset class="groupentry">
-          <legend><%= t('.cache_management_configuration_legend') %></legend>
-          <p><%= f.label      :dp_cache_dir, t('.dp_cache_dir_label') %><br/>
+          <legend><%= t('.legends.cache_management_configuration') %></legend>
+          <p><%= f.label      :dp_cache_dir, t('.labels.dp_cache_dir') %><br/>
              <%= f.text_field :dp_cache_dir, :size => 60 %><br/>
-          <div class="field_explanation"><%= t('bourreaux.common.field_explanation_dp_cache_warning_html') %></div>
-
-          <p><%= f.label      :spaced_dp_ignore_patterns, t('.spaced_dp_ignore_patterns_label') %><br/>
+             <%= t('.divs.dp_cache_dir_html') %>
+          <p><%= f.label      :spaced_dp_ignore_patterns, t('.labels.spaced_dp_ignore_patterns') %><br/>
              <%= f.text_field :spaced_dp_ignore_patterns, :size => 80 %><br/>
-          <div class="field_explanation"><%= t('bourreaux.common.field_explanation_ignore_patterns_html') %></div>
-
-          <p><%= f.label  :cache_trust_expire, t('bourreaux.common.header_cache_expiration') %><br/>
+             <%= t('.divs.spaced_dp_ignore_patterns_html') %>
+          <p><%= f.label  :cache_trust_expire, t('.labels.cache_trust_expire') %><br/>
              <%= f.select :cache_trust_expire, [
                       [ t('bourreaux.common.cache_trust_expire_select.never'),        "0"                  ],
                       [ t('bourreaux.common.cache_trust_expire_select.six_hours'),     6.hours.to_i.to_s   ],
@@ -121,23 +117,21 @@
                       [ t('bourreaux.common.cache_trust_expire_select.six_months'),    6.months.to_i.to_s  ]
                   ]
                   %></br>
-             <div class="field_explanation">
-               <%= t('.field_explanation_cache_trust_expire_html') %>
-             </div>
+             <%= t('.divs.cache_trust_expire_html') %>
         </fieldset>
 
         <p>
 
         <fieldset class="groupentry">
-          <legend><%= t('.tool_version_configuration_legend') %></legend>
+          <legend><%= t('.legends.tool_version_configuration') %></legend>
           <%= t('.tool_version_configuration_explanation') %>
         </fieldset>
 
         <p>
 
         <fieldset class="groupentry">
-          <legend><%= t('.cluster_management_system_configuration_legend') %></legend>
-          <p><%= f.label  :cms_class, t('.cms_class_label') %><br/>
+          <legend><%= t('.legends.cluster_management_system_configuration') %></legend>
+          <p><%= f.label  :cms_class, t('.labels.cms_class') %><br/>
              <%= f.select :cms_class, [
                     [ t('.cms_class_select.unconfigured'),      ""                ],
                     [ t('.cms_class_select.scir_sge'),          "ScirSge"         ],
@@ -151,26 +145,23 @@
                   ]
           %>
 
-          <p><%= f.label      :cms_shared_dir, t('.cms_shared_dir_label') %><br/>
+          <p><%= f.label      :cms_shared_dir, t('.labels.cms_shared_dir') %><br/>
              <%= f.text_field :cms_shared_dir, :size => 60 %><br/>
-             <div class="field_explanation"><%= t('bourreaux.common.field_explanation_cms_shared_dir_html') %></div>
-
-          <p><%= f.label      :cms_default_queue, t('.cms_default_queue_label')  %><br/>
+             <%= t('.divs.cms_shared_dir_html') %>
+          <p><%= f.label      :cms_default_queue, t('.labels.cms_default_queue')  %><br/>
              <%= f.text_field :cms_default_queue %><br/>
-             <div class="field_explanation"><%= t('bourreaux.common.field_explanation_cms_default_queue_html') %></div>
-
-          <p><%= f.label      :cms_extra_qsub_args, t('.cms_extra_qsub_args_label')  %><br/>
+             <%= t('.divs.cms_default_queue_html') %>
+          <p><%= f.label      :cms_extra_qsub_args, t('.labels.cms_extra_qsub_args')  %><br/>
              <%= f.text_field :cms_extra_qsub_args, :size => 60 %><br/>
-             <div class="field_explanation"><%= t('bourreaux.common.field_explanation_cms_extra_qsub_args_html') %></div>
-
+             <%= t('.divs.cms_extra_qsub_args_html') %>
         </fieldset>
 
         <p>
 
         <fieldset class="groupentry">
-          <legend><%= t('.task_workers_configuration_legend') %></legend>
+          <legend><%= t('.legends.task_workers_configuration') %></legend>
 
-          <p><%= f.label  :workers_instances, t('bourreaux.common.header_workers_instances') %><br/>
+          <p><%= f.label  :workers_instances, t('.labels.workers_instances') %><br/>
              <%= f.select :workers_instances, [
                     [ t('bourreaux.common.workers_instances_select.none'), 0  ],
                     [ "1",                                          1  ],
@@ -183,7 +174,7 @@
               ]
           %>
 
-          <p><%= f.label  :workers_chk_time, t('bourreaux.common.header_workers_chk_time') %><br/>
+          <p><%= f.label  :workers_chk_time, t('.labels.workers_chk_time') %><br/>
              <%= f.select :workers_chk_time, [
                     [ t('bourreaux.common.workers_chk_time_select.five_seconds'),    5    ],
                     [ t('bourreaux.common.workers_chk_time_select.ten_seconds'),     10   ],
@@ -196,7 +187,7 @@
                 ]
           %>
 
-          <p><%= f.label  :workers_log_to, t('bourreaux.common.header_workers_log_to') %><br/>
+          <p><%= f.label  :workers_log_to, t('.labels.workers_log_to') %><br/>
              <%= f.select :workers_log_to, [
                     [ t('bourreaux.common.workers_log_to_select.combined_file'),            "combined"      ],
                     [ t('bourreaux.common.workers_log_to_select.separate_files'),           "separate"      ],
@@ -208,26 +199,25 @@
                 ]
           %>
 
-          <p><%= f.label  :workers_verbose, t('bourreaux.common.header_workers_verbose') %><br/>
+          <p><%= f.label  :workers_verbose, t('.labels.workers_verbose') %><br/>
              <%= f.select :workers_verbose, [
                     [ t('bourreaux.common.workers_verbose_select.normal'),      1 ],
                     [ t('bourreaux.common.workers_verbose_select.debug_info'),  2 ]
                 ]
           %><br/>
-          <div class="field_explanation"><%= t('.field_explanation_workers_verbose_html') %></div>
-
+          <%= t('.divs.workers_verbose_html') %>
         </fieldset>
 
         <p>
 
         <fieldset class="groupentry">
-          <legend><%= t('.task_limits_legend') %></legend>
-          <%= t('.field_explanation_task_limits_html') %>
+          <legend><%= t('.legends.task_limits') %></legend>
+          <%= t('.task_limits_explanation') %>
         </fieldset>
 
   </div>
 
-  <p><%= submit_tag t('.submit_new_server') %></p>
+  <p><%= submit_tag t('.submit') %></p>
 
 <% end -%>
 

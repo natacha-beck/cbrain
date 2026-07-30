@@ -24,7 +24,7 @@
 
 <% title t('.title') %>
 
-<h2><%= t('.title') %></h2>
+<h2><%= t('.headings.main') %></h2>
 
 <% if @rrs.empty? || @dps.empty? %>
 
@@ -32,19 +32,7 @@
 
 <% else %>
 
-<p class="medium_paragraphs">
-<%= t('.rr_access_explanation_else_1_html') %>
-</p>
-<p class="medium_paragraphs">
-<%= t('.rr_access_explanation_else_2_html', o_icon: o_icon) %>
-</p>
-<p class="medium_paragraphs">
-<%= t('.rr_access_explanation_else_3_html', not_syncable: html_colorize("(not syncable)", 'purple')) %>
-
-</p>
-<p class="medium_paragraphs">
-<%= t('.rr_access_explanation_else_4_html', no_access: html_colorize('(no access)', 'red')) %>
-</p>
+<%= t('.paragraphs.rr_access_explanation_html', o_icon: o_icon, not_syncable: html_colorize("(not syncable)", 'purple'), no_access: html_colorize('(no access)', 'red')) %>
 
 <%
 # We can refresh all online and accessible bourreaux,
@@ -57,17 +45,17 @@ rr_can_refresh = @rrs.select { |b| b.online? && b.has_owner_access?(current_user
   <table>
 
     <tr>
-      <th colspan="3"><%= t('activerecord.models.remote_resource.other') %></th>
-      <th colspan="<%= @dps.count %>"><%= t('activerecord.models.data_provider.other') %></th>
+      <th colspan="3"><%= t('.headings.servers') %></th>
+      <th colspan="<%= @dps.count %>"><%= t('.headings.data_providers') %></th>
     </tr>
 
     <tr class="no_wrap">
-      <th><%= t('activerecord.attributes.name') %></th>
-      <th><%= t('activerecord.attributes.type') %></th>
+      <th><%= t('.headings.name') %></th>
+      <th><%= t('.headings.type') %></th>
       <th>
-        <%= t('.rr_access_last_checked') %>
+        <%= t('.headings.last_checked') %>
         <% if rr_can_refresh.size > 1 %>
-          (<%= link_to t('.rr_access_refresh_all'), { :refresh => 'all' } %>)
+          (<%= link_to t('.links.refresh_all'), { :refresh => 'all' } %>)
         <% end %>
       </th>
       <% @dps.each do |dp| %>
@@ -75,9 +63,9 @@ rr_can_refresh = @rrs.select { |b| b.online? && b.has_owner_access?(current_user
         <%= nil and link_to_data_provider_if_accessible(dp, current_user, :html_options => { :class => dp.online? ? nil : 'error_link' }) %>
         <%= link_to_data_provider_if_accessible(dp, current_user) %>
         <br>
-        <%= html_colorize(t('.offline'))                     if ! dp.online? %>
-        <%= html_colorize(t('.not_syncable_html'), 'purple') if dp.not_syncable? %>
-        <%= html_colorize(t('.read_only_html'), 'purple')    if dp.read_only? %>
+        <%= html_colorize(t('.status.offline'))                if ! dp.online? %>
+        <%= html_colorize(t('.status.not_syncable'), 'purple') if dp.not_syncable? %>
+        <%= html_colorize(t('.status.read_only'), 'purple')    if dp.read_only? %>
         </th>
       <% end %>
     </tr>
@@ -87,7 +75,7 @@ rr_can_refresh = @rrs.select { |b| b.online? && b.has_owner_access?(current_user
         <th class="left_align">
           <%= nil and link_to_bourreau_if_accessible(rr, current_user, :html_options => { :class => rr.online? ? nil : 'error_link' }) %>
           <%= link_to_bourreau_if_accessible(rr, current_user) %>
-          <%= html_colorize(t('.offline')) unless rr.online? %>
+          <%= html_colorize(t('.status.offline')) unless rr.online? %>
         </th>
         <td><%= rr.is_a?(Bourreau) ? t('activerecord.models.execution') : t('activerecord.models.portal') %></td>
         <td class="left_align">
@@ -115,7 +103,7 @@ rr_can_refresh = @rrs.select { |b| b.online? && b.has_owner_access?(current_user
             <% else %>
               <%= html_colorize('?','purple') %>
             <% end %>
-            <%= html_colorize(t('.no_access_html'), 'red') if ! dp.rr_allowed_syncing?(rr) %>
+            <%= html_colorize(t('.status.no_access'), 'red') if ! dp.rr_allowed_syncing?(rr) %>
           </td>
         <% end %>
       </tr>
@@ -123,7 +111,7 @@ rr_can_refresh = @rrs.select { |b| b.online? && b.has_owner_access?(current_user
 
   </table>
 
-  <%= center_legend(t('.data_provider_status'), [ [o_icon, t('.alive')], [times_icon, t('.down')], [html_colorize('?','purple'), t('no_information')] ] ) %>
+  <%= center_legend(t('.legends.data_provider_status'), [ [o_icon, t('.status.alive')], [times_icon, t('.status.down')], [html_colorize('?','purple'), t('no_information')] ] ) %>
 
   <% if false && !dps_offline.empty? %>
     <% # commented out %>

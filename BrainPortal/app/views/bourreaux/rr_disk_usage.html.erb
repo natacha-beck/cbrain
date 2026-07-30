@@ -38,7 +38,7 @@
      CbrainTask.status(:active).where(:user_id => uids, :bourreau_id => bids).group(:user_id,:bourreau_id).count
 %>
 
-<h2><%= t('.h2') %></h2>
+<h2><%= t('.headings.main') %></h2>
 
 <span class="display_cell">
   <%= form_tag(:action  => :cleanup_caches) do %>
@@ -119,10 +119,10 @@
 
       <tr>
         <% if @report_rrs.size == 0 && @report_users.size == 0 %>
-          <th><%= t('.no_entries') %></th>
+          <th><%= t('.headings.no_entries') %></th>
         <% else %>
           <th colspan="<%= 1+@report_rrs.size %>">
-            <%= submit_tag t('.cleanup_selected') %>
+            <%= submit_tag t('.submits.cleanup_selected') %>
           </th>
         <% end %>
       </tr>
@@ -147,7 +147,7 @@
 <!-- *********************************** -->
 
 <%= form_tag({ :action  => :rr_disk_usage }, :method => :get) do %>
-  <h4><%= t('.filter_heading') %></h4>
+  <h4><%= t('.headings.filter') %></h4>
   <div class="display_cell">
     <%= t('.of_type') %><br>
     <%= userfile_type_select :types, {:selector => params[:types]} , :multiple => true, :size => 10 %>
@@ -162,7 +162,7 @@
     <%= date_range_panel(params[:date_range], "date_range", :date_attributes => [], :without_abs => true) %>
     <p>
     <center>
-      <%= submit_tag t('.refresh_report') %>
+      <%= submit_tag t('.submit') %>
     </center>
   </div>
 <% end %>

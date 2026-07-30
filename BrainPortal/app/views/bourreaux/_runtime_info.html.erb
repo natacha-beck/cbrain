@@ -21,57 +21,57 @@
 #
 -%>
 
-<%= show_table(@info, :header => t('.runtime_information')) do |t| %>
+<%= show_table(@info, :header => t('.headings.runtime_information')) do |t| %>
 
   <% if @info.name == "???" %>
     <% t.row do %>
-      <% colorized_down = html_colorize(t('.down'), "red")%>
-      <%= t('.server_status', status: colorized_down) %>.
+      <% colorized_down = html_colorize(t('.server_status.down'), "red")%>
+      <%= t('.server_status.server_status', status: colorized_down) %>.
     <% end %>
 
   <% else %>
 
-    <% t.cell(t('.rails_environment'),                  :show_width => 2) { red_if(@info.environment != Rails.env,@info.environment) } %>
+    <% t.cell(t('.cells.rails_environment'),                  :show_width => 2) { red_if(@info.environment != Rails.env,@info.environment) } %>
 
     <% t.blank_row %>
 
-    <% t.cell(t('.process_start_revision'),              :show_width => 2) { @info.starttime_revision } %>
-    <% t.cell(t('.process_start_last_change_author'),    :show_width => 2) { @info.lc_author } %>
-    <% t.cell(t('.process_start_last_change_revision'), :show_width => 2) { @info.lc_rev } %>
-    <% t.cell(t('.process_start_last_change_date'),      :show_width => 2) { @info.lc_date } %>
-    <% t.cell(t('.disk_code_revision'),                  :show_width => 2) { red_if(@info.revision != @info.starttime_revision, @info.revision) } %>
+    <% t.cell(t('.cells.process.start.revision'),              :show_width => 2) { @info.starttime_revision } %>
+    <% t.cell(t('.cells.process.start.last_change_author'),    :show_width => 2) { @info.lc_author } %>
+    <% t.cell(t('.cells.process.start.last_change_revision'),  :show_width => 2) { @info.lc_rev } %>
+    <% t.cell(t('.cells.process.start.last_change_date'),      :show_width => 2) { @info.lc_date } %>
+    <% t.cell(t('.cells.disk_code_revision'),                  :show_width => 2) { red_if(@info.revision != @info.starttime_revision, @info.revision) } %>
 
     <% t.blank_row %>
 
-    <% t.cell(t('.remote_host_name'),                   :show_width => 2) { (@info.host_name == @bourreau.ssh_control_host) ?
+    <% t.cell(t('.cells.process.remote_host.name'),                   :show_width => 2) { (@info.host_name == @bourreau.ssh_control_host) ?
                                                               @info.host_name : html_colorize(@info.host_name, "red") } %>
-    <% t.cell(t('.remote_host_ip_address'),             :show_width => 2) { @info.host_ip } %>
-    <% t.cell(t('.remote_host_os_type'),                :show_width => 2) { @info.host_uname } %>
-    <% t.cell(t('.remote_host_uptime'),                 :show_width => 2) { @info.host_uptime } %>
-    <% t.cell(t('.rails_server_uptime'),                :show_width => 2) do %>
-      <%= t('.up_since', time: @info.uptime.to_i.seconds.ago) %>
-      <%= t('.for', duration: @info.uptime.to_i.seconds.ago) %>
+    <% t.cell(t('.cells.process.remote_host.ip_address'),             :show_width => 2) { @info.host_ip } %>
+    <% t.cell(t('.cells.process.remote_host.os_type'),                :show_width => 2) { @info.host_uname } %>
+    <% t.cell(t('.cells.process.remote_host.uptime'),                 :show_width => 2) { @info.host_uptime } %>
+    <% t.cell(t('.cells.rails_server_uptime'),                :show_width => 2) do %>
+      <%= t('.rails_server_uptime.up_since', time: @info.uptime.to_i.seconds.ago) %>
+      <%= t('.rails_server_uptime.for', duration: @info.uptime.to_i.seconds.ago) %>
     <% end %>
 
     <% t.blank_row %>
 
     <% if @bourreau.is_a?(Bourreau) %>
-      <% t.cell(t('.worker_pids'))                        { @info.worker_pids } %>
-      <% t.cell(t('.number_of_tasks_running'))            { @info.tasks_tot + " / " + @info.tasks_max } %>
+      <% t.cell(t('.cells.worker_pids'))                        { @info.worker_pids } %>
+      <% t.cell(t('.cells.number_of_tasks_running'))            { @info.tasks_tot + " / " + @info.tasks_max } %>
 
-      <% t.cell(t('.workers_last_change_author'))         { @info.worker_lc_author } %>
-      <% t.cell(t('.cluster_management_system_type'))     { red_if(@bourreau.cms_class != @info.bourreau_cms, @info.bourreau_cms) } %>
+      <% t.cell(t('.cells.workers_last_change_author'))         { @info.worker_lc_author } %>
+      <% t.cell(t('.cells.cluster_management_system_type'))     { red_if(@bourreau.cms_class != @info.bourreau_cms, @info.bourreau_cms) } %>
 
-      <% t.cell(t('.workers_last_change_revision'))       { @info.worker_lc_rev } %>
-      <% t.cell(t('.cluster_management_system_revision')) { @info.bourreau_cms_rev} %>
+      <% t.cell(t('.cells.workers_last_change_revision'))       { @info.worker_lc_rev } %>
+      <% t.cell(t('.cells.cluster_management_system_revision')) { @info.bourreau_cms_rev} %>
 
-      <% t.cell(t('.workers_last_change_date'))           { @info.worker_lc_date } %>
+      <% t.cell(t('.cells.workers_last_change_date'))           { @info.worker_lc_date } %>
       <% t.empty_cell %>
     <% end %>
     <% if @bourreau.id == BrainPortal.current_resource.id %>
       <% t.blank_row %>
 
-      <% t.cell(t('.ssh_public_key'),                   :show_width => 2) do %>
+      <% t.cell(t('.cells.ssh_public_key'),                   :show_width => 2) do %>
         <pre class="ssh_key"><%= @bourreau.get_ssh_public_key %></pre>
       <% end %>
     <% end %>
