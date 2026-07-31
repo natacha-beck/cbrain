@@ -33,34 +33,28 @@
     <%= show_hide_toggle t('.about'), ".disk_quota_explanations", :class => 'button', :slide_effect => true, :slide_duration => 'fast'  %>
   <% end %>
   <% if current_user.has_role? :admin_user %>
-      <%= link_to t('.exceeded_report', mode: cap_mode), report_quotas_path(:mode => @mode), :class => :button %>
-      <%= link_to t('.new_entry', mode: cap_mode),       new_quota_path(:mode => @mode),              :class => :button %>
+      <%= link_to t('.links.exceeded_report', mode: cap_mode), report_quotas_path(:mode => @mode), :class => :button %>
+      <%= link_to t('.links.new_entry', mode: cap_mode),       new_quota_path(:mode => @mode),              :class => :button %>
   <% end %>
   <% if @mode == :cpu %>
-    <%= link_to t('.switch_to_disk'),  quotas_path(:mode => :disk), :class => :button %>
+    <%= link_to t('.links.to_disk'),  quotas_path(:mode => :disk), :class => :button %>
   <% end %>
   <% if @mode == :disk %>
-    <%= link_to t('.switch_to_cpu'),  quotas_path(:mode => :cpu),   :class => :button %>
+    <%= link_to t('.links.to_cpu'),  quotas_path(:mode => :cpu),   :class => :button %>
   <% end %>
 </div>
 
 <% if @mode == :disk %>
   <fieldset class="disk_quota_explanations" style="display: none">
-    <legend><%= t('.header_about_disk') %></legend>
-    <p class="long_paragraphs">
-    <%= t('.about_disk_html') %>
+    <legend><%= t('.legends.about_disk') %></legend>
+    <%= t('.paragraphs.disk_quota_explanations_html') %>
   </fieldset>
 <% end %>
 
 <% if @mode == :cpu %>
   <fieldset class="cpu_quota_explanations" style="display: none">
-    <legend><%= t('.header_about_cpu') %></legend>
-    <p class="long_paragraphs">
-    <%= t('.about_cpu_p1_html') %>
-    <p class="long_paragraphs">
-    <%= t('.about_cpu_p2_html') %>
-    <p class="long_paragraphs">
-    <%= t('.about_cpu_p3_html') %>
+    <legend><%= t('.legends.about_cpu') %></legend>
+    <%= t('.paragraphs.cpu_quota_explanations_html') %>
   </fieldset>
 <% end %>
 

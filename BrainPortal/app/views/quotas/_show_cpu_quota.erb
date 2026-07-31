@@ -22,98 +22,82 @@
 #
 -%>
 
-<% title @quota.new_record? ? t('.title_create') : t('.title_edit') %>
+<% title @quota.new_record? ? t('.titles.create') : t('.titles.edit') %>
 
 <%= error_messages_for @quota %>
 
 <div class="menu_bar">
 
-  <%= link_to t('.cpu_quotas_table'), quotas_path(:mode => :cpu), :class => :button %>
+  <%= link_to t('.links.cpu_quotas_table'), quotas_path(:mode => :cpu), :class => :button %>
 
   <% if ! @quota.new_record? %>
 
-    <%= link_to t('.new_cpu_quota'),
+    <%= link_to t('.links.new_cpu_quota'),
         new_quota_path(:mode => :cpu), :class => :button %>
 
   <% end %>
 
 </div>
 
-
-
-<%= show_table(@quota, :as => :quota, :header => t('.header_record'),
+<%= show_table(@quota, :as => :quota, :header => t('.headings.record'),
                        :edit_condition => check_role(:admin_user)) do |t| %>
   <%= hidden_field_tag :mode, 'cpu' %>
 
-  <% t.cell(t('activerecord.models.user', count: 1), :show_width => 2) do %>
+  <% t.cell(t('.cells.user'), :show_width => 2) do %>
     <% if @quota.new_record? %>
-      <%= user_select("quota[user_id]", { :selector => @quota.user_id, :include_blank => t('quotas.common.default_all_users') }) %>
-      <div class="field_explanation">
-         <%= t('.field_explanation_user') %>
-      </div>
+      <%= user_select("quota[user_id]", { :selector => @quota.user_id, :include_blank => t('.blanks.default_all_users') }) %>
+        <%= t('.divs.user_html') %>
     <% else %>
       <%= @quota.is_for_user? ?
           link_to_user_if_accessible(@quota.user) :
-          html_colorize(t('quotas.common.default_all_users'), 'orange') %>
+          html_colorize(t('.blanks.default_all_users'), 'orange') %>
     <% end %>
   <% end %>
 
-  <% t.cell(t('activerecord.models.group', count: 1), :show_width => 2) do %>
+  <% t.cell(t('.cells.project'), :show_width => 2) do %>
     <% if @quota.new_record? %>
-      <%= group_select("quota[group_id]", { :selector => @quota.group_id, :include_blank => t('.any_project') }) %>
-      <div class="field_explanation">
-        <%= t('.field_explanation_project') %>
-      </div>
+      <%= group_select("quota[group_id]", { :selector => @quota.group_id, :include_blank => t('.blanks.any_project') }) %>
+      <%= t('.divs.project_html') %>
     <% else %>
       <%= @quota.is_for_group? ?
           link_to_group_if_accessible(@quota.group) :
-          html_colorize(t('.any_project'), 'orange') %>
+          html_colorize(t('.blanks.any_project'), 'orange') %>
     <% end %>
   <% end %>
 
-  <% t.cell(t('activerecord.models.remote_resource.execution_server'), :show_width => 2) do %>
+  <% t.cell(t('.cells.execution_server'), :show_width => 2) do %>
     <% if @quota.new_record? %>
-      <%= bourreau_select("quota[remote_resource_id]", { :selector => @quota.remote_resource_id, :include_blank => t('.any_execution_server') }) %>
-      <div class="field_explanation">
-        <%= t('.field_explanation_execution_server') %>
-      </div>
+      <%= bourreau_select("quota[remote_resource_id]", { :selector => @quota.remote_resource_id, :include_blank => t('.blanks.any_execution_server') }) %>
+      <%= t('.divs.execution_server_html') %>
     <% else %>
       <%= @quota.is_for_resource? ?
           link_to_bourreau_if_accessible(@quota.remote_resource) :
-          html_colorize(t('.any_execution_server'), 'orange') %>
+          html_colorize(t('.blanks.any_execution_server'), 'orange') %>
     <% end %>
   <% end %>
 
-  <% t.edit_cell(:max_cpu_past_week, :show_width => 2, :header => t('.header_max_cpu_week'), :content => pretty_quota_cputime(@quota.max_cpu_past_week,true)) do |f| %>
+  <% t.edit_cell(:max_cpu_past_week, :show_width => 2, :header => t('.headings.max_cpu_week'), :content => pretty_quota_cputime(@quota.max_cpu_past_week,true)) do |f| %>
     <%= f.text_field :max_cpu_past_week, :size => 12 %>
-    <div class="field_explanation">
-      <%= t('.field_explanation_max_cpu_week_html') %>
-    </div>
+    <%= t('.divs.max_cpu_past_week_html') %>
   <% end %>
 
-  <% t.edit_cell(:max_cpu_past_month, :show_width => 2, :header => t('.header_max_cpu_month'), :content => pretty_quota_cputime(@quota.max_cpu_past_month,true)) do |f| %>
+  <% t.edit_cell(:max_cpu_past_month, :show_width => 2, :header => t('.headings.max_cpu_month'), :content => pretty_quota_cputime(@quota.max_cpu_past_month,true)) do |f| %>
     <%= f.text_field :max_cpu_past_month, :size => 12 %>
-    <div class="field_explanation">
-       <%= t('.field_explanation_see_week') %>
-    </div>
+      <%= t('.divs.max_cpu_past_month_html') %>
   <% end %>
 
-  <% t.edit_cell(:max_cpu_ever, :show_width => 2, :header => t('.header_max_cpu_total'), :content => pretty_quota_cputime(@quota.max_cpu_ever,true)) do |f| %>
+  <% t.edit_cell(:max_cpu_ever, :show_width => 2, :header => t('.headings.max_cpu_total'), :content => pretty_quota_cputime(@quota.max_cpu_ever,true)) do |f| %>
     <%= f.text_field :max_cpu_ever, :size => 12 %>
-    <div class="field_explanation">
-       <%= t('.field_explanation_see_week') %>
-    </div>
+    <%= t('.divs.max_cpu_ever_html') %>
   <% end %>
 
-  <% t.edit_cell(:max_active_tasks, :show_width => 2, :header => t('.header_max_active_tasks'), :content => pretty_max_active_tasks(@quota)) do |f| %>
+  <% t.edit_cell(:max_active_tasks, :show_width => 2, :header => t('.headings.max_active_tasks'), :content => pretty_max_active_tasks(@quota)) do |f| %>
     <%= f.text_field :max_active_tasks, :size => 6 %>
-    <div class="field_explanation">
-      <%= t('.field_explanation_max_active_tasks') %>
-    </div>
+    <%= t('.divs.max_active_tasks_html') %>
   <% end %>
 
 <% end %>
 
 <P>
-<%= render :partial => "layouts/log_report", :locals  => { :log  => @quota.getlog, :title => t('.log_title') } %>
+<%= render :partial => "layouts/log_report", :locals  => { :log  => @quota.getlog, :title => t('.titles.log') } %>
 
