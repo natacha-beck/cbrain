@@ -1,5 +1,4 @@
 en:
-
   noc:
 
     cpu:
@@ -7,30 +6,33 @@ en:
       total_cpu: "Total CPU"
 
     dashboard:
-      title: "Activity %{range}"
-      subtitle_at: "%{date} at %{time}"
-      panel:
+      titles:
+        main: "Activity %{range}"
+        subtitle: "%{date} at %{time}"
+      headings:
+        users: "Users"
         active_tasks: "Active Tasks"
         active_transfers: "Active Transfers"
         cpu_time: "CPU Time"
         files_deltas: "Files Deltas"
         exceptions: "Exceptions"
-      portal_suffix: " (Portal)"
-      label:
-        cache: "Cache"
-        tasks: "Tasks"
-      heading:
         servers: "Execution Servers Caches And Tasks"
         dp: "Data Providers Updated Files"
+      legends:
+        portal_suffix: " (Portal)"
+      labels:
+        cache: "Cache"
+        tasks: "Tasks"
       offline: "OFFLINE!"
 
     tools:
-      title:
+      titles:
         cpu: "Top %{count} Tools By CPU"
         count: "Top %{count} Tools By count"
 
     users:
       title: "User Growth"
-      new_from_country: "New Users From %{country}"
-      new_from_elsewhere: "New Users From Elsewhere"
-      cumulative: "Cumulative Users"
+      spans:
+        new_from_country: "New Users From %{country}"
+        new_from_elsewhere: "New Users From Elsewhere"
+        cumulative: "Cumulative Users"

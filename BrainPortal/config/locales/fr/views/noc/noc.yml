@@ -1,4 +1,38 @@
 fr:
   noc:
 
-    common:
+    cpu:
+      title: ""
+      total_cpu: ""
+
+    dashboard:
+      titles:
+        main: ""
+        subtitle: ""
+      headings:
+        users: ""
+        active_tasks: ""
+        active_transfers: ""
+        cpu_time: ""
+        files_deltas: ""
+        exceptions: ""
+        servers: ""
+        dp: ""
+      legends:
+        portal_suffix: ""
+      labels:
+        cache: ""
+        tasks: ""
+      offline: ""
+
+    tools:
+      titles:
+        cpu: ""
+        count: ""
+
+    users:
+      title: ""
+      spans:
+        new_from_country: ""
+        new_from_elsewhere: ""
+        cumulative: ""
