@@ -2,52 +2,51 @@ fr:
   portal:
 
     common:
-      name_description: ""
-      availability: ""
-      open: ""
-      restricted: ""
+      name_description: "Nom et description"
+      availability: "Disponibilité"
+      open: "Généralement disponible"
+      restricted: "Restreint / sur demande"
 
     logo_footer:
-      supported_by: ""
+      supported_by: "Soutenu par les organisations suivantes"
 
     about_us:
-      title: ""
-      header: ""
-      platform_revision: ""
-      last_author: ""
-      last_revision: ""
-      last_changed: ""
-      up_since_html: ""
-      plugins_revision_header: ""
-      plugins_package: ""
-      platform_info: ""
-      env_vars: ""
-      licensing_info: ""
-      credits_link_html: ""
-      credits: ""
-      github_contributors: ""
-      gnu_license: ""
-      gnu_desc_html: ""
-      other_licenses: ""
-      other_desc_html: ""
-      error_getting_license: ""
+      title: "À propos"
+      header: "À propos de nous"
+      platform_revision: "Informations sur la révision de la plateforme"
+      last_author: "Auteur de la dernière modification du portail :"
+      last_revision: "Portal Last Changed Revision:"
+      last_changed: "Date de la dernière modification du portail :"
+      up_since_html: "<strong>Portail en service depuis&nbsp;:</strong> %{started_at} (depuis: %{uptime})"
+      plugins_revision_header: "Informations sur la révision des plugins CBRAIN"
+      plugins_package: "Package de plugins : %{plugin}"
+      platform_info: "Informations sur la plateforme"
+      env_vars: "Variables d'environnement"
+      licensing_info: "Informations sur les licences"
+      credits_link_html: "Les crédits du projet sont disponibles sur la page %{credits_link}, ainsi que sur la page %{github_link}."
+      credits: "crédits"
+      github_contributors: "Contributeurs GitHub"
+      gnu_license: "Licence publique générale GNU"
+      gnu_desc_html: "Le code source de CBRAIN est distribué sous la Licence publique générale GNU (GPL).<br />Copyright Alan C. Evans – Université McGill 2008–2022<br />Une copie du texte de la licence est disponible ici."
+      other_licenses: "Autres licences"
+      other_desc_html: "Certains paquets ou bibliothèques développés par des entités externes<br />sont utilisés dans le code source de CBRAIN; voici un résumé de leurs<br />licences respectives."
+      error_getting_license: "Erreur lors de la récupération du fichier de licence."
 
     available:
-      title: ""
-      note_html: ""
+      title: "Liste des outils et des jeux de données"
+      note_html: "These tables list all tools and datasets configured on this CBRAIN portal.<br />Not all of them are available to all users."
 
     credits:
-      title: ""
+      title: "Crédits"
 
       headings:
-        citing: ""
-        project_info: ""
-        credits_box: ""
+        citing: "Citer CBRAIN"
+        project_info: "Informations sur le projet CBRAIN"
+        credits_box: "Crédits de développement logiciel"
 
       paragraphs:
         citing_html: |
-          Results published from data gathered or processed with a CBRAIN
-          installation should cite the following reference:
+          Les résultats publiés à partir de données recueillies ou traitées à l'aide d'une installation de CBRAIN doivent citer la référence suivante:
 
           <p>
 
@@ -59,9 +58,9 @@ fr:
 
           </div>
         project_info_html: |
-          This platform's origin and purpose is described further at the <a class="action_link" href="http://mcin-cnim.ca/neuroimagingtechnologies/cbrain/">MCIN website</a> (McGill Centre for Integrative Neuroscience).<br>
-
-          The code for the project is maintained and distributed on <a class="action_link" href="https://github.com/aces/cbrain">GitHub</a>.
+          L'origine et la mission de cette plateforme sont décrites plus en détail sur le <a class="action_link" href="http://mcin-cnim.ca/neuroimagingtechnologies/cbrain/">site Web du MCIN</a> (Centre McGill de neurosciences intégratives).<br>
+          
+          Le code source du projet est maintenu et distribué sur <a class="action_link" href="https://github.com/aces/cbrain">GitHub</a>.
         credits_box_html: |
           <ul type="none">
             <li><strong>Principal Investigator:</strong> Alan C. Evans, Montreal Neurological Institute, McGill University</li>
@@ -82,52 +81,53 @@ fr:
 
     portal_log:
       filters:
-        lines_to_show_html: ""
-        min_request_time_html: ""
-        filter: ""
-        by_user_html: ""
-        by_instance_html: ""
-        by_method_html: ""
-        by_controller_html: ""
+        lines_to_show_html: "Nombre de lignes à afficher : %{dropdown}"
+        min_request_time_html: "Temps minimal de la requête : %{dropdown} ms"
+        filter: "Filtre:"
+        by_user_html: "Par utilisateur : %{dropdown}"
+        by_instance_html: "Par nom d'instance : %{textfield}"
+        by_method_html: "Par méthode : %{dropdown}"
+        by_controller_html: "Par controller : %{dropdown}"
 
       toggles:
-        hide_lines: ""
-        started_html: ""
-        processing_html: ""
-        parameters_html: ""
-        rendered_html: ""
-        redirected_html: ""
-        user_html: ""
-        completed_html: ""
-        sql_html: ""
-        load_html: ""
-        exists_html: ""
-        cache_html: ""
+        hide_lines: "Masquer les lignes:"
+        started_html: "'Démarré': %{checkbox}"
+        processing_html: "'En cours de traitement': %{checkbox}"
+        parameters_html: "'Paramètres': %{checkbox}"
+        rendered_html: "'Rendu': %{checkbox}"
+        redirected_html: "'Redirigé': %{checkbox}"
+        user_html: "'Utilisateur': %{checkbox}"
+        completed_html: "'Terminé': %{checkbox}"
+        sql_html: "'SQL': %{checkbox}"
+        load_html: "'Chargement': %{checkbox}"
+        exists_html: "'Existe': %{checkbox}"
+        cache_html: "'CACHE': %{checkbox}"
 
     provenance:
-      title: ""
+      title: "Provenance"
 
       headings:
-        statement: ""
+        statement: "Déclaration de provenance de CBRAIN"
 
       paragraphs:
         statement_html: |
-          New features and bug fixes are tested and released into the
-          development branch upon completion.  Continuous integration testing
-          is performed in an automated fashion and is applied to all code
-          incorporated into the development repository.  All pull requests
-          are reviewed and validated by the senior development team before
-          either being accepted or returned so as to undergo further
-          modification and testing by the submitting developer.
-
+          Les nouvelles fonctionnalités et les corrections de bogues sont testées
+          et intégrées à la branche de développement dès leur achèvement. 
+          Des tests d'intégration continue sont exécutés de façon automatisée et
+          s'appliquent à tout le code intégré au dépôt de développement. 
+          Toutes les demandes d'extraction sont examinées et validées par l'équipe principale
+          de développement avant d'être soit acceptées, soit retournées au développeur 
+          auteur de la soumission afin qu'il puisse effectuer des modifications et des tests supplémentaires.     
+          
           <p>
-
-          Major releases are made so as amalgamate together collections of
-          bug fixes, patches and new features assessed as beneficial for
-          issuance as a cumulative, integrated release for community use.
-          Major releases are performed by the CBRAIN Lead Developer and
-          authorized together with the CBRAIN Team Director.
-
+          
+          Les versions majeures sont publiées afin de regrouper des ensembles 
+          de corrections de bogues, de correctifs et de nouvelles fonctionnalités 
+          jugés bénéfiques pour une diffusion sous la forme d'une version cumulative
+          et intégrée destinée à la communauté. Les versions majeures sont préparées 
+          par le développeur principal de CBRAIN et autorisées conjointement
+          avec le directeur de l'équipe CBRAIN.
+          
           <p>
 
           Each release contains an associated set of release notes documentation
