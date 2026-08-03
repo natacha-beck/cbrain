@@ -25,9 +25,9 @@
 
 <% title t('.title') %>
 
-<h2><%= t('.title') %></h2>
+<h2><%= t('.headings.main') %></h2>
 
-<%= error_messages_for @bac, :object_name => t('.activity') %>
+<%= error_messages_for @bac, :object_name => t('.errors.activity') %>
 
 <% @bac.options ||= {} %>
 <%= hidden_field_tag 'background_activity[options][dummy]','val' %>
@@ -51,7 +51,7 @@
       ##############################
     %>
 
-    <p><%= f.label :remote_resource_id, t('.server') %><br>
+    <p><%= f.label :remote_resource_id, t('.labels.server') %><br>
     <%= bourreau_select("background_activity[remote_resource_id]", {
        :bourreaux => RemoteResource.all.order(:name).to_a,
        :selector => @bac.remote_resource_id.to_s } ) %>
@@ -62,7 +62,7 @@
       ##############################
     %>
 
-    <p><%= f.label :start_date, t('.start_date') %><br>
+    <p><%= f.label :start_date, t('.labels.start_date') %><br>
     <%= text_field_tag :start_date, @start_date, :class => "datepicker" %>
 
     <%= select_tag :start_hour,
@@ -83,7 +83,7 @@
     %>M
 
     <%= label_tag :start_now do %>
-      <%= t('.start_now_html', checkbox: check_box_tag(:start_now, "1", @start_now == "1")) %>
+      <%= t('.labels.start_now_html', checkbox: check_box_tag(:start_now, "1", @start_now == "1")) %>
     <% end %>
 
     <%-
@@ -92,7 +92,7 @@
       ##############################
     %>
 
-    <p><%= label_tag :repeat, t('.label.repeat') %><br>
+    <p><%= label_tag :repeat, t('.labels.repeat') %><br>
     <%= select_tag :repeat,
         options_for_select( [
           # hardcoded for the moment
@@ -140,17 +140,17 @@
     <fieldset>
       <legend>
         <%= f.radio_button :type, 'BackgroundActivity::MoveFile' %>
-        <%= f.label        :type, t('.move'), :value => 'BackgroundActivity::MoveFile' %>
-        <%= t('.or_word') %>
+        <%= f.label        :type, t('.labels.move'), :value => 'BackgroundActivity::MoveFile' %>
+        <%= t('.legends.or_word') %>
         <%= f.radio_button :type, 'BackgroundActivity::CopyFile' %>
-        <%= f.label        :type, t('.copy'), :value => 'BackgroundActivity::CopyFile' %>
-        <%= t('.files') %>
+        <%= f.label        :type, t('.labels.copy'), :value => 'BackgroundActivity::CopyFile' %>
+        <%= t('.legends.files') %>
       </legend>
-      <%= t('.p.remember_file_filter_html') %>
+      <%= t('.paragraphs.remember_file_filter_html') %>
       <p>
-      <%= t('.move_to') %> <%= data_provider_select 'move_file_dp_id', { :selector => @move_file_dp_id.to_s }, :include_blank => t('.select_data_provider') %>
+      <%= t('.paragraphs.move_to') %> <%= data_provider_select 'move_file_dp_id', { :selector => @move_file_dp_id.to_s }, :include_blank => t('.selects.data_provider') %>
       <p>
-      <%= t('.p.move_crush') %> <%= check_box_tag :move_crush, '1', @move_crush %>
+      <%= t('.paragraphs.move_crush') %> <%= check_box_tag :move_crush, '1', @move_crush %>
     </fieldset>
 
     <%-
@@ -162,9 +162,9 @@
     <fieldset>
       <legend>
         <%= f.radio_button :type, 'BackgroundActivity::RemoveTaskWorkdir' %>
-        <%= f.label        :type, t('.label.remove_task_workdirs'), :value => 'BackgroundActivity::RemoveTaskWorkdir' %>
+        <%= f.label        :type, t('.labels.remove_task_workdirs'), :value => 'BackgroundActivity::RemoveTaskWorkdir' %>
       </legend>
-      <%= t('.remember_task_filter_html') %>
+      <%= t('.paragraphs.remember_task_filter_html') %>
     </fieldset>
 
     <%-
@@ -176,12 +176,12 @@
     <fieldset>
       <legend>
         <%= f.radio_button :type, 'BackgroundActivity::ArchiveTaskWorkdir' %>
-        <%= f.label        :type, t('.archive_task_workdirs'), :value => 'BackgroundActivity::ArchiveTaskWorkdir' %>
+        <%= f.label        :type, t('.labels.archive_task_workdirs'), :value => 'BackgroundActivity::ArchiveTaskWorkdir' %>
       </legend>
-      <%= t('.remember_task_filter_html') %>
+      <%= t('.paragraphs.remember_task_filter_html') %>
       <p>
-      <%= t('.move_to') %> <%= data_provider_select 'archive_task_dp_id', { :selector => @archive_task_dp_id.to_s }, :include_blank => t('.select_data_provider') %><br>
-      <small><%= t('.archive_blank_note') %></small>
+      <%= t('.paragraphs.move_to') %> <%= data_provider_select 'archive_task_dp_id', { :selector => @archive_task_dp_id.to_s }, :include_blank => t('.selects.data_provider') %><br>
+      <small><%= t('.paragraphs.archive_blank_note') %></small>
     </fieldset>
 
     <%-
@@ -193,13 +193,12 @@
     <fieldset>
       <legend>
         <%= f.radio_button :type, 'BackgroundActivity::CompressFile' %>
-        <%= f.label        :type, t('.compress'), :value => 'BackgroundActivity::CompressFile' %>
-        <%= t('.or_word') %>
-        <%= f.radio_button :type, 'BackgroundActivity::UncompressFile' %>
-        <%= t('.or_word') %>
-        <%= t('.files') %>
+        <%= f.label        :type, t('.labels.compress'), :value => 'BackgroundActivity::CompressFile' %>
+        <%= t('.legends.or_word') %>
+        <%= f.label        :type, t('.labels.uncompress'), :value => 'BackgroundActivity::UncompressFile' %>
+        <%= t('.legends.files') %>
       </legend>
-      <%= t('.p.remember_file_filter_html') %>
+      <%= t('.paragraphs.remember_file_filter_html') %>
     </fieldset>
 
     <%-
@@ -209,25 +208,25 @@
     %>
 
     <fieldset>
-      <legend><%= t('.legend.filter') %></legend>
-      <%= t('.p.filter_intro') %>
+      <legend><%= t('.legends.filter') %></legend>
+      <%= t('.paragraphs.filter_intro') %>
       <p>
-      <%= t('.p.for_files_html') %>
+      <%= t('.paragraphs.for_files_html') %>
       <p>
-      <%= label_tag      'background_activity[options][userfile_custom_filter_id]', t('.label.file_custom_filter') %>
+      <%= label_tag      'background_activity[options][userfile_custom_filter_id]', t('.labels.file_custom_filter') %>
       <%= select_tag     'background_activity[options][userfile_custom_filter_id]',
           options_for_select(
-            [[t('.select_filter'),""]] + UserfileCustomFilter.where(:user_id => current_user.id).order(:name).pluck(:name,:id),
+            [[t('.selects.filter'),""]] + UserfileCustomFilter.where(:user_id => current_user.id).order(:name).pluck(:name,:id),
             :selected => @bac.options[:userfile_custom_filter_id].to_s
           )
       %>
       <p>
-      <%= t('.p.for_tasks_html') %>
+      <%= t('.paragraphs.for_tasks_html') %>
       <p>
-      <%= label_tag      'background_activity[options][task_custom_filter_id]', t('.label.task_custom_filter') %>
+      <%= label_tag      'background_activity[options][task_custom_filter_id]', t('.labels.task_custom_filter') %>
       <%= select_tag     'background_activity[options][task_custom_filter_id]',
           options_for_select(
-            [[t('.select_filter'),""]] + TaskCustomFilter.where(:user_id => current_user.id).order(:name).pluck(:name,:id),
+            [[t('.selects.filter'),""]] + TaskCustomFilter.where(:user_id => current_user.id).order(:name).pluck(:name,:id),
             :selected => @bac.options[:task_custom_filter_id].to_s
           )
       %>
@@ -242,14 +241,14 @@
     <fieldset>
       <legend>
         <%= f.radio_button :type, 'BackgroundActivity::CleanCache' %>
-        <%= f.label        :type, t('.label.clean_cache'), :value => 'BackgroundActivity::CleanCache' %>
+        <%= f.label        :type, t('.labels.clean_cache'), :value => 'BackgroundActivity::CleanCache' %>
       </legend>
 
       <table class="simple">
 
         <tr>
           <td>
-            <%= label_tag      'background_activity[options][days_older]', t('.label.last_accessed') %>
+            <%= label_tag      'background_activity[options][days_older]', t('.labels.last_accessed') %>
           </td>
           <td>
             <%= text_field_tag 'background_activity[options][days_older]', @bac.options[:days_older], :size => 3 %> <%= t('.days_ago') %>
@@ -258,7 +257,7 @@
 
         <tr>
           <td>
-            <%= label_tag      'background_activity[options][with_user_ids][]', t('.label.belonging_users') %>
+            <%= label_tag      'background_activity[options][with_user_ids][]', t('.labels.belonging_users') %>
           </td>
           <td>
             <%= user_select("background_activity[options][with_user_ids][]", { :selector => @bac.options[:with_user_ids] }, :multiple => true ) %>
@@ -267,7 +266,7 @@
 
         <tr>
           <td>
-            <%= label_tag      'background_activity[options][without_user_ids][]', t('.label.not_users') %>
+            <%= label_tag      'background_activity[options][without_user_ids][]', t('.labels.not_users') %>
           </td>
           <td>
             <%= user_select("background_activity[options][without_user_ids][]", { :selector => @bac.options[:without_user_ids] }, :multiple => true ) %>
@@ -276,7 +275,7 @@
 
         <tr>
           <td>
-            <%= label_tag      'background_activity[options][with_types][]', t('.label.of_type') %>
+            <%= label_tag      'background_activity[options][with_types][]', t('.labels.of_type') %>
           </td>
           <td>
             <%= userfile_type_select("background_activity[options][with_types][]", { :selector => @bac.options[:with_types] }, :multiple => true ) %>
@@ -285,7 +284,7 @@
 
         <tr>
           <td>
-            <%= label_tag      'background_activity[options][without_types][]', t('.label.not_type') %>
+            <%= label_tag      'background_activity[options][without_types][]', t('.labels.not_type') %>
           </td>
           <td>
             <%= userfile_type_select("background_activity[options][without_types][]", { :selector => @bac.options[:without_types] }, :multiple => true ) %>
@@ -304,14 +303,14 @@
     <fieldset>
       <legend>
         <%= f.radio_button :type, 'BackgroundActivity::EraseBackgroundActivities' %>
-        <%= f.label        :type, t('.label.erase_bacs'), :value => 'BackgroundActivity::EraseBackgroundActivities' %>
+        <%= f.label        :type, t('.labels.erase_bacs'), :value => 'BackgroundActivity::EraseBackgroundActivities' %>
       </legend>
 
       <table class="simple">
 
         <tr>
           <td>
-            <%= label_tag      'background_activity[options][days_older]', t('.label.finished_older') %>
+            <%= label_tag      'background_activity[options][days_older]', t('.labels.finished_older') %>
           </td>
           <td>
             <%= text_field_tag 'background_activity[options][days_older]', @bac.options[:days_older], :size => 3 %> <%= t('.days_ago') %>
@@ -330,7 +329,7 @@
     <fieldset>
       <legend>
         <%= f.radio_button :type, 'BackgroundActivity::VerifyDataProvider' %>
-        <%= f.label        :type, t('.label.verify_dp'), :value => 'BackgroundActivity::VerifyDataProvider' %>
+        <%= f.label        :type, t('.labels.verify_dp'), :value => 'BackgroundActivity::VerifyDataProvider' %>
       </legend>
       <% sys_dps  = DataProvider.where.not(
            :type => [ 'UserkeyFlatDirSshDataProvider', 'S3FlatDataProvider','ScratchDataProvider' ])
@@ -340,18 +339,18 @@
       <%= t('.system_dps') %>
       <%= data_provider_select 'verify_dp_ids[]',
           { :data_providers => sys_dps, :selector => @bac.items&.map(&:to_s) },
-          :include_blank => t('.select_dps'), :multiple => true
+          :include_blank => t('.selects.dps'), :multiple => true
       %>
       <p>
       <%= t('.user_dps') %>
       <%  #=  Old select box, doesn't provide info about owners
           # data_provider_select 'verify_dp_ids[]',
           # { :data_providers => user_dps, :selector => @bac.items&.map(&:to_s) },
-          # :include_blank => t('.select_dps'), :multiple => true
+          # :include_blank => t('.selects.dps'), :multiple => true
       %>
       <%= select_tag 'verify_dp_ids[]',
           options_for_select(
-            [[t('.select_dps'),""]] +
+            [[t('.selects.dps'),""]] +
             user_dps.map { |dp| [ "#{dp.name} (#{dp.user.login})", dp.id ] },
             :selected => @bac.items&.map(&:to_s),
           ),
@@ -368,18 +367,18 @@
     <fieldset>
       <legend>
         <%= f.radio_button :type, 'BackgroundActivity::RandomActivity' %>
-        <%= f.label        :type, t('.label.fake_activity'), :value => 'BackgroundActivity::RandomActivity' %>
+        <%= f.label        :type, t('.labels.fake_activity'), :value => 'BackgroundActivity::RandomActivity' %>
       </legend>
-      <%= label_tag      'background_activity[options][mintime]', t('.label.min_seconds') %>
+      <%= label_tag      'background_activity[options][mintime]', t('.labels.min_seconds') %>
       <%= text_field_tag 'background_activity[options][mintime]', @bac.options[:mintime], :size => 3 %>
-      <%= label_tag      'background_activity[options][maxtime]', t('.label.max_seconds') %>
+      <%= label_tag      'background_activity[options][maxtime]', t('.labels.max_seconds') %>
       <%= text_field_tag 'background_activity[options][maxtime]', @bac.options[:maxtime], :size => 3 %>
       <p>
-      <%= label_tag      'background_activity[options][count_ok]', t('.label.num_oks') %>
+      <%= label_tag      'background_activity[options][count_ok]', t('.labels.num_oks') %>
       <%= text_field_tag 'background_activity[options][count_ok]', @bac.options[:count_ok], :size => 3 %>
-      <%= label_tag      'background_activity[options][count_fail]', t('.label.num_fails') %>
+      <%= label_tag      'background_activity[options][count_fail]', t('.labels.num_fails') %>
       <%= text_field_tag 'background_activity[options][count_fail]', @bac.options[:count_fail], :size => 3 %>
-      <%= label_tag      'background_activity[options][count_exc]', t('.label.num_excs') %>
+      <%= label_tag      'background_activity[options][count_exc]', t('.labels.num_excs') %>
       <%= text_field_tag 'background_activity[options][count_exc]', @bac.options[:count_exc], :size => 3 %>
     </fieldset>
 
@@ -392,14 +391,14 @@
     <fieldset>
       <legend>
         <%= f.radio_button :type, 'BackgroundActivity::RubyRunner' %>
-        <%= f.label        :type, t('.label.ruby_runner'), :value => 'BackgroundActivity::RubyRunner' %>
+        <%= f.label        :type, t('.labels.ruby_runner'), :value => 'BackgroundActivity::RubyRunner' %>
       </legend>
 
-      <%= t('.ruby_runner_intro_html') %>
+      <%= t('.paragraphs.ruby_runner_intro_html') %>
       <p>
 
       <%= label_tag      'background_activity[options][prepare_dynamic_items]' do %>
-        <%= t('.label.prepare') %>
+        <%= t('.labels.prepare') %>
       <% end %>
       <br>
       <%= text_area_tag 'background_activity[options][prepare_dynamic_items]',
@@ -407,7 +406,7 @@
       <p>
 
       <%= label_tag      'background_activity[options][before_first_item]' do %>
-        <%= t('.label.before') %>
+        <%= t('.labels.before') %>
       <% end %>
       <br>
       <%= text_area_tag 'background_activity[options][before_first_item]',
@@ -415,19 +414,19 @@
       <p>
 
       <%= label_tag      'background_activity[options][process]' do %>
-        <%= t('.label.process_html') %>
+        <%= t('.labels.process_html') %>
       <% end %>
       <br>
       <%= text_area_tag 'background_activity[options][process]',
           (@bac.options[:process] || "# Add a description on first line of comment\nreturn [ true, nil ] if item.odd?\nreturn [ false, \"Error: not odd\" ]"),
           :rows => 5, :cols => 120 %>
       <div class="field_explanation">
-        <%= t('.process_explanation') %>
+        <%= t('.paragraphs.process_explanation') %>
       </div>
       <p>
 
       <%= label_tag      'background_activity[options][after_last_item]' do %>
-        <%= t('.label.after') %>
+        <%= t('.labels.after') %>
       <% end %>
       <br>
       <%= text_area_tag 'background_activity[options][after_last_item]',

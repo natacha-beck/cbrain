@@ -24,25 +24,25 @@
 
 <% title @bac.pretty_name %>
 
-<%= show_table(@bac, :as => :background_activity, :header => t('activerecord.models.background_activity.one')) do |t| %>
+<%= show_table(@bac, :as => :background_activity, :header => t('.headings.main')) do |t| %>
 
-  <% t.cell(t('activerecord.attributes.type')) do %>
+  <% t.cell(t('.cells.type')) do %>
     <%= @bac.class.to_s.demodulize %>
   <% end %>
 
-  <% t.cell(t('activerecord.attributes.status')) do %>
+  <% t.cell(t('.cells.status')) do %>
     <%= @bac.status %>
   <% end %>
 
-  <% t.cell(t('activerecord.models.user.one')) do %>
+  <% t.cell(t('.cells.user')) do %>
     <%= link_to_user_if_accessible(@bac.user) %>
   <% end %>
 
-  <% t.cell(t('activerecord.models.execution_server.one')) do %>
+  <% t.cell(t('.cells.execution_server')) do %>
     <%= link_to_bourreau_if_accessible(@bac.remote_resource) %>
   <% end %>
 
-  <% t.cell(t('.total_items')) do %>
+  <% t.cell(t('.cells.total_items')) do %>
     <%= if @bac.is_configured_for_dynamic_items?
           t('background_activities.common.dynamic_items_list')
         elsif @bac.items.size == 0
@@ -53,7 +53,7 @@
     %>
   <% end %>
 
-  <% t.cell(t('.num_successes')) do %>
+  <% t.cell(t('.cells.num_successes')) do %>
     <%= if @bac.is_configured_for_dynamic_items?
           "-"
         elsif @bac.num_successes == 0
@@ -66,7 +66,7 @@
     %>
   <% end %>
 
-  <% t.cell(t('.num_processed')) do %>
+  <% t.cell(t('.cells.num_processed')) do %>
     <%= if @bac.is_configured_for_dynamic_items?
           "-"
         elsif @bac.current_item == 0
@@ -79,7 +79,7 @@
     %>
   <% end %>
 
-  <% t.cell(t('.num_failures')) do %>
+  <% t.cell(t('.cells.num_failures')) do %>
     <%= if @bac.is_configured_for_dynamic_items?
           "-"
         elsif @bac.num_failures == 0
@@ -97,7 +97,7 @@
 <% if (!@bac.is_configured_for_dynamic_items? && @bac.items.size > 0) %>
 
 <fieldset>
-  <legend><%= t('.legend.items') %></legend>
+  <legend><%= t('.legends.items') %></legend>
   <% bad_hash      = @bac.failed_items.index_by(&:itself) %>
   <% num_processed = @bac.current_item %>
   <%= array_to_table(@bac.items.each_with_index.to_a, :table_class => 'xsimple', :cols => 10) do |(item,i),r,c| %>
