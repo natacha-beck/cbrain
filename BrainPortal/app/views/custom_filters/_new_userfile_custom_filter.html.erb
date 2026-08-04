@@ -25,46 +25,46 @@
 <% custom_filter ||= @custom_filter %>
 
 <p>
-<%= t('custom_filters.common.userfile.filename') %><br>
+<%= t('.by.filename') %><br>
 <%= select :data, :file_name_type, [[t('custom_filters.common.userfile.dont_filter_name'), ''], [t('custom_filters.common.match_type.match'), 'match'], [t('custom_filters.common.match_type.contain'), 'contain'], [t('custom_filters.common.match_type.begin'), 'begin'], [t('custom_filters.common.match_type.end'), 'end']], :selected => custom_filter.data_file_name_type%>
 <%= text_field_tag "data[file_name_term]", custom_filter.data_file_name_term %>
 
 <p>
-<%= t('custom_filters.common.userfile.parent_name_contains') %> <small><%= t('custom_filters.common.userfile.lists_children') %></small>:<br>
+<%= t('.by.parent_name_contains_html') %><br>
 <%= text_field_tag "data[parent_name_like]", custom_filter.data_parent_name_like %>
 
 <p>
-<%= t('custom_filters.common.userfile.child_name_contains') %> <small><%= t('custom_filters.common.userfile.lists_parents') %></small>:<br>
+<%= t('.by.child_name_contains_html') %><br>
 <%= text_field_tag "data[child_name_like]", custom_filter.data_child_name_like %>
 
 
 <p>
-  <%= t('.file_types') %><br>
+  <%= t('.by.file_types') %><br>
   <%= userfile_type_select("data[types]", {:selector => custom_filter.data_types}, :include_blank => true, :multiple => true ) %>
 </p>
 
-<%= t('custom_filters.common.filtering_by_date') %><br>
+<%= t('.by.filtering_by_date') %><br>
 <%= date_range_panel(custom_filter[:data] || {}, "data") %>
 <p>
-<%= t('activerecord.attributes.size') %><br>
+<%= t('.by.size') %><br>
 <%= select :data, :size_type, [[t('custom_filters.common.userfile.dont_filter_size'), ''], ['<', "1"], ['>', "2"]], :selected  => custom_filter.data_size_type %>
 <%= text_field_tag "data[size_term]", @custom_filter.data_size_type == "" ? "" : @custom_filter.data_size_term %> kb
 
 <p>
-<%= t('custom_filters.common.owners') %><br>
+<%= t('.by.owners') %><br>
 <%= user_select("data[user_ids]", { :selector => custom_filter.data_user_ids }, { :include_blank => true, :multiple => true })  %>
 
 <p>
-<%= t('activerecord.models.group.other') %><br>
+<%= t('.by.projects') %><br>
 <%= group_select("data[group_ids]", { :selector => custom_filter.data_group_ids}, { :include_blank => true, :multiple => true })  %>
 
 <p>
-  <%= t('activerecord.models.data_provider.other') %><br>
+  <%= t('.by.data_provider') %><br>
   <%= data_provider_select("data[data_provider_ids]", { :selector => custom_filter.data_data_provider_ids || '!' }, { :include_blank => true, :multiple => true })  %>
 </p>
 
 <p>
-<%= t('custom_filters.common.archiving_status') %><br>
+<%= t('.by.archiving_status') %><br>
 <%= select :data, :archiving_status,
 [
   [t('custom_filters.common.archiving.dont_filter'), ''         ],
@@ -75,7 +75,7 @@
 %>
 
 <p>
-  <%= t('custom_filters.common.userfile.synchronization_status') %><br>
+  <%= t('.by.synchronization_status') %><br>
   <%=
   select_tag "data[sync_status]", options_for_select(["InSync","ProvNewer","CacheNewer","Corrupted","ToCache","ToProvider"], :selected => custom_filter.data_sync_status),
               :multiple => true, :size => 6, :selected => custom_filter.data_sync_status
@@ -83,7 +83,7 @@
 </p>
 
 <% if current_user.available_tags.count > 0 %>
-  <%= t('activerecord.models.tag.other') %> <br>
+  <%= t('.by.tags') %> <br>
   <%=
   select_tag "data[tag_ids]", options_for_select((current_user.available_tags.map { |tags| [tags.name, tags.id] }), :selected => custom_filter.data_tag_ids),
               :multiple => true, :size => 6, :selected => custom_filter.data_tag_ids

@@ -29,13 +29,13 @@
     <%= text_field_tag "custom_filter[name]", @custom_filter.name %>
   <% end %>
 
-  <% t.edit_cell(:data_types, :header => t('.header.types'),
+  <% t.edit_cell(:data_types, :header => t('.headings.types'),
      :content => (@custom_filter.data_types.presence || [])
                  .map(&:constantize).map(&:pretty_name).sort.join(", ")) do %>
     <%= task_type_select("data[types]", {:task_types => current_user.available_tools.map(&:cbrain_task_class_name).sort, :selector => @custom_filter.data_types, :include_top => true }, :multiple => true, :size => 10) %>
   <% end %>
 
-  <% t.edit_cell(:data_status, :header => t('activerecord.attributes.status'), :content => (@custom_filter.data_status||[]).join(", ")) do %>
+  <% t.edit_cell(:data_status, :header => t('.headings.status'), :content => (@custom_filter.data_status||[]).join(", ")) do %>
     <%= task_status_select("data[status]", {:selector => @custom_filter.data_status}, :multiple => true, :size => 10) %>
   <% end %>
 
@@ -50,20 +50,20 @@
       }
   %>
 
-  <% t.edit_cell(:data_description_type, :header => t('activerecord.attributes.description'),
+  <% t.edit_cell(:data_description_type, :header => t('.headings.description'),
                  :content => "#{description_type[@custom_filter.data_description_type]} #{@custom_filter.data_description_term}") do %>
     <%= select :data, :description_type, description_type.map{|k,v| [v,k]}, :selected => @custom_filter.data_description_type %> <%= text_field_tag "data[description_term]", @custom_filter.data_description_term %>
   <% end %>
 
-  <% t.edit_cell(:data_user_ids, :header => t('custom_filters.common.owners'), :content => User.where(:id => @custom_filter.data_user_ids).pluck(:login).join(", ").presence || t('none')) do %>
+  <% t.edit_cell(:data_user_ids, :header => t('.headings.owners'), :content => User.where(:id => @custom_filter.data_user_ids).pluck(:login).join(", ").presence || t('none')) do %>
     <%= user_select 'data[user_ids]', { :users => current_user.available_users, :selector => @custom_filter.data_user_ids }, :include_blank => true, :multiple => true %>
   <% end %>
 
-  <% t.edit_cell(:data_group_ids, :header => t('activerecord.models.group.other'), :content => Group.where(:id => @custom_filter.data_group_ids).pluck(:name).join(", ").presence || t('none')) do %>
+  <% t.edit_cell(:data_group_ids, :header => t('.headings.projects'), :content => Group.where(:id => @custom_filter.data_group_ids).pluck(:name).join(", ").presence || t('none')) do %>
     <%= group_select("data[group_ids]", { :selector => @custom_filter.data_group_ids }, { :include_blank => true, :multiple => true })  %>
   <% end %>
 
-  <% t.edit_cell(:data_bourreau_ids, :header => t('activerecord.models.execution_server.other'), :content => Bourreau.where(:id => @custom_filter.data_bourreau_ids).pluck(:name).join(", ").presence || t('none')) do %>
+  <% t.edit_cell(:data_bourreau_ids, :header => t('.headings.execution_servers'), :content => Bourreau.where(:id => @custom_filter.data_bourreau_ids).pluck(:name).join(", ").presence || t('none')) do %>
     <%= bourreau_select 'data[bourreau_ids]', { :bourreaux => Bourreau.find_all_accessible_by_user(current_user).all, :selector => @custom_filter.data_bourreau_ids, :offline_is_ok => true }, :include_blank => true, :multiple => true %>
   <% end %>
 
@@ -77,7 +77,7 @@
       }
   %>
 
-  <% t.edit_cell(:data_archiving_status, :header => t('custom_filters.common.archiving_status'), :content => archiving_status[@custom_filter.data_archiving_status]) do %>
+  <% t.edit_cell(:data_archiving_status, :header => t('.headings.archiving_status'), :content => archiving_status[@custom_filter.data_archiving_status]) do %>
     <%= select :data, :archiving_status, archiving_status.map{|k,v| [v,k]}, selected: @custom_filter.data_archiving_status %>
   <% end %>
 
@@ -92,11 +92,11 @@
       }
   %>
 
-  <% t.edit_cell(:data_wd_status, :header => t('custom_filters.common.task.work_directory_status'), :content => wd_status[@custom_filter.data_wd_status]) do %>
+  <% t.edit_cell(:data_wd_status, :header => t('.headings.work_directory_status'), :content => wd_status[@custom_filter.data_wd_status]) do %>
     <%= select :data, :wd_status, wd_status.map{|k,v| [v,k]}, :selected => @custom_filter.data_wd_status %>
   <% end %>
 
-  <% t.edit_cell(:date_range_display_table, :header => t('custom_filters.common.filtering_by_date'), :content => date_range_info(@custom_filter)) do %>
+  <% t.edit_cell(:date_range_display_table, :header => t('.headings.filtering_by_date'), :content => date_range_info(@custom_filter)) do %>
     <%= date_range_panel(@custom_filter[:data] || {}, "data") %>
   <% end %>
 

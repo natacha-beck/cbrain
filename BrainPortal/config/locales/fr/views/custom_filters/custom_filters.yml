@@ -42,30 +42,78 @@ fr:
           none: ""
 
     custom_filter_li:
-      edit_delete: ""
+      links:
+        edit_delete: ""
 
     custom_filter_list:
-      by_custom_filter: ""
-      create_custom_filter: ""
-
-    new_userfile_custom_filter:
-      file_types: ""
+      headings:
+        by_custom_filter: ""
+      links:
+        create_custom_filter: ""
 
     new_task_custom_filter:
-      task_types: ""
+      by:
+        task_types: ""
+        status: ""
+        description: ""
+        owners: ""
+        projects: ""
+        execution_servers: ""
+        filtering_by_date: ""
+        archiving_status: ""
+        work_directory_status: ""
+
+    new_userfile_custom_filter:
+      by:
+        filename: ""
+        parent_name_contains_html: ""
+        child_name_contains_html: ""
+        file_types: ""
+        filtering_by_date: ""
+        size: ""
+        owners: ""
+        projects: ""
+        data_providers: ""
+        archiving_status: ""
+        synchronization_status: ""
+        tags: ""
 
     new:
-      title: ""
-      filter_name: ""
-      custom_filter: ""
+      headings:
+        main: ""
+      labels:
+        filter_name: ""
+      errors:
+       custom_filter: ""
+      submit: ""
 
     task_custom_filter:
-      header:
+      headings:
         types: ""
+        status: ""
+        description: ""
+        owners: ""
+        projects: ""
+        execution_servers: ""
+        archiving_status: ""
+        work_directory_status: ""
+        filtering_by_date: ""
 
     userfile_custom_filter:
-      header:
+      headings:
+        filename: ""
+        parent_name_contains_html: ""
+        child_name_contains_html: ""
         by_file_types: ""
+        size: ""
+        owner: ""
+        projects: ""
+        data_providers: ""
+        archiving_status: ""
+        synchronization_status: ""
+        tags: ""
+        filtering_by_date: ""
 
     show:
-      update_error: ""
+      errors:
+        update: ""

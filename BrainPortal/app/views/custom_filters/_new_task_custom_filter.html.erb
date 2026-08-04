@@ -24,41 +24,41 @@
 
 <% custom_filter ||= @custom_filter %>
 
-<%= t('.task_types') %><br>
+<%= t('.by.task_types') %><br>
 <%= task_type_select("data[types]", {:task_types => current_user.available_tools.map(&:cbrain_task_class_name).sort, :selector => custom_filter.data_types, :include_top => true }, :multiple => true, :size => 10) %>
 
 <p>
-<%= t('activerecord.attributes.status') %><br>
+<%= t('.by.status') %><br>
 <%= task_status_select("data[status]", {:selector => custom_filter.data_status}, :multiple => true, :size => 10) %>
 
 <p>
-<%= t('activerecord.attributes.description') %><br>
+<%= t('.by.description') %><br>
 <%= select :data, :description_type, [[t('custom_filters.common.dont_filter_description'), ''], [t('custom_filters.common.match_type.match'), 'match'], [t('custom_filters.common.match_type.contain'), 'contain'], [t('custom_filters.common.match_type.begin'), 'begin'], [t('custom_filters.common.match_type.end'), 'end']], :selected => custom_filter.data_description_type %> <%= text_field_tag "data[description_term]", custom_filter.data_description_term %>
 
 <p>
-<%= t('custom_filters.common.owners') %><br>
+<%= t('.by.owners') %><br>
 <%= user_select 'data[user_ids]', { :users => current_user.available_users, :selector => custom_filter.data_user_ids }, :include_blank => true, :multiple => true %>
 
 <p>
-<%= t('activerecord.models.group.other') %><br>
+<%= t('.by.projects') %><br>
 <%= group_select("data[group_ids]", { :selector => custom_filter.data_group_ids}, { :include_blank => true, :multiple => true })  %>
 
 <p>
-<%= t('activerecord.models.execution_server.other') %><br>
+<%= t('.by.execution_servers') %><br>
 <%= bourreau_select 'data[bourreau_ids]', { :bourreaux => Bourreau.find_all_accessible_by_user(current_user).all, :selector => custom_filter.data_bourreau_ids, :offline_is_ok => true }, :include_blank => true, :multiple => true %>
 </p>
 
-<%= t('custom_filters.common.filtering_by_date') %><br>
+<%= t('.by.filtering_by_date') %><br>
 <%= date_range_panel(custom_filter[:data] || {}, "data") %>
 
 <p>
-<%= t('custom_filters.common.archiving_status') %><br>
+<%= t('.by.archiving_status') %><br>
 <%= select :data, :archiving_status,
 [
-  [t('custom_filters.common.archiving.dont_filter'),  ''        ],
-  [t('custom_filters.common.archiving.not_archived'), 'none'    ],
-  [t('custom_filters.common.archiving.on_cluster'),   'cluster' ],
-  [t('custom_filters.common.archiving.as_file'),      'file'    ]
+  [ t('custom_filters.common.archiving.dont_filter'),  ''       ],
+  [ t('custom_filters.common.archiving.not_archived'), 'none'   ],
+  [ t('custom_filters.common.archiving.on_cluster'),   'cluster'],
+  [ t('custom_filters.common.archiving.as_file'),      'file'   ]
 ], :selected => custom_filter.data_archiving_status %>
 
 <p>

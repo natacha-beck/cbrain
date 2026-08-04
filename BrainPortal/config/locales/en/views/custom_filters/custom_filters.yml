@@ -42,30 +42,78 @@ en:
           none: "Work Directory does not exist on cluster"
 
     custom_filter_li:
-      edit_delete: "Edit/Delete"
+      links:
+        edit_delete: "Edit/Delete"
 
     custom_filter_list:
-      by_custom_filter: "By Custom Filter"
-      create_custom_filter: "Create Custom Filter"
-
-    new_userfile_custom_filter:
-      file_types: "File types"
+      headings:
+        by_custom_filter: "By Custom Filter"
+      links:
+        create_custom_filter: "Create Custom Filter"
 
     new_task_custom_filter:
-      task_types: "Task types"
+      by:
+        task_types: "Task types"
+        status: "Status"
+        description: "Description"
+        owners: "Owners"
+        projects: "Projects"
+        execution_servers: "Execution servers"
+        filtering_by_date: "Filtering by date"
+        archiving_status: "Archiving status"
+        work_directory_status: "Work Directory status"
+
+    new_userfile_custom_filter:
+      by:
+        filename: "Filename"
+        parent_name_contains_html: "Parent name contains <small>(lists children)</small>"
+        child_name_contains_html: "Child name contains <small>(lists parents)</small>"
+        file_types: "File types"
+        filtering_by_date: "Filtering by date"
+        size: "Size"
+        owners: "Owners"
+        projects: "Projects"
+        data_providers: "Data Providers"
+        archiving_status: "Archiving status"
+        synchronization_status: "Synchronization status"
+        tags: "Tags"
 
     new:
-      title: "New %{type}"
-      filter_name: "Filter name"
-      custom_filter: "custom filter"
+      headings:
+        main: "New %{type}"
+      labels:
+        filter_name: "Filter name"
+      errors:
+       custom_filter: "custom filter"
+      submit: "Create"
 
     task_custom_filter:
-      header:
+      headings:
         types: "Types"
+        status: "Status"
+        description: "Description"
+        owners: "Owners"
+        projects: "Projects"
+        execution_servers: "Execution servers"
+        archiving_status: "Archiving status"
+        work_directory_status: "Work Directory status"
+        filtering_by_date: "Filtering by date"
 
     userfile_custom_filter:
-      header:
+      headings:
+        filename: "Filename"
+        parent_name_contains_html: "Parent name contains <small>(lists children)</small>:"
+        child_name_contains_html: "Child name contains <small>(lists parents)</small>:"
         by_file_types: "By file types"
+        size: "Size"
+        owner: "Owner"
+        projects: "Projects"
+        data_providers: "Data Providers"
+        archiving_status: "Archiving status"
+        synchronization_status: "Synchronization status"
+        tags: "Tags"
+        filtering_by_date: "Filtering by date"
 
     show:
-      update_error: "custom filter could not be updated."
+      errors:
+        update: "custom filter could not be updated."
