@@ -130,245 +130,243 @@ fr:
           
           <p>
 
-          Each release contains an associated set of release notes documentation
-          clearly identifying the new features and issues that are addressed
-          within a given release.
+          Chaque version est accompagnée de notes de version décrivant clairement 
+          les nouvelles fonctionnalités ainsi que les problèmes corrigés dans cette version.
 
           <p>
 
-          <a href="https://github.com/aces/cbrain/blob/master/Release-Notes.md">Release Notes</a>
-          are available in the CBRAIN GitHub repository.
+          Les <a href="https://github.com/aces/cbrain/blob/master/Release-Notes.md">notes de version</a>
+          sont disponibles dans le dépôt GitHub de CBRAIN.
 
           <p>
 
       footer:
-        last_updated_html: ""
+        last_updated_html: "<small>Dernière mise à jour du document: %{date}</small>"
 
     report:
-      title: ""
+      title: "Rapports tabulaires"
 
       headings:
-        main: ""
+        main: "Générateur automatique de rapports tabulaires"
 
       paragraphs:
         steps_html: |
           <p class="medium_paragraphs">
-          This form allows you to generate many different kind of reports
-          in a tabular layout. Proceed as follow:
+          Ce formulaire vous permet de générer de nombreux types de rapports 
+          sous forme de tableaux. Procédez comme suit:
           </p>
 
           <ul>
-            <li><strong>Select the type of report</strong> in the grey box. Most reports
-                will count the number of objects accessible to you, but some of them
-                will perform summation of some attributes.
+            <li><strong>Sélectionnez le type de rapport</strong> dans la zone grise. 
+                La plupart des rapports comptabilisent le nombre d'objets auxquels 
+                vous avez accès, mais certains effectuent la somme de certains attributs.
             </li>
-            <li><strong>Click on "Lookup columns and rows"</strong> and the form will be adjusted
-                to show you which attributes you can select for the rows and columns of
-                your table.
+            <li><strong>Cliquez sur "Recherchez les colonnes et les lignes"</strong>et le formulaire
+            sera mis à jour afin de vous indiquer les attributs que vous pouvez sélectionner 
+            pour les lignes et les colonnes de votre tableau. 
             </li>
-            <li><strong>Select an attribute for the rows and columns</strong> using each of the selection
-                boxes shown at the top and left of the table area.
+            <li><strong>Sélectionnez un attribut pour les lignes et les colonnes</strong> à l'aide de chacune
+                des listes de sélection affichées en haut et à gauche de la zone du tableau.
             </li>
-            <li><strong>Click on "Generate Report"</strong> and the table will be created with
-                hot links to the appropriate index pages for your objects. You can
-                modify the report's properties and regenerate it anew any time you want.
+            <li><strong>Cliquez sur "Générer le rapport"</strong> et le tableau sera créé avec 
+                des liens vers les pages d'index correspondantes de vos objets. Vous pouvez
+                modifier les propriétés du rapport et le régénérer à tout moment.
             </li>
           </ul>
 
       report_types:
-        select: ""
-        files_count: ""
-        files_sum: ""
-        files_total: ""
-        files_combined: ""
-        tasks_count: ""
-        tasks_sum: ""
-        tasks_combined: ""
-        servers_count: ""
-        dp_count: ""
-        users_count: ""
-        projects_count: ""
-        tools_count: ""
-        tv_count: ""
-        du_views: ""
-        du_downloads: ""
-        du_copies: ""
-        du_processed: ""
+        select: "(Sélectionner le type de rapport)"
+        files_count: "Fichiers - nombre"
+        files_sum: "Fichiers - somme des tailles"
+        files_total: "Fichiers - nombre total de fichiers dans les collections"
+        files_combined: "Fichiers - rapport combiné"
+        tasks_count: "Tâches - nombre"
+        tasks_sum: "Tâches - somme de l'espace des répertoires de travail"
+        tasks_combined: "Tâches - rapport combiné"
+        servers_count: "Serveurs - nombre"
+        dp_count: "Fournisseurs de données - nombre"
+        users_count: "Utilisateurs - nombre"
+        projects_count: "Projets - nombre"
+        tools_count: "Outils - nombre"
+        tv_count: "Versions d'outils - nombre"
+        du_views: "Utilisation des données - consultations des fichiers"
+        du_downloads: "Utilisation des données - téléchargements de fichiers"
+        du_copies: "Utilisation des données - copies de fichiers"
+        du_processed: "Utilisation des données - données traitées"
 
       actions:
-        lookup_btn: ""
-        refresh_btn: ""
-        flip_btn: ""
-        generate_btn: ""
+        lookup_btn: "Rechercher les colonnes et les lignes"
+        refresh_btn: "Actualiser le rapport"
+        flip_btn: "Inverser les lignes et les colonnes"
+        generate_btn: "Générer le rapport"
 
       selectors:
-        select_row: ""
-        select_col: ""
+        select_row: "(Sélectionner le type de ligne)"
+        select_col: "(Sélectionner le type de colonne)"
 
       counters:
-        total: ""
+        total: "Total"
         entry:
-          one: ""
-          other: ""
+          one: "1 entrée"
+          other: "%{count} entrées"
         file:
-          one: ""
-          other: ""
+          one: "1 fichier"
+          other: "%{count} fichiers"
         file_unk:
-          one: ""
-          other: ""
+          one: "1 fichier (taille inconnue"
+          other: "%{count} fichiers (taille inconnue)"
 
       empty_state:
-        no_objects_html: ""
-        no_objects_red: ""
-        waiting_html: ""
+        no_objects_html: "%{no_objects} trouvés pour ce rapport.<br />Essayez d'autres paramètres de rapport."
+        no_objects_red: "aucun objet"
+        waiting_html: "Le rapport s'affichera ici une fois que vous aurez sélectionné<br /> le contenu approprié du tableau ainsi que les types de lignes et de colonnes."
 
       notes:
-        optional_fix_html: ""
-        date_html: ""
+        optional_fix_html: "<strong>Facultatif :</strong> fixez certains attributs :"
+        date_html: "<small>(Remarque : les liens du rapport ne tiendront PAS compte des restrictions de date.)</small>"
 
     stats:
-      title: ""
+      title: "Statistiques détaillées du service"
 
       headings:
-        main: ""
-        by_client: ""
-        by_controller_html: ""
-        by_status: ""
+        main: "Statistiques du service Web de CBRAIN"
+        by_client: "Totaux par type de client"
+        by_controller_html: "Totals by controller &amp; action"
+        by_status: "Totaux par code d'état HTTP"
 
       columns:
-        client_type: ""
-        successes: ""
-        failures: ""
-        controller: ""
-        action: ""
-        status_code: ""
-        count: ""
+        client_type: "Type de client"
+        successes: "Succès"
+        failures: "Échecs"
+        controller: "Controller"
+        action: "Action"
+        status_code: "Code d'état"
+        count: "Nombre"
 
       footer:
-        last_reset: ""
+        last_reset: "Dernière réinitialisation des compteurs :"
 
     search:
-      title: ""
+      title: "Rechercher"
 
       placeholders:
-        search: ""
+        search: "Rechercher…"
 
       explanations:
-        search: ""
+        search: "Cette recherche porte sur les fichiers, les tâches, les utilisateurs, les outils, les projets, etc., par identifiant (ID), nom ou description. Un maximum de %{limit} résultats est affiché."
 
       actions:
-        switch: ""
+        switch: "(Basculer)"
 
       results:
-        found: ""
-        registered_files: ""
+        found: "(trouvés : %{count})"
+        registered_files: "Fichiers enregistrés"
 
     swagger:
-      title: ""
+      title: "API de CBRAIN"
 
       content_html: |
         <div class="generalbox">
-        <big><strong>This page describes the CBRAIN API</strong></big>
+        <big><strong>Cette page décrit l'API de CBRAIN</strong></big>
 
         <p class="medium_paragraphs">
-        For more information about the work in progress on the API, please look up the
+        Pour en savoir plus sur les travaux en cours concernant l'API, veuillez consulter le
         <a href="https://github.com/aces/cbrain/issues?q=is%3Aopen+is%3Aissue+label%3AAPI">API issues</a>
-        on
+        sur
         <a href="https://github.com/aces/cbrain">CBRAIN's GitHub repository</a>.
 
-        <p class="medium_paragraphs">
-        This specification's <a href="/swagger.yaml">YAML</a> or <a href="/swagger.json">JSON</a> files can be opened
-        at <a href="https://app.swaggerhub.com/home">SwaggerHUB</a>.
+        <p class="medium_paragraphs">.
+        Les fichiers <a href="/swagger.yaml">YAML</a> ou <a href="/swagger.json">JSON</a> de cette spécification peuvent
+        être ouverts dans <a href="https://app.swaggerhub.com/home">SwaggerHUB</a>.
 
         <p class="medium_paragraphs">
-        This will provide you a way to generate client code and inspect the same documentation
-        that is shown here.
-        In particular, this will allow you to generate client libraries in all sorts of
-        marvelous exotic languages, such as <em>Python</em>, <em>Perl</em>, <em>Java</em>, <em>Swift</em> and even <em><strong>Ruby</strong></em>.
+        Vous pourrez ainsi générer du code client et consulter la même documentation que celle présentée ici.
+        En particulier, cela vous permettra de générer des bibliothèques clientes dans une grande variété de langages, 
+        tels que <em>Python</em>, <em>Perl</em>, <em>Java</em>, <em>Swift</em> et même <em><strong>Ruby</strong></em>.
         <p class="medium_paragraphs">
-        Here is a direct link to the developer's <a href="https://app.swaggerhub.com/apis/prioux/CBRAIN/%{spec_version}">latest version on SwaggerHub</a>.
+        Voici un lien direct vers la <a href="https://app.swaggerhub.com/apis/prioux/CBRAIN/%{spec_version}">dernière version sur SwaggerHub</a>. 
         </div>
-
+        
     welcome:
-      title: ""
+      title: "Bienvenue"
 
       headings:
-        main: ""
-        news: ""
-        system_info: ""
-        sessions: ""
-        account_info: ""
-        tools_available_info_html: ""
-        latest_tasks: ""
-        latest_files: ""
+        main: "Bienvenue sur %{name}"
+        news: "Actualités de CBRAIN"
+        system_info: "Informations système"
+        sessions: "Sessions"
+        account_info: "Informations sur le compte"
+        tools_available_info_html: "Outils à votre disposition (%{available} sur %{total}, %{link}):"
+        latest_tasks: "Dernières tâches mises à jour"
+        latest_files: "Derniers fichiers mis à jour"
 
       news:
-        posted_at: ""
+        posted_at: "Publié le : %{created_at}"
 
       system_info:
-        instance_name_html: ""
-        unlock: ""
-        unlock_confirm: ""
-        lock_message: ""
-        lock: ""
-        lock_confirm: ""
-        online_users: ""
-        recent_activity: ""
-        active: ""
-        logged_out: ""
-        unknown_unknown: ""
-        unknown_browser: ""
-        unknown_os: ""
-        on_word: ""
-        with: ""
+        instance_name_html: "<strong>Nom de l'instance du portail :</strong> %{name}"
+        unlock: "Déverrouiller ce portail"
+        unlock_confirm: "Êtes-vous certain de vouloir déverrouiller ce portail ?"
+        lock_message: "(message de verrouillage)"
+        lock: "Verrouiller ce portail"
+        lock_confirm: "Êtes-vous certain de vouloir verrouiller ce portail ?"
+        online_users: "Utilisateurs actuellement en ligne: "
+        recent_activity: "Activité récente:"
+        active: "Actif"
+        logged_out: "Déconnecté"
+        unknown_unknown: "inconnu/inconnu"
+        unknown_browser: "navigateur inconnu"
+        unknown_os: "système d'exploitation inconnu"
+        on_word: "sur"
+        with: "avec"
 
       sessions:
-        sessions_count: ""
-        clear_sessions: ""
-        clear_confirm: ""
+        sessions_count: "Il y a actuellement %{count} entrées dans la table des sessions."
+        clear_sessions: "Supprimer les sessions datant de plus de"
+        clear_confirm: "Êtes-vous certain de vouloir supprimer les sessions?"
 
       exceptions:
-        logged: ""
+        logged: "Exceptions internes enregistrées:"
         past_day:
-          one: ""
-          other: ""
+          one: "1 exception au cours de la dernière journée."
+          other: "1 exception au cours des trois derniers jours."
         past_three_days:
-          one: ""
-          other: ""
+          one: "1 exception au cours de la dernière semaine."
+          other: "%{count} exceptions au cours de la dernière semaine."
         past_week:
-          one: ""
-          other: ""
+          one: "1 exception au cours de la dernière semaine."
+          other: "%{count} exceptions au cours de la dernière semaine"
         total:
-          one: ""
-          other: ""
+          one: ""1 exception au total."
+          other: "%{count} exceptions au total."
 
       account_info:
-        login_name: ""
-        full_name: ""
-        site_affiliation: ""
-        time_zone: ""
-        current_time: ""
+        login_name: "Votre nom d'utilisateur:"
+        full_name: "Votre nom complet:"
+        site_affiliation: "Votre établissement:""
+        time_zone: "Votre fuseau horaire:"
+        current_time: "Heure actuelle:"
 
       defaults:
-        projects: ""
-        provider: ""
-        server: ""
+        projects: "Projets auxquels vous appartenez:"
+        provider: "Votre fournisseur de données par défaut:"
+        server: "Votre serveur d'exécution par défaut:"
 
       latest_tasks:
-        active_count: ""
-        none_active: ""
+        active_count: "(%{count} actives)"
+        none_active: "(Aucune active)"
 
       links:
         system_info:
-          view_logs: ""
-        full_tools_list: ""
+          view_logs: "(Voir les journaux)"
+        full_tools_list: "liste complète de tous les outils"
         exceptions:
-          show: ""
+          show: "Afficher les exceptions"
 
     show_license:
-      error_fetching: ""
-      already_signed: ""
-      disagree: ""
+      error_fetching: "(Erreur lors de la récupération du texte de la licence)"
+      already_signed: "Vous avez déjà accepté cette entente."
+      disagree: "Je ne suis pas d'accord"
 
 
 
