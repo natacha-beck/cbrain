@@ -24,7 +24,7 @@
 
 <% title t('.title') %>
 
-<h2><%= t('.heading') %></h2>
+<h2><%= t('.headings.main') %></h2>
 
 <% if @providers.empty? || @users.empty? %>
 
@@ -58,7 +58,7 @@
 
   </table>
 
-  <%= center_legend(nil, [ [o_icon, t('.accessible')], [times_icon, t('.not_accessible')] ] ) %>
+  <%= center_legend(nil, [ [o_icon, t('.legends.accessible')], [times_icon, t('.legends.not_accessible')] ] ) %>
 
 </span>
 

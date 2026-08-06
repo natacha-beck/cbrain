@@ -1,5 +1,4 @@
 en:
-
   data_providers:
 
     common:
@@ -29,42 +28,61 @@ en:
       unknown_key: "Unknown! Talk to sysadmin!"
 
     data_providers_table:
-      create_system_dp: "Create New System Data Provider"
-      create_personal_dp: "Create Personal Data Provider"
-      check_all: "Check All"
-      user_access_report: "User Access Report"
-      transfer_restrictions_report: "Transfer Restrictions Report"
-      disk_usage_report: "Disk Usage Report"
-      disk_quotas: "Disk Quotas"
-      official_storage: "Official Data Storage"
-      user_site_storage: "User or Site Storage"
+      links:
+        create_system_dp: "Create New System Data Provider"
+        create_personal_dp: "Create Personal Data Provider"
+        check_all: "Check All"
+        user_access_report: "User Access Report"
+        transfer_restrictions_report: "Transfer Restrictions Report"
+        disk_usage_report: "Disk Usage Report"
+        disk_quotas: "Disk Quotas"
+      legends:
+        official_storage: "Official Data Storage"
+        user_site_storage: "User or Site Storage"
 
     delete_button:
-      button: "Delete Files"
-      explanation_html: "This panel allows you to <strong>delete permanently</strong> files that are present on the remote Data Provider. Note that this operation will work whether or not the files are registered. If they are registered, they will be unregistered first."
+      buttons:
+        delete_files: "Delete Files"
+      paragraphs:
+        explanation_html: |
+          <p class="medium_paragraphs">
+          This panel allows you to <strong>delete permanently</strong> files that
+          are present on the remote Data Provider. Note that this operation will
+          work whether or not the files are registered. If they are registered,
+          they will be unregistered first.
+          </p>
       submit: "Delete the files"
 
     dp_browse_table:
-      title_html: "Files Available On Remote Data Provider '%{name}'"
-      browsing_as_html: "(Browsing as user '%{login}')"
+      headings:
+        main: "Files Available On Remote Data Provider '%{name}'"
+        browsing_as_html: "(Browsing as user '%{login}')"
+      links:
+        registered: "Registered"
       register_files_as: "Register files as:"
       and_directories_as: "and directories as:"
       unacceptable: "Unacceptable?"
       belongs_to_html: "Belongs to user %{login}"
-      registered: "Registered"
       registered_with_owner_html: "%{link} %{owner}"
-      col:
+      columns:
+        name: "Name"
         changedir: "CD"
+        size: "Size"
+        type: "Type"
         last_modified: "Last modified"
         registered: "Registered?"
         note: "Note"
 
     dp_report_table:
-      col:
+      columns:
+        type: "Type"
         issue: "Issue"
         severity: "Severity"
         action: "Action"
-      of_count: "%{login} (of %{count})"
+        file: "File"
+        user: "User"
+      labels:
+        of_count: "%{login} (of %{count})"
 
     dp_show_path:
       top: "(top)"
@@ -201,31 +219,66 @@ en:
         data operation through a SSH master.
 
     one_data_provider_table:
-      loading: "Loading..."
-      check: "Check"
-      report: "Report"
-      col:
+      messages:
+        loading: "Loading..."
+      links:
+        check: "Check"
+        report: "Report"
+        browse: "Browse"
+      columns:
+        name: "Provider name"
+        type: "Type"
+        owner: "Owner"
+        group: "Project"
+        site: "Site"
+        time_zone: "Time zone"
         online: "Online?"
         alive: "Alive?"
         inconsistency: "Inconsistency"
+        files: "Files"
+        mode: "Mode"
+        syncability: "Syncability"
+        description: "Description"
+        browse: "Browse"
+        inconsistency: "Inconsistency"
 
     register_button:
-      button: "Register Files"
-      explanation_html: "This panel allows you to <strong>register</strong> files that are present on the remote Data Provider, but not yet known by the CBRAIN interface. Once registered, a file will be visible in the <strong>Files</strong> manager, and can be used for launching tasks."
-      recommendation_html: "We recommend that you use this Data Provider only to transfer data in and out of CBRAIN. When registering files, as you can see below, you can have them automatically moved or copied to another official CBRAIN Data Provider."
-      must_move_html: "<strong>In fact, this particular Data Provider leaves you no choice</strong> and you MUST select another Data Provider where your files will be copied or moved."
-      cleanup_html: "Once files are copied to another official Data Provider, we recommend you clean up the files here using the <strong>Delete Files</strong> panel, further right."
-      when_registering_html: "<strong>When registering, automatically...</strong>"
-      assign_project: "&darr; ... assign them to project ... &darr;"
-      move_or_copy: "&darr; ... move or copy them ... &darr;"
-      to: "&darr; ... to ... &darr;"
-      info: "(info)"
-      submit: "Register the files!"
-      select_project: "(Select a project)"
-      move_option: "... MOVE the files to Data Provider ->"
-      copy_option: "... COPY the files to Data Provider ->"
-      do_nothing: "... do nothing else!"
-      select_another_dp: "(Select another Data Provider)"
+      paragraphs:
+        register_html: |
+          <p class="medium_paragraphs">
+          This panel allows you to <strong>register</strong> files that are present on
+          the remote Data Provider, but not yet known by the CBRAIN
+          interface. Once registered, a file will be visible in
+          the <strong>Files</strong> manager, and can be used for launching
+          tasks.
+          </p>
+
+          <p class="medium_paragraphs">
+          We recommend that you use this Data Provider only to
+          transfer data in and out of CBRAIN. When registering files,
+          as you can see below, you can have them automatically moved
+          or copied to another official CBRAIN Data Provider.
+        must_move_html: |
+          <strong>In fact, this particular Data Provider leaves you no choice</strong>
+          and you MUST select another Data Provider where your files will be copied or moved.
+        cleanup_html: |
+          Once files are copied to another official Data Provider, we recommend you
+          clean up the files here using the <strong>Delete Files</strong> panel, further right.
+          </p>
+      headings:
+        when_registering: "When registering, automatically..."
+      datas:
+        assign_project: "Assign the files to a project"
+        move_or_copy: "Move or copy the files"
+        to: "to"
+        move_option: "... MOVE the files to Data Provider ->"
+        copy_option: "... COPY the files to Data Provider ->"
+        do_nothing: "... do nothing else!"
+      tool_tips:
+        info: "(info)"
+      include_blanks:
+        select_project: "(Select a project)"
+        select_another_dp: "(Select another Data Provider)"
       notes:
         title_html: "<strong>Important notes about automatically copying and moving files:</strong>"
         start: "The MOVE or COPY operation will start in background as soon as you click 'Register files'."
@@ -234,86 +287,196 @@ en:
         copy_done_html: "<strong>After a COPY operation is done</strong>, the files will still be visible here and will no longer seem to be registered."
         move_done: "After a MOVE operation is done, the files will have been erased from here."
         ignored: "Attempts to COPY or MOVE files to Data Providers where identically named files already exist will be ignored silently."
+      button: "Register Files"
+      submit: "Register the files!"
 
     show_user_key:
-      instructions_title: "SSH Key Configuration Instructions"
-      intro: "The box below shows your personal, public SSH key that the CBRAIN system will use to connect to your Data Provider. It is one line of text that needs to be installed in your home directory on the remote host you configured for your Data Provider."
-      experts_html: "<Strong>For experts:</strong> if you are already familiar with this type of setup, you can simply cut-and-paste the key with a text editor in the file <em>.ssh/authorized_keys</em> on the remote system. Make sure permissions on the folder <em>.ssh</em> are 'rwx------' and on the file <em>authorized_keys</em> are 'rw-------'."
-      newcomers_html: "<Strong>For newcomers:</strong> consider downloading the key using the link below and saving it as a file 'mykey.pub' on your current computer (or any computer). Then in a bash shell, run the 'ssh-copy-id' command as explained below and it will automatically connect to the remote host and install the key for you. The full command is:"
-      no_security_risk: "Note that revealing this key's content to other people causes no security risks. The information in this key is meant to be public and people cannot use it to access your information."
-      your_key_title: "Your Personal CBRAIN Public SSH Key"
-      error_fetching: "Error fetching public key"
-      download_link: "Download link:"
+      headings:
+        instructions: "SSH Key Configuration Instructions"
+        your_key: "Your Personal CBRAIN Public SSH Key"
+      paragraphs:
+        ssh_configuration_html: |
+          <tr><td class="left_align medium_paragraphs">
+            The box below shows your personal, public SSH key that the CBRAIN system will use
+            to connect to your Data Provider. It is one line of text that needs to be installed
+            in your home directory on the remote host you configured for your Data Provider.
+            <p>
+            <Strong>For experts:</strong> if you are already familiar with this type of setup, you can simply cut-and-paste the
+            key with a text editor in the file <em>.ssh/authorized_keys</em> on the remote system.
+            Make sure permissions on the folder <em>.ssh</em> are 'rwx------' and on the file <em>authorized_keys</em> are 'rw-------'.
+            <p>
+            <Strong>For newcomers:</strong> consider downloading the key using the link below and saving it as a file 'mykey.pub' on
+            your current computer (or any computer). Then in a bash shell, run the 'ssh-copy-id' command as
+            explained below and it will automatically connect to the remote host
+            and install the key for you. The full command is:<p>
+          </td></tr>
+        no_security_risk: |
+          <tr><td class="left_align medium_paragraphs">
+            Note that revealing this key's content to other people causes no security risks.
+            The information in this key is meant to be public and people cannot use it to access your information.
+          </tr></td>
+      errors:
+        fetching: "Error fetching public key"
+      links:
+        download: "Download link:"
 
     unregister_button:
       button: "Unregister Files"
-      explanation_html: "This panel allows you to <strong>unregister</strong> files that are present on the remote Data Provider and have already been registered by the CBRAIN interface. Once unregistered, a file will be no longer be visible in the <strong>Files</strong> manager, but will still be left on the disk at the remote site. It will be your responsibility to delete the data manually if you have an external access to the remote files, or you can use the <strong>Delete Files</strong> panel, further right."
+      paragraphs:
+        unregister_html: |
+          <p class="medium_paragraphs">
+            This panel allows you to <strong>unregister</strong> files that are present on
+            the remote Data Provider and have already been registered by
+            the CBRAIN interface. Once unregistered, a file will be no longer
+            be visible in the <strong>Files</strong> manager, but will still be left
+            on the disk at the remote site. It will be your responsibility
+            to delete the data manually if you have an external access
+            to the remote files, or you can use the <strong>Delete Files</strong>
+            panel, further right.
+          </p>
       submit: "Unregister the files!"
 
     view_option_button:
-      view_options: "View Options"
+      button: "View Options"
       browse_as_another_user: "Browse as another user:"
 
     browse:
       title: "Browse Data Provider"
-      refresh_list: "Refresh list of files"
+      links:
+        refresh_list: "Refresh list of files"
 
     dp_access:
       title: "DataProvider Access"
-      heading: "Data Provider User Access Report"
-      accessible: "accessible"
-      not_accessible: "not accessible"
+      headings:
+        main: "Data Provider User Access Report"
+      legends:
+        accessible: "accessible"
+        not_accessible: "not accessible"
 
     dp_transfers:
       title: "Transfer Restrictions"
-      heading: "Data Provider Transfer Restrictions Report"
-      intro_html: "This table shows which file transfers are allowed between Data Providers. Each cell of the table has two symbols, where %{ok} means <em>allowed</em> and %{no} means <em>not allowed</em>. Transfers will succeed if <strong>both</strong> symbols show up as %{ok}&nbsp;%{ok}."
-      first_symbol_html: "<strong>First symbol</strong>: This one indicate restrictions for transferring files between Data Provider pairs, independently of the states of any other resources. The restrictions are not necessarily symmetrical: it's possible to configure Data Providers A and B such that transfers from A &rarr; B are allowed (%{ok}) while transfers from B &rarr; A are not (%{no})."
-      second_symbol_html: "<strong>Second symbol</strong>: Since transfers are performed by a CBRAIN Portal, there are three other factors to take into account:"
-      whether:
-        online_html: "whether or not Data Providers are <em>online</em> or <em>offline</em>;"
-        mode_html: "whether or not Data Providers are <em>read/write</em> or <em>read only</em>;"
-        access: "whether or not the current Portal has itself access to each Data Provider."
-      annotations_html: "In such cases, Data Providers will be annotated with %{offline}, %{read_only} and/or %{no_access}. If all three properties allow the file transfers, the second symbol will be %{ok}; otherwise it will be %{no}."
-      offline: "(offline)"
-      read_only: "(read only)"
-      no_access: "(portal has no access)"
-      destination_dp: "Destination Data Provider"
-      source_dp: "Source Data Provider"
-      legend_title: "Copying or moving files:"
-      allowed: "allowed"
-      not_allowed: "not allowed"
+      headings:
+        main: "Data Provider Transfer Restrictions Report"
+        destination_dp: "Destination Data Provider"
+        source_dp: "Source Data Provider"
+      paragraphs:
+        intro_html: |
+          <p class="medium_paragraphs">
+            This table shows which file transfers are allowed between Data Providers. Each cell of the table has two symbols, where %{ok} means <em>allowed</em> and %{no} means <em>not allowed</em>. Transfers will succeed if <strong>both</strong> symbols show up as %{ok}&nbsp;%{ok}.
+          </p>
+          <p class="medium_paragraphs">
+            The first symbol indicates restrictions for transferring files between Data Provider pairs, independently of the states of any other resources. The restrictions are not necessarily symmetrical: it's possible to configure Data Providers A and B such that transfers from A &rarr; B are allowed (%{ok}) while transfers from B &rarr; A are not (%{no}).
+          </p>
+          <p class="medium_paragraphs">
+            The second symbol takes into account three other factors:
+            <ul>
+              <li>whether or not Data Providers are <em>online</em> or <em>offline</em>;</li>
+              <li>whether or not Data Providers are <em>read/write</em> or <em>read only</em>;</li>
+              <li>whether or not the current Portal has itself access to each Data Provider.</li>
+            </ul>
+            In such cases, Data Providers will be annotated with %{offline}, %{read_only} and/or %{no_access}. If all three properties allow the file transfers, the second symbol will be %{ok}; otherwise it will be %{no}.
+          </p>
+      access:
+        offline: "(offline)"
+        read_only: "(read only)"
+        no_access: "(portal has no access)"
+      legends:
+        title: "Copying or moving files:"
+        allowed: "allowed"
+        not_allowed: "not allowed"
 
     index:
       title: "Data Providers"
 
     new_personal:
       title: "Add New Personal Data Provider"
-      heading: "Add New Personal SSH-based Data Provider"
+      headings:
+        main: "Add New Personal Data Provider"
       field_explanation:
         name: "This should be a simple identifier with no special characters or spaces"
         group_html: "This will control which users within CBRAIN can view and access the files on your storage. The default and recommended project is your own private project, '%{group}'."
+      labels:
+        name: "Name"
+        description: "Description"
+        group: "Project"
+        remote_host: "Remote Hostname"
+        remote_user: "Remote Username"
+        remote_port: "Remote Port Number"
+        remote_dir: "Full Directory Path"
+        cloud_storage_endpoint: "S3 Endpoint URL"
+        cloud_storage_region: "S3 Endpoint Region"
+        cloud_storage_client_bucket_name: "Bucket Name"
+        cloud_storage_client_path_start: "Relative Path Prefix (Optional)"
+        cloud_storage_client_identifier: "Client Identifier"
+        cloud_storage_client_token: "Client Secret Token"
       titles:
+        name: "The name of the data provider."
+        description: "Brief description of the data provider."
         group: "Project ownership of this data provider. Project members will have access to the provider, but will not be able configure it."
         remote_host: "Name of the remote machine on which the data provider is located."
         remote_user: "Username on the remote machine where the data provider is located."
-        remote_port: "Port number used to access remote machine on which the data provider is located. "
+        remote_port: "Port number used to access remote machine on which the data provider is located."
+        remote_dir: "Directory used for storing files"
+        cloud_storage_endpoint: "S3 Endpoint"
+        cloud_storage_region: "S3 Region"
+        cloud_storage_client_bucket_name: "Bucket Name"
+        cloud_storage_client_path_start: "Relative Path Prefix (Optional)"
+        cloud_storage_bucket: "Bucket Name"
+        cloud_storage_path_start: "Path Prefix (Optional)"
+        cloud_storage_client_identifier: "Client Identifier"
+        cloud_storage_client_token: "Client Secret Token"
+        ssh_tab: "SSH Data Provider"
+        s3_tab: "S3 Data Provider"
+      paragraphs:
+        name: |
+          <div class="field_explanation">The first line should be a short summary, and the rest are for any special notes for the users.</div>
+        description: |
+          <div class="field_explanation">This will control which users within CBRAIN can view and access the files on your storage. The default and recommended project is your own private project, '<%= current_user.own_group.name %>'.</div>
+        group: |
+            <div class="field_explanation">This will control which users within CBRAIN can view and access the files on your storage. The default and recommended project is your own private project, '<%= current_user.own_group.name %>'.</div>
+        before_ssh_dp: |
+          Use this type:
+        ssh_dp: |
+          <p class="medium_paragraphs">
+
+            A SSH Data Provider connects to a UNIX server using SSH and
+            transfers files back and forth using the 'rsync' command and sometimes
+            other basic commands such as "mkdir", in a non-interactive mode. For this
+            to work, you'll need to make sure that:
+
+            <p>
+
+            <ul>
+              <li>The user account on the remote host has a 'clean shell'.<br>
+              That means when login non-interactively, no messages
+              are printed on stdout or stderr.<br>
+              For more information, ask your sysadmin about this.
+              <li>You've installed a SSH key in that account; see the panel at the bottom of this form.
+              <li>The remote host is not behind a firewall or a two-Factor authentication mechanism.
+            </ul>
+
+            <p>
+        s3_dp: |
+          <p>
+
+          Provide the necessary information to connect to a S3-Compatible bucket.
+
+          <p>
+
+      legends:
+        ssh_params: "SSH parameters"
+        s3_params: "S3 Connection Parameters"
+
+      submit: "Create New Data Provider"
 
     new:
       title: "Add New Data Provider"
-      select_provider_type: "Select Provider Type"
-      type_info_toggle: "(Data Provider Type Information)"
-      portal_key_note: "This key should be installed on the host machines of SSH or Smart Data Providers to allow remote access."
-      labels:
-        bucket_name: "Bucket Name (Only needed for S3FlatDataProvider)"
-        client_path_start: "Client Starting Path (Only needed for S3FlatDataProvider)"
-        endpoint: "Endpoint (Only needed for S3FlatDataProvider)"
-        region: "Region (Only needed for S3FlatDataProvider)"
-        meta_must_move: "Files must be copied/moved upon registration (browsable DPs only):"
-        meta_browse_gid: "Files can be browsed only by members of this project (browsable DPs only):"
-        meta_no_uploads: "Cannot be used for uploading files from the file manager:"
-        meta_no_viewers: "Files cannot be viewed in the file manager:"
+      headings:
+        main: "Add New Data Provider"
+        supertitle: "Public SSH Key for this CBRAIN Portal"
       titles:
+        name: "The name of the data provider."
+        description: "Brief description of the data provider."
         time_zone: "Time zone where this data provider is located."
         type: "Type of data provider."
         owner: "Owner of this data provider. The owner has full rights to configure and use the data provider."
@@ -324,47 +487,96 @@ en:
         remote_host: "Name of the remote machine on which the data provider is located."
         alternate_host: "Alternate name(s) (comma-separated) of the remote machine on which the data provider is located (required only for Smart data providers)."
         remote_user: "Username on the remote machine where the data provider is located."
-        remote_port: "Port number used to access remote machine on which the data provider is located. "
+        remote_port: "Port number used to access remote machine on which the data provider is located."
+        remote_dir: "Directory used for storing files"
         containerized_path: "Data path inside container"
-        cloud_identifier: "Identifier for cloud storage service."
-        cloud_token: "Token or password for cloud storage service."
-        cloud_bucket: "Bucket Name for cloud storage service."
-        cloud_path_start: "Starting path for cloud storage service."
-        cloud_endpoint: "Endpoint for cloud storage service."
-        cloud_region: "Region for cloud storage service."
-        datalad_url: "URL for the Datalad repository."
-        datalad_path: "Relative path for the Datalad repository"
+        cloud_storage_client_identifier: "Identifier for cloud storage service."
+        cloud_storage_client_token: "Token or password for cloud storage service."
+        cloud_storage_client_bucket_name: "Bucket Name for cloud storage service."
+        cloud_storage_client_path_start: "Starting path for cloud storage service."
+        cloud_storage_endpoint: "Endpoint for cloud storage service."
+        cloud_storage_region: "Region for cloud storage service."
+        datalad_repository_url: "URL for the Datalad repository."
+        datalad_relative_path: "Relative path for the Datalad repository"
+      labels:
+        sincability: "Syncability"
+        name: "Name"
+        description: "Description"
+        time_zone: "Time Zone"
+        type: "Type"
+        status: "Status"
+        mode: "Mode"
+        owner: "Owner"
+        group: "Project"
+        online: "Status"
+        read_only: "Mode"
+        syncable: "Syncability"
+        remote_host: "Remote Hostname"
+        alternate_host: "Alternate Hostname(s)"
+        remote_user: "Remote Username"
+        remote_port: "Remote Port Number"
+        remote_dir: "Full Directory Path"
+        containerized_path: "Containerized Data Path"
+        cloud_storage_client_identifier: "Client Identifier"
+        cloud_storage_client_token: "Client Token"
+        cloud_storage_client_bucket_name: "Bucket Name (Only needed for S3FlatDataProvider)"
+        cloud_storage_client_path_start: "Starting Path (Only needed for S3FlatDataProvider)"
+        cloud_storage_endpoint: "Endpoint (Only needed for S3FlatDataProvider)"
+        cloud_storage_region: "Region (Only needed for S3FlatDataProvider)"
+        datalad_repository_url: "Datalad Repository URL"
+        datalad_relative_path: "Datalad Relative Path"
+        meta_must_move: "Files must be copied/moved upon registration (browsable DPs only):"
+        meta_browse_gid: "Files can be browsed only by members of this project (browsable DPs only):"
+        meta_no_uploads: "Cannot be used for uploading files from the file manager:"
+        meta_no_viewers: "Files cannot be viewed in the file manager:"
       legends:
         ssh_params: "SSH parameters for remote Data Providers"
         datalad_config: "Datalad Repository Configuration"
-      field_explanation:
-        bucket_name: "Keep in mind, the bucket name should be specific enough to be unique to all of AWS."
+        other_properties: "Other Properties"
+        cloud_storage_config: "Cloud Storage Configuration"
+      datas:
+        unknown_key: "Unknown! Talk to sysadmin!"
+      field_explanations:
+        description: "The first line should be a short summary, and the rest are for any special notes for the users."
+        cloud_storage_client_bucket_name: "Keep in mind, the bucket name should be specific enough to be unique to all of AWS."
+        type_info_toggle: "(Data Provider Type Information)"
+      select_provider_type: "Select Provider Type"
+      portal_key_note: "This key should be installed on the host machines of SSH or Smart Data Providers to allow remote access."
+      submit: "Create New Data Provider"
 
     report:
       title: "Data Provider Report"
-      heading_html: "%{name} - Inconsistency report"
-      reload_report: "Reload report"
+      headings:
+        main: "%{name} - Inconsistency report"
+      links:
+        reload_report: "Reload report"
       submit: "Repair selected issues"
 
     show:
       title: "Data Provider Info"
-      inconsistency_report: "Inconsistency Report"
-      file_registration_statistics: "File Registration Statistics"
-      test_configuration: "Test Configuration"
-      delete_confirm: "Are you sure you want to delete '%{name}' ?"
-      update_error: "Provider could not be updated."
-      revision_info_dp: "Revision Info (DataProvider)"
-      revision_info_type_html: "Revision Info (%{type})"
-      official_storage_html: "<strong>Official Storage</strong>"
-      user_site_storage_html: "<strong>User or Site Storage</strong>"
-      portals_html: "<strong>Portals<strong>"
-      execution_servers_html: "<strong>Execution Servers<strong>"
-      cannot_sync_html: "%{rr} cannot sync %{dp}"
-      portal_key_note: "This key should be installed on this Data Provider's host machine to allow remote access."
-      log_title: "Data Provider Log"
-      headers:
+      titles:
+        log: "Data Provider Log"
+      links:
+        inconsistency_report: "Inconsistency Report"
+        file_registration_statistics: "File Registration Statistics"
+        test_configuration: "Test Configuration"
+      confirms:
+        delete: "Are you sure you want to delete '%{name}' ?"
+      cells:
+        group: "Project"
+        read_only: "Read Only"
+        read_write: "Read/Write"
+        not_syncable: "NOT syncable"
+        fully_syncable: "Fully syncable"
+        revision_info_dp: "Revision Info (DataProvider)"
+        revision_info_type_html: "Revision Info (%{type})"
+      headings:
+        update_error: "Provider could not be updated."
+        mode: "Mode"
+        group: "Project"
+        physical_data_location: "Physical Data Location"
+        cannot_sync_html: "%{rr} cannot sync %{dp}"
         datalad_config: "Datalad Configuration"
-        client_bucket_name: "Client Bucket Name"
         client_path_start: "Client Starting Path"
         endpoint: "Endpoint"
         region: "Region"
@@ -376,6 +588,26 @@ en:
         copy_move_targets: "Files can be copied or moved to these other Data Providers"
         browse_gid: "Files can be browsed only by members of this project"
         accessed_by_servers: "File contents can be accessed by these Servers"
-      field_explanation:
+        ssh_params: "SSH parameters"
+        alternate_host: "Alternate Hostname(s)"
+        containerized_storage_config: "Containerized Storage Configuration"
+        containerized_data_path: "Containerized Data Path"
+        cloud_storage_config: "Cloud Storage Configuration"
+        cloud_storage_client_identifier: "Client Identifier"
+        cloud_storage_client_token: "Client Token"
+        client_bucket_name: "Client Bucket Name"
+        datalad_relative_path: "Datalad Relative Path"
+        other_properties: "Other Properties"
+        official_storage_html: "<strong>Official Storage</strong>"
+        user_site_storage_html: "<strong>User or Site Storage</strong>"
+        portals_html: "<strong>Portals</strong>"
+        execution_servers_html: "<strong>Execution Servers</strong>"
+        public_ssh_key_note: "Public SSH Key for this CBRAIN Portal"
+      field_explanations:
         license_agreements: "Enter one agreement name per line. Note that only alphanumeric characters, underscores (_) and dashes (-) are accepted."
         alternate_host: "Comma-separated list of alternate hostnames; hostname1,hostname2,hostname3,..."
+      include_blanks:
+        any_users: "(Any Users)"
+      datas:
+        portal_key_note: "This key should be installed on this Data Provider's host machine to allow remote access."
+        unknown_key: "Unknown! Talk to sysadmin!"

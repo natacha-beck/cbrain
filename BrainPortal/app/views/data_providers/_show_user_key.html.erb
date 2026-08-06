@@ -24,31 +24,22 @@
 
 
   <table>
-    <tr><th class="supertitle"><%= t('.instructions_title') %></th></tr>
-
-    <tr><td class="left_align medium_paragraphs">
-      <%= t('.intro') %>
-      <p>
-      <%= t('.experts_html') %>
-      <p>
-      <%= t('.newcomers_html') %><p>
-    </td></tr>
+    <tr><th class="supertitle"><%= t('.headings.instructions') %></th></tr>
+      <%= t('.paragraphs.ssh_configuration_html') %>
 
     <tr><td class="left_align medium_paragraphs">
       <pre>ssh-copy-id -f -i mykey.pub -p <%= @provider.remote_port.presence || '22' %> <%= @provider.remote_user.presence || '[username_from_config_above]' %>@<%= @provider.remote_host.presence || '[hostname_from_config_above]' %></pre>
     </td></tr>
 
-    <tr><td class="left_align medium_paragraphs">
-      <%= t('.no_security_risk') %>
-    </tr></td>
+      <%= t('.paragraphs.no_security_risk') %>
 
-    <tr><th class="supertitle"><%= t('.your_key_title') %></th></tr>
+    <tr><th class="supertitle"><%= t('.headings.your_key') %></th></tr>
 
-    <tr><td><pre class="ssh_key"><%= pretty_ssh_key @provider.user.ssh_key(create_it: true).public_key rescue t('.error_fetching') %></pre></td></tr>
+    <tr><td><pre class="ssh_key"><%= pretty_ssh_key @provider.user.ssh_key(create_it: true).public_key rescue t('.errors.fetching') %></pre></td></tr>
 
     <tr><td>
-      <%= t('.download_link') %>
-      <%= link_to "mykey.pub", "data:plain;charset=utf-8,#{url_encode(@provider.user.ssh_key(create_it: true).public_key) rescue t('.error_fetching') }" , download: "mykey.pub" %>
+      <%= t('.links.download') %>
+      <%= link_to "mykey.pub", "data:plain;charset=utf-8,#{url_encode(@provider.user.ssh_key(create_it: true).public_key) rescue t('.errors.fetching') }" , download: "mykey.pub" %>
     </td></tr>
 
   </table>

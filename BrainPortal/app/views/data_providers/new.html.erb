@@ -24,7 +24,7 @@
 
 <% title t('.title') %>
 
-<h2><%= t('.title') %></h2>
+<h2><%= t('.headings.main') %></h2>
 
 <%= error_messages_for(@provider) %>
 
@@ -32,20 +32,20 @@
 
   <div class="generalbox">
 
-    <span title="<%= t('data_providers.common.name') %>">
-      <p><%= f.label :name, t('activerecord.attributes.data_provider.name') %><br/>
+    <span title="<%= t('.titles.name') %>">
+      <p><%= f.label :name, t('.labels.name') %><br/>
       <%= f.text_field :name %></p>
     </span>
 
-    <span title="<%= t('data_providers.common.description') %>">
-      <p><%= f.label :description, t('activerecord.attributes.data_provider.description') %><br/>
+    <span title="<%= t('.titles.description') %>">
+      <p><%= f.label :description, t('.labels.description') %><br/>
       <%= f.text_area :description, :rows => 10, :cols => 40 %><br/>
-      <div class="field_explanation"><%= t('data_providers.common.field_explanation.description') %></div>
+      <div class="field_explanation"><%= t('.field_explanations.description') %></div>
       </p>
     </span>
 
     <span title="<%= t('.titles.time_zone') %>">
-      <p><%= f.label :time_zone, t('time_zone') %><br/>
+      <p><%= f.label :time_zone, t('.labels.time_zone') %><br/>
       <%= f.time_zone_select :time_zone,
           ActiveSupport::TimeZone.all.select { |t| t.name =~ /canada/i },
           { :default => ActiveSupport::TimeZone['Eastern Time (US & Canada)'],
@@ -55,9 +55,9 @@
 
     <span title="<%= t('.titles.type') %>">
 
-      <p><%= f.label :type, t('activerecord.attributes.data_provider.type') %><br/>
+      <p><%= f.label :type, t('.labels.type') %><br/>
       <%= f.select :type, grouped_options_for_select(@typelist, @provider.type), { :prompt => t('.select_provider_type') } %><br/>
-      <div class="field_explanation"><%= show_hide_toggle t('.type_info_toggle'), "#data_provider_classes", :class  => 'action_link' %></div>
+      <div class="field_explanation"><%= show_hide_toggle t('.field_explanations.type_info_toggle'), "#data_provider_classes", :class  => 'action_link' %></div>
       </p>
 
       <div id="data_provider_classes" style="display:none">
@@ -66,29 +66,29 @@
     </span>
 
     <span title="<%= t('.titles.owner') %>">
-      <p><%= f.label :user_id, t('owner') %><br/>
+      <p><%= f.label :user_id, t('.labels.owner') %><br/>
         <%= user_select("data_provider[user_id]", { :selector => @provider }, { :disabled => ! current_user.has_role?(:admin_user) } ) %>
       </p>
     </span>
 
     <span title="<%= t('.titles.group') %>">
-      <p><%= f.label :group_id, t('activerecord.models.group.one') %><br/>
+      <p><%= f.label :group_id, t('.labels.group') %><br/>
         <%= group_select("data_provider[group_id]", :selector => @provider) %>
       </p>
     </span>
 
     <span title="<%= t('.titles.online') %>">
-      <p><%= f.label :online, t('status') %><br/>
+      <p><%= f.label :online, t('.labels.status') %><br/>
       <%= f.select :online, { t('online') => true, t('online') => false } %></p>
     </span>
 
     <span title="<%= t('.titles.read_only') %>">
-      <p><%= f.label :read_only, t('data_providers.common.labels.mode') %><br/>
+      <p><%= f.label :read_only, t('.labels.mode') %><br/>
       <%= f.select :read_only, { t('data_providers.common.mode.read_write') => false, t('data_providers.common.mode.read_only') => true } %></p>
     </span>
 
     <span title="<%= t('.titles.not_syncable') %>">
-      <p><%= f.label :not_syncable, t('data_providers.common.labels.syncability') %><br/>
+      <p><%= f.label :not_syncable, t('.labels.syncability') %><br/>
       <%= f.select :not_syncable, { t('data_providers.common.syncability.fully_syncable') => false, t('data_providers.common.syncability.not_syncable') => true } %></p>
     </span>
 
@@ -98,22 +98,22 @@
       <legend><%= t('data_providers.common.ssh_params') %></legend>
 
       <div title="<%= t('.titles.remote_host') %>">
-        <p><%= f.label :remote_host, t('activerecord.attributes.data_provider.remote_host') %><br/>
+        <p><%= f.label :remote_host, t('.labels.remote_host') %><br/>
         <%= f.text_field :remote_host %></p>
       </div>
 
       <div title="<%= t('.titles.alternate_host') %>">
-        <p><%= f.label :alternate_host, t('activerecord.attributes.data_provider.alternate_host') %><br/>
+        <p><%= f.label :alternate_host, t('.labels.alternate_host') %><br/>
         <%= f.text_field :alternate_host %></p>
       </div>
 
       <div title="<%= t('.titles.remote_user') %>">
-        <p><%= f.label :remote_user, t('activerecord.attributes.data_provider.remote_user') %><br/>
+        <p><%= f.label :remote_user, t('.labels.remote_user') %><br/>
         <%= f.text_field :remote_user %></p>
       </div>
 
       <div title="<%= t('.titles.remote_port') %>">
-        <p><%= f.label :remote_port, t('activerecord.attributes.data_provider.remote_port') %><br/>
+        <p><%= f.label :remote_port, t('.labels.remote_port') %><br/>
         <%= f.text_field :remote_port, :size => 6 %></p>
       </div>
     </fieldset>
@@ -123,8 +123,8 @@
     <fieldset class="groupentry">
     <legend><%= t('data_providers.common.physical_data_location') %></legend>
 
-      <span title="<%= t('data_providers.common.description') %>">
-        <p><%= f.label :remote_dir, t('activerecord.attributes.data_provider.remote_dir') %><br/>
+      <span title="<%= t('.titles.remote_dir') %>">
+        <p><%= f.label :remote_dir, t('.labels.remote_dir') %><br/>
         <%= f.text_field :remote_dir, :size => 80 %></p>
       </span>
 
@@ -136,7 +136,7 @@
       <legend><%= t('data_providers.common.containerized_config') %></legend>
 
       <span title="<%= t('.titles.containerized_path') %>">
-        <p><%= f.label :containerized_path, t('activerecord.attributes.data_provider.containerized_path') %><br/>
+        <p><%= f.label :containerized_path, t('.labels.containerized_path') %><br/>
         <%= f.text_field :containerized_path, :size => 80 %></p>
       </span>
     </fieldset>
@@ -144,38 +144,38 @@
     <p>
 
     <fieldset class="groupentry">
-      <legend><%= t('data_providers.common.cloud_config') %></legend>
+      <legend><%= t('.legends.cloud_storage_config') %></legend>
 
-      <span title="<%= t('.titles.cloud_identifier') %>">
-        <p><%= f.label :cloud_storage_client_identifier, t('activerecord.attributes.data_provider.cloud_storage_client_identifier') %><br/>
+      <span title="<%= t('.titles.cloud_storage_client_identifier') %>">
+        <p><%= f.label :cloud_storage_client_identifier, t('.labels.cloud_storage_client_identifier') %><br/>
         <%= f.text_field :cloud_storage_client_identifier, :size => 40, :autocomplete => 'off' %></p>
       </span>
 
-      <span title="<%= t('.titles.cloud_token') %>">
-        <p><%= f.label :cloud_storage_client_token, t('activerecord.attributes.data_provider.cloud_storage_client_token') %><br/>
+      <span title="<%= t('.titles.cloud_storage_client_token') %>">
+        <p><%= f.label :cloud_storage_client_token, t('.labels.cloud_storage_client_token') %><br/>
         <%= f.password_field :cloud_storage_client_token, :size => 80, :autocomplete => 'off' %></p>
       </span>
 
-      <span title="<%= t('.titles.cloud_bucket') %>">
-        <p><%= f.label :cloud_storage_client_bucket_name, t('.labels.bucket_name') %><br/>
+      <span title="<%= t('.titles.cloud_storage_client_bucket_name') %>">
+        <p><%= f.label :cloud_storage_client_bucket_name, t('.labels.cloud_storage_client_bucket_name') %><br/>
         <%= f.text_field :cloud_storage_client_bucket_name, :size => 80 %></p>
         <div class="field_explanation">
-          <%= t('.field_explanation.bucket_name') %>
+          <%= t('.field_explanations.cloud_storage_client_bucket_name') %>
         </div>
       </span>
 
-      <span title="<%= t('.titles.cloud_path_start') %>">
-        <p><%= f.label :cloud_storage_client_path_start, t('.labels.client_path_start') %><br/>
+      <span title="<%= t('.titles.cloud_storage_client_path_start') %>">
+        <p><%= f.label :cloud_storage_client_path_start, t('.labels.cloud_storage_client_path_start') %><br/>
         <%= f.text_field :cloud_storage_client_path_start, :size => 80 %></p>
       </span>
 
-      <span title="<%= t('.titles.cloud_endpoint') %>">
-        <p><%= f.label :cloud_storage_endpoint, t('.labels.endpoint') %><br/>
+      <span title="<%= t('.titles.cloud_storage_endpoint') %>">
+        <p><%= f.label :cloud_storage_endpoint, t('.labels.cloud_storage_endpoint') %><br/>
         <%= f.text_field :cloud_storage_endpoint, :size => 80 %></p>
       </span>
 
-      <span title="<%= t('.titles.cloud_region') %>">
-        <p><%= f.label :cloud_storage_region, t('.labels.region') %><br/>
+      <span title="<%= t('.titles.cloud_storage_region') %>">
+        <p><%= f.label :cloud_storage_region, t('.labels.cloud_storage_region') %><br/>
         <%= f.text_field :cloud_storage_region, :size => 80 %></p>
       </span>
     </fieldset>
@@ -185,13 +185,13 @@
     <fieldset class="groupentry">
       <legend><%= t('.legends.datalad_config') %></legend>
 
-      <span title="<%= t('.titles.datalad_url') %>">
-        <p><%= f.label :datalad_repository_url, t('activerecord.attributes.data_provider.datalad_repository_url') %><br/>
+      <span title="<%= t('.titles.datalad_repository_url') %>">
+        <p><%= f.label :datalad_repository_url, t('.labels.datalad_repository_url') %><br/>
         <%= f.text_field :datalad_repository_url, :size => 80 %></p>
       </span>
 
-      <span title="<%= t('.titles.datalad_path') %>">
-        <p><%= f.label :datalad_relative_path, t('activerecord.attributes.data_provider.datalad_relative_path') %><br/>
+      <span title="<%= t('.titles.datalad_relative_path') %>">
+        <p><%= f.label :datalad_relative_path, t('.labels.datalad_relative_path') %><br/>
         <%= f.text_field :datalad_relative_path, :size => 80 %></p>
       </span>
     </fieldset>
@@ -199,7 +199,7 @@
     <p>
 
     <fieldset class="groupentry">
-      <legend><%= t('data_providers.common.other_properties') %></legend>
+      <legend><%= t('.legends.other_properties') %></legend>
 
       <p><label for='meta_must_move'><%= t('.labels.meta_must_move') %></label>
       <%= check_box_tag 'meta[must_move]',  "on", @provider.new_record? ? false : !@provider.meta[:must_move].blank? %>
@@ -216,14 +216,14 @@
 
 
   </div>
-  <p><%= submit_tag t('data_providers.common.create_new_dp') %></p>
+  <p><%= submit_tag t('.submit') %></p>
 
 <% end %>
 
 <div class="display_cell" style="padding-left: 1em;">
   <table>
-    <tr><th colspan="2" class="supertitle"><%= t('data_providers.common.portal_ssh_key_title') %></th></tr>
+    <tr><th colspan="2" class="supertitle"><%= t('.headings.supertitle') %></th></tr>
     <tr><td><%= t('.portal_key_note') %></td></tr>
-    <tr><td><PRE class="ssh_key"><%= pretty_ssh_key(RemoteResource.current_resource.get_ssh_public_key || t('data_providers.common.unknown_key')) %></PRE></td></tr>
+    <tr><td><PRE class="ssh_key"><%= pretty_ssh_key(RemoteResource.current_resource.get_ssh_public_key || t('.datas.unknown_key')) %></PRE></td></tr>
   </table>
 </div>

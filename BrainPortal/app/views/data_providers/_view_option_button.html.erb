@@ -24,7 +24,7 @@
 
 <% user_list = current_user.available_users.sort_by(&:login) %>
 <% if user_list.size > 1 %>
-  <%= button_with_dropdown_menu(t('.view_options')) do %>
+  <%= button_with_dropdown_menu(t('.button')) do %>
     <div class="view_options">
       <%= t('.browse_as_another_user') %>
       <%=

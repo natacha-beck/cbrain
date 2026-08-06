@@ -24,85 +24,128 @@
 
 <% title t('.title') %>
 
-<h2><%= t('.heading') %></h2>
+<h2><%= t('.headings.main') %></h2>
 
 <%= error_messages_for(@provider) %>
 
 <%= form_for @provider, :as => :data_provider, :url => { :action => "create_personal" }, :datatype => "script" do |f| -%>
 
-  <%
-    # Note about the type: the form currently only supports the UserkeyFlatDirSshDataProvider
-    # but the controller also supports the S3MultiLevelDataProvider. Eventually we
-    # will allow both. If a user modifies the form in their browser they can still create
-    # their own S3 type, but that's ok.
-  %>
-  <%= hidden_field_tag 'data_provider[type]', 'UserkeyFlatDirSshDataProvider' %>
-
   <div class="generalbox">
 
-    <div title="<%= t('data_providers.common.name') %>">
-      <%= f.label :name, t('activerecord.attributes.data_provider.name') %><br>
+    <div title=<%= t('.titles.name') %>>
+      <%= f.label :name, t('.labels.name') %><br>
       <%= f.text_field :name %>
-      <div class="field_explanation"><%= t('.field_explanation.name') %></div>
+      <%= t('.paragraphs.name') %>
     </div>
 
     <p>
 
-    <div title="<%= t('t('data_providers.common.description')') %>">
-      <%= f.label :description, t('activerecord.attributes.data_provider.description') %><br>
+    <div title=<%= t('.titles.description') %>>
+      <%= f.label :description, t('.labels.description') %><br>
       <%= f.text_area :description, :rows => 3, :cols => 85 %>
-      <div class="field_explanation"><%= t('data_providers.common.field_explanation.description') %></div>
+      <%= t('.paragraphs.description') %>
     </div>
 
     <p>
 
-    <div title="<%= t('.titles.group') %>">
-      <%= f.label :group_id, t('activerecord.models.group.one') %><br>
+    <div title=<%= t('.titles.group') %>>
+      <%= f.label :group_id, t('.labels.group') %><br>
       <%= group_select("data_provider[group_id]", { :groups => @groups, :selector => @provider.group_id.to_s }) %>
-      <div class="field_explanation"><%= t('.field_explanation.group_html', group: current_user.own_group.name) %></div>
+      <%= t('.paragraphs.group') %>
     </div>
 
     <p>
 
-    <fieldset class="groupentry">
-      <legend><%= t('data_providers.common.ssh_params') %></legend>
+    <%= build_tabs do |tb| %>
+      <%= tb.tab(t('.titles.ssh_tab')) do %>
 
-      <div title="<%= t('.titles.remote_host') %>">
-        <%= f.label :remote_host, t('activerecord.attributes.data_provider.remote_host') %><br>
-        <%= f.text_field :remote_host, :size => 40 %>
-      </div>
+        <%= t('.paragraphs.before_ssh_dp') %> <%= f.radio_button :type, 'UserkeyFlatDirSshDataProvider' %>
 
-      <p>
+        <%= t('.paragraphs.ssh_dp') %>
 
-      <div title="<%= t('.titles.remote_user') %>">
-        <%= f.label :remote_user, t('activerecord.attributes.data_provider.remote_user') %><br>
-        <%= f.text_field :remote_user, :size => 40 %>
-      </div>
+        <fieldset class="groupentry">
+          <legend><%= t('.legends.ssh_params') %></legend>
 
-      <p>
+          <div title=<%= t('.titles.remote_host') %>>
+            <%= f.label :remote_host, t('.labels.remote_host') %><br>
+            <%= f.text_field :remote_host, :size => 40 %>
+          </div>
 
-      <div title="<%= t('.titles.remote_port') %>">
-        <%= f.label :remote_port, t('activerecord.attributes.data_provider.remote_port') %><br>
-        <%= f.text_field :remote_port, :size => 6 %>
-      </div>
+          <p>
 
-      <p>
+          <div title=<%= t('.titles.remote_user') %>>
+            <%= f.label :remote_user, t('.labels.remote_user') %><br>
+            <%= f.text_field :remote_user, :size => 40 %>
+          </div>
 
-      <div title="<%= t('data_providers.common.description') %>">
-        <%= f.label :remote_dir, t('activerecord.attributes.data_provider.remote_dir') %><br>
-        <%= f.text_field :remote_dir, :size => 80 %>
-      </div>
+          <p>
 
-    </fieldset>
+          <div title=<%= t('.titles.remote_port') %>>
+            <%= f.label :remote_port, t('.labels.remote_port') %><br>
+            <%= f.text_field :remote_port, :size => 6 %>
+          </div>
+
+          <p>
+
+          <div title=<%= t('.titles.remote_dir') %>>
+            <%= f.label :remote_dir, t('.labels.remote_dir') %><br>
+            <%= f.text_field :remote_dir, :size => 80 %>
+          </div>
+
+        </fieldset>
+
+        <p>
+
+        <%= render :partial => 'show_user_key' %>
+
+      <% end %>
+
+      <%= tb.tab(t('.titles.s3_tab')) do %>
+        <%= t('.paragraphs.before_ssh_dp') %> <%= f.radio_button :type, 'S3FlatDataProvider' %>
+
+        <%= t('.paragraphs.s3_dp') %>
+
+        <fieldset class="groupentry">
+          <legend><%= t('.legends.s3_params') %></legend>
+          <div title=<%= t('.titles.cloud_storage_endpoint') %>>
+            <%= f.label :cloud_storage_endpoint, t('.labels.cloud_storage_endpoint') %><br>
+            <%= f.text_field :cloud_storage_endpoint, :size => 80 %>
+          </div> <p>
+
+          <div title=<%= t('.titles.cloud_storage_region') %>>
+            <%= f.label :cloud_storage_region, t('.labels.cloud_storage_region') %><br>
+            <%= f.text_field :cloud_storage_region, :size => 20 %>
+          </div> <p>
+
+          <div title=<%= t('.titles.cloud_storage_client_bucket_name') %>>
+            <%= f.label :cloud_storage_client_bucket_name, t('.labels.cloud_storage_client_bucket_name') %><br>
+            <%= f.text_field :cloud_storage_client_bucket_name, :size => 40 %>
+          </div> <p>
+
+          <div title=<%= t('.titles.cloud_storage_client_path_start') %>>
+            <%= f.label :cloud_storage_client_path_start, t('.labels.cloud_storage_client_path_start') %><br>
+            <%= f.text_field :cloud_storage_client_path_start, :size => 80 %>
+          </div> <p>
+
+          <div title=<%= t('.titles.cloud_storage_client_identifier') %>>
+            <%= f.label :cloud_storage_client_identifier, t('.labels.cloud_storage_client_identifier') %><br>
+            <%= f.text_field :cloud_storage_client_identifier, :size => 40 %>
+          </div> <p>
+
+          <div title=<%= t('.titles.cloud_storage_client_token') %>>
+            <%= f.label :cloud_storage_client_token, t('.labels.cloud_storage_client_token') %><br>
+            <%= f.password_field :cloud_storage_client_token, :size => 80 %>
+          </div>
+        </fieldset>
+
+      <% end %>
+
+    <% end %>
+
   </div>
 
   <p>
 
-  <%= render :partial => 'show_user_key' %>
-
-  <p>
-
-  <%= submit_tag t('data_providers.common.create_new_dp') %></p>
+  <%= submit_tag t('.submit') %></p>
 
 <% end %>
-

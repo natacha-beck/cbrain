@@ -24,28 +24,22 @@
 
 <%= button_with_dropdown_menu(t('.button')) do %>
 
-  <p class="medium_paragraphs">
-  <%= t('.explanation_html') %>
-  </p>
-
-  <p class="medium_paragraphs">
-  <%= t('.recommendation_html') %>
+  <%= t('.paragraphs.register_html') %>
   <% if @provider.meta[:must_move].present? %>
-  <%= t('.must_move_html') %>
+  <%= t('.paragraphs.must_move_html') %>
   <% end %>
-  <%= t('.cleanup_html') %>
-  </p>
+  <%= t('.paragraphs.cleanup_html') %>
 
-  <strong><%= t('.when_registering_html') %></strong>
+  <strong><%= t('.headings.when_registering') %></strong>
   <br/>
 
   <table class="simple">
     <tr>
-      <td class="centered"><%= t('.assign_project') %></td>
-      <td class="centered"><%= t('.move_or_copy') %></td>
-      <td class="centered"><%= t('.to') %>
+      <td class="centered">&darr; ... <%= t('.datas.assign_project') %> ... &darr;</td>
+      <td class="centered">&darr; ... <%= t('.datas.move_or_copy') %> ... &darr;</td>
+      <td class="centered">&darr; ... <%= t('.datas.to') %> ... &darr;
         <% main_dp_set = DataProvider.find_all_accessible_by_user(current_user).all.select { |dp| ! dp.is_browsable? } %>
-        <%= html_tool_tip(t('.info'), :offset_y => 25, :offset_x => -200 ) do %>
+        <%= html_tool_tip(t('.tool_tips.info'), :offset_y => 25, :offset_x => -200 ) do %>
           <%= data_providers_descriptions(main_dp_set) %>
         <% end %>
       </td>
@@ -61,17 +55,17 @@
       </td>
     </tr>
     <tr>
-      <td><%= group_select :other_group_id, {}, { :include_blank => t('.select_project') } %></td>
+      <td><%= group_select :other_group_id, {}, { :include_blank => t('.include_blanks.select_project') } %></td>
 
     <td>
     <% auto_do_options = [
-                            [ t('.move_option'), "MOVE" ],
-                            [ t('.copy_option'), "COPY" ]
+                            [ t('.datas.move_option'), "MOVE" ],
+                            [ t('.datas.copy_option'), "COPY" ]
                          ]
       # Disable the MOVE option if the DP is read only
       auto_do_options[0].push({:disabled => true}) if @provider.read_only?
       # Add an option to leave files on the DP if the DP allows it.
-      auto_do_options.unshift( [t('.do_nothing'), "" ] ) unless @provider.meta[:must_move].present?
+      auto_do_options.unshift( [t('.datas.do_nothing'), "" ] ) unless @provider.meta[:must_move].present?
     %>
     <%= select_tag :auto_do, options_for_select( auto_do_options ) %>
     </td>
@@ -79,7 +73,8 @@
     <td>
     <%= data_provider_select :other_data_provider_id,
         { :data_providers => main_dp_set },
-        { :include_blank => t('.select_another_dp') }
+      include_blanks:
+        { :include_blank => t('.include_blanks.select_another_dp') }
     %>
     </td>
   </table>

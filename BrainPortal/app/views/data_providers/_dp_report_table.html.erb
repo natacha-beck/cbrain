@@ -52,37 +52,37 @@
 
     t.row { |issue| { :class => "severity-#{issue[:severity]}" } }
 
-    t.column(t('activerecord.attributes.data_provider.type'), :type,
+    t.column(t('.columns.type'), :type,
       :sortable => true,
       :filters  => default_filters_for(@issues, :type)
     ) { |issue| issue[:type].to_s.titleize }
 
-    t.column(t('.col.issue'), :message,
+    t.column(t('.columns.issue'), :message,
       :sortable => true
     )
 
-    t.column(t('.col.severity'), :severity,
+    t.column(t('.columns.severity'), :severity,
       :sortable => true,
       :filters  => default_filters_for(@issues, :severity)
     ) { |issue| issue[:severity].to_s.titleize }
 
-    t.column(t('.col.action'), :action,
+    t.column(t('.columns.action'), :action,
       :sortable => true,
       :filters  => default_filters_for(@issues, :action)
     ) { |issue| issue[:action] ? issue[:action].to_s.titleize : "(#{t('none')})" }
 
-    t.column(t('activerecord.models.file.one'), :userfile) do |issue|
+    t.column(t('.columns.file'), :userfile) do |issue|
       next "(#{t('none')})" unless issue[:userfile]
       link_to_userfile_if_accessible(issue[:userfile], current_user)
     end
 
-    t.column(t('activerecord.models.user.one'), :user_id,
+    t.column(t('.columns.user'), :user_id,
       :filters  => filter_values_for(@issues, :user_id,
         format: lambda do |format_info|
           value, label, count = *format_info
           {
            :value     => value,
-           :label     => t('.of_count', login: logins[value], count: user_counts[label]),
+           :label     => t('.labels.of_count', login: logins[value], count: user_counts[label]),
            :indicator => count,
           }
         end
