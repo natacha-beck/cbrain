@@ -30,10 +30,10 @@
 
 <div class="menu_bar">
   <% buttons =
-     [ [ t('.btn.userfile_disk_space'),  'SpaceResourceUsageForUserfile'      ],
-       [ t('.common.task_cpu_time'),     'CputimeResourceUsageForCbrainTask'  ],
-       [ t('.common.task_walltime'),     'WalltimeResourceUsageForCbrainTask' ],
-       [ t('.common.task_final_status'), 'SpaceResourceUsageForCbrainTask'    ],
+     [ [ t('.buttons.userfile_disk_space'), 'SpaceResourceUsageForUserfile'      ],
+       [ t('.common.task_cpu_time'),        'CputimeResourceUsageForCbrainTask'  ],
+       [ t('.common.task_walltime'),        'WalltimeResourceUsageForCbrainTask' ],
+       [ t('.common.task_final_status'),    'SpaceResourceUsageForCbrainTask'    ],
      ]
   %>
 
@@ -54,27 +54,26 @@
 <p>
 
 <fieldset>
-  <legend><%= t('.header_table_description') %></legend>
-  <p class="medium_paragraphs">
-  <%= t('.p_description_intro_html') %>
+  <legend><%= t('.legends.table_description') %></legend>
+  <%= t('.paragraphs.description_intro_html') %>
   <p class="medium_paragraphs">
   <% if    @maintype == 'SpaceResourceUsageForUserfile'      %>
-    <%= t('.p_description_space_userfile_html') %>
+    <%= t('.paragraphs.description_space_userfile_html') %>
   <% elsif @maintype == 'CputimeResourceUsageForCbrainTask'  %>
-    <%= t('.p_description_cputime_html') %>
+    <%= t('.paragraphs.description_cputime_html') %>
   <% elsif @maintype == 'WalltimeResourceUsageForCbrainTask' %>
-    <%= t('.p_description_walltime_html') %>
+    <%= t('.paragraphs.description_walltime_html') %>
   <% elsif @maintype == 'SpaceResourceUsageForCbrainTask'    %>
-    <%= t('.p_description_space_task_html') %>
+    <%= t('.paragraphs.description_space_task_html') %>
   <% end %>
   <p class="medium_paragraphs">
-  <%= t('.p_description_cached_html') %>
+  <%= t('.paragraphs.description_cached_html') %>
 </fieldset>
 
 <p>
 
 <fieldset>
-  <legend><%= t('.header_usage_summary') %></legend>
+  <legend><%= t('.legends.usage_summary') %></legend>
 
   <%= t('.usage_record_count', count: @resource_usages.total_entries) %>:
   <%= pretty_resource_usage_value(@maintype.constantize.new(:value => @total_plus)) %>
@@ -83,7 +82,7 @@
     (<%= t('.total') %>: <%= pretty_resource_usage_value(@maintype.constantize.new(:value => @total)) %>)
   <% end %>
   <% if @resource_usages.total_entries > 1 %>
-    (<%= t('.total') %>: <%= pretty_resource_usage_value(
+    (<%= t('.average') %>: <%= pretty_resource_usage_value(
                     @maintype.constantize.new(
                      :value => (@total.to_f / @resource_usages.total_entries.to_f)
                     )
@@ -97,7 +96,7 @@
 <fieldset>
 
   <legend>
-    <%= t('.header_additional_filtering') %>
+    <%= t('.legends.additional_filtering') %>
     <%= show_hide_toggle t('show_hide'), ".filtering", :class => 'task_help_link', :slide_effect => true, :slide_duration => 'fast'  %>
   </legend>
 
@@ -121,18 +120,18 @@
 
         <div class="display_cell">
           <%= check_box_tag(:deleted_items, "1", params["deleted_items"]) %>
-          <%= label_tag(:deleted_items, t('.only_deleted_items')) %>
+          <%= label_tag(:deleted_items, t('.labels.only_deleted_items')) %>
 
           <br>
 
           <% if @maintype =~ /Userfile/ %>
             <%= check_box_tag(:positive_file_delta, "1", params["positive_file_delta"]) %>
-            <%= label_tag(:positive_file_delta, t('.positive_size_delta')) %>
+            <%= label_tag(:positive_file_delta, t('.labels.positive_size_delta')) %>
 
             <br>
 
             <%= check_box_tag(:negative_file_delta, "1", params["negative_file_delta"]) %>
-            <%= label_tag(:negative_file_delta, t('.negative_size_delta')) %>
+            <%= label_tag(:negative_file_delta, t('.labels.negative_size_delta')) %>
           <% end %>
 
         </div>
@@ -140,7 +139,7 @@
 
       <br>
 
-      <%= submit_tag t('.refresh_table'), :id => "refresh_data_table", :disabled => true %>
+      <%= submit_tag t('.submits.refresh_table'), :id => "refresh_data_table", :disabled => true %>
 
       <script type="text/javascript">
         $(document).ready(function() {
@@ -198,7 +197,7 @@
 
     #t.column("Usage Type", :type)
 
-    t.column(t('.col.date'), :created_at,
+    t.column(t('.columns.date'), :created_at,
       :sortable => true,
     ) do |ru|
       html_tool_tip(to_localtime(ru.created_at, :datetime), :offset_x => 0, :offset_y => 20) do
@@ -209,7 +208,7 @@
 
     # --- Main Values ---
 
-    t.column((@maintype =~ /Space/ ? t('.col.disk_space') : t('.col.time')),
+    t.column((@maintype =~ /Space/ ? t('.columns.disk_space') : t('.columns.time')),
       :value,
       :sortable => true,
     ) { |ru| pretty_resource_usage_value(ru) }
@@ -249,27 +248,27 @@
       :filters  => default_filters_for(@base_scope, RemoteResource)
     ) { |ru| link_to_bourreau_if_accessible(ru.remote_resource) }
 
-    t.column(t('.col.cached_owner_type'), :user_type,
+    t.column(t('.columns.cached_owner_type'), :user_type,
       :sortable => true,
       :filters  => default_filters_for(@base_scope, :user_type)
     )
 
-    t.column(t('.col.cached_owner_login'), :user_login,
+    t.column(t('.columns.cached_owner_login'), :user_login,
       :sortable => true,
       :filters  => default_filters_for(@base_scope, :user_login)
     )
 
-    t.column(t('.col.cached_project_type'), :group_type,
+    t.column(t('.columns.cached_project_type'), :group_type,
       :sortable => true,
       :filters  => default_filters_for(@base_scope, :group_type)
     )
 
-    t.column(t('.col.cached_project_name'), :group_name,
+    t.column(t('.columns.cached_project_name'), :group_name,
       :sortable => true,
       :filters  => default_filters_for(@base_scope, :group_name)
     )
 
-    t.column(t('.col.cached_server_name'), :remote_resource_name,
+    t.column(t('.columns.cached_server_name'), :remote_resource_name,
       :sortable => true,
       :filters  => default_filters_for(@base_scope, :remote_resource_name)
     )
@@ -278,12 +277,12 @@
 
       # --- Userfile Columns ---
 
-      t.column(t('.col.cached_userfile_type'), :userfile_type,
+      t.column(t('.columns.cached_userfile_type'), :userfile_type,
         :sortable => true,
         :filters  => default_filters_for(@base_scope, :userfile_type)
       )
 
-      t.column(t('.col.cached_userfile_name'), :userfile_name,
+      t.column(t('.columns.cached_userfile_name'), :userfile_name,
         :sortable => true,
       )
 
@@ -294,12 +293,12 @@
         :filters  => default_filters_for(@base_scope, DataProvider)
       ) { |ru| link_to_data_provider_if_accessible(ru.data_provider) }
 
-      t.column(t('.col.cached_provider_type'), :data_provider_type,
+      t.column(t('.columns.cached_provider_type'), :data_provider_type,
         :sortable => true,
         :filters  => default_filters_for(@base_scope, :data_provider_type)
       )
 
-      t.column(t('.col.cached_provider_name'), :data_provider_name,
+      t.column(t('.columns.cached_provider_name'), :data_provider_name,
         :sortable => true,
         :filters  => default_filters_for(@base_scope, :data_provider_name)
       )
@@ -308,7 +307,7 @@
 
       # --- CbrainTask Columns ---
 
-      t.column(t('.col.cached_task_type'), :cbrain_task_type,
+      t.column(t('.columns.cached_task_type'), :cbrain_task_type,
         :sortable => true,
         :filters  => scoped_filters_for(
           @base_scope, @scope, :cbrain_task_type,
@@ -317,7 +316,7 @@
             label = label.sub(/^CbrainTask::/,"")
             {
               :value     => value,
-              :label     => t('.task_type_label', label: label, base: base),
+              :label     => t('.labels.task_type', label: label, base: base),
               :indicator => view,
               :empty     => view == 0
             }
@@ -325,7 +324,7 @@
         )
       ) { |ru| (ru.cbrain_task_type || "").sub(/CbrainTask::/,"") }
 
-      t.column(t('.col.cached_task_status'), :cbrain_task_status,
+      t.column(t('.columns.cached_task_status'), :cbrain_task_status,
         :sortable => true,
         :filters  => default_filters_for(@base_scope, :cbrain_task_status)
       ) { |ru| colored_status(ru.cbrain_task_status) }
@@ -337,7 +336,7 @@
         :filters  => default_filters_for(@base_scope, Tool)
       ) { |ru| ru.tool ? link_to(ru.tool.name, tool_path(ru.tool.id)) : "" }
 
-      t.column(t('.col.cached_tool_name'), :tool_name,
+      t.column(t('.columns.cached_tool_name'), :tool_name,
         :sortable => true,
         :filters  => default_filters_for(@base_scope, :tool_name)
       )
@@ -354,7 +353,7 @@
         )
       ) { |ru| ru.tool_config ? link_to(ru.tool_config.version_name, tool_config_path(ru.tool_config)) : "" }
 
-      t.column(t('.col.cached_version'), :tool_config_version_name,
+      t.column(t('.columns.cached_version'), :tool_config_version_name,
         :sortable => true,
         :filters  => default_filters_for(@base_scope, :tool_config_version_name)
       )

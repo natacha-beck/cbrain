@@ -1,5 +1,4 @@
 en:
-
   resource_usage:
 
     common:
@@ -14,32 +13,52 @@ en:
       title:
         file_deltas: "File Deltas"
 
-      btn:
+      buttons:
         userfile_disk_space: "Userfile Disk Space"
 
-      p_header_table_description: "Table Description"
-      p_description_intro_html: "This is a <em>very wide</em> report table. It contains resource usage records for disk space and time consumed. Feel free to hide columns using the <strong>+</strong> menu at the right side of the main table header."
-      p_description_space_userfile_html: "It displays the <span style='color: green'>changes of the sizes</span> of all the files, existing as well as deleted."
-      p_description_cputime_html: "It displays the <span style='color: green'>CPU time</span> accumulated by tasks."
-      p_description_walltime_html: "It displays the <span style='color: green'>'wall' time</span> accumulated by tasks."
-      p_description_space_task_html: "It displays the <span style='color: green'>disk space</span> in the work directory, as well as the <span style='color: green'>final status</span> of past tasks. The disk space is not garanteed to be accurate, as this is a expensive resource to compute and is only provided FYI. The real, main purpose of this report is to gather statistics about the final <strong>status</strong> of tasks."
-      p_description_cached_html: "Columns labeled <strong>Cached</strong> record pieces of information about resources <em>as they were at the time the record was made</em>. If a resource was destroyed (e.g. a non-<strong>Cached</strong> column is empty), these stay behind and provide filtering options. It makes it possible to gather statistics about these deleted resources."
+      legends:
+        table_description: "Table Description"
+        usage_summary: "Usage Summary (including filters)"
+        additional_filtering: "Additional filtering"
 
-      header_usage_summary: "Usage Summary (including filters)"
-      usage_record_count:
-        one: "1 usage record"
-        other: "%{count} usage records"
-      total: "Total"
-      average: "Average"
+      paragraphs:
+        description_intro_html: |
+          <p class="medium_paragraphs">
+          This is a <em>very wide</em> report table. It contains
+          resource usage records for disk space and time consumed.
+          Feel free to hide columns using the <strong>+</strong>
+          menu at the right side of the main table header.
+        description_space_userfile_html: |
+          It displays the <span style="color: green">changes of the sizes</span> of all the files,
+          existing as well as deleted.
+        description_cputime_html: |
+          It displays the <span style="color: green">CPU time</span> accumulated by tasks.
+        description_walltime_html: |
+          It displays the <span style="color: green">wall time</span> accumulated by tasks.
+        description_space_task_html: |
+          It displays the <span style="color: green">disk space</span> in the work directory,
+          as well as the <span style="color: green">final status</span> of past tasks. The disk space
+          is not guaranteed to be accurate, as this is an expensive resource to compute
+          and is only provided FYI. The real, main purpose of this report is to gather statistics about the
+          final <strong>status</strong> of tasks.
+        description_cached_html: |
+          <p class="medium_paragraphs">
+          Columns labeled <strong>Cached</strong> record pieces of information
+          about resources <em>as they were at the time the record was made</em>.
+          If a resource was destroyed (e.g. a non-<strong>Cached</strong> column is empty), these stay behind
+          and provide filtering options. It makes it possible to gather statistics about
+          these deleted resources.
 
-      header_additional_filtering: "Additional filtering"
-      by_creation_date: "By creation date"
-      only_deleted_items: "Only deleted items."
-      positive_size_delta: "With positive size delta."
-      negative_size_delta: "With negative size delta."
-      refresh_table: "Refresh Table"
+      labels:
+        only_deleted_items: "Only deleted items"
+        positive_size_delta: "With positive size delta"
+        negative_size_delta: "With negative size delta"
+        task_type: "%{label} (of %{base})"
 
-      col:
+      submits:
+        refresh_table: "Refresh Table"
+
+      columns:
         date: "Date"
         disk_space: "Disk Space"
         time: "Time"
@@ -57,4 +76,9 @@ en:
         cached_tool_name: "Cached Tool Name"
         cached_version: "Cached Version"
 
-      task_type_label: "%{label} (of %{base})"
+      usage_record_count:
+        one: "1 usage record"
+        other: "%{count} usage records"
+      total: "Total"
+      average: "Average"
+      by_creation_date: "By creation date"
