@@ -24,7 +24,7 @@
 
 <% title t('.title') %>
 
-<h2><%= t('.title') %></h2>
+<h2><%= t('.headings.main') %></h2>
 
 <%= error_messages_for @group %>
 
@@ -33,36 +33,29 @@
   <div class="generalbox">
 
     <p>
-    <%= f.label :name, t('activerecord.attributes.name') %><br />
+    <%= f.label :name, t('.labels.name') %><br />
     <%= f.text_field :name %>
     </p>
 
     <p>
-    <%= f.label :description, t('activerecord.attributes.description') %><br />
+    <%= f.label :description, t('.labels.description') %><br />
     <%= f.text_area :description, :rows => 4, :cols => 40 %>
-    <div class="field_explanation">
-      <%= t('.group_description_p1_html') %>
-    </div>
+    <%= t('.paragraphs.description_html') %>
 
     <% if current_user.has_role?(:admin_user) %>
       <p>
-      <%= f.label :site_id, t('activerecord.models.site.one') %>
-      <%= site_select "group[site_id]",{}, :prompt => t('groups.common.select_site') %>
-      <p>
-      <%= t('.group_description_p2_html') %>
-
+      <%= f.label :site_id, t('.labels.site') %>
+      <%= site_select "group[site_id]",{}, :prompt => t('.prompts.site') %>
+      <%= t('.paragraphs.invisible_html') %>
       <%= f.check_box :invisible %>
-      <p>
-      <%= t('.group_description_p3_html') %>
+      <%= t('.paragraphs.track_usage_html') %>
       <%= f.check_box :track_usage %>
     <% end %>
 
-    <p>
-    <%= t('.group_description_p4_html') %>
+    <%= t('.paragraphs.not_assignable_html') %>
     <%= f.check_box :not_assignable %>
 
-    <p>
-    <%= t('.group_description_p5_html') %>
+    <%= t('.paragraphs.public_html') %>
     <%= f.check_box :public %>
     <p>
       <% if current_user.has_role?(:normal_user) %>
@@ -71,6 +64,6 @@
       <%= render :partial => 'users_form' %>
     <% end %>
     <p>
-    <%= f.submit t('create') %>
+    <%= f.submit t('.submit') %>
     </p>
 <% end %>

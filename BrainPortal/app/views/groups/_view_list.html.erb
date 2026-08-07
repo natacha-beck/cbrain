@@ -46,13 +46,13 @@
                                     :method  => :post
         row_content =
           {:name           => t('all'),
-           :description    => t('.represents_all_projects'),
-           :type           => t('.all_projects'),
+           :description    => t('.row_contents.represents_all_projects'),
+           :type           => t('.row_contents.all_projects'),
            :site           => "",
            :creator_id     => "",
            :users          => "",
-           :files          => @group_id_2_userfile_counts[nil] || "(#{t('none')})",
-           :tasks          => @group_id_2_task_counts[nil] || "(#{t('none')})",
+           :files          => @group_id_2_userfile_counts[nil] || t('none_parentheses'),
+           :tasks          => @group_id_2_task_counts[nil] || t('none_parentheses'),
            :switch         => switch,
           }
         {
@@ -63,25 +63,25 @@
         }
       end
 
-      t.column(t('activerecord.attributes.name'), :name,
+      t.column(t('.columns.name'), :name,
         :sortable => true
       ) { |g| link_to_group_if_accessible(g) }
 
-      t.column(t('activerecord.attributes.description'), :description,
+      t.column(t('.columns.description'), :description,
         :sortable => true,
       ) { |g| overlay_description(g.description) }
 
-      t.column(t('.project_type'), :type,
+      t.column(t('.columns.type'), :type,
         :sortable => true,
         :filters  => default_filters_for(@base_scope, :type)
       ) { |g| g.pretty_category_name(current_user) }
 
-      t.column(t('activerecord.models.site.one'), :site,
+      t.column(t('.columns.site'), :site,
         :sortable => true,
         :filters  => default_filters_for(@base_scope, Site)
       ) { |g| link_to_site_if_accessible(g.site) }
 
-      t.column(t('groups.common.creator'), :creator_id,
+      t.column(t('.columns.creator'), :creator_id,
         :sortable => true,
         :filters => scoped_filters_for(
           @base_scope, @view_scope, :creator_id,
@@ -91,18 +91,18 @@
         )
       ) { |g| link_to_user_if_accessible(g.creator) }
 
-      t.column(t('activerecord.models.user.other'), :users) do |g|
-        @group_id_2_user_counts[g.id].to_s.presence || html_colorize("(#{t('none')})", "red")
+      t.column(t('.columns.users'), :users) do |g|
+        @group_id_2_user_counts[g.id].to_s.presence || html_colorize(t('none_parentheses'), "red")
       end
-      t.column(t('activerecord.models.userfile.other'), :files) do |g|
+      t.column(t('.columns.files'), :files) do |g|
         index_count_filter @group_id_2_userfile_counts[g.id], :userfiles, { :group_id => g.id }, :show_zeros => true
       end
-      t.column(t('activerecord.models.cbrain_task.other'), :tasks) do |g|
+      t.column(t('.columns.tasks'), :tasks) do |g|
         index_count_filter @group_id_2_task_counts[g.id], :tasks, { :group_id => g.id }, :show_zeros => true
       end
 
-      t.column(t('switch'), :switch) do |g|
-        link_to t('switch'), { :action => :switch, :id => g.id },
+      t.column(t('.columns.switch'), :switch) do |g|
+        link_to t('.links.switch'), { :action => :switch, :id => g.id },
           :class   => 'action_link',
           :method  => :post
       end

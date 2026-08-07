@@ -22,10 +22,7 @@
 #
 -%>
 
-  <div class="medium_paragraphs">
-
-    <%= t('.group_description_p1_html') %>
-  </div>
+  <%= t('.paragraphs.description_html') %>
 
   <p>
 
@@ -111,64 +108,54 @@
 
   <%= build_tabs do |tb| %>
 
-    <%= my_groups.presence && tb.tab(t('.my_private_projects')) do %>
-      <p class="medium_paragraphs">
-        <%= t('.group_description_p2_html', name: current_user.own_group.name) %>
-      </p>
+    <%= my_groups.presence && tb.tab(t('.tabs.my_private_projects')) do %>
+      <%= t('.paragraphs.', name: current_user.own_group.name) %>
       <%= render :partial => 'view_buttons_tab', :locals => { :tab_groups => my_groups } %>
     <% end %>
 
-    <%= my_shared_groups.presence && tb.tab(t('.my_shared_projects')) do %>
-      <p class="medium_paragraphs">
-        <%= t('.group_description_p3_html') %>
-      </p>
+    <%= my_shared_groups.presence && tb.tab(t('.tabs.my_shared_projects')) do %>
+      <%= t('.paragraphs.my_shared_projects_html') %>
       <%= render :partial => 'view_buttons_tab', :locals => { :tab_groups => my_shared_groups } %>
     <% end %>
 
-    <%= other_users_shared_groups.presence && tb.tab(t('.projects_shared_with_me')) do %>
-      <p class="medium_paragraphs">
-        <%= t('.group_description_p4_html') %>
-      </p>
+    <%= other_users_shared_groups.presence && tb.tab(t('.tabs.projects_shared_with_me')) do %>
+      <%= t('.paragraphs.projects_shared_with_me_html') %>
       <%= render :partial => 'view_buttons_tab', :locals => { :tab_groups => other_users_shared_groups } %>
     <% end %>
 
-    <%= public_groups.presence && tb.tab(t('.public_projects')) do %>
-      <p class="medium_paragraphs">
-        <%= t('.group_description_p5_html') %>
-      </p>
+    <%= public_groups.presence && tb.tab(t('.tabs.public_projects')) do %>
+      <%= t('.paragraphs.public_projects_html') %>
       <%= render :partial => 'view_buttons_tab', :locals => { :tab_groups => public_groups } %>
     <% end %>
 
-    <%= site_groups.presence && tb.tab(t('.site_projects')) do %>
-      <p class="medium_paragraphs">
-        <%= t('.group_description_p6_html') %>
-      </p>
+    <%= site_groups.presence && tb.tab(t('.tabs.site_projects')) do %>
+      <%= t('.paragraphs.site_projects_html') %>
       <%= render :partial => 'view_buttons_tab', :locals => { :tab_groups => site_groups } %>
     <% end %>
 
     <% if current_user.has_role?(:admin_user) %>
-      <%= user_groups.presence && tb.tab(t('.other_users_system_projects')) do %>
-        <p class="medium_paragraphs"><%= t('.admin_only') %></p>
+      <%= user_groups.presence && tb.tab(t('.tabs.other_users_system_projects')) do %>
+        <%= t('.paragraphs.admin_only_html') %>
         <%= render :partial => 'view_buttons_tab', :locals => { :tab_groups => user_groups } %>
       <% end %>
 
-      <%= other_users_private_groups.presence && tb.tab(t('.other_users_private_projects')) do %>
-        <p class="medium_paragraphs"><%= t('.admin_only') %></p>
+      <%= other_users_private_groups.presence && tb.tab(t('.tabs.other_users_private_projects')) do %>
+        <%= t('.paragraphs.admin_only_html') %>
         <%= render :partial => 'view_buttons_tab', :locals => { :tab_groups => other_users_private_groups } %>
       <% end %>
     <% end %>
 
-    <%= tb.tab(t('.special_all_project')) do %>
+    <%= tb.tab(t('.tabs.special_all_project')) do %>
       <p class="medium_paragraphs">
-        <%= t('.group_description_p7_html') %>
+        <%= t('.paragraphs.special_all_project_html') %>
 
       </p>
       <%= render :partial => 'view_buttons_tab', :locals => { :tab_groups => all_special_group } %>
     <% end %>
 
-    <%= other_groups.presence && tb.tab(t('.other_projects')) do %>
+    <%= other_groups.presence && tb.tab(t('.tabs.other_projects')) do %>
       <p class="medium_paragraphs">
-      <%= t('.group_description_p8_html') %>
+      <%= t('.paragraphs.other_projects_html') %>
 
       </p>
       <%= render :partial => 'view_buttons_tab', :locals => { :tab_groups => other_groups } %>
