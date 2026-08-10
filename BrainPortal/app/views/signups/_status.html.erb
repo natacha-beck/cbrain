@@ -45,19 +45,19 @@
   <% if signup.confirmed? %>
     <span><strong><%= t('.email_confirmed') %></strong></span>
   <% else %>
-    <span class="warning"><%= t('.email_unconfirmed') %></span>
+    <span class="warning"><%= t('.warnings.email_unconfirmed') %></span>
   <% end %>
   <%= newline %>
 
   <% if signup.dup_email? %>
-    <span class="warning"><%= t('.conflicting_email') %></span><%= newline %>
+    <span class="warning"><%= t('.warnings.conflicting_email') %></span><%= newline %>
   <% end %>
 
   <% if signup.dup_login? %>
-    <span class="warning"><%= t('.login_conflict') %></span>
+    <span class="warning"><%= t('.warnings.login_conflict') %></span>
   <% else %>
     <% if current_user.present? && current_user.has_role?(:admin_user) %>
-      <%= link_to t('.approve'), new_user_path(:signup_id => signup.id), :class => 'action_link' %>
+      <%= link_to t('.links.approve'), new_user_path(:signup_id => signup.id), :class => 'action_link' %>
     <% end %>
   <% end %>
 

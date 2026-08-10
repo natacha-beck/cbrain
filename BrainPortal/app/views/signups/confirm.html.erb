@@ -24,16 +24,13 @@
 
 <% title t('.title') %>
 
-<h1><%= t('.heading') %></h1>
+<h1><%= t('.headings.main') %></h1>
 
-<%= t('.thank_you') %>
-<p>
-<%= t('.review_notice') %>
-<p>
+<%= t('.paragraphs.main_html') %>
 <% if @propose_view %>
-<%= t('.propose_view_html', look: link_to(t('.have_a_look'), signup_path(@signup)), edit: link_to(t('edit').downcase, edit_signup_path(@signup))) %>
+<%= t('.paragraphs.propose_view_html', look: link_to(t('.have_a_look'), signup_path(@signup)), edit: link_to(t('edit').downcase, edit_signup_path(@signup))) %>
 <p>
 <% end %>
 
-<%= t('.nothing_else') %>
+<%= t('.footer') %>
 

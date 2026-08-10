@@ -1,75 +1,116 @@
 fr:
-
   signups:
 
     common:
       comment: ""
 
     result_action_one:
-      result_for: ""
+      headings:
+        main: ""
 
     signups_table:
-      new_request: ""
-      delete_confirm: ""
-      adjust_login: ""
-      resend_confirm_email: ""
-      toggle_hidden: ""
-      hide_hidden_records: ""
-      show_all_records: ""
-      latest_todo: ""
-      not_approved: ""
-      updated_at: ""
-      username: ""
-      signup_request:
-        one:   ""
-        other: ""
-      header:
+      links:
+        new_request: ""
+        hide_hidden_records: ""
+        show_all_records: ""
+        latest_todo: ""
+        edit: ""
+        signup_request:
+          one:   ""
+          other: ""
+      columns:
+        name: ""
+        edit: ""
+        email: ""
+        position: ""
+        department: ""
+        institution: ""
+        country: ""
+        username: ""
         comments: ""
         private_comments: ""
         in_cbrain: ""
+        portal: ""
         origin: ""
+        created: ""
         approved_by: ""
+        status: ""
+      labels:
+        not_approved: ""
+      buttons:
+        adjust_login: ""
+        resend_confirm_email: ""
+        toggle_hidden: ""
+      tooltips:
+        updated_at: ""
+      delete_confirm: ""
 
     status:
       approved_by: ""
       approved_at: ""
       email_confirmed: ""
-      email_unconfirmed: ""
-      conflicting_email: ""
-      login_conflict: ""
-      approve: ""
+      warnings:
+        email_unconfirmed: ""
+        conflicting_email: ""
+        login_conflict: ""
+      links:
+        approve: ""
 
     confirm_button:
       title: ""
-      heading: ""
-      thank_you: ""
-      instructions: ""
-      confirm_request: ""
+      headings:
+        main: ""
+      paragraphs:
+        main_html: |
+          Thank you for following the link from CBRAIN in your mailbox.
+          <p>
+          To ensure you are indeed the owner of the email address that has
+          requested the creation of an account on CBRAIN, please complete the
+          final required step by clicking the button below. This will tell
+          the CBRAIN administrators that your request is legitimate and
+          official.
+          <p>
+      links:
+        confirm_request: ""
 
     confirm:
       title: ""
-      heading: ""
-      thank_you: ""
-      review_notice: ""
-      propose_view_html: ""
-      have_a_look: ""
-      nothing_else: ""
+      headings:
+        main: ""
+      paragraphs:
+        main_html: |
+          Thank you. You've confirmed your email address.
+          <p>
+          Now it's up to the administrators to review your request
+          and you'll be notified if and when they approve it.
+          <p>
+        propose_view_html: |
+          In the meantime you can %{look} at your request, or even %{edit} it.
+        have_a_look: ""
+        footer: |
+          (There is nothing else to do here, you might as well have a coffee and read the news)
 
     index:
       title: ""
+      headings:
+        main: ""
 
     multi_action:
       title: ""
-      heading: ""
-      go_back_html: ""
-      back_to_list: ""
+      headings:
+        main: ""
+      links:
+        go_back_html: ""
+        back_to_list: ""
 
     new:
       title: ""
-      mandatory_fields_html: ""
-      personal_info: ""
-
-      label:
+      warnings:
+        mandatory_fields: ""
+      legends:
+        personal_info: ""
+        institution_info: ""
+      labels:
         title: ""
         first: ""
         middle: ""
@@ -87,65 +128,99 @@ fr:
         country: ""
         postal_code: ""
         admin_comment: ""
-      explanation:
-        title_html: ""
-        login_html: ""
-        email_html: ""
-        comment_html: ""
-      position_options:
-        faculty: ""
-        postdoctoral: ""
-        phd_candidate: ""
-        masters_student: ""
-        student: ""
-        researcher: ""
-        other: ""
-      affiliation_options:
-        academic: ""
-        private_sector: ""
-        government: ""
-        non_profit: ""
-        other: ""
-      institution_info: ""
-      select_one: ""
-      request_account: ""
-      update_request: ""
-      privacy_note: ""
-      privacy_text_html: ""
+        comment: ""
+      paragraphs:
+        title_html: |
+          <div class="wide_field_explanation">
+            <span class="wide_field_explanation">for example: 'Mrs.', 'Mr', 'Dr.', etc.</span>
+          </div>
+        login_html: |
+          <div class="wide_field_explanation">
+            <span class="wide_field_explanation">
+                <small>one letter + alphanums. <strong>By convention</strong>: the first letter of your first name + last name.
+                For example, John Doe login: 'jdoe' </small>
+            </span>
+          </div>
+        email_html: |
+          <div class="wide_field_explanation">
+            <small>Please supply the address of <strong class="warning"> your research institution.</strong>
+              Requests with non-institutional address or email
+              will be <strong>ignored</strong>
+            </small>
+          </div>
+        comment_html: |
+          <div class="wide_field_explanation">
+            Please tell us the name of the laboratory you work for,
+            the name of its Principal Investigator (if not you), and if possible
+            anyone else you know in your lab who are already CBRAIN users. <br>
+            We'll use this information to create or add you to a
+            <em>Site</em> within CBRAIN.
+          </div>
+        privacy_note: |
+          <br>
+          <b>Privacy note</b>
+          <br>
+          The information you supply in this form is
+          only used in order to review your application and, <br> when approved, to
+          automatically generate your user account. <br>
+          This information will not be used in any other way, or passed on to
+          any other entities or persons.
+      selects:
+        position_options:
+          faculty: ""
+          postdoctoral: ""
+          phd_candidate: ""
+          masters_student: ""
+          student: ""
+          researcher: ""
+          other: ""
+        affiliation_options:
+          academic: ""
+          private_sector: ""
+          government: ""
+          non_profit: ""
+          other: ""
+        select_one: ""
+      submits:
+        request_account: ""
+        update_request: ""
       contact_html: ""
+
 
     show:
       title: ""
-      heading: ""
-      made_from_portal_html: ""
-      admin_can_edit_html: ""
-      login_conflict: ""
-      can_approve_html: ""
-      approve: ""
-      not_confirmed: ""
-      confirmed: ""
-      resend_admin_html: ""
-      email_confirmation_request: ""
-      edit_session_note_html: ""
-      confirmation_sent: ""
-      resend_user_html: ""
-      delete_html: ""
-      delete: ""
-      delete_confirm: ""
-      summary_intro: ""
-      none: ""
-      full_name: ""
-      login: ""
-      institution: ""
-      department: ""
-      position: ""
-      affiliation: ""
-      email: ""
-      street1: ""
-      street2: ""
-      city: ""
-      province: ""
-      country: ""
-      postal_code: ""
-      admin_comments: ""
-      status_of_request: ""
+      headings:
+        main: ""
+        full_name: ""
+        login: ""
+        institution: ""
+        department: ""
+        position: ""
+        affiliation: ""
+        email: ""
+        street1: ""
+        street2: ""
+        city: ""
+        province: ""
+        country: ""
+        postal_code: ""
+        comment: ""
+        admin_comments: ""
+        status_of_request: ""
+        time_zone: ""
+      links:
+        approve: ""
+        email_confirmation_request: ""
+      paragraphs:
+        made_from_portal_html: ""
+        admin_can_edit_html: ""
+        login_conflict: ""
+        can_approve_html: ""
+        not_confirmed: ""
+        confirmed: ""
+        resend_admin_html: ""
+        edit_session_note_html: ""
+        confirmation_sent: ""
+        resend_user_html: ""
+        summary_intro: ""
+        delete_html: ""

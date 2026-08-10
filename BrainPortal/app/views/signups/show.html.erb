@@ -23,60 +23,60 @@
 
 <% title t('.title') %>
 
-<h1><%= t('.heading') %></h1>
+<h1><%= t('.headings.main') %></h1>
 
 <% if current_user.present? && current_user.has_role?(:admin_user) %>
 
   <% if @signup.remote_resource %>
-    <%= t('.made_from_portal_html', portal: link_to_bourreau_if_accessible(@signup.remote_resource), form_page: @signup.form_page) %>
+    <%= t('.paragraphs.made_from_portal_html', portal: link_to_bourreau_if_accessible(@signup.remote_resource), form_page: @signup.form_page) %>
   <% end %>
 
-  <%= t('.admin_can_edit_html', link: link_to(t('edit').downcase, :action => :edit)) %><p>
+  <%= t('.paragraphs.admin_can_edit_html', link: link_to(t('edit').downcase, :action => :edit)) %><p>
 
   <% if ! @signup.approved? %>
 
     <% if @signup.dup_login? %>
-      <span class="warning"><%= t('.login_conflict') %></span>
+      <span class="warning"><%= t('.paragraphs.login_conflict') %></span>
     <% else %>
-      <%= t('.can_approve_html', link: link_to(t('.approve'), new_user_path(:signup_id => @signup.id), :class => 'action_link')) %>
+      <%= t('.paragraphs.can_approve_html', link: link_to(t('.links.approve'), new_user_path(:signup_id => @signup.id), :class => 'action_link')) %>
     <% end %>
 
     <% if ! @signup.confirmed? %>
-      <span class="warning"><%= t('.not_confirmed') %></span>
+      <span class="warning"><%= t('.paragraphs.not_confirmed') %></span>
     <% else %>
-      <%= t('.confirmed') %>
+      <%= t('.paragraphs.confirmed') %>
     <% end %>
 
     <p>
-    <%= t('.resend_admin_html', link: link_to(t('.email_confirmation_request'), resend_confirm_signup_path(@signup), :method => :post)) %>
+    <%= t('.paragraphs.resend_admin_html', link: link_to(t('.links.email_confirmation_request'), resend_confirm_signup_path(@signup), :method => :post)) %>
 
   <% end %>
 
 <% else %>
 
   <p>
-  <%= t('.edit_session_note_html', link: link_to(t('edit'), :action => :edit)) %>
+  <%= t('.paragraphs.edit_session_note_html', link: link_to(t('edit'), :action => :edit)) %>
 
 <% end %>
 
 <% if current_user.blank? && ! @signup.confirmed? %>
   <p>
-  <%= t('.confirmation_sent') %>
+  <%= t('.paragraphs.confirmation_sent') %>
   <p>
-  <%= t('.resend_user_html', link: link_to(t('.email_confirmation_request'), resend_confirm_signup_path(@signup), :method => :post)) %>
+  <%= t('.paragraphs.resend_user_html', link: link_to(t('.links.email_confirmation_request'), resend_confirm_signup_path(@signup), :method => :post)) %>
 <% end %>
 
 <p>
-<%= t('.delete_html', link: link_to(t('.delete'), signup_path(@signup), :action => :destroy, :method => :delete, :data => { :confirm => t('.delete_confirm', name: @signup.full_name) })) %>
+<%= t('.paragraphs.delete_html', link: link_to(t('delete'), signup_path(@signup), :action => :destroy, :method => :delete, :data => { :confirm => t('delete_confirm', name: @signup.full_name) })) %>
 
 <p>
-<%= t('.summary_intro') %>
+<%= t('.paragraphs.summary_intro') %>
 
 <p>
   <table class="simple bordered">
 
   <tr>
-    <th><%= t('.full_name') %></th>
+    <th><%= t('.headings.full_name') %></th>
     <td><%= @signup.full_name %></td>
   </tr>
 
@@ -86,8 +86,8 @@
   </tr>
 
   <tr>
-    <th><%= t('.login') %></th>
-    <td><%= @signup.login.presence || t('.none') %></td>
+    <th><%= t('.headings.login') %></th>
+    <td><%= @signup.login.presence || t('none_parentheses') %></td>
   </tr>
 
   <tr>
@@ -96,27 +96,27 @@
   </tr>
 
   <tr>
-    <th><%= t('.institution') %></th>
+    <th><%= t('.headings.institution') %></th>
     <td><%= @signup.institution %></td>
   </tr>
 
   <tr>
-    <th><%= t('.department') %></th>
+    <th><%= t('.headings.department') %></th>
     <td><%= @signup.department %></td>
   </tr>
 
   <tr>
-    <th><%= t('.position') %></th>
+    <th><%= t('.headings.position') %></th>
     <td><%= @signup.position %></td>
   </tr>
 
   <tr>
-    <th><%= t('.affiliation') %></th>
+    <th><%= t('.headings.affiliation') %></th>
     <td><%= @signup.affiliation %></td>
   </tr>
 
   <tr>
-    <th><%= t('.email') %></th>
+    <th><%= t('.headings.email') %></th>
     <td><%= @signup.email %></td>
   </tr>
 
@@ -126,37 +126,37 @@
   </tr>
 
   <tr>
-    <th><%= t('.street1') %></th>
+    <th><%= t('.headings.street1') %></th>
     <td><%= @signup.street1 %></td>
   </tr>
 
   <tr>
-    <th><%= t('.street2') %></th>
+    <th><%= t('.headings.street2') %></th>
     <td><%= @signup.street2 %></td>
   </tr>
 
   <tr>
-    <th><%= t('.city') %></th>
+    <th><%= t('.headings.city') %></th>
     <td><%= @signup.city %></td>
   </tr>
 
   <tr>
-    <th><%= t('.province') %></th>
+    <th><%= t('.headings.province') %></th>
     <td><%= @signup.province %></td>
   </tr>
 
   <tr>
-    <th><%= t('.country') %></th>
+    <th><%= t('.headings.country') %></th>
     <td><%= @signup.country %></td>
   </tr>
 
   <tr>
-    <th><%= t('.postal_code') %></th>
+    <th><%= t('.headings.postal_code') %></th>
     <td><%= @signup.postal_code %></td>
   </tr>
 
   <tr>
-    <th><%= t('time_zone') %></th>
+    <th><%= t('.headings.time_zone') %></th>
     <td><%= @signup.time_zone %></td>
   </tr>
 
@@ -168,7 +168,7 @@
   <% if @signup.comment.present? %>
 
     <tr>
-      <th><%= t('signups.common.comment') %></th>
+      <th><%= t('.headings.comment') %></th>
       <td><pre><%= @signup.comment %></pre></td>
     </tr>
 
@@ -182,7 +182,7 @@
   <% if current_user.present? && current_user.has_role?(:admin_user) %>
 
     <tr>
-      <th><%= t('.admin_comments') %></th>
+      <th><%= t('.headings.admin_comments') %></th>
       <td><pre><%= @signup.admin_comment %></pre></td>
     </tr>
 
@@ -194,7 +194,7 @@
   <% end %>
 
   <tr>
-    <th><%= t('.status_of_request') %></th>
+    <th><%= t('.headings.status_of_request') %></th>
     <td>
       <%= render :partial => 'status', :locals => { :signup => @signup, :multi_lines => true } %>
     </td>

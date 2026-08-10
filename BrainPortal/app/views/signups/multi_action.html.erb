@@ -24,7 +24,7 @@
 
 <% title t('.title') %>
 
-<h1><%= t('.heading') %></h1>
+<h1><%= t('.headings.main') %></h1>
 
 <%
    @results.compact!
@@ -41,5 +41,5 @@
 
 <p>
 
-<%= t('.go_back_html', link: link_to(t('.back_to_list'), :action => :index)) %>
+<%= t('.links.go_back_html', link: link_to(t('.links.back_to_list'), :action => :index)) %>
 
