@@ -1,29 +1,73 @@
 fr:
   sites:
-    common:
-      managers: "Gestionnaires"
-      regular_user: "Utilisateur régulier"
-      site_manager: "Gestionnaire de site"
-      brief_description: "La première ligne doit être un court résumé, et le reste sont pour toutes les notes spéciales pour les utilisateurs."
 
     sites_table:
-      create_new_site: "Créer un nouveau site"
-      number_of_users: "Nombre d'utilisateurs"
-      number_of_projects: "Nombre de projets"
-
+      links:
+        create_new_site: ""
+      headings:
+        main:
+          one: ""
+          other: ""
+      columns:
+        name: ""
+        description: ""
+        type: ""
+        site_manager: ""
+        number_of_users: ""
+        number_of_projects: ""
 
     index:
-      title: "Sites"
+      title: ""
 
     new:
-      title: "Ajouter un nouveau site"
-      brief_description_title: "Brève description du site."
-      hide: "(Cacher)"
+      title: ""
+      headings:
+        main: ""
+      titles:
+        brief_description_title: ""
+      labels:
+        description: ""
+      paragraphs:
+        brief_description_html: |
+          <div class="field_explanation">The first line should be a short summary, and the rest are for any special notes for the users.</div>
+      lock_status:
+        active: ""
+        locked: ""
+      datas:
+        login: ""
+        regular_user: ""
+        site_manager: ""
+      buttons:
+        groups: ""
+      submit: ""
+      hide: ""
 
     show:
-      title: "Site"
-      could_not_be_updated: "Le site n'a pas pu être mis à jour."
-      resources: "Ressources"
-      update_users: "Mettre à jour les utilisateurs"
-      update_projects: "Mettre à jour les projets"
-      site_log: "Journal du site"
+      title: ""
+      headings:
+        could_not_be_updated: ""
+        resources: ""
+        groups: ""
+        data_providers: ""
+        remote_resources: ""
+      paragraphs:
+        description_html: |
+          <div class="field_explanation">The first line should be a short summary, and the rest are for any special notes for the users.</div><br>
+      cells:
+        manager: ""
+        users: ""
+        projects: ""
+        userfiles: ""
+        data_providers: ""
+        remote_resources: ""
+      datas:
+        login: ""
+        regular_user: ""
+        site_manager: ""
+      labels:
+        users: ""
+      submits:
+        update_users: ""
+        update_projects: ""
+      titles:
+        site_log: ""
