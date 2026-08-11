@@ -32,7 +32,7 @@
 <fieldset>
 
   <legend>
-      <%= t('.user_label') %> <%= link_to_user_with_tooltip user %>
+      <%= t('.legends.user') %> <%= link_to_user_with_tooltip user %>
   </legend>
 
   <strong><%= t('.member_of_projects') %></strong><p/>
@@ -47,9 +47,9 @@
   <strong><%= t('.execution_servers_access') %></strong><br/>
   <table>
     <tr>
-      <th><%= t('activerecord.models.remote_resource.execution_server') %></th>
-      <th><%= t('.header.servers_project') %></th>
-      <th><%= t('.header.accessible_to_user') %></th>
+      <th><%= t('.headings.execution_server') %></th>
+      <th><%= t('.headings.servers_project') %></th>
+      <th><%= t('.headings.accessible_to_user') %></th>
     </tr>
     <% bourreaux.each do |bourreau| %>
     <tr class="<%= cycle("list-odd", "list-even") %>">
@@ -67,13 +67,13 @@
   <strong><%= t('.tool_access_summary') %></strong><br/>
   <table>
     <tr class="<%= cycle("list-odd", "list-even") %>">
-      <th class="supertitle" colspan="3"><%= t('.header.tool_summary') %></th>
-      <th class="supertitle" colspan="<%= bourreaux.size %>"><%= t('.header.versions_per_server') %></th>
+      <th class="supertitle" colspan="3"><%= t('.headings.tool_summary') %></th>
+      <th class="supertitle" colspan="<%= bourreaux.size %>"><%= t('.headings.versions_per_server') %></th>
     </tr>
     <tr>
-      <th><%= t('activerecord.models.tool', count: 1) %></th>
-      <th><%= t('.header.tools_project') %></th>
-      <th><%= t('.header.accessible_to_user') %></th>
+      <th><%= t('.headings.tool') %></th>
+      <th><%= t('.headings.tools_project') %></th>
+      <th><%= t('.headings.accessible_to_user') %></th>
       <% bourreaux.each do |bourreau| %>
         <th><%= bourreau.name %></th>
       <% end %>
@@ -121,11 +121,11 @@
 
   <table>
     <tr>
-      <th><%= t('activerecord.models.remote_resource.execution_server') %></th>
-      <th><%= t('activerecord.models.tool', count: 1) %></th>
-      <th><%= t('.header.tool_version') %></th>
-      <th><%= t('.header.effective_project') %></th>
-      <th><%= t('.header.accessible_to_user') %></th>
+      <th><%= t('.headings.execution_server') %></th>
+      <th><%= t('.headings.tool') %></th>
+      <th><%= t('.headings.tool_version') %></th>
+      <th><%= t('.headings.effective_project') %></th>
+      <th><%= t('.headings.accessible_to_user') %></th>
     </tr>
     <% bourreaux.each_with_index do |bourreau,bidx| %>
       <% next unless true || bourreau.can_be_accessed_by?(user) %>

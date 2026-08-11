@@ -1,5 +1,4 @@
 fr:
-
   tool_configs:
 
     common:
@@ -14,11 +13,13 @@ fr:
       container_engine: ""
 
     by_resource:
-      tool_label: ""
-      execution_server_label: ""
-      no_versions_for_servers: ""
-      no_versions_for_tools: ""
-      header:
+      labels:
+        tool: ""
+        execution_server: ""
+      no_versions:
+        for_servers: ""
+        for_tools: ""
+      headings:
         execution_servers: ""
         tools: ""
         versions_configured: ""
@@ -28,12 +29,15 @@ fr:
       have_no_access_html: ""
 
     by_user:
-      user_label: ""
+      legends:
+        user: ""
       member_of_projects: ""
       execution_servers_access: ""
       tool_access_summary: ""
       tool_versions_access_details: ""
-      header:
+      headings:
+        execution_server: ""
+        tool: ""
         servers_project: ""
         accessible_to_user: ""
         tool_summary: ""
@@ -50,12 +54,12 @@ fr:
         version_project_html: ""
 
     env_key_value_pair:
-      header:
+      headings:
         name: ""
         value: ""
 
     form_fields:
-      header:
+      headings:
         version_config_info: ""
         version: ""
         project_access: ""
@@ -76,41 +80,109 @@ fr:
         singularity_overlays: ""
         misc_singularity: ""
         short_workdir: ""
-      field_explanation:
+      field_explanations:
         version: ""
-        description: ""
-        inputs_readonly_html: ""
-        boutiques_path_html: ""
-        extra_qsub_html: ""
-        container_index_html: ""
-        container_image_name: ""
-        container_image_id: ""
-        singularity_overlays_html: ""
-        container_exec_args_html: ""
+        description: |
+          The first line must be a short summary, and the rest are for any special
+          notes for the users.
+        inputs_readonly_html:
+          Check this if the tool is known <strong>not to modify its input files </strong>.
+          This will allow a user to launch the tool on files that are not marked as group-writable in the file manager.
+        boutiques_path_html: |
+          You can use this field to provide an explicit path to a
+          Boutiques descriptor; an absolute path will be used as-is,
+          while a relative path will be resolved relative to the
+          <em>boutiques_descriptor</em> folder in the installed plugins
+          subdirectory. The page indicates the source location of the
+          effective descriptor: 'Automatic' means the configuration has
+          been mapped automatically to an installed descriptor, 'Manual'
+          means the value in the input field here is used, and 'Overriden'
+          means both values exists, but the 'Manual' version is in effect.
+        extra_qsub_html: |
+          <b>Note:</b>This string will be appended to the extra 'qsub' option defined at the bourreau level.
+        container_index_html: |
+          The index (url) of the container image in which the docker or singularity container is
+          accessible through.
+          Examples for Docker are: quay.io, index.docker.io (default).
+          Examples for Singularity are: docker:&sol;&sol;, shub:&sol;&sol; (default).
+        container_image_name: |
+          The name and tag of the container image in which the tool is installed,
+          for instance "centos:latest". This name refers to the Docker/Singularity index
+          accessed by the Bourreau, which is configured manually in the Bourreau
+          for now.
+        container_image_id: |
+          The ID number of the container image in which the tool is installed.
+          This ID refers to a proper image file registered in CBRAIN by the admin.
+        singularity_overlays_html: |
+          This field can contain one or several specifications for data overlays and bindmounts
+          to be included when the task is started with Singularity.
+          <p>
+          Each overlay or bindmount specification should be on a separate line.
+          <p>
+          An overlay specification can be either:
+          <p>
+          <ul>
+          <li>a full path (e.g. <em>file:/a/b/data.squashfs</em>),</li>
+          <li>a path with a pattern (e.g. <em>file:/a/b/data*.squashfs</em>),</li>
+          <li>a registered file identified by ID (e.g. <em>userfile:123</em>),</li>
+          <li>a SquashFS Data Provider identified by its ID or name (e.g. <em>dp:123</em>, <em>dp:DpNameHere</em>)</li>
+          <li>or an ext3 capture overlay basename (e.g. <em>ext3capture:basename=SIZE</em> where size is <em>12G</em> or <em>12M</em>).</li>
+          </ul>
+          <p>
+          In the case of a Data Provider, the overlays will be the SquashFS files that the provider uses for its storage. The provider of course must be local to the current execution server.
+          <p>
+          A bindmount specification is one of:
+          <ul>
+            <li><em>bindmount:/bourreau/path/to/data:/containerized/path/to/data</em> or</li>
+            <li><em>bindmount:/bourreau/path/to/data:/containerized/path/to/data:ro</em></li>
+          </ul>
+          <p>
+          You can add comments, indicated with a hash symbol <em>#</em>.
+          For example, <em>file:/a/b/atlas.squashfs # brain atlas</em>
+        container_exec_args_html: |
+          This field can contain singularity exec command options. Please use appropriate quotation or escaping
+          For example, <em>--cleanenv --env MYPATH='/My Documents'</em>.
       container_none: ""
       container_type_title: ""
       env_vars_note_top: ""
       env_vars_note_bottom: ""
-      prologue_explanation_html: ""
-      epilogue_explanation_html: ""
-      merge_legend: ""
-      merge_explanation_both: ""
-      merge_explanation_env: ""
+      prologue_explanation_html: |
+        This is a multi line partial BASH script. It can use the environment variables defined above
+        and do anything else you feel is needed to activate this configuration.
+        Note that this script should usually be silent, as outputing text (like in <em>echo</em> statements)
+        could interfere with the proper processing of the tasks output.
+      epilogue_explanation_html: |
+        This is a multi line partial BASH script, meant to match the prologue above. The code
+        here will be execute after the task's processing code.
+        Note that this script MUST be silent, as outputing text (like in <em>echo</em> statements)
+        could interfere with the proper processing of the tasks output.
+      legends:
+        merge: "Import and merge"
+      merge_explanation_both: |
+        The description, environment variables and prologue script will be appended to whatever
+        values are currently in the form. The project and suggested number of CPUs will be changed.
+      merge_explanation_env: |
+        The environment variables and prologue script will be appended to whatever
+        values are currently in the form.
       merge_intro: ""
       merge_from: ""
-      merge_preview: ""
-      save_everything: ""
-      reload_original: ""
-      merge_note: ""
+      submits:
+        merge_preview: ""
+        save_everything: ""
+        reload_original: ""
+      merge_note: |
+        You need to first click the Merge Configuration (Preview), carefully check the results, and only if
+        everything is ok click this or any other Update button, and the changed values will persist.
 
     tool_configs_table:
-      tools_list: ""
+      links:
+        tool_list: ""
       tool_config_count:
         one: ""
         other: ""
       show_edit: ""
-      access: ""
-      col:
+      columns:
+        access: ""
         tool_name: ""
         tool_project: ""
         version: ""
@@ -132,26 +204,28 @@ fr:
 
     report:
       title: ""
-      all_of_them: ""
-      all_servers_or: ""
-      all_tools_or: ""
-      all_users_or: ""
+      all:
+        of_them: ""
+        servers_or: ""
+        tools_or: ""
+        users_or: ""
       pick_best: ""
-      view_by_server: ""
-      view_by_tool: ""
-      view_by_user: ""
-      get_report: ""
+      view_by:
+        server: ""
+        tool: ""
+        user: ""
+      submit: ""
 
-      heading:
+      headings:
         by: ""
         access_by_user: ""
         by_server_html: ""
         by_tool_html: ""
         quick_links: ""
-        by_user_heading: ""
+        by_user: ""
         by_combination: ""
 
-      label:
+      labels:
         execution_server: ""
         tool: ""
         user: ""

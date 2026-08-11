@@ -36,9 +36,9 @@
   <!-- Generate appropriate legend -->
   <legend>
       <% if for_tool %>
-        <%= t('.tool_label') %> <%= link_to resource.name, edit_tool_path(resource) %>
+        <%= t('.labels.tool') %> <%= link_to resource.name, edit_tool_path(resource) %>
       <% else %>
-        <%= t('.execution_server_label') %> <%= link_to_bourreau_if_accessible(resource, nil, :path => bourreau_path(resource)) %>
+        <%= t('.labels.execution_server') %> <%= link_to_bourreau_if_accessible(resource, nil, :path => bourreau_path(resource)) %>
       <% end %>
       <%= t('tool_configs.common.in_project_html', group: link_to_group_if_editable(resource.group)) %>
   </legend>
@@ -56,9 +56,9 @@
   no_version_summary = ""
   if versus_without_tcs.present?
     if for_tool
-      no_version_summary << html_colorize(t('.no_versions_for_servers'))
+      no_version_summary << html_colorize(t('.no_versions.for_servers'))
     else
-      no_version_summary << html_colorize(t('.no_versions_for_tools'))
+      no_version_summary << html_colorize(t('.no_versions.for_tools'))
     end
 
     versus_without_tcs.each do |vs|
@@ -95,9 +95,9 @@
     <% if versus_with_tcs.present? %>
       <tr>
         <th><%= for_tool ? t('activerecord.models.execution_server.other') : t('activerecord.models.tools.other') %> </th>
-        <th><%= t('.header.versions_configured') %></th>
-        <th><%= t('.header.projects_in_effect') %></th>
-        <th class="left_align"><%= t('.header.users_access_summary') %> </th>
+        <th><%= t('.headings.versions_configured') %></th>
+        <th><%= t('.headings.projects_in_effect') %></th>
+        <th class="left_align"><%= t('.headings.users_access_summary') %> </th>
       </tr>
     <% end %>
 
