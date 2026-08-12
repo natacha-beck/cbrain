@@ -1,86 +1,111 @@
 fr:
-
   tools:
 
-    common:
-      title_cbrain_task_class: ""
-      header:
-        name: ""
-        belongs_to: ""
-        available_to_project: ""
-        category: ""
-        license_agreements: ""
-        description: ""
-        package_name: ""
-        tool_type: ""
-        comma_separated_tags: ""
-        url: ""
-        select_menu_text: ""
-      label:
-        name: ""
-        belongs_to: ""
-        available_to_project: ""
-        category: ""
-        license_agreements: ""
-        description: ""
-        package_name: ""
-        tool_type: ""
-        comma_separated_tags: ""
-        url: ""
-        select_menu_text: ""
-      field_explanation:
-        license_agreements: ""
-
     form_fields:
-      header:
+      titles:
+        cbrain_task_class_name: "PortalTask subclass which implements this tool."
+      headings:
         general_info: ""
+        name: ""
         cbrain_task_class_name: ""
-      field_explanation:
+        last_updated: ""
+        belongs_to: ""
+        available_to_project: ""
+        category: ""
+        license_agreements: ""
         description: ""
-      common_config_label: ""
-      versions_installed_label: ""
+        package_name: ""
+        tool_type: ""
+        comma_separated_tags: ""
+        url: ""
+        select_menu_text: ""
+      cells:
+        created: ""
+        last_updated: ""
+        belongs_to: ""
+      paragraphs:
+        license_agreements_html: |
+          <div class="field_explanation">Enter one agreement name per line. Note that only alphanumeric characters, underscores (_) and dashes (-) are accepted.</div>
+        description_html: |
+          <div class="field_explanation">The first line is a short summary, and the rest are for any special notes for the users.</div>
+      labels:
+        common_config: ""
+        versions_installed: ""
+      links:
+        add_new: ""
+      datas:
+        cpu_count:
+          one: ""
+          other: ""
       no_versions_configured: ""
       versions_configured:
         one: ""
         other: ""
-      add_new: ""
       version_config_name: ""
-      cpu_count:
-        one: ""
-        other: ""
 
     tool_config_select:
-      no_online_server: ""
-      select_server_version: ""
-      server_version_label_html: ""
-      launch: ""
+      include_blanks:
+        no_online_server: ""
+        select_server_version: ""
+      labels:
+        server_version_html:
+          ""
+      submits:
+        launch: ""
 
     tools_table:
-      create_new_tool: ""
-      autoload_tools: ""
-      autoload_tools_title: ""
-      access_reports: ""
-      tool_versions_list: ""
-    version_count:
-      one: ""
-      other: ""
-      col:
+      links:
+        create_new_tool: ""
+        autoload_tools: ""
+        access_reports: ""
+        tool_versions_list: ""
+        version_count:
+          one: ""
+          other: ""
+        access: ""
+      titles:
+        autoload_tools: ""
+      columns:
+        name: ""
+        description: ""
+        category: ""
+        owner: ""
+        group: ""
         execution_versions: ""
         access: ""
+        help: ""
         info: ""
 
     edit:
       title: ""
-      log_title: ""
+      titles:
+        log_title: ""
 
     index:
       title: ""
 
     new:
       title: ""
-      label:
+      titles:
         cbrain_task_class: ""
-      field_explanation:
+      headings:
+        main: ""
+      labels:
+        name: ""
+        cbrain_task_class: ""
+        belongs_to: ""
+        group: ""
+        category: ""
+        license_agreements: ""
         description: ""
-      submit_create: ""
-
+        package_name: ""
+        tool_type: ""
+        application_tags: ""
+        url: ""
+        select_menu_text: ""
+      paragraphs:
+        license_agreements_html: |
+          <div class="field_explanation">Enter one agreement name per line. Note that only alphanumeric characters, underscores (_) and dashes (-) are accepted.</div>
+        description_html: |
+          <div class="field_explanation">The first line must should be a short summary, and the rest are for any special notes for the users.</div>
+      submit: ""

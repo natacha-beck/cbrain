@@ -37,6 +37,5 @@
 
 <% if @tool.has_owner_access?(current_user) %>
   <P>
-  <%= render :partial => "layouts/log_report", :locals  => { :log  => @tool.getlog, :title => t('.log_title') } %>
+  <%= render :partial => "layouts/log_report", :locals  => { :log  => @tool.getlog, :title => t('.titles.log_title') } %>
 <% end %>
-
