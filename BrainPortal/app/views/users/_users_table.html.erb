@@ -23,7 +23,7 @@
 -%>
 
 <div class="menu_bar">
-  <%= link_to t('.create_user'), new_user_path, :class => "button menu_button" %>
+  <%= link_to t('.links.create_user'), new_user_path, :class => "button menu_button" %>
 </div>
 
 <%=
@@ -39,7 +39,7 @@
       <%= t('.user_count', count: @users.total_entries) %>
       <% if @unlocked_users_count > 0 %>,
         <%=
-            scope_filter_link(t('.active_count', count: @unlocked_users_count),
+            scope_filter_link(t('.links.active_count', count: @unlocked_users_count),
             @scope, :set, { :a => 'account_locked', :v => 0 },
             link: { :ajax => true }
           )
@@ -47,7 +47,7 @@
       <% end %>
       <% if @locked_users_count > 0 %>,
         <%=
-          scope_filter_link(t('.locked_count', count: @locked_users_count),
+          scope_filter_link(t('.links.locked_count', count: @locked_users_count),
             @scope, :set, { :a => 'account_locked', :v => 1 },
             link: { :ajax => true }
           )
@@ -78,7 +78,7 @@
   <%
     t.pagination
 
-    t.column(t('login'), :login,
+    t.column(t('.columns.login'), :login,
       :sortable => true,
       :filters  => scoped_filters_for(
         @base_scope, @scope, :account_locked,
@@ -99,27 +99,27 @@
       )
     end
 
-    t.column(t('activerecord.attributes.user.full_name'), :full_name,
+    t.column(t('.columns.full_name'), :full_name,
       :sortable => true
     )
 
-    t.column(t('activerecord.attributes.user.email'), :email,
+    t.column(t('.columns.email'), :email,
       :sortable => true
     ) { |u| mail_to u.email }
 
-    t.column(t('activerecord.attributes.user.position'), :position,
+    t.column(t('.columns.position'), :position,
       :sortable => true
     )
 
-    t.column(t('activerecord.attributes.user.affiliation'), :affiliation,
+    t.column(t('.columns.affiliation'), :affiliation,
       :sortable => true
     )
 
-    t.column(t('.last_connection'), :last_connection,
+    t.column(t('.columns.last_connection'), :last_connection,
       :sortable => true
     ) { |u| u.last_connected_at ? to_localtime(u.last_connected_at, :datetime) : t('unknown') }
 
-    t.column(t('activerecord.models.group.other'), :groups) do |u|
+    t.column(t('.columns.groups'), :groups) do |u|
       group_names = u.assignable_groups.order(:name).pluck(:name).reject { |n| n == u.login }
       if group_names.size > 1 && group_names.size < 40
         html_tool_tip(t('.project_count', count: group_names.size), :offset_x => 60) do
@@ -139,7 +139,7 @@
       :filters  => default_filters_for(@base_scope, :type)
     ) { |u| u.type.underscore.titleize }
 
-    t.column(t('activerecord.models.site.one'), :site,
+    t.column(t('.columns.site'), :site,
       :sortable => true,
       :filters  => default_filters_for(@base_scope, Site)
     ) { |u| link_to_site_if_accessible(u.site) }

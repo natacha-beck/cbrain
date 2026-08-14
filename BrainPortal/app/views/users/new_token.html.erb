@@ -24,39 +24,35 @@
 
 <% title t('.title') %>
 
-<h2><%= t('.title') %></h2>
+<h2><%= t('.headings.main') %></h2>
 
-<%= t('.generated_intro') %>
+<%= t('.paragraphs.generated_intro') %>
 <p>
   <code class="copy-text"><%= @new_token %></code>
   <%= copy_to_clipboard_button(
      @new_token,
-     label: t('.copy'),
-     title: t('.copy_tooltip'))  %>
+     label: t('.labels.copy'),
+     title: t('.titles.copy_tooltip'))  %>
 <p>
 
-<%= t('.developer_info_html') %>
-<p>
-<%= t('.api_docs_html') %>
-<p>
-<strong><%= t('.notes_title') %></strong>:
+<%= t('.paragraphs.token_html') %>
+<strong><%= t('.titles.notes') %></strong>:
 
 <% pretty_how_long = SessionHelpers::SESSION_API_TOKEN_VALIDITY.inspect %>
 <ul>
   <li>
-    <%= t('.note_validity', duration: pretty_how_long) %>
+    <%= t('.li.validity', duration: pretty_how_long) %>
   </li>
   <li>
-    <%= t('.note_renewal', duration: pretty_how_long) %>
+    <%= t('.li.renewal', duration: pretty_how_long) %>
   </li>
   <li>
-    <%= t('.note_ip_lock_html') %>
+    <%= t('.li.ip_lock_html') %>
   </li>
   <li>
-    <%= t('.note_ip_invalid_html') %>
+    <%= t('.li.ip_invalid_html') %>
   </li>
   <li>
-    <%= t('.note_copy_html') %>
+    <%= t('.li.copy_html') %>
   </li>
 </ul>
-
