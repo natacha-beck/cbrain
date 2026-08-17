@@ -41,20 +41,20 @@
     <% if current_user %>
       <%= link_to t('.links.dashboard'), home_path %>
       <%= link_to t('.links.my_account'), user_path(current_user) %>
-      <%= link_to t('activerecord.models.group.other'), groups_path %>
+      <%= link_to t('.links.projects'), groups_path %>
       <%
-         message_link = t('activerecord.models.message.other')
+         message_link = t('.links.messages')
          message_link = "#{message_link} <span class=\"message_count\">(#{@unread_message_count})</span>".html_safe if (@unread_message_count.presence || 0) > 0
       %>
       <%= link_to message_link, messages_path, :title => t('.labels.unread_message', count: @unread_message_count) %>
       <% if current_user.has_role?(:normal_user) %>
-        <%= hover_dropdown(t('activerecord.models.resource.other'), :dropdown_class => "resource_header") do %>
-          <%= link_to t('activerecord.models.data_provider.other'), data_providers_path %><BR>
-          <%= link_to t('activerecord.models.quota.other'), quotas_path %><BR>
-          <%= link_to t('activerecord.models.remote_resource.other'), bourreaux_path %><BR>
-          <%= link_to t('activerecord.models.tool.other'), tools_path %><BR>
-          <%= link_to t('layouts.common.tool_versions'), tool_configs_path %><BR>
-          <%= link_to t('layouts.common.usage'), resource_usage_index_path %><BR>
+        <%= hover_dropdown(t('.dropdowns.resource'), :dropdown_class => "resource_header") do %>
+          <%= link_to t('.links.data_providers'), data_providers_path %><BR>
+          <%= link_to t('.links.quotas'), quotas_path %><BR>
+          <%= link_to t('.links.bourreaux'), bourreaux_path %><BR>
+          <%= link_to t('.links.tools'), tools_path %><BR>
+          <%= link_to t('.links.tool_config'), tool_configs_path %><BR>
+          <%= link_to t('.links.usage'), resource_usage_index_path %><BR>
           <%= link_to t('.links.full_list'), available_path %><BR>
         <% end %>
       <% end %>

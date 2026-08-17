@@ -1,5 +1,4 @@
 en:
-
   cbrain_mailer:
 
     common:
@@ -7,7 +6,6 @@ en:
       admins: "The %{service} administrators."
       thank_you: "Thank you,"
       access_service: "Access %{service} here:"
-
 
     forgotten_password:
       greeting: "Dear %{name},"

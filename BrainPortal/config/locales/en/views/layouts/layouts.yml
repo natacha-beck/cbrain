@@ -5,10 +5,21 @@ en:
         usage: "Usage"
 
       section_account:
+        dropdowns:
+          resource: "Resource"
+
         links:
           dashboard: "Dashboard"
           my_account: "My Account"
+          projects: "Projects"
           resource: "Resource"
+          messages: "Messages"
+          data_providers: "Data Providers"
+          quotas: "Quotas"
+          servers: "Servers"
+          tools: "Tools"
+          tool_versions: "Tool Versions"
+          usage: "Usage"
           full_list: "Full list of tools and datasets"
           help_site: "Help Site"
           email_support: "Email Support"

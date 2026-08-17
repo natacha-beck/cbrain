@@ -106,7 +106,7 @@
     <% end %>
 
     <% if ! is_userkey_dp %>
-      <% t.edit_cell(:time_zone, :content => (@provider.time_zone || t('unset')), :show_width => 2 ) do |f| %>
+      <% t.edit_cell(:time_zone, :content => (@provider.time_zone || t('unset_parentheses')), :show_width => 2 ) do |f| %>
         <%= f.select :time_zone, time_zone_options_for_select(@provider.time_zone, /canada/i), :include_blank => true %>
       <% end %>
     <% end %>
@@ -281,7 +281,7 @@
     <table>
       <tr><th colspan="2" class="supertitle"><%= t('.headings.public_ssh_key_note') %></th></tr>
       <tr><td><%= t('.datas.portal_key_note') %></td></tr>
-      <tr><td><PRE class="ssh_key"><%= pretty_ssh_key(RemoteResource.current_resource.get_ssh_public_key || t('datas.unknown_key')) %></PRE></td></tr>
+      <tr><td><PRE class="ssh_key"><%= pretty_ssh_key(RemoteResource.current_resource.get_ssh_public_key || t('.datas.unknown_key')) %></PRE></td></tr>
     </table>
   </div>
   <% end %>

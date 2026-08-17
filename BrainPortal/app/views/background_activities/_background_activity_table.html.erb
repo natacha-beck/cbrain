@@ -43,7 +43,7 @@
 </div>
 
 <fieldset class="bac_explanations" style="display: <%= @bacs.count == 0 ? 'block' : 'none' %>">
-  <legend><%= t('.legends.about_general_top_html') %></legend>
+  <legend><%= t('.legends.about') %></legend>
   <% if current_user.has_role? :admin_user %>
     <%= t('.paragraphs.about_admin_html') %>
   <% end %>

@@ -19,6 +19,7 @@ en:
       read: "Read"
       size_bytes: "%{size} bytes"
       created_at: "Created at"
+      qc: "Quality Control"
 
     default_qc_panel:
       not_synced: "This file must be synced locally to view QC data."

@@ -506,6 +506,7 @@ en:
         type: "Type"
         status: "Status"
         mode: "Mode"
+        syncability: "Syncability"
         owner: "Owner"
         group: "Project"
         online: "Status"

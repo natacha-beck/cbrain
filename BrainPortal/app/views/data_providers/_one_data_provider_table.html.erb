@@ -68,7 +68,7 @@
     t.column(t('.columns.time_zone'), :time_zone,
       :hidden   => true,
       :sortable => true
-    ) { |dp| dp.time_zone || t('unset') }
+    ) { |dp| dp.time_zone || t('unset_parentheses') }
 
     t.column(t('.columns.online'), :online,
       :sortable => true

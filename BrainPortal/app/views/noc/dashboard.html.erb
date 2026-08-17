@@ -24,8 +24,8 @@
 #
 -%>
 
-<% title t('.title', range: @range) %>
-<% title t('.subtitle_at', date: to_localtime(Time.now, :date), time: to_localtime(Time.now, :time)) %>
+<% title t('.titles.main', range: @range) %>
+<% title t('.titles.subtitle_at', date: to_localtime(Time.now, :date), time: to_localtime(Time.now, :time)) %>
 
 <head>
   <title><%= RemoteResource.current_resource.name.presence || "CBRAIN" %><%= yield :title %></title>

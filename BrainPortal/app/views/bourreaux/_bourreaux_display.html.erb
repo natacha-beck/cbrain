@@ -93,7 +93,7 @@
       :hidden   => true,
       :sortable => true,
       :filters  => default_filters_for(@base_scope, :time_zone)
-    ) { |r| r.time_zone || t('unset') }
+    ) { |r| r.time_zone || t('unset_parentheses') }
 
     t.column(t('.columns.online'), :online,
       :sortable => true
@@ -159,7 +159,7 @@
     ) { |r| overlay_description(r.description) }
 
     t.column(t('.columns.status_page_url'), :status_url) do |r|
-      link_to(t('status_with_colon'), r.external_status_page_url, :class => "action_link", :target => "_blank") if
+      link_to(t('status_colon'), r.external_status_page_url, :class => "action_link", :target => "_blank") if
         r.is_a?(Bourreau) && ! r.external_status_page_url.blank?
     end
 
@@ -340,13 +340,13 @@
               :value => 'stop_task_workers',
               :data  => { :confirm => t('.confirms.stop.task_workers') }
           %>
-          <% html_colorize_text_processing = html_colorize(t('.processing'),"orange") %>
+          <% html_colorize_text_processing = html_colorize(t('.stop_services.processing'),"orange") %>
           <%= t('.stop_services.paragraphs.stop_execution_server_description_html', processing: html_colorize_text_processing) %>
           <%= external_submit_button t('.buttons.stop.execution_server'), "bourreau_form",
               :class => 'button',
               :name  => 'operation',
               :value => 'stop_bourreaux',
-              :data  => { :confirm => t('.confirms.stop.bourreaux') }
+              :data  => { :confirm => t('.confirms.stop') }
           %>
           <% html_colorize_text_not_safe =  html_colorize("not safe","red") %>
           <%= t('.stop_services.paragraphs.stop_tunnels_description_html', processing: html_colorize_text_processing , not_safe: html_colorize_text_not_safe ) %>
