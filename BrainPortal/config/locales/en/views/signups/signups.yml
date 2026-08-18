@@ -77,6 +77,8 @@ en:
       title: "Request Confirmed"
       headings:
         main: "Confirmed!"
+      links:
+        have_a_look: "have a look"
       paragraphs:
         main_html: |
           Thank you. You've confirmed your email address.
@@ -86,7 +88,6 @@ en:
           <p>
         propose_view_html: |
           In the meantime you can %{look} at your request, or even %{edit} it.
-        have_a_look: "have a look"
         footer: |
           (There is nothing else to do here, you might as well have a coffee and read the news)
 

@@ -100,13 +100,13 @@
 
   <%= show_table(@group, :header => t('.headings.resources')) do |t| %>
 
-    <% t.cell(t('.cells.userfile')) { index_count_filter @group.userfiles.count, :userfiles, {:group_id => @group.id}, :show_zeros => true } %>
+    <% t.cell(t('.cells.userfiles')) { index_count_filter @group.userfiles.count, :userfiles, {:group_id => @group.id}, :show_zeros => true } %>
 
-    <% t.cell(t('.cells.cbrain_task')) { index_count_filter @group.cbrain_tasks.count, :tasks, {:group_id => @group.id}, :show_zeros => true } %>
+    <% t.cell(t('.cells.cbrain_tasks')) { index_count_filter @group.cbrain_tasks.count, :tasks, {:group_id => @group.id}, :show_zeros => true } %>
 
     <% if current_user.has_role?(:admin_user) %>
-      <% t.cell(t('.cells.tool')) { index_count_filter @group.tools.count, :tools, {:group_id => @group.id} }%>
-      <% t.cell(t('.cells.data_provider')) { index_count_filter @group.data_providers.count, :data_providers, {:group_id => @group.id} } %>
+      <% t.cell(t('.cells.tools')) { index_count_filter @group.tools.count, :tools, {:group_id => @group.id} }%>
+      <% t.cell(t('.cells.data_providers')) { index_count_filter @group.data_providers.count, :data_providers, {:group_id => @group.id} } %>
       <% t.cell(t('.cells.portal')) { index_count_filter BrainPortal.where(:group_id => @group.id).count, :bourreaux, {:group_id => @group.id, :type => "BrainPortal"} } %>
       <% t.cell(t('.cells.execution')) { index_count_filter Bourreau.where(:group_id => @group.id).count, :bourreaux, {:group_id => @group.id, :type => "Bourreau"} } %>
     <% end %>

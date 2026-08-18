@@ -88,13 +88,14 @@ en:
         other_users_system_projects: "Other Users System Projects"
         other_users_private_projects: "Other Users Private Projects"
         other_projects: "Other Projects"
+        special_all_project: "Special 'ALL' Project"
 
     view_buttons_tab:
       headings:
         all: "All"
+      files: "Files:"
+      tasks: "Tasks:"
       spans:
-        files: "Files:"
-        tasks: "Tasks:"
         creator: "Creator:"
         user_count:
           one: "1 user"
@@ -171,9 +172,11 @@ en:
         tasks: "Tasks"
         tools: "Tools"
         data_providers: "Data Providers"
+        portal: "Portal"
         execution: "Execution"
         members: "Members"
         track_usage: "Track Usage"
+        not_assignable: "Not Assignable"
       paragraphs:
         creator_html: |
           <div class="field_explanation"><span class="warning">Warning</span>: If you change the maintainer to someone else you won't be able to edit this project any more</div>

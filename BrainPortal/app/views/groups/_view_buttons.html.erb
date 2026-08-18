@@ -109,7 +109,7 @@
   <%= build_tabs do |tb| %>
 
     <%= my_groups.presence && tb.tab(t('.tabs.my_private_projects')) do %>
-      <%= t('.paragraphs.', name: current_user.own_group.name) %>
+      <%= t('.paragraphs.my_private_projects_html', name: current_user.own_group.name) %>
       <%= render :partial => 'view_buttons_tab', :locals => { :tab_groups => my_groups } %>
     <% end %>
 

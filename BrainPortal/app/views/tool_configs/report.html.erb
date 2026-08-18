@@ -34,7 +34,7 @@
       versus    = @bourreaux
     end
   %>
-  <h1><%= t('.headings.by', type: @view == 'by_bourreau' ? t('activerecord.models.remote_resource.execution_server') : t('activerecord.models.tool', count: 1)) %></h1>
+  <h1><%= t('.headings.by', type: @view == 'by_bourreau' ? t('.headings.execution_server') : t('.headings.tool', count: 1)) %></h1>
   <% resources.each do |resource| %>
     <p>
     <%= render :partial => 'by_resource',

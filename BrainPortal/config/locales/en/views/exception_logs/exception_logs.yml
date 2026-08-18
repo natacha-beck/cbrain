@@ -14,10 +14,12 @@ en:
           other: "%{count} messages"
 
         columns:
+          method: "Method"
           exception: "Exception"
           message: "Message"
           controller: "Controller"
           action: "Action"
+          format: "Format"
           user: "User"
           revision: "Revision"
           raised_at: "Raised at"

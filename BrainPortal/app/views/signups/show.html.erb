@@ -67,7 +67,7 @@
 <% end %>
 
 <p>
-<%= t('.paragraphs.delete_html', link: link_to(t('delete'), signup_path(@signup), :action => :destroy, :method => :delete, :data => { :confirm => t('delete_confirm', name: @signup.full_name) })) %>
+<%= t('.paragraphs.delete_html', link: link_to(t('delete'), signup_path(@signup), :action => :destroy, :method => :delete, :data => { :confirm => t('confirm_delete', name: @signup.full_name) })) %>
 
 <p>
 <%= t('.paragraphs.summary_intro') %>

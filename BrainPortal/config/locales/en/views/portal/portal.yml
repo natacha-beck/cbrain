@@ -81,6 +81,7 @@ en:
           at McGill for their invaluable feedback and support.
 
     portal_log:
+      title: "Portal Logs"
       filters:
         lines_to_show_html: "Number of lines to show: %{dropdown}"
         min_request_time_html: "Minimum request time: %{dropdown} ms"

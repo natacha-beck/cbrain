@@ -207,10 +207,18 @@ en:
         update: "%{name} could not be updated."
         viewer: "An error occurred when loading the viewer plugin."
 
+      headings:
+        provider_full_path: "Local Data Provider (cache) path"
+        project_permission: "Project permission on file"
+
       cells:
         zenodo_publication: "Zenodo Publication"
         parent: "Parent"
         children: "Children"
+        provider_full_path: "Remote Data Provider path"
+        modified_at: "Modified at"
+        immutable_file: "Immutable file"
+        hidden_file: "Hidden file"
 
       zenodo_publication:
         published: "Published: %{link}"

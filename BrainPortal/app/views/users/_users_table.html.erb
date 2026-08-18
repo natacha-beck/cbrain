@@ -156,7 +156,7 @@
 
     t.column(t('time_zone'), :time_zone,
       :sortable => true,
-    ) { |u| u.time_zone || t('unset') }
+    ) { |u| u.time_zone || t('unset_parentheses') }
 
     t.column(t('activerecord.models.file.other'), :files) do |u|
       size = Userfile.where(:user_id => u.id).sum(:size)

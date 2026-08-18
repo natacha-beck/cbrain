@@ -28,9 +28,9 @@
 
 <%= t('.paragraphs.main_html') %>
 <% if @propose_view %>
-<%= t('.paragraphs.propose_view_html', look: link_to(t('.have_a_look'), signup_path(@signup)), edit: link_to(t('edit').downcase, edit_signup_path(@signup))) %>
+<%= t('.paragraphs.propose_view_html', look: link_to(t('.links.have_a_look'), signup_path(@signup)), edit: link_to(t('edit').downcase, edit_signup_path(@signup))) %>
 <p>
 <% end %>
 
-<%= t('.footer') %>
+<%= t('.paragraphs.footer') %>
 

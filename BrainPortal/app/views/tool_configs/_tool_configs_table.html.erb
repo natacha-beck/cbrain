@@ -71,7 +71,7 @@
       end
     end
 
-    t.column(t('activerecord.models.remote_resource.execution_server'), :bourreau,
+    t.column(t('.columns.execution_server'), :bourreau,
       :sortable => true,
       :filters  => default_filters_for(@base_scope, Bourreau)
     ) { |tc| tc.bourreau ? link_to_bourreau_if_accessible(tc.bourreau) : html_colorize(t('tool_configs.common.all_servers'),'orange')}
@@ -91,7 +91,7 @@
           (
           tc.tool_id.blank?     ? html_colorize(t('tool_configs.common.all_tools'), 'orange') :
           tc.bourreau_id.blank? ? html_colorize(t('tool_configs.common.all_servers'), 'orange') :
-          html_colorize(t('unset'),'red')
+          html_colorize(t('unset_parentheses'),'red')
           )
         end
       }

@@ -48,15 +48,16 @@ en:
         could_not_be_updated: "Site could not be updated."
         resources: "Resources"
         groups: "Projects"
+        users: "Users"
         data_providers: "Data Providers"
         remote_resources: "Remote Resources"
       paragraphs:
         description_html: |
           <div class="field_explanation">The first line should be a short summary, and the rest are for any special notes for the users.</div><br>
       cells:
-        manager: "Site Manager"
+        managers: "Site Manager"
         users: "Users"
-        projects: "Projects"
+        groups: "Projects"
         userfiles: "Files"
         data_providers: "Data Providers"
         remote_resources: "Remote Resources"

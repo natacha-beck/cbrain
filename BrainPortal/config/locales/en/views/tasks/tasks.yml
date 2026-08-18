@@ -232,6 +232,7 @@ en:
         not_yet_created_or_erased: "(Not yet created or erased)"
         size_of_work_directory: "Size of Work Directory"
         archiving_status: "Archiving Status"
+        last_updated: "Last Updated"
 
       zenodo_publication:
         published: "Published"

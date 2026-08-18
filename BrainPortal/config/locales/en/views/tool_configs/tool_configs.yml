@@ -185,6 +185,7 @@ en:
       columns:
         access: "Access?"
         tool_name: "Tool Name"
+        execution_server: "Execution Server"
         tool_project: "Tool Project"
         version: "Version"
         version_project: "Version Project"
@@ -216,8 +217,9 @@ en:
         tool: "By Tool"
         user: "By User"
       submit: "Get report!"
-
       headings:
+        execution_server: "Execution Server"
+        tool: "Tool"
         by: "Access Report, By %{type}"
         access_by_user: "Tool Access Report, By User"
         by_server_html: "By Execution Server(or %{link})"

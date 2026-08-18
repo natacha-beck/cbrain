@@ -74,7 +74,7 @@
       <% end %>
     <% end %>
 
-    <% t.cell(t('shared.show_table.modified_at')) do %>
+    <% t.cell(t('.cells.modified_at')) do %>
       <%= to_localtime(@userfile.updated_at,:datetime) %>
 
       (<%= t('ago_time', time: pretty_elapsed(Time.now - @userfile.updated_at, :num_components => 3)) %>)
@@ -137,16 +137,16 @@
       </select>
     <% end %>
 
-    <% t.edit_cell(:group_writable, :header => t('shared.show_table.project_permission'), :content => (@userfile.group_writable? ? t('userfiles.common.read_write') : t('userfiles.common.read')), :disabled => !@userfile.has_owner_access?(current_user)) do |f| %>
+    <% t.edit_cell(:group_writable, :header => t('.headings.project_permission'), :content => (@userfile.group_writable? ? t('userfiles.common.read_write') : t('userfiles.common.read')), :disabled => !@userfile.has_owner_access?(current_user)) do |f| %>
       <%= f.select :group_writable, [[t('userfiles.common.read_only'), false],[t('userfiles.common.read_write'), true]] %>
     <% end %>
 
-    <% t.edit_cell(t('shared.show_table.hidden_file'), :content => check_box_tag(nil ,nil, @userfile.hidden?, :disabled => true) + "&nbsp;".html_safe + hidden_icon, :disabled => (!@userfile.has_owner_access?(current_user))) do |f| %>
+    <% t.edit_cell(t('.cells.hidden_file'), :content => check_box_tag(nil ,nil, @userfile.hidden?, :disabled => true) + "&nbsp;".html_safe + hidden_icon, :disabled => (!@userfile.has_owner_access?(current_user))) do |f| %>
       <%= f.check_box :hidden %>
       <%= hidden_icon %>
     <% end %>
 
-    <% t.edit_cell(t('shared.show_table.immutable_file'), :content => check_box_tag(nil ,nil, @userfile.immutable?, :disabled => true) + "&nbsp;".html_safe + immutable_icon, :disabled => (!@userfile.has_owner_access?(current_user))) do |f| %>
+    <% t.edit_cell(t('.cells.immutable_file'), :content => check_box_tag(nil ,nil, @userfile.immutable?, :disabled => true) + "&nbsp;".html_safe + immutable_icon, :disabled => (!@userfile.has_owner_access?(current_user))) do |f| %>
       <%= f.check_box :immutable %>
       <%= immutable_icon %>
     <% end %>
@@ -182,9 +182,9 @@
 
 
     <% if current_user.has_role? :admin_user %>
-      <% t.attribute_cell(:cache_full_path, :header => t('shared.show_table.local_cache_path'), :show_width => 2) %>
+      <% t.attribute_cell(:, :header => t('.headings.provider_full_path'), :show_width => 2) %>
       <% if @userfile.data_provider.respond_to?(:provider_full_path) %>
-        <% t.cell(t('shared.show_table.remote_path'), :show_width => 2) do %>
+        <% t.cell(t('.cells.provider_full_path'), :show_width => 2) do %>
           <%= @userfile.data_provider.provider_full_path(@userfile) %>
         <% end %>
       <% end %>
@@ -249,7 +249,7 @@
 
     <% elsif @userfile.viewers_with_applied_conditions.blank? %>
 
-        <%= t('.no_viewer_code_html', type: @userfile.pretty_type) %>
+        <%= t('.content.no_viewer_code_html', type: @userfile.pretty_type) %>
 
     <% else %>
 
