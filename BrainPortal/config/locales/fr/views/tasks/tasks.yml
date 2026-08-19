@@ -94,60 +94,60 @@ fr:
         select_another_tool_version: ""
 
       hijacker:
-        trigger_error_recovery: ""
-        setup_stage: ""
-        cluster_stage: ""
-        post_processing_stage: ""
-        duplicate_tasks: ""
-        terminate_tasks: ""
-        remove_work_directories: ""
-        remove_tasks: ""
-        archive_on_cluster: ""
-        archive_as_file: ""
-        unarchive_tasks: ""
+        trigger_error_recovery: "Déclencher la récupération après une erreur"
+        setup_stage: "\"Configuration\" stag"
+        cluster_stage: "\"Cluster\" stage"
+        post_processing_stage: "\"Post-traitement\" stag"
+        duplicate_tasks: "Dupliquer les tâches"
+        terminate_tasks: "Interrompre les tâches"
+        remove_work_directories: "Supprimer les répertoires de travail"
+        remove_tasks: "Supprimer les tâches"
+        archive_on_cluster: "Archiver sur le cluster"
+        archive_as_file: "Archiver comme fichier"
+        unarchive_tasks: "Désarchiver les tâches"
 
       confirm:
-        terminate_tasks: ""
-        remove_work_directories: ""
-        remove_tasks: ""
+        terminate_tasks: "Êtes-vous certain de vouloir interrompre les tâches sélectionnées?"
+        remove_work_directories: "Êtes-vous certain de vouloir supprimer les\nRÉPERTOIRES DE TRAVAIL des tâches sélectionnées?"
+        remove_tasks: "Êtes-vous certain de vouloir supprimer les tâches sélectionnées?\n\nREMARQUE IMPORTANTE: Cela supprimera également leurs répertoires de travail archivés, le cas échéant."
 
-      restart_at: ""
-      on_execution_server: ""
-      optional_destination_dp_html: ""
-      do_not_compress: ""
+      restart_at: "Redémarrer à:"
+      on_execution_server: "sur le serveur d'exécution: "
+      optional_destination_dp_html: "Facultatif: lors de l'archivage <em>comme fichier</em>, choisissez un fournisseur de données de destination:<br />"
+      do_not_compress: "Ne pas compresser lors de l'archivage"
 
     tasks_display:
       titles:
-        expand_batch: ""
-        open_batch: ""
+        expand_batch: "Développer le lot"
+        open_batch: "Ouvrir le lot"
 
       switches:
-        switch_to_list_view: ""
-        switch_to_batch_view: ""
+        switch_to_list_view: "Passer à la vue Liste"
+        switch_to_batch_view: "Passer à la vue Lot""
 
       columns:
-        batch: ""
-        task_type: ""
-        version: ""
-        description: ""
-        owner: ""
-        project: ""
-        server: ""
-        current_status: ""
-        run_number: ""
-        workdir_size: ""
-        results_on: ""
-        time_submitted: ""
-        last_updated: ""
-
+        batch: "Lot"
+        task_type: "Type de tâche"
+        version: "Version"
+        description: "Description"
+        owner: "Propriétaire"
+        project: "Projet"
+        server: "Serveur d'exécution"
+        current_status: "État actuel"
+        run_number: "Numéro d'exécution"
+        workdir_size: "Taille du répertoire de travail"
+        results_on: "Résultats sur"
+        time_submitted: "Date de soumission"
+        last_updated: "Dernière mise à jour"
+      
       legends:
-        on_cluster: ""
-        as_file: ""
+        on_cluster: "Sur le Cluster"
+        as_file: "Comme fichier"
 
       task_count_colon:
-        one: ""
-        other: ""
-
+        one: "%{count} tâche:"
+        other: "%{count} tâches:"
+      
       total_space: ""
       tasks_without_estimates:
         one: ""
