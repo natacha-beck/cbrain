@@ -3,13 +3,14 @@ fr:
 
     show:
       buttons:
-        show: ""
-        edit: ""
-        save: ""
-        remove: ""
-        saving: ""
-        removing: ""
+        show: "Afficher"
+        edit: "Modifier"
+        save: "Enregistrer"
+        remove: "Supprimer"
+        saving: "Enregistrement en cours..."
+        removing: "Suppression en cours..."
       description_html: |
-        There is no documentation on this topic right now. <br />
-        Add some by using the edit button in the top left corner.
+        Il n'existe actuellement aucune documentation sur ce sujet. <br />
+        Ajoutez-en en utilisant le bouton de modification situé dans le coin supérieur gauche.
+    
 
