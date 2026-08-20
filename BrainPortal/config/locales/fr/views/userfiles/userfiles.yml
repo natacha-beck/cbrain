@@ -2,7 +2,56 @@ fr:
   userfiles:
 
     common:
-      download: ""
+      download: "Télécharger"
+      copy: "Copier"
+      move: "Déplacer"
+      rename: "Renommer"
+      compress: "Compresser"
+      uncompress: "Décompresser"
+      properties: "Propriétés"
+      synchronize: "Synchroniser"
+      mark_newer: "Marquer comme plus récent"
+      upload: "Importer"
+      and_go: " (et passer au fichier suivant)"
+      exception: "Exception:"
+      read_only: "Lecture seule"
+      read_write: "Lecture/Écriture"
+      read: "Lecture"
+      size_bytes: "%{size} octets"
+      created_at: "Créé le"
+      qc: "Contrôle qualité"
+
+    default_qc_panel:
+      not_synced: "Ce fichier doit être synchronisé localement pour afficher les données de contrôle qualité."
+      no_qc_data: "Ce fichier ne semble pas contenir de données de contrôle qualité, ou aucun modèle n'est disponible pour effectuer le contrôle qualité de ce type de fichier."
+
+    dialogs:
+      titles:
+        upload_sf: "Importation - Fichier unique"
+        file_properties: "Propriétés du fichier"
+        new_collection: "Nouvelle collection"
+
+      blanks:
+        keep_current_parentheses: "(Conserver %{attribute} actuel)"
+
+      placeholders:
+        dp: "Un fournisseur de données..."
+        group: "Un projet..."
+        tags: "Des étiquettes..."
+        file_type: "Un type de fichier..."
+        keep_current: "Conserver %{attribute} actuel"
+
+      labels:
+        extract: "Extraire"
+        as_single_collection: "Comme une seule collection"
+        as_multiple_files: "Comme plusieurs fichiers"
+        advanced_options: "Options avancées..."
+        detect_as: "Détecter comme"
+        allow_modification: "Autoriser la modification par les autres membres du projet"
+        overwrite: "Écraser les fichiers existants portant le même nom"
+        clear_tags: "Effacer les étiquettes"
+        hidden_html: "Masqué (<span class='pp-hid-ind'>H</span>)"
+        locked_html: "Verrouillé (<span class='pp-ro-ind'>I</span>)"
       copy: ""
       move: ""
       rename: ""
