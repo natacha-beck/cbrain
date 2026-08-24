@@ -1,5 +1,4 @@
 en:
-
   bourreaux:
 
     common:
@@ -15,8 +14,10 @@ en:
         two_months: "Two months"
         three_months: "Three months"
         six_months: "Six months"
+
       workers_instances_select:
         none: "None (for debug)"
+
       workers_chk_time_select:
         five_seconds: "5 seconds"
         ten_seconds: "10 seconds"
@@ -26,6 +27,7 @@ en:
         five_minutes: "5 minutes"
         fifteen_minutes: "15 minutes"
         one_hour: "1 hour"
+
       workers_log_to_select:
         combined_file: "Combined file (recommended)"
         separate_files: "Separate files"
@@ -34,6 +36,7 @@ en:
         rails_stderr: "RAILS stderr"
         rails_stdout_and_stderr: "RAILS stdout and stderr"
         no_logging: "No logging"
+
       workers_verbose_select:
         normal: "Normal"
         debug_info: "Debug info"
@@ -106,7 +109,7 @@ en:
           activity_workers: "Are you sure you want to stop the Activity Workers? They will finish what they are doing first."
           task_workers: "Are you sure you want to stop the Task Workers? They will finish what they are doing first."
           bourreau: "Are you sure? Note that workers will also shut down once they are done, if they are still active."
-          tunnels: "Make sure Execution Servers, Task Workers and Activity workers are all stopped!"
+          tunnels: "Make sure Execution Servers, Task Workers and Activity Workers are all stopped!"
 
 
       # Start services panel
@@ -309,9 +312,11 @@ en:
             The first line should be a short summary, and the rest are for any special notes for the users.
           </div>
         dp_cache_dir_html: |
-          <div class="field_explanation">Warning! Changing this field will result in resetting the synchronization
-              status of all files from all Data Providers! Also, the Rails app will have to
-              be restarted, and all files in that directory will be erased!</div>
+          <div class="field_explanation">
+            Warning! Changing this field will result in resetting the synchronization
+            status of all files from all Data Providers! Also, the Rails app will have to
+            be restarted, and all files in that directory will be erased!
+          </div>
         spaced_dp_ignore_patterns_html: |
           <div class="field_explanation">
             Separate several patterns with spaces; each pattern can contain single '*'s, but no '/'s or special characters.
@@ -405,6 +410,11 @@ en:
       title: "Servers Access to Data Providers"
       headings:
         main: "Servers Access to Data Providers"
+        servers: "Servers"
+        data_providers: "Data Providers"
+        name: "Name"
+        type: "Type"
+        last_checked: "Last Checked"
 
       paragraphs:
         rr_access_explanation_html: |
@@ -425,12 +435,6 @@ en:
           indicate servers that are not allowed to access files on the Data Provider
           at all, in any way (streaming or synchronized), even if the Data Provider seems alive.
           </p>
-      headings:
-        servers: "Servers"
-        data_providers: "Data Providers"
-        name: "Name"
-        type: "Type"
-        last_checked: "Last Checked"
       links:
         refresh_all: "Refresh all"
       status:
@@ -580,7 +584,6 @@ en:
         nh_system_from_email: "If set, NeuroHub messages sent automatically by this system will contain this return address."
         activity_workers_explanation_html: "In a development environment %{env_note} a single Activity Worker is often enough. In production, a busy Portal might require more than one Worker, but a Bourreau could work fine with just one."
         cache_expiration_html: "This means that in the execution server's cache, files that have been recorded as 'InSync' but were last accessed more than this amount of time will be considered untrustworthy and will be re-synchronized the next time they are accessed. Set this to a value less than <em>N</em> if the cluster's file policy, for instance, deletes all scratch files older than <em>N</em> days."
-        cms_extra_qsub_args: "Optional. Careful, this is inserted as-is in the command-line for submitting jobs."
         docker_executable_name: "Name of the Docker executable available on the machines where tasks will run. It should always be set if Docker is present."
         singularity_executable_name: "Name of the Singularity executable available on the machines where tasks will run. It should always be set if Singularity is present."
 

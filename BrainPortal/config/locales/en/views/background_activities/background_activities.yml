@@ -1,5 +1,4 @@
 en:
-
   background_activities:
 
     common:
@@ -217,4 +216,3 @@ en:
       none_question: "(None ?)"
       none: "0 (None)"
       none_yet: "0 (None yet!)"
-

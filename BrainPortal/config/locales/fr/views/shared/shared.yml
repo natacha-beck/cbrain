@@ -14,7 +14,7 @@ fr:
       no_records_found: "Aucun enregistrement trouvé"
       filter: "Filtre - %{name}"
       columns: "Colonnes"
-      per_page: "par page"
+      per_page: "par page."
 
     error_messages:
       header_message: "%{object_errors} ont empêché l'enregistrement de ce %{object_name}:"
@@ -30,4 +30,3 @@ fr:
       select_all: "Tout sélectionner"
       select_all_on_all_pages_tooltip: "Tout sélectionner les %{item_name} sur toutes les pages"
       clear_tooltip: "Désélectionner les %{item_name}"
-

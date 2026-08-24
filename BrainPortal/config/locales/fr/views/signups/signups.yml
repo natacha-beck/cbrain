@@ -2,225 +2,222 @@ fr:
   signups:
 
     common:
-      comment: ""
+      comment: "Commentaires ou demandes spéciales :"
 
     result_action_one:
       headings:
-        main: ""
+        main: "Résultat pour %{name}, %{institution}"
 
     signups_table:
       links:
-        new_request: ""
-        hide_hidden_records: ""
-        show_all_records: ""
-        latest_todo: ""
-        edit: ""
+        new_request: "Nouvelle demande"
+        hide_hidden_records: "Masquer les demandes cachés"
+        show_all_records: "Afficher toutes les demandes"
+        latest_todo: "Dernier a faire"
+        edit: "Modifier"
         signup_request:
-          one:   ""
-          other: ""
+          one:   "%{count} inscription"
+          other: "%{count} inscriptions"
       columns:
-        name: ""
-        edit: ""
-        email: ""
-        position: ""
-        department: ""
-        institution: ""
-        country: ""
-        username: ""
-        comments: ""
-        private_comments: ""
-        in_cbrain: ""
-        portal: ""
-        origin: ""
-        created: ""
-        approved_by: ""
-        status: ""
+        name: "Nom"
+        edit: "Modifier"
+        email: "Email"
+        position: "Poste"
+        department: "Département"
+        institution: "Institution"
+        country: "Pays"
+        username: "Nom d'utilisateur"
+        comments: "Commentaires"
+        private_comments: "Commentaires privés"
+        in_cbrain: "Dans CBRAIN"
+        portal: "Portail"
+        origin: "Origine"
+        created: "Créé"
+        approved_by: "Approuvé par"
+        status: "Statut"
       labels:
-        not_approved: ""
+        not_approved: "(Non approuvé)"
       buttons:
-        adjust_login: ""
-        resend_confirm_email: ""
-        toggle_hidden: ""
+        adjust_login: "Ajuster le login"
+        resend_confirm_email: "Renvoyer l'email de confirmation"
+        toggle_hidden: "Basculer l'affichage des cachés"
       tooltips:
-        updated_at: ""
-      delete_confirm: ""
+        updated_at: "Mis à jour : %{time}"
+      delete_confirm: "Supprimer les demandes d'inscription sélectionnées ?"
 
     status:
-      approved_by: ""
-      approved_at: ""
-      email_confirmed: ""
+      approved_by: "Approuvé par : %{name}"
+      approved_at: "Approuvé le : %{time}"
+      email_confirmed: "E-mail confirmé."
       warnings:
-        email_unconfirmed: ""
-        conflicting_email: ""
-        login_conflict: ""
+        email_unconfirmed: "(E-mail non confirmé)"
+        conflicting_email: "(E-mail en conflit)"
+        login_conflict: "(Conflit de login)"
       links:
-        approve: ""
+        approve: "(Approuver)"
 
     confirm_button:
-      title: ""
+      title: "Confirmez votre demande"
       headings:
-        main: ""
+        main: "Veuillez confirmer votre demande de nouveau compte."
       paragraphs:
         main_html: |
-          Thank you for following the link from CBRAIN in your mailbox.
+          Merci d'avoir suivi le lien envoyé par CBRAIN dans votre boîte mail.
           <p>
-          To ensure you are indeed the owner of the email address that has
-          requested the creation of an account on CBRAIN, please complete the
-          final required step by clicking the button below. This will tell
-          the CBRAIN administrators that your request is legitimate and
-          official.
+          Pour nous assurer que vous êtes bien le propriétaire de l'adresse e-mail ayant
+          demandé la création d'un compte CBRAIN, veuillez compléter l'étape finale en cliquant
+          sur le bouton ci‑dessous. Cela informera les administrateurs de CBRAIN que votre demande est légitime et officielle.
           <p>
       links:
-        confirm_request: ""
+        confirm_request: "Confirmer la demande"
 
     confirm:
-      title: ""
+      title: "Demande confirmée"
       headings:
-        main: ""
+        main: "Confirmé !"
+      links:
+        have_a_look: "consulter"
       paragraphs:
         main_html: |
-          Thank you. You've confirmed your email address.
+          Merci. Vous avez confirmé votre adresse e‑mail.
           <p>
-          Now it's up to the administrators to review your request
-          and you'll be notified if and when they approve it.
+          À présent, les administrateurs vont examiner votre demande
+          et vous serez notifié si et quand elle sera approuvée.
           <p>
         propose_view_html: |
-          In the meantime you can %{look} at your request, or even %{edit} it.
-        have_a_look: ""
+          En attendant, vous pouvez %{look} votre demande, ou même la %{edit}.
         footer: |
-          (There is nothing else to do here, you might as well have a coffee and read the news)
+          (Il n'y a rien d'autre à faire ici, profitez-en pour prendre un café et lire les nouvelles)
 
     index:
-      title: ""
+      title: "Demandes d'inscription"
       headings:
-        main: ""
+        main: "Demandes d'inscription"
 
     multi_action:
-      title: ""
+      title: "Résultats d'actions groupées"
       headings:
-        main: ""
+        main: "Résumé des résultats des actions groupées"
       links:
-        go_back_html: ""
-        back_to_list: ""
+        go_back_html: "Vous pouvez %{link}."
+        back_to_list: "retour à la liste des demandes"
 
     new:
-      title: ""
+      title: "Nouvelle demande de compte"
       warnings:
-        mandatory_fields: ""
+        mandatory_fields: "Les champs marqués d'un astérisque (*) sont obligatoires."
       legends:
-        personal_info: ""
-        institution_info: ""
+        personal_info: "Informations personnelles"
+        institution_info: "Informations sur l'institution"
       labels:
-        title: ""
-        first: ""
-        middle: ""
-        last: ""
-        login: ""
-        institution: ""
-        department: ""
-        position: ""
-        affiliation: ""
-        email: ""
-        street1: ""
-        street2: ""
-        city: ""
-        province: ""
-        country: ""
-        postal_code: ""
-        admin_comment: ""
-        comment: ""
+        title: "Titre :"
+        first: "* Prénom :"
+        middle: "Deuxième prénom :"
+        last: "* Nom :"
+        login: "* Login préféré :"
+        institution: "* Nom de l'institution/organisation :"
+        department: "* Département"
+        position: "* Poste ou rôle actuel :"
+        affiliation: "* Affiliation actuelle :"
+        email: "* Adresse e‑mail institutionnelle :"
+        street1: "Adresse de l'institution (ligne 1) :"
+        street2: "Adresse de l'institution (ligne 2) :"
+        city: "* Ville de l'institution :"
+        province: "* Province/État :"
+        country: "* Pays :"
+        postal_code: "Code postal :"
+        admin_comment: "Commentaires privés (admin uniquement) :"
+        comment: "Commentaires ou demandes spéciales :"
       paragraphs:
         title_html: |
           <div class="wide_field_explanation">
-            <span class="wide_field_explanation">for example: 'Mrs.', 'Mr', 'Dr.', etc.</span>
+            <span class="wide_field_explanation">par exemple : « Mme », « M. », « Dr », etc.</span>
           </div>
         login_html: |
           <div class="wide_field_explanation">
             <span class="wide_field_explanation">
-                <small>one letter + alphanums. <strong>By convention</strong>: the first letter of your first name + last name.
-                For example, John Doe login: 'jdoe' </small>
+                <small>une lettre + des alphanumériques. <strong>Par convention</strong> : première lettre du prénom + nom de famille.
+                Par exemple, pour John Doe : 'jdoe' </small>
             </span>
           </div>
         email_html: |
           <div class="wide_field_explanation">
-            <small>Please supply the address of <strong class="warning"> your research institution.</strong>
-              Requests with non-institutional address or email
-              will be <strong>ignored</strong>
+            <small>Veuillez fournir l'adresse de <strong class="warning">votre institution de recherche.</strong>
+              Les demandes avec une adresse non institutionnelle seront <strong>ignorées</strong>
             </small>
           </div>
         comment_html: |
           <div class="wide_field_explanation">
-            Please tell us the name of the laboratory you work for,
-            the name of its Principal Investigator (if not you), and if possible
-            anyone else you know in your lab who are already CBRAIN users. <br>
-            We'll use this information to create or add you to a
-            <em>Site</em> within CBRAIN.
+            Veuillez indiquer le nom du laboratoire où vous travaillez,
+            le nom du chercheur principal (si ce n'est pas vous), et si possible
+            quelqu'un d'autre de votre laboratoire déjà utilisateur de CBRAIN. <br>
+            Nous utiliserons ces informations pour créer ou vous ajouter à un
+            <em>Site</em> dans CBRAIN.
           </div>
         privacy_note: |
           <br>
-          <b>Privacy note</b>
+          <b>Note de confidentialité</b>
           <br>
-          The information you supply in this form is
-          only used in order to review your application and, <br> when approved, to
-          automatically generate your user account. <br>
-          This information will not be used in any other way, or passed on to
-          any other entities or persons.
+          Les informations que vous fournissez dans ce formulaire sont
+          utilisées uniquement pour examiner votre demande et, <br> une fois approuvée,
+          pour générer automatiquement votre compte utilisateur. <br>
+          Ces informations ne seront pas utilisées à d'autres fins ni transmises
+          à d'autres entités ou personnes.
       selects:
         position_options:
-          faculty: ""
-          postdoctoral: ""
-          phd_candidate: ""
-          masters_student: ""
-          student: ""
-          researcher: ""
-          other: ""
+          faculty: "Enseignant‑chercheur"
+          postdoctoral: "Post‑doctorant"
+          phd_candidate: "Doctorant"
+          masters_student: "Étudiant de master"
+          student: "Étudiant"
+          researcher: "Chercheur"
+          other: "Autre"
         affiliation_options:
-          academic: ""
-          private_sector: ""
-          government: ""
-          non_profit: ""
-          other: ""
-        select_one: ""
+          academic: "Universitaire"
+          private_sector: "Secteur privé"
+          government: "Gouvernement"
+          non_profit: "Organisation à but non lucratif"
+          other: "Autre"
+        select_one: "(sélectionner)"
       submits:
-        request_account: ""
-        update_request: ""
-      contact_html: ""
-
+        request_account: "Demander un compte"
+        update_request: "Mettre à jour la demande"
+      contact_html: "Pour plus d'informations, contactez %{email}."
 
     show:
-      title: ""
+      title: "Informations sur la demande de compte"
       headings:
-        main: ""
-        full_name: ""
-        login: ""
-        institution: ""
-        department: ""
-        position: ""
-        affiliation: ""
-        email: ""
-        street1: ""
-        street2: ""
-        city: ""
-        province: ""
-        country: ""
-        postal_code: ""
-        comment: ""
-        admin_comments: ""
-        status_of_request: ""
-        time_zone: ""
+        main: "Résumé de la demande de compte"
+        full_name: "Nom complet"
+        login: "Login préféré :"
+        institution: "Nom de l'institution/organisation :"
+        department: "Département :"
+        position: "Poste ou rôle :"
+        affiliation: "Affiliation :"
+        email: "Adresse e‑mail :"
+        street1: "Adresse (ligne 1) :"
+        street2: "Adresse (ligne 2) :"
+        city: "Ville :"
+        province: "Province/État :"
+        country: "Pays :"
+        postal_code: "Code postal :"
+        comment: "Commentaires ou demandes spéciales :"
+        admin_comments: "Commentaires admin"
+        status_of_request: "Statut de la demande :"
+        time_zone: "Fuseau horaire :"
       links:
-        approve: ""
-        email_confirmation_request: ""
+        approve: "approuver"
+        email_confirmation_request: "demande de confirmation d'email"
       paragraphs:
-        made_from_portal_html: ""
-        admin_can_edit_html: ""
-        login_conflict: ""
-        can_approve_html: ""
-        not_confirmed: ""
-        confirmed: ""
-        resend_admin_html: ""
-        edit_session_note_html: ""
-        confirmation_sent: ""
-        resend_user_html: ""
-        summary_intro: ""
-        delete_html: ""
+        made_from_portal_html: "Cette demande de compte a été faite depuis le portail %{portal} en utilisant le formulaire situé sur %{form_page}."
+        admin_can_edit_html: "En tant qu'administrateur, vous pouvez %{link} cette demande."
+        login_conflict: "Le login de cet utilisateur est en conflit avec un utilisateur déjà présent dans le système."
+        can_approve_html: "Vous pouvez aussi %{link} cette demande."
+        not_confirmed: "L'utilisateur n'a pas encore confirmé son adresse e‑mail."
+        confirmed: "L'utilisateur a confirmé son adresse e‑mail."
+        resend_admin_html: "Si l'utilisateur n'a pas reçu l'e‑mail de confirmation, vous pouvez demander qu'un autre %{link} soit renvoyé."
+        edit_session_note_html: "Vous pouvez %{link} ce formulaire, mais cette option ne sera disponible que tant que vous utilisez la même session de navigateur que celle utilisée pour soumettre le formulaire initialement. Faites‑le maintenant tant que vous le pouvez !"
+        confirmation_sent: "Un e‑mail de confirmation a été envoyé à l'adresse fournie. Une fois reçu, veuillez cliquer sur le lien fourni afin que nous puissions confirmer votre identité."
+        resend_user_html: "Si vous n'avez pas reçu l'e‑mail, vous pouvez demander qu'un autre %{link} vous soit envoyé."
+        summary_intro: "Ci‑dessous un résumé des informations de cette demande de compte."
+        delete_html: "Vous pouvez %{link} cette demande."

@@ -1,92 +1,90 @@
 fr:
-
   messages:
 
     common:
-      mark_as_html: ""
-      updating: ""
-      deleting: ""
+          mark_as_html: "Marquer&nbsp;comme&nbsp;%{state}"
+          updating: "Mise à jour..."
+          deleting: "Suppression..."
 
-      labels:
-        system: ""
-        state_read: ""
-        state_unread: ""
-        expiry_date: ""
+          labels:
+            system: "Système"
+            state_read: "Lu"
+            state_unread: "Non lu"
+            expiry_date: "Date d'expiration (heure actuelle : %{time})"
 
-      time_ago:
-        ten_minutes: ""
-        one_hour: ""
-        one_day: ""
-        two_days: ""
-        one_week: ""
-        one_month: ""
-        two_months: ""
-        one_year: ""
+          time_ago:
+            ten_minutes: "Dix minutes"
+            one_hour: "Une heure"
+            one_day: "Un jour"
+            two_days: "Deux jours"
+            one_week: "Une semaine"
+            one_month: "Un mois"
+            two_months: "Deux mois"
+            one_year: "Un an"
 
-      col:
-        sender: ""
-        recipient: ""
-        last_updated: ""
-        operations: ""
+          columns:
+            sender: "Expéditeur"
+            recipient: "Destinataire"
+            last_updated: "Dernière mise à jour"
+            operations: "Actions"
 
-      message_count:
-        one: ""
-        other: ""
+          message_count:
+            one: "1 message"
+            other: "%{count} messages"
 
     message_details:
       paragraphs:
-        expires: ""
-        no_details: ""
+        expires: "Expire :"
+        no_details: "(Aucun détail)"
 
     message_display:
-      rescue: ""
+      rescue: "Oups. Contactez les développeurs !"
 
     message_index_display:
       links:
-        leave_message: ""
+        leave_message: "Laisser un message"
       buttons:
-        delete_checked: ""
+        delete_checked: "Supprimer les messages cochés"
       scopes:
-        unread_link: ""
-        read_link: ""
+        unread_link: "%{count} non lus"
+        read_link: "%{count} lus"
       labels:
-        base: ""
+        base: "%{label} (de %{base})"
       columns:
         criticality:
-          critical: ""
-          not_critical: ""
-        type: ""
-        message: ""
-        sender: ""
-        recipient: ""
-        last_updated: ""
-        operations: ""
+          critical: "Critique"
+          not_critical: "Non critique"
+        type: "Type"
+        message: "Message"
+        sender: "Expéditeur"
+        recipient: "Destinataire"
+        last_updated: "Dernière mise à jour"
+        operations: "Actions"
 
     index:
-      title: ""
+      title: "Centre de messagerie"
       unread_count:
-        one: ""
-        other: ""
+        one: "1 message non lu"
+        other: "%{count} messages non lus"
 
     new_dashboard:
-      title: ""
+      title: "Ajouter un nouveau message du tableau de bord"
       headings:
-        main: ""
+        main: "Ajouter un nouveau message du tableau de bord"
       labels:
-        dashboard: ""
+        dashboard: "Tableau de bord"
       explanations:
         dashboard_html: |
-          For dashboard messages, whatever is entered here will be substituted literally
-          in the page's code. So you can use whatever HTML elements you want, but make sure
-          you know what you're doing. For NeuroHub, we recommend surrounding the entire text
-          with at least one &lt;P&gt; element.
+          Pour les messages du tableau de bord, ce que vous saisissez ici sera inséré littéralement
+          dans le code de la page. Vous pouvez donc utiliser n'importe quel élément HTML,
+          mais assurez‑vous de savoir ce que vous faites. Pour NeuroHub, nous recommandons d'entourer
+          l'ensemble du texte d'au moins un élément &lt;P&gt;.
 
     new:
-      title: ""
+      title: "Ajouter un nouveau message"
       links:
-        new_cbrain_dashboard: ""
-        new_neurohub_dashboard: ""
-      to_users_of_project: ""
+        new_cbrain_dashboard: "Nouveau message tableau de bord CBRAIN"
+        new_neurohub_dashboard: "Nouveau message tableau de bord NeuroHub"
+      to_users_of_project: "Aux utilisateurs du projet :"
       labels:
-        send_email: ""
-
+        send_email: "Envoyer un e‑mail"

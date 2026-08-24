@@ -81,9 +81,13 @@ en:
         no_password_reset: "No need to reset initial password:"
       paragraphs:
         login_html: |
-          <span class="field_explanation">For <strong>Tom Jones</strong>, use <strong>tjones</strong>, not 'tom' or 'jones'.</span>
+          <span class="field_explanation">
+            For <strong>Tom Jones</strong>, use <strong>tjones</strong>, not 'tom' or 'jones'.
+          </span>
         dp_html: |
-          <span class="field_explanation">If set, make sure it is a Data Provider that will be accessible to the user</span>
+          <span class="field_explanation">
+            If set, make sure it is a Data Provider that will be accessible to the user
+          </span>
         openid_html: |
           <span class="field_explanation">
             If set, must be exact OpenID identity provider names separated by commas

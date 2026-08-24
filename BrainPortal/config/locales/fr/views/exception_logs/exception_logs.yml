@@ -14,10 +14,12 @@ fr:
           other: "%{count} messages"
 
         columns:
+          method: "Méthode"
           exception: "Exception"
           message: "Message"
           controller: "Controller"
           action: "Action"
+          format: "Format"
           user: "Utilisateur"
           revision: "Révision"
           raised_at: "Survenue le"
@@ -31,7 +33,7 @@ fr:
         headings:
           request: "Requête"
           session: "Session"
-          headers: "Headers"
+          headers: "En-têtes"
 
         cells:
           raised_at: "Survenue le"
@@ -45,6 +47,5 @@ fr:
         legends:
           backtrace: "Pile d'appels"
 
-        exception_message: "dans <strong>%{location}</strong>"
+        exception_message_html: "dans <strong>%{location}</strong>"
         not_signed_in: "(Non connecté)"
-

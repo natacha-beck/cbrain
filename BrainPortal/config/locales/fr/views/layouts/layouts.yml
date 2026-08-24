@@ -5,10 +5,21 @@ fr:
         usage: "Usage"
 
       section_account:
+        dropdowns:
+          resource: "Ressource"
+
         links:
           dashboard: "Tableau de bord"
           my_account: "Mon compte"
+          projects: "Projets"
           resource: "Ressource"
+          messages: "Messages"
+          data_providers: "Data providers"
+          quotas: "Quotas"
+          servers: "Serveurs"
+          tools: "Outils"
+          tool_versions: "Versions des outils"
+          usage: "Usage"
           full_list: "Liste complète des outils et des jeux de données"
           help_site: "Site d'aide"
           email_support: "Assistance par courriel"
@@ -18,7 +29,7 @@ fr:
         labels:
           unread_message:
             one: "Message non lu"
-            other: "unread messages""
+            other: "Messages non lus"
           revision: "Rev: %{rev}"
           branch: "Branche : %{name}"
           last_updated_html: "dernière mise à jour il y a <span class=\"elapsed\">%{time}</span>"
@@ -31,7 +42,7 @@ fr:
         legend: "Notification relative aux cookies"
         strong: "Ce site utilise un cookie pour se souvenir de vous."
         small_html: "Ceci est sécuritaire et privé. Les informations du témoin sont échangées uniquement entre votre navigateur et ce site.<br />Aucune information n'est transmise à d'autres sites, personnes ou tiers."
-        unagree: "(Bouton de débogage pour supprimer l'accord)"
+        unagree: "(Bouton de débogage pour supprimer la licence)"
 
       section_footer:
         powered_by: "Propulsé par %{name}"

@@ -13,9 +13,9 @@ fr:
     output_renaming_fieldset:
       legends:
         output_filenames_renaming: "Renommage des noms de fichiers de sortie"
-      output_files_pattern: "Les fichiers de sortie peuvent être nommés ou renommés automatiquement à l'aide de ce modèle:"
+      output_files_pattern: "Les fichiers de sortie peuvent être nommés ou renommés automatiquement à l'aide de ce modèle :"
       leave_blank_html: "<small>(Laissez ce champ vide pour que le programme nomme automatiquement les fichiers selon ses propres règles)</small>"
-      supported_keywords_html: "Les modèles peuvent inclure les <br /><em>{mots-clés}</em> suivants entre accolades, qui seront remplacés<br />automatiquement.<br /><p><br />Les mots-clés pris en charge sont:"
+      supported_keywords_html: "Les modèles peuvent inclure les <br /><em>{mots-clés}</em> suivants entre accolades, qui seront remplacés<br />automatiquement.<br /><p><br />Les mots-clés pris en charge sont :"
 
     params:
       headings:
@@ -30,13 +30,13 @@ fr:
         delete_preset: "Supprimer le préréglage"
         save_preset: "Enregistrer le préréglage"
 
-      load_preset_configuration: "Charger une configuration prédéfinie:"
+      load_preset_configuration: "Charger une configuration prédéfinie :"
       select_preset: "(Sélectionner un préréglage à charger)"
-      delete_this_preset: "Supprimer ce préréglage?"
+      delete_this_preset: "Supprimer ce préréglage ?"
       save_as_preset: "Enregistrer comme configuration prédéfinie:"
       select_preset_to_overwrite: "(Sélectionner un préréglage à remplacer)"
       or_as_new_name: " (ou sous un nouveau nom)"
-      save_as_site_preset: "Enregistrer comme préréglage du site:"
+      save_as_site_preset: "Enregistrer comme préréglage du site :"
 
     resource_usage:
       legends:
@@ -71,8 +71,8 @@ fr:
       paragraphs:
         for_failed_tasks_html: "Ce panneau vous permet d'agir sur les tâches ayant échoué, d'une manière ou d'une autre.<br />La tentative de récupération après une erreur déclenchera le code de nettoyage ainsi qu'un redémarrage au<br />dernier stade de traitement réussi avant l'échec. Cela ne fonctionne pas toujours,<br />mais il est souvent utile d'essayer au moins une fois!"
         for_completed_tasks_intro_html: "Ce panneau vous permet d'agir sur les tâches terminées avec succès.<br />Vous pouvez essayer de les redémarrer à trois étapes différentes de leur cycle de vie:"
-        for_completed_tasks_list_html: "<ul><li>À l'étape <strong>Configuration</strong>, lorsque les fichiers de données d'entrée<br />sont synchronisés sur le serveur d'exécution et que les<br />scripts de traitement sont créés.</li><li>À l'étape <strong>Cluster</strong>, lorsque les scripts scientifiques<br />sont exécutés sur les nœuds du serveur d'exécution.</li><li>À l'étape <strong>Post-traitement</strong>, lorsque les fichiers de sortie<br/>résultants sont renvoyés vers les fournisseurs de données de CBRAIN.</li></ul>"
-        for_completed_tasks_note_html: "Vous pouvez également dupliquer des tâches et les recréer sur un autre<br />serveur d'exécution. Avant de les redémarrer, assurez-vous toutefois d'ajuster<br />la version de leur outil."
+        for_completed_tasks_list_html: "<ul><li>À l'étape <strong>Configuration</strong>, lorsque les fichiers de données d'entrée<br />sont synchronisés sur le bourreau et que les<br />scripts de traitement sont créés.</li><li>À l'étape <strong>Cluster</strong>, lorsque les scripts scientifiques<br />sont exécutés sur les nœuds du bourreau.</li><li>À l'étape <strong>Post-traitement</strong>, lorsque les fichiers de sortie<br/>résultants sont renvoyés vers les fournisseurs de données de CBRAIN.</li></ul>"
+        for_completed_tasks_note_html: "Vous pouvez également dupliquer des tâches et les recréer sur un autre<br />bourreau. Avant de les redémarrer, assurez-vous toutefois d'ajuster<br />la version de leur outil."
         terminating_and_cleaning_up_html: "Ce panneau vous permet d'agir sur les tâches dont vous n'avez plus besoin.<br />Vous pouvez interrompre des tâches à n'importe quelle étape de leur cycle de vie, même<br />celles ayant échoué. Les tâches marquées <strong>Terminées</strong> peuvent être redémarrées<br />ultérieurement."
         remove_work_directories_note_html: "Il est également possible de supprimer les répertoires de travail des tâches<br />sur le serveur d'exécution tout en conservant le reste des<br />informations des tâches. Cela est utile pour libérer de l'espace sur le serveur<br />ou lorsque les tâches ont traité des données confidentielles que<br />vous préférez ne pas laisser sur le serveur. Le panneau <em>Archivage</em><br />à gauche offre d'autres options pour gérer les<br />répertoires de travail des tâches."
         remove_tasks_html: "Enfin, vous pouvez supprimer complètement des tâches. Cela effacera le répertoire de travail de la tâche<br />sur le serveur d'exécution, y compris les fichiers de données temporaires, mais n'effacera pas<br />les fichiers de sortie d'une tâche terminée avec succès. Cela est utile si vous avez,<br />par exemple, des données confidentielles. La suppression d'une tâche <strong>supprimera</strong> également toute<br />archive du répertoire de travail de cette tâche, le cas échéant (comme indiqué par<br />les symboles %{workdir_status} et<br />%{userfile_status} dans la colonne « Taille du répertoire de travail »)."
@@ -82,10 +82,10 @@ fr:
         archiving_4_html: "Le reste des informations sur les tâches ne sera en aucun cas modifié<br />lorsqu'elles seront archivées. Aucune opération ne peut être effectuée sur une tâche archivée, sauf<br />bien entendu sa désarchivage."
 
       change:
-        owner: "Changer le propriétaire:"
-        group: "Changer le projet:"
-        data_provider: "Changer le fournisseur de données des résultats:"
-        tool_version: "Changer la version de l'outil:"
+        owner: "Changer le propriétaire :"
+        group: "Changer le projet :"
+        data_provider: "Changer le fournisseur de données des résultats :"
+        tool_version: "Changer la version de l'outil :"
 
       blanks:
         select_another_owner: "(Sélectionner un autre propriétaire)"
@@ -95,9 +95,9 @@ fr:
 
       hijacker:
         trigger_error_recovery: "Déclencher la récupération après une erreur"
-        setup_stage: "\"Configuration\" stag"
-        cluster_stage: "\"Cluster\" stage"
-        post_processing_stage: "\"Post-traitement\" stag"
+        setup_stage: "'Configuration' stage"
+        cluster_stage: "'Cluster' stage"
+        post_processing_stage: "'Post-traitement' stage"
         duplicate_tasks: "Dupliquer les tâches"
         terminate_tasks: "Interrompre les tâches"
         remove_work_directories: "Supprimer les répertoires de travail"
@@ -107,13 +107,13 @@ fr:
         unarchive_tasks: "Désarchiver les tâches"
 
       confirm:
-        terminate_tasks: "Êtes-vous certain de vouloir interrompre les tâches sélectionnées?"
+        terminate_tasks: "Êtes-vous certain de vouloir interrompre les tâches sélectionnées ?"
         remove_work_directories: "Êtes-vous certain de vouloir supprimer les\nRÉPERTOIRES DE TRAVAIL des tâches sélectionnées?"
         remove_tasks: "Êtes-vous certain de vouloir supprimer les tâches sélectionnées?\n\nREMARQUE IMPORTANTE: Cela supprimera également leurs répertoires de travail archivés, le cas échéant."
 
-      restart_at: "Redémarrer à:"
-      on_execution_server: "sur le serveur d'exécution: "
-      optional_destination_dp_html: "Facultatif: lors de l'archivage <em>comme fichier</em>, choisissez un fournisseur de données de destination:<br />"
+      restart_at: "Redémarrer à :"
+      on_execution_server: "sur le bourreau : "
+      optional_destination_dp_html: "Facultatif : lors de l'archivage <em>comme fichier</em>, choisissez un fournisseur de données de destination:<br />"
       do_not_compress: "Ne pas compresser lors de l'archivage"
 
     tasks_display:
@@ -123,7 +123,7 @@ fr:
 
       switches:
         switch_to_list_view: "Passer à la vue Liste"
-        switch_to_batch_view: "Passer à la vue Batch""
+        switch_to_batch_view: "Passer à la vue Batch"
 
       columns:
         batch: "Batch"
@@ -132,14 +132,14 @@ fr:
         description: "Description"
         owner: "Propriétaire"
         project: "Projet"
-        server: "Serveur d'exécution"
+        server: "bourreau"
         current_status: "État actuel"
         run_number: "Numéro d'exécution"
         workdir_size: "Taille du répertoire de travail"
         results_on: "Résultats sur"
         time_submitted: "Date de soumission"
         last_updated: "Dernière mise à jour"
-      
+
       legends:
         on_cluster: "Sur le Cluster"
         as_file: "Comme fichier"
@@ -147,23 +147,23 @@ fr:
       task_count_colon:
         one: "%{count} tâche:"
         other: "%{count} tâches:"
-      
+
       total_space: "Espace total utilisé par les tâches: %{space}"
       tasks_without_estimates:
         one: "(1 tâche sans estimation d'espace)"
         other: "(%{count} tâches sans estimation d'espace)"
       disappeared_tasks: "Ce batch de tâches a disparu"
       shared_parentheses: "(Partagé)"
-      workdir_archiving_status_symbols: "Symboles d'état de l'archivage du répertoire de travail:"
+      workdir_archiving_status_symbols: "Symboles d'état de l'archivage du répertoire de travail :"
 
     utility_interface_file_list:
-      run_on: "Exécuter %{name} sur:"
+      run_on: "Exécuter %{name} sur :"
 
     zenodo_deposit_form:
       legends:
         basic_deposit_information: "Informations de base sur le dépôt"
       labels:
-        select_zenodo_token: "Sélectionner le jeton Zenodo à utiliser:"
+        select_zenodo_token: "Sélectionner le jeton Zenodo à utiliser :"
         title: "Titre"
         description: "Description"
         creators: "Créateurs"
@@ -176,7 +176,7 @@ fr:
     edit:
       edit_task: "Modifier la tâche %{name}"
       submit: "Enregistrer les paramètres modifiés pour cette tâche"
-    
+
     index:
       title: "Tâches"
 
@@ -211,15 +211,15 @@ fr:
         list_of_tasks: "Liste des tâches (%{count})"
 
       confirm:
-        terminate_task: "Êtes-vous certain de vouloir interrompre cette tâche?"
-        remove_work_directory: "Êtes-vous certain de vouloir supprimer le répertoire de travail de cette tâche?"
-        remove_task: "Êtes-vous certain de vouloir supprimer cette tâche?"
+        terminate_task: "Êtes-vous certain de vouloir interrompre cette tâche ?"
+        remove_work_directory: "Êtes-vous certain de vouloir supprimer le répertoire de travail de cette tâche ?"
+        remove_task: "Êtes-vous certain de vouloir supprimer cette tâche ?"
         remove_task_note: "\n\nREMARQUE IMPORTANTE: Cela supprimera également son répertoire de travail archivé."
-      
+
       cells:
         task_name: "Nom de la tâche"
         task_description: "Description de la tâche"
-        execution_server: "Serveur d'exécution"
+        execution_server: "bourreau"
         owner: "Propriétaire"
         tool_version: "Version de l'outil"
         group: "Projet"
@@ -231,13 +231,13 @@ fr:
         not_yet_created_or_erased: "(Pas encore créé ou supprimé)"
         size_of_work_directory: "Taille du répertoire de travail"
         archiving_status: "État de l'archivage"
-     
+
       zenodo_publication:
         published: "Publié"
         in_progress: "En cours"
         none: "Aucune."
 
-      shared_with_task: "Partagé avec la tâche:"
+      shared_with_task: "Partagé avec la tâche :"
 
       archiving_status:
         not: "Non archivé"
@@ -254,7 +254,7 @@ fr:
       in_this_batch: "des tâches de ce batch."
 
       tabs:
-      parameters_in_yaml: "Paramètres en YAML"
+        parameters_in_yaml: "Paramètres en YAML"
         parameters_in_json: "Paramètres en JSON"
         full_task_object_in_json: "Objet de tâche complet en JSON"
         stdout: "Sortie standard"
@@ -305,17 +305,17 @@ fr:
             à la fin du traitement et ne sont pas requises au moment où la tâche est
             soumise.
           </p>
-       
+
       legends:
         processing_log: "Journal de traitement"
         prerequisites: "Prérequis"
         cluster_job_captured_output: "Sortie capturée du travail sur le cluster"
 
       outputs_not_available: "Comme cette tâche est archivée, les sorties ne sont pas disponibles pour le moment."
-      outputs_available: "Les sorties sont disponibles pour plusieurs exécutions:"
+      outputs_available: "Les sorties sont disponibles pour plusieurs exécutions :"
 
-      stdout_lim: "Seules les %{stdout_lim} dernières lignes sont affichées ici. Voir davantage de lignes de sortie standard:"
-      stderr_lim: "Seules les %{stderr_lim} dernières lignes sont affichées ici. Voir davantage de lignes d'erreur standard:"
+      stdout_lim: "Seules les %{stdout_lim} dernières lignes sont affichées ici. Voir davantage de lignes de sortie standard :"
+      stderr_lim: "Seules les %{stderr_lim} dernières lignes sont affichées ici. Voir davantage de lignes d'erreur standard :"
 
     zenodo:
       title: "État de la publication Zenodo de %{name}"
@@ -339,25 +339,24 @@ fr:
 
       paragraphs:
         prepare:
-          complete_html: "En tant qu'auteur, vous pouvez consulter et modifier le dépôt<br />à ce lien: %{link}"
+          complete_html: "En tant qu'auteur, vous pouvez consulter et modifier le dépôt<br />à ce lien : %{link}"
           incomplete_html: "Remplissez le formulaire ci-dessous pour créer le dépôt initial.<p>Vous pourrez modifier le contenu du formulaire à tout moment<br />ultérieurement, directement sur le site Web de Zenodo."
         upload:
-          incomplete_html: "<span class=\"warning\">Avertissement: déjà publié:</span> dans %{link}"
+          incomplete_html: "<span class=\"warning\">Avertissement : déjà publié:</span> dans %{link}"
         publish:
           doi_1_html: "Les sorties de cette tâche ont été publiées sous le DOI %{doi}"
-          doi_2_html: "Vous pouvez modifier davantage le dépôt ici: %{link}"
-          no_doi_1_html: "Vous pouvez modifier davantage le dépôt ici et cliquer sur le bouton <strong>Publier</strong> ici: %{link}"
+          doi_2_html: "Vous pouvez modifier davantage le dépôt ici : %{link}"
+          no_doi_1_html: "Vous pouvez modifier davantage le dépôt ici et cliquer sur le bouton <strong>Publier</strong> ici : %{link}"
           no_doi_2_html: "Une fois le dépôt publié, veuillez revenir sur cette page (ou simplement %{link}) afin que le DOI du dépôt puisse être enregistré dans CBRAIN."
           waiting: "En attente des étapes 1 et 2."
         reset:
           deposit_1_description_html: "Vous pouvez effacer toutes les informations enregistrées concernant le dépôt et l'état de publication Zenodo<br />dans CBRAIN, afin de recommencer ou de publier sur le site Zenodo principal."
           deposit_2_description_html: "Cela n'effacera rien sur Zenodo <em>qui a été publié</em>,<br />mais effacera tout dépôt et tout téléversement non publié."
-          deposit_confirmation: "Êtes-vous certain de vouloir réinitialiser les informations du dépôt pour cette tâche?"
+          deposit_confirmation: "Êtes-vous certain de vouloir réinitialiser les informations du dépôt pour cette tâche ?"
 
       prepare:
         scheduled_for_upload: "Planifié pour l'importation:"
-        will_be_ignored: "Sera ignoré:"
+        will_be_ignored: "Sera ignoré :"
       upload:
         waiting_for_initial_deposit: "En attente de la création du dépôt initial à l'étape 1."
         it_can_take_some_time: "Le transfert du contenu de tous les fichiers vers Zenodo peut prendre un certain temps."
-       

@@ -5,8 +5,8 @@ fr:
       title: "Liaison obligatoire avec un fournisseur d'identité"
       headings:
         before_message_html: "Avant de pouvoir continuer, votre compte CBRAIN <em>doit</em> être lié à un fournisseur d'identité."
-        explanations: ""
-        allowed_providers: ""
+        explanations: "Explications"
+        allowed_providers: "Les fournisseurs d'identité autorisés pour votre compte sont :"
 
       paragraphs:
         explanations: |

@@ -47,6 +47,5 @@ en:
         legends:
           backtrace: "Backtrace"
 
-        exception_message: "in <strong>%{location}</strong>"
+        exception_message_html: "in <strong>%{location}</strong>"
         not_signed_in: "(Not signed in)"
-

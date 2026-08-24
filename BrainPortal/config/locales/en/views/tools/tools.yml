@@ -25,9 +25,13 @@ en:
         belongs_to: "Belongs to"
       paragraphs:
         license_agreements_html: |
-          <div class="field_explanation">Enter one agreement name per line. Note that only alphanumeric characters, underscores (_) and dashes (-) are accepted.</div>
+          <div class="field_explanation">
+            Enter one agreement name per line. Note that only alphanumeric characters, underscores (_) and dashes (-) are accepted.
+          </div>
         description_html: |
-          <div class="field_explanation">The first line is a short summary, and the rest are for any special notes for the users.</div>
+          <div class="field_explanation">
+            The first line is a short summary, and the rest are for any special notes for the users.
+          </div>
       labels:
         common_config: "Common configuration this tool on all servers:"
         versions_installed: "Versions installed on the following execution servers:"
@@ -105,7 +109,11 @@ en:
         select_menu_text: "Text for select box on the userfiles page:"
       paragraphs:
         license_agreements_html: |
-          <div class="field_explanation">Enter one agreement name per line. Note that only alphanumeric characters, underscores (_) and dashes (-) are accepted.</div>
+          <div class="field_explanation">
+            Enter one agreement name per line. Note that only alphanumeric characters, underscores (_) and dashes (-) are accepted.
+          </div>
         description_html: |
-          <div class="field_explanation">The first line must should be a short summary, and the rest are for any special notes for the users.</div>
+          <div class="field_explanation">
+            The first line must should be a short summary, and the rest are for any special notes for the users.
+          </div>
       submit: "Create new tool"

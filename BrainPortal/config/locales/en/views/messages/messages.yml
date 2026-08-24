@@ -1,5 +1,4 @@
 en:
-
   messages:
 
     common:
@@ -23,7 +22,7 @@ en:
         two_months: "Two months"
         one_year: "One year"
 
-      col:
+      columns:
         sender: "Sender"
         recipient: "Recipient"
         last_updated: "Last Updated"
@@ -89,4 +88,3 @@ en:
       to_users_of_project: "To users of project:"
       labels:
         send_email: "Send E-mail"
-

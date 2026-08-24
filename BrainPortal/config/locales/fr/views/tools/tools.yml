@@ -3,109 +3,116 @@ fr:
 
     form_fields:
       titles:
-        cbrain_task_class_name: "PortalTask subclass which implements this tool."
+        cbrain_task_class_name: "Sous-classe de PortalTask implémentant cet outil."
       headings:
-        general_info: ""
-        name: ""
-        cbrain_task_class_name: ""
-        last_updated: ""
-        belongs_to: ""
-        available_to_project: ""
-        category: ""
-        license_agreements: ""
-        description: ""
-        package_name: ""
-        tool_type: ""
-        comma_separated_tags: ""
-        url: ""
-        select_menu_text: ""
+        general_info: "Informations générales"
+        name: "Nom de l'outil"
+        cbrain_task_class_name: "Nom de la classe CbrainTask"
+        last_updated: "Dernière mise à jour"
+        belongs_to: "Appartient à"
+        available_to_project: "Disponible pour les membres du projet"
+        category: "Catégorie"
+        license_agreements: "Accords de licence"
+        description: "Description"
+        package_name: "Nom du package"
+        tool_type: "Type d'outil"
+        comma_separated_tags: "Étiquettes séparées par des virgules"
+        url: "URL de l'outil"
+        select_menu_text: "Texte pour la boîte de sélection sur la page des fichiers utilisateur"
       cells:
-        created: ""
-        last_updated: ""
-        belongs_to: ""
+        created: "Créé"
+        last_updated: "Dernière mise à jour"
+        belongs_to: "Appartient à"
       paragraphs:
         license_agreements_html: |
-          <div class="field_explanation">Enter one agreement name per line. Note that only alphanumeric characters, underscores (_) and dashes (-) are accepted.</div>
+          <div class="field_explanation">
+            Saisissez un identifiant de licence par ligne. Notez que seuls les caractères alphanumériques, l'underscore (_) et le tiret (-) sont autorisés.
+          </div>
         description_html: |
-          <div class="field_explanation">The first line is a short summary, and the rest are for any special notes for the users.</div>
+          <div class="field_explanation">
+            La première ligne doit être un court résumé, le reste servant pour des notes particulières destinées aux utilisateurs.
+          </div>
       labels:
-        common_config: ""
-        versions_installed: ""
+        common_config: "Configuration commune pour cet outil sur tous les serveurs :"
+        versions_installed: "Versions installées sur les bourreaux suivants :"
       links:
-        add_new: ""
+        add_new: "Ajouter"
       datas:
         cpu_count:
-          one: ""
-          other: ""
-      no_versions_configured: ""
+          one: "1 CPU"
+          other: "%{count} CPUs"
+      no_versions_configured: "(Aucune version spécifique configurée)."
       versions_configured:
-        one: ""
-        other: ""
-      version_config_name: ""
+        one: "1 version configurée."
+        other: "%{count} versions configurées."
+      version_config_name: "configuration de version '%{name}'"
 
     tool_config_select:
       include_blanks:
-        no_online_server: ""
-        select_server_version: ""
+        no_online_server: "Aucun serveur en ligne pour cet outil !"
+        select_server_version: "Sélectionner le serveur et la version"
       labels:
-        server_version_html:
-          ""
+        server_version_html: "Serveur & Version :"
       submits:
-        launch: ""
+        launch: "Lancer %{name}"
 
     tools_table:
       links:
-        create_new_tool: ""
-        autoload_tools: ""
-        access_reports: ""
-        tool_versions_list: ""
+        create_new_tool: "Créer un nouvel outil"
+        autoload_tools: "Charger automatiquement les outils"
+        access_reports: "Rapports d'accès"
+        tool_versions_list: "Liste des versions d'outil"
         version_count:
-          one: ""
-          other: ""
-        access: ""
+          one: "(1 version)"
+          other: "(%{count} versions)"
+        access: "Accès ?"
       titles:
-        autoload_tools: ""
+        autoload_tools: "Enregistre toutes les sous-classes de PortalTask en tant qu'outils"
       columns:
-        name: ""
-        description: ""
-        category: ""
-        owner: ""
-        group: ""
-        execution_versions: ""
-        access: ""
-        help: ""
-        info: ""
+        name: "Nom de l'outil"
+        description: "Description"
+        category: "Catégorie"
+        owner: "Propriétaire"
+        group: "Projet"
+        execution_versions: "Exécution & Versions"
+        access: "Accès ?"
+        help: "Aide"
+        info: "Infos"
 
     edit:
-      title: ""
+      title: "Informations sur l'outil"
       titles:
-        log_title: ""
+        log_title: "Journal de l'outil"
 
     index:
-      title: ""
+      title: "Outils"
 
     new:
-      title: ""
+      title: "Ajouter un nouvel outil"
       titles:
-        cbrain_task_class: ""
+        cbrain_task_class: "Classe CbrainTask :"
       headings:
-        main: ""
+        main: "Ajouter un nouvel outil"
       labels:
-        name: ""
-        cbrain_task_class: ""
-        belongs_to: ""
-        group: ""
-        category: ""
-        license_agreements: ""
-        description: ""
-        package_name: ""
-        tool_type: ""
-        application_tags: ""
-        url: ""
-        select_menu_text: ""
+        name: "Nom de l'outil :"
+        cbrain_task_class: "Classe CbrainTask :"
+        belongs_to: "Appartient à :"
+        group: "Disponible pour les membres du projet :"
+        category: "Catégorie :"
+        license_agreements: "Accords de licence :"
+        description: "Description :"
+        package_name: "Nom du package :"
+        tool_type: "Type d'outil :"
+        application_tags: "Étiquettes séparées par des virgules :"
+        url: "URL de l'outil :"
+        select_menu_text: "Texte pour la boîte de sélection sur la page des fichiers utilisateur :"
       paragraphs:
         license_agreements_html: |
-          <div class="field_explanation">Enter one agreement name per line. Note that only alphanumeric characters, underscores (_) and dashes (-) are accepted.</div>
+          <div class="field_explanation">
+            Saisissez une licence par ligne. Notez que seuls les caractères alphanumériques, l'underscore (_) et le tiret (-) sont autorisés.
+          </div>
         description_html: |
-          <div class="field_explanation">The first line must should be a short summary, and the rest are for any special notes for the users.</div>
-      submit: ""
+          <div class="field_explanation">
+            La première ligne doit être un court résumé, le reste servant pour des notes particulières destinées aux utilisateurs.
+          </div>
+      submit: "Créer un nouvel outil"

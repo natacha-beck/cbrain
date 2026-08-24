@@ -33,7 +33,7 @@
 
   <div class="exception_spaced exception_description">
     <span class="exception_header"><%= @exception_log.exception_class %>: </span><span class="exception_message"><%= @exception_log.message %></span>
-    <div class="exception_spaced exception_message"><%= t('.exception_message', location: "#{@exception_log.request_controller}/#{@exception_log.request_action}") %></div>
+    <div class="exception_spaced exception_message"><%= t('.exception_message_html', location: "#{@exception_log.request_controller}/#{@exception_log.request_action}") %></div>
   </div>
 
   <%= show_table(@exception_log, :width => 1, :header => t('.headings.request')) do |t| %>

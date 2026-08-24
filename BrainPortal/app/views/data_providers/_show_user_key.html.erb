@@ -31,7 +31,7 @@
       <pre>ssh-copy-id -f -i mykey.pub -p <%= @provider.remote_port.presence || '22' %> <%= @provider.remote_user.presence || '[username_from_config_above]' %>@<%= @provider.remote_host.presence || '[hostname_from_config_above]' %></pre>
     </td></tr>
 
-      <%= t('.paragraphs.no_security_risk') %>
+      <%= t('.paragraphs.no_security_risk_html') %>
 
     <tr><th class="supertitle"><%= t('.headings.your_key') %></th></tr>
 

@@ -17,7 +17,6 @@ en:
         switch_to_list_view: "Switch to List View"
         switch_to_button_view: "Switch to Button View"
 
-
     users_form:
       active_users: "Active Users"
       locked_users: "Locked Users"
@@ -78,7 +77,9 @@ en:
             in multiple projects.
           </p>
         other_projects_html: |
-          <p class="medium_paragraphs">Projects that for some reason are not assigned to other tabs</p>
+          <p class="medium_paragraphs">
+            Projects that for some reason are not assigned to other tabs
+          </p>
       tabs:
         my_private_projects: "My Private Projects"
         my_shared_projects: "My Shared Projects"
@@ -131,7 +132,9 @@ en:
         site: "Site"
       paragraphs:
         description_html: |
-          <div class="field_explanation">The first line should be a short summary, and the rest are for details.</div>
+          <div class="field_explanation">
+            The first line should be a short summary, and the rest are for details.
+          </div>
         invisible_html: |
           <p>
           Make this a system group invisible to normal users:
@@ -179,9 +182,13 @@ en:
         not_assignable: "Not Assignable"
       paragraphs:
         creator_html: |
-          <div class="field_explanation"><span class="warning">Warning</span>: If you change the maintainer to someone else you won't be able to edit this project any more</div>
+          <div class="field_explanation">
+            <span class="warning">Warning</span>: If you change the maintainer to someone else you won't be able to edit this project any more
+          </div>
         description_html: |
-          <div class="field_explanation">The first line should be a short summary, and the rest are for details.</div>
+          <div class="field_explanation">
+            The first line should be a short summary, and the rest are for details.
+          </div>
         not_assignable_html: |
           <div class="field_explanation">
             If checked, normal members will not be able to assign files or other
@@ -201,4 +208,3 @@ en:
             If checked, the system will track overall usage of files in this project
             (views, downloads etc) per month.
           </div>
-

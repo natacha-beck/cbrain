@@ -35,7 +35,7 @@
     <div title=<%= t('.titles.name') %>>
       <%= f.label :name, t('.labels.name') %><br>
       <%= f.text_field :name %>
-      <%= t('.paragraphs.name') %>
+      <%= t('.paragraphs.name_html') %>
     </div>
 
     <p>
@@ -43,7 +43,7 @@
     <div title=<%= t('.titles.description') %>>
       <%= f.label :description, t('.labels.description') %><br>
       <%= f.text_area :description, :rows => 3, :cols => 85 %>
-      <%= t('.paragraphs.description') %>
+      <%= t('.paragraphs.description_html',  group: current_user.own_group.name) %>
     </div>
 
     <p>
@@ -51,7 +51,7 @@
     <div title=<%= t('.titles.group') %>>
       <%= f.label :group_id, t('.labels.group') %><br>
       <%= group_select("data_provider[group_id]", { :groups => @groups, :selector => @provider.group_id.to_s }) %>
-      <%= t('.paragraphs.group') %>
+      <%= t('.paragraphs.group_html,  group: current_user.own_group.name') %>
     </div>
 
     <p>
@@ -61,7 +61,7 @@
 
         <%= t('.paragraphs.before_ssh_dp') %> <%= f.radio_button :type, 'UserkeyFlatDirSshDataProvider' %>
 
-        <%= t('.paragraphs.ssh_dp') %>
+        <%= t('.paragraphs.ssh_dp_html') %>
 
         <fieldset class="groupentry">
           <legend><%= t('.legends.ssh_params') %></legend>
@@ -103,7 +103,7 @@
       <%= tb.tab(t('.titles.s3_tab')) do %>
         <%= t('.paragraphs.before_ssh_dp') %> <%= f.radio_button :type, 'S3FlatDataProvider' %>
 
-        <%= t('.paragraphs.s3_dp') %>
+        <%= t('.paragraphs.s3_dp_html') %>
 
         <fieldset class="groupentry">
           <legend><%= t('.legends.s3_params') %></legend>

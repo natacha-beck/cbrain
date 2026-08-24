@@ -15,7 +15,7 @@ fr:
       header: "À propos de nous"
       platform_revision: "Informations sur la révision de la plateforme"
       last_author: "Auteur de la dernière modification du portail :"
-      last_revision: "Portal Last Changed Revision:"
+      last_revision: "Révision de la dernière modification du portail :"
       last_changed: "Date de la dernière modification du portail :"
       up_since_html: "<strong>Portail en service depuis&nbsp;:</strong> %{started_at} (depuis: %{uptime})"
       plugins_revision_header: "Informations sur la révision des plugins CBRAIN"
@@ -34,7 +34,7 @@ fr:
 
     available:
       title: "Liste des outils et des jeux de données"
-      note_html: "These tables list all tools and datasets configured on this CBRAIN portal.<br />Not all of them are available to all users."
+      note_html: "Cette table répertorie tous les outils et jeux de données configurés sur ce portail CBRAIN.<br />Ils ne sont pas tous disponibles pour tous les utilisateurs."
 
     credits:
       title: "Crédits"
@@ -42,7 +42,7 @@ fr:
       headings:
         citing: "Citer CBRAIN"
         project_info: "Informations sur le projet CBRAIN"
-        credits_box: "Crédits de développement logiciel"
+        credits_box: "Crédits"
 
       paragraphs:
         citing_html: |
@@ -59,7 +59,7 @@ fr:
           </div>
         project_info_html: |
           L'origine et la mission de cette plateforme sont décrites plus en détail sur le <a class="action_link" href="http://mcin-cnim.ca/neuroimagingtechnologies/cbrain/">site Web du MCIN</a> (Centre McGill de neurosciences intégratives).<br>
-          
+
           Le code source du projet est maintenu et distribué sur <a class="action_link" href="https://github.com/aces/cbrain">GitHub</a>.
         credits_box_html: |
           <ul type="none">
@@ -76,8 +76,8 @@ fr:
           </ul>
 
           <p>
-          The CBRAIN team would like to thank all users of the <strong>original CBRAIN service</strong>
-          at McGill for their invaluable feedback and support.
+          L'équipe de CBRAIN tient à remercier tous les utilisateurs du <strong>service CBRAIN original</strong>
+          à l'Université McGill pour leurs précieux commentaires et leur soutien.
 
     portal_log:
       filters:
@@ -112,25 +112,25 @@ fr:
       paragraphs:
         statement_html: |
           Les nouvelles fonctionnalités et les corrections de bogues sont testées
-          et intégrées à la branche de développement dès leur achèvement. 
+          et intégrées à la branche de développement dès leur achèvement.
           Des tests d'intégration continue sont exécutés de façon automatisée et
-          s'appliquent à tout le code intégré au dépôt de développement. 
+          s'appliquent à tout le code intégré au dépôt de développement.
           Toutes les demandes d'extraction sont examinées et validées par l'équipe principale
-          de développement avant d'être soit acceptées, soit retournées au développeur 
-          auteur de la soumission afin qu'il puisse effectuer des modifications et des tests supplémentaires.     
-          
-          <p>
-          
-          Les versions majeures sont publiées afin de regrouper des ensembles 
-          de corrections de bogues, de correctifs et de nouvelles fonctionnalités 
-          jugés bénéfiques pour une diffusion sous la forme d'une version cumulative
-          et intégrée destinée à la communauté. Les versions majeures sont préparées 
-          par le développeur principal de CBRAIN et autorisées conjointement
-          avec le directeur de l'équipe CBRAIN.
-          
+          de développement avant d'être soit acceptées, soit retournées au développeur
+          auteur de la soumission afin qu'il puisse effectuer des modifications et des tests supplémentaires.
+
           <p>
 
-          Chaque version est accompagnée de notes de version décrivant clairement 
+          Les versions majeures sont publiées afin de regrouper des ensembles
+          de corrections de bogues, de correctifs et de nouvelles fonctionnalités
+          jugés bénéfiques pour une diffusion sous la forme d'une version cumulative
+          et intégrée destinée à la communauté. Les versions majeures sont préparées
+          par le développeur principal de CBRAIN et autorisées conjointement
+          avec le directeur de l'équipe CBRAIN.
+
+          <p>
+
+          Chaque version est accompagnée de notes de version décrivant clairement
           les nouvelles fonctionnalités ainsi que les problèmes corrigés dans cette version.
 
           <p>
@@ -152,23 +152,23 @@ fr:
       paragraphs:
         steps_html: |
           <p class="medium_paragraphs">
-          Ce formulaire vous permet de générer de nombreux types de rapports 
+          Ce formulaire vous permet de générer de nombreux types de rapports
           sous forme de tableaux. Procédez comme suit:
           </p>
 
           <ul>
-            <li><strong>Sélectionnez le type de rapport</strong> dans la zone grise. 
-                La plupart des rapports comptabilisent le nombre d'objets auxquels 
+            <li><strong>Sélectionnez le type de rapport</strong> dans la zone grise.
+                La plupart des rapports comptabilisent le nombre d'objets auxquels
                 vous avez accès, mais certains effectuent la somme de certains attributs.
             </li>
             <li><strong>Cliquez sur "Recherchez les colonnes et les lignes"</strong>et le formulaire
-            sera mis à jour afin de vous indiquer les attributs que vous pouvez sélectionner 
-            pour les lignes et les colonnes de votre tableau. 
+            sera mis à jour afin de vous indiquer les attributs que vous pouvez sélectionner
+            pour les lignes et les colonnes de votre tableau.
             </li>
             <li><strong>Sélectionnez un attribut pour les lignes et les colonnes</strong> à l'aide de chacune
                 des listes de sélection affichées en haut et à gauche de la zone du tableau.
             </li>
-            <li><strong>Cliquez sur "Générer le rapport"</strong> et le tableau sera créé avec 
+            <li><strong>Cliquez sur "Générer le rapport"</strong> et le tableau sera créé avec
                 des liens vers les pages d'index correspondantes de vos objets. Vous pouvez
                 modifier les propriétés du rapport et le régénérer à tout moment.
             </li>
@@ -183,8 +183,8 @@ fr:
         tasks_count: "Tâches - nombre"
         tasks_sum: "Tâches - somme de l'espace des répertoires de travail"
         tasks_combined: "Tâches - rapport combiné"
-        servers_count: "Serveurs - nombre"
-        dp_count: "Fournisseurs de données - nombre"
+        servers_count: "Bourreaux - nombre"
+        dp_count: "Data providers - nombre"
         users_count: "Utilisateurs - nombre"
         projects_count: "Projets - nombre"
         tools_count: "Outils - nombre"
@@ -231,7 +231,7 @@ fr:
       headings:
         main: "Statistiques du service Web de CBRAIN"
         by_client: "Totaux par type de client"
-        by_controller_html: "Totals by controller &amp; action"
+        by_controller: "Totaux par controller &amp; action"
         by_status: "Totaux par code d'état HTTP"
 
       columns:
@@ -281,12 +281,12 @@ fr:
 
         <p class="medium_paragraphs">
         Vous pourrez ainsi générer du code client et consulter la même documentation que celle présentée ici.
-        En particulier, cela vous permettra de générer des bibliothèques clientes dans une grande variété de langages, 
+        En particulier, cela vous permettra de générer des bibliothèques clientes dans une grande variété de langages,
         tels que <em>Python</em>, <em>Perl</em>, <em>Java</em>, <em>Swift</em> et même <em><strong>Ruby</strong></em>.
         <p class="medium_paragraphs">
-        Voici un lien direct vers la <a href="https://app.swaggerhub.com/apis/prioux/CBRAIN/%{spec_version}">dernière version sur SwaggerHub</a>. 
+        Voici un lien direct vers la <a href="https://app.swaggerhub.com/apis/prioux/CBRAIN/%{spec_version}">dernière version sur SwaggerHub</a>.
         </div>
-        
+
     welcome:
       title: "Bienvenue"
 
@@ -311,7 +311,7 @@ fr:
         lock: "Verrouiller ce portail"
         lock_confirm: "Êtes-vous certain de vouloir verrouiller ce portail ?"
         online_users: "Utilisateurs actuellement en ligne: "
-        recent_activity: "Activité récente:"
+        recent_activity: "Activité récente :"
         active: "Actif"
         logged_out: "Déconnecté"
         unknown_unknown: "inconnu/inconnu"
@@ -337,20 +337,20 @@ fr:
           one: "1 exception au cours de la dernière semaine."
           other: "%{count} exceptions au cours de la dernière semaine"
         total:
-          one: ""1 exception au total."
+          one: "1 exception au total."
           other: "%{count} exceptions au total."
 
       account_info:
-        login_name: "Votre nom d'utilisateur:"
-        full_name: "Votre nom complet:"
-        site_affiliation: "Votre établissement:""
-        time_zone: "Votre fuseau horaire:"
-        current_time: "Heure actuelle:"
+        login_name: "Votre nom d'utilisateur :"
+        full_name: "Votre nom complet :"
+        site_affiliation: "Votre établissement :"
+        time_zone: "Votre fuseau horaire :"
+        current_time: "Heure actuelle :"
 
       defaults:
-        projects: "Projets auxquels vous appartenez:"
-        provider: "Votre fournisseur de données par défaut:"
-        server: "Votre serveur d'exécution par défaut:"
+        projects: "Projets auxquels vous appartenez :"
+        provider: "Votre data provider par défaut :"
+        server: "Votre bourreau par défaut:"
 
       latest_tasks:
         active_count: "(%{count} actives)"
@@ -365,8 +365,5 @@ fr:
 
     show_license:
       error_fetching: "(Erreur lors de la récupération du texte de la licence)"
-      already_signed: "Vous avez déjà accepté cette entente."
+      already_signed: "Vous avez déjà accepté cette licence."
       disagree: "Je ne suis pas d'accord"
-
-
-

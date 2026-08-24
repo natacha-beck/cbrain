@@ -240,7 +240,6 @@ en:
         syncability: "Syncability"
         description: "Description"
         browse: "Browse"
-        inconsistency: "Inconsistency"
 
     register_button:
       paragraphs:
@@ -310,7 +309,7 @@ en:
             explained below and it will automatically connect to the remote host
             and install the key for you. The full command is:<p>
           </td></tr>
-        no_security_risk: |
+        no_security_risk_html: |
           <tr><td class="left_align medium_paragraphs">
             Note that revealing this key's content to other people causes no security risks.
             The information in this key is meant to be public and people cannot use it to access your information.
@@ -428,15 +427,21 @@ en:
         ssh_tab: "SSH Data Provider"
         s3_tab: "S3 Data Provider"
       paragraphs:
-        name: |
-          <div class="field_explanation">The first line should be a short summary, and the rest are for any special notes for the users.</div>
-        description: |
-          <div class="field_explanation">This will control which users within CBRAIN can view and access the files on your storage. The default and recommended project is your own private project, '<%= current_user.own_group.name %>'.</div>
-        group: |
-            <div class="field_explanation">This will control which users within CBRAIN can view and access the files on your storage. The default and recommended project is your own private project, '<%= current_user.own_group.name %>'.</div>
+        name_html: |
+          <div class="field_explanation">
+            The first line should be a short summary, and the rest are for any special notes for the users.
+          </div>
+        description_html: |
+          <div class="field_explanation">
+            This will control which users within CBRAIN can view and access the files on your storage. The default and recommended project is your own private project, '%{group}'.
+          </div>
+        group_html: |
+            <div class="field_explanation">
+              This will control which users within CBRAIN can view and access the files on your storage. The default and recommended project is your own private project, '%{group}'.
+            </div>
         before_ssh_dp: |
           Use this type:
-        ssh_dp: |
+        ssh_dp_html: |
           <p class="medium_paragraphs">
 
             A SSH Data Provider connects to a UNIX server using SSH and
@@ -456,7 +461,7 @@ en:
             </ul>
 
             <p>
-        s3_dp: |
+        s3_dp_html: |
           <p>
 
           Provide the necessary information to connect to a S3-Compatible bucket.

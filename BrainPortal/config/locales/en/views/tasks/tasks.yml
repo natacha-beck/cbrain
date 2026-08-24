@@ -95,9 +95,9 @@ en:
 
       hijacker:
         trigger_error_recovery: "Trigger Error Recovery"
-        setup_stage: "\"Setup\" stage"
-        cluster_stage: "\"Cluster\" stage"
-        post_processing_stage: "\"Post Processing\" stage"
+        setup_stage: "'Setup' stage"
+        cluster_stage: "'Cluster' stage"
+        post_processing_stage: "'Post Processing' stage"
         duplicate_tasks: "Duplicate Tasks"
         terminate_tasks: "Terminate Tasks"
         remove_work_directories: "Remove Work Directories"
@@ -362,4 +362,3 @@ en:
       upload:
         waiting_for_initial_deposit: "Waiting for the initial deposit to be created in step 1."
         it_can_take_some_time: "It can take some time to transfer the content of all the files to Zenodo."
-
