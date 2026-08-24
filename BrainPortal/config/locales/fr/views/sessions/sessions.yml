@@ -11,11 +11,11 @@ fr:
       paragraphs:
         explanations: |
           <p class="short_paragraphs">
-          Lorsque vous cliquerez sur le bouton ci-dessous, votre navigateur 
+          Lorsque vous cliquerez sur le bouton ci-dessous, votre navigateur
           sera redirigé vers une page de connexion d'un fournisseur d'identité,
           où vous pourrez choisir l'un des fournisseurs d'identité pris en charge.
-          Vous serez ensuite redirigé vers la page de connexion du fournisseur sélectionné. 
-          Une fois votre authentification réussie, votre navigateur sera redirigé vers 
+          Vous serez ensuite redirigé vers la page de connexion du fournisseur sélectionné.
+          Une fois votre authentification réussie, votre navigateur sera redirigé vers
           cette page afin de finaliser la liaison avec votre compte CBRAIN.
           </p>
         no_provider: |
@@ -25,7 +25,7 @@ fr:
           </p>
         already_logged_in: |
           <p class="short_paragraphs">
-          Si vous êtes déjà connecté à l'aide d'un autre fournisseur d'identité, 
+          Si vous êtes déjà connecté à l'aide d'un autre fournisseur d'identité,
           vous devriez d'abord vous déconnecter. Vous pouvez le faire en cliquant sur le bouton ci-dessous :
           </p>
 
@@ -52,8 +52,8 @@ fr:
         sign_in: "Se connecter"
 
       links:
-        forgot_password: ""Mot de passe oublié?""
-        sign_in_with: ""Se connecter avec %{name}""
+        forgot_password: "Mot de passe oublié?"
+        sign_in_with: "Se connecter avec %{name}"
         request_account: "Demander un compte"
         full_list: "Liste complète de tous les outils et jeux de données"
 
