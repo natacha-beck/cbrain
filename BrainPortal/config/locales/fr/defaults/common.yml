@@ -1,19 +1,75 @@
 fr:
-  ago_time: "depuis %{time}"
+
+  labels:
+    user_colon:
+      one: "Utilisateur :"
+      other: "Utilisateurs :"
+    group_colon:
+      one: "Groupe :"
+      other: "Groupes :"
+    project_colon:
+      one: "Projet :"
+      other: "Projets :"
+    tool_colon:
+      one: "Outil :"
+      other: "Outils :"
+    data_provider_colon:
+      one: "Fournisseur de données :"
+      other: "Fournisseurs de données :"
+    execution_server_colon:
+      one: "Serveur d'exécution :"
+      other: "Serveurs d'exécution :"
+    type_colon:
+      one: "Type :"
+      other: "Types :"
+    status_colon:
+      one: "Statut :"
+      other: "Statuts :"
+    description_colon:
+      one: "Description :"
+      other: "Descriptions :"
+    tags_colon:
+      one: "Étiquette :"
+      other: "Étiquettes :"
+
+    created_colon: "Créé :"
+    updated_colon: "Mis à jour :"
+    owner_colon: "Propriétaire :"
+    published_colon: "Publié :"
+    year_month_colon: "Année/Mois :"
+    dates_colon: "Dates :"
+    search_colon: "Recherche :"
+    upload_colon: "Téléverser :"
+    conflict_colon: "Conflit :"
+
+  date: "Date"
+  ago_time: "il y a %{time}"
 
   unknown: "Inconnu"
-  unset: "(Non défini)"
-  yes: "Oui"
+  unknown_parentheses: "(Inconnu)"
+  unset_parentheses: "(Non défini)"
+  yes_word: "Oui"
   offline: "Hors ligne"
+  online: "En ligne"
   none: "Aucun"
+  none_parentheses: "(Aucun)"
+  update_parentheses: "(Mettre à jour)"
   show: "Afficher"
+  show_parentheses: "(Afficher)"
   edit: "Modifier"
   help: "Aide"
+  help_parentheses: "(Aide)"
   browse: "Parcourir"
   cancel: "Annuler"
-  switch: "Changer"
+  switch: "Basculer"
   clear: "Effacer"
   refresh: "Rafraîchir"
+  select_placeholder: "..."
+
+  no_information: "Il n'y a aucune information à afficher pour le moment."
+
+  from: "De"
+  to: "À"
 
   delete: "Supprimer"
   deleted: "Supprimé"
@@ -31,12 +87,16 @@ fr:
   active_users: "Utilisateurs actifs"
   locked_users: "Utilisateurs verrouillés"
 
-  search_by_name: "Rechercher par nom:"
-  confirm_delete: "Êtes-vous sûr de vouloir supprimer %{name}?"
+  submit: "Soumettre"
+
+  status: "Statut"
+
+  search_by_name: "Rechercher par nom :"
+  confirm_delete: "Êtes-vous sûr de vouloir supprimer %{name} ?"
 
   dataset:
-      one: "Jeu de données"
-      other: "Jeux de données"
+    one: "Jeu de données"
+    other: "Jeux de données"
 
   agree: "J'accepte"
 
@@ -45,21 +105,30 @@ fr:
       week: "Il y a une semaine"
       day: "Il y a un jour"
       hour: "Il y a une heure"
-      now: "Maintenant! (Y compris la vôtre!)"
+      now: "Maintenant ! (Y compris le vôtre !)"
 
-  login: "Connexion"
+  login: "Login"
+
   owner: "Propriétaire"
+  owner_downcase: "propriétaire"
+
   version:
     one: "Version"
     other: "Versions"
-  tool_version: "Version de l'outil"
+
+  tool_version:
+    one: "Version de l'outil"
+    other: "Versions de l'outil"
 
   parameters:
     one: "Paramètre"
     other: "Paramètres"
   summary: "Résumé"
 
-  status: "Statut:"
 
   time_zone: "Fuseau horaire"
   all: "Tous"
+
+  show_hide_parentheses: "(afficher/masquer)"
+  hidden: "masqué"
+ 

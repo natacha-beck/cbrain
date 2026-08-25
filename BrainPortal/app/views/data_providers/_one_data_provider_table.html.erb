@@ -82,17 +82,17 @@
       <% else %>
         <span class="dp_alive_btn" id="<%= "alive" + h(dp.id) %>">
           <%= on_click_ajax_replace( { :element   => "span",
-                                       :url       => url_for(:controller => :data_providers, :action  => :is_alive, :id => dp.id),
-                                       :replace   => "alive" + h(dp.id)
-                                     },
-                                     {
-                                       :before  => "<span class='loading_message'>#{t('.messages.loading')}</span>".html_safe,
-                                       :class     => "dp_alive_btn"
-                                     }
-                                   ) do %>
+                                :url       => url_for(:controller => :data_providers, :action  => :is_alive, :id => dp.id),
+                                :replace   => "alive" + h(dp.id)
+                              },
+                              {
+                                :before => "<span class='loading_message'>#{t('.messages.loading')}</span>",
+                                :class  => "dp_alive_btn"
+                              }
+                            ) do %>
             <a href="#" class="action_link"><%= t('.links.check') %></a>
           <% end %>
-        </span>
+        </span>    
       <% end %>
     <% else %>
       <%= t('data_providers.common.no_word') %>

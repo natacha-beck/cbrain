@@ -58,6 +58,16 @@ fr:
           full_project_list: "(Liste complète des projets)"
           select_project: "(Cliquez ici pour sélectionner un projet et accéder aux fichiers et aux tâches.)"
           profiles: "Profils"
+          data_providers: "Data providers"
+          bourreau: "Exécution serveur"
+          tools: "Outils"
+          tool_configs: "Configurations d'outils"
+          users: "Utilisateurs"
+          quotas: "Quotas"
+          access_profiles: "Profils d'accès"
+          resource_usage: "Utilisation des ressources"
+          sites: "Sites"
+          exception_logs: "Journaux d'exceptions"
 
         placeholders:
           search: "Rechercher tout"
@@ -65,3 +75,4 @@ fr:
         labels:
           signups: "Inscriptions"
           ongoing: "En cours"
+

@@ -58,10 +58,20 @@ en:
           full_project_list: "(Full project list)"
           select_project: "(Click here to select a Project and access Files and Tasks)"
           profiles: "Profiles"
-
+          data_providers: "Data providers"
+          bourreau: "Execution Server"
+          tools: "Tools"
+          tool_configs: "Tool Configurations"
+          users: "Users"
+          quotas: "Quotas"
+          access_profiles: "Access Profiles"
+          resource_usage: "Resource Usage"
+          sites: "Sites"
+          exception_logs: "Exception Logs"
         placeholders:
           search: "Search for anything"
 
         labels:
           signups: "Signups"
           ongoing: "Ongoing"
+

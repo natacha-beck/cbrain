@@ -93,36 +93,36 @@
          <% end %>
          <% unless current_user.has_role?(:normal_user) %>
            <li <%= set_selected(params[:controller], :data_providers) %>>
-             <%= link_to t('activerecord.models.data_provider.other'), data_providers_path %>
+             <%= link_to t('.links.data_providers'), data_providers_path %>
            </li>
            <li <%= set_selected(params[:controller], :bourreaux) %>>
-             <%= link_to t('activerecord.models.remote_resource.other'), bourreaux_path %>
+             <%= link_to t('.links.bourreaux'), bourreaux_path %>
            </li>
            <li <%= set_selected(params[:controller], :tools) %>>
-             <%= link_to t('activerecord.models.tool.other'), tools_path %>
+             <%= link_to t('.links.tools'), tools_path %>
            </li>
            <li <%= set_selected(params[:controller], :tool_configs) %>>
-             <%= link_to t('tool_version.other'), tool_configs_path %>
+             <%= link_to t('.links.tool_configs'), tool_configs_path %>
            </li>
            <li <%= set_selected(params[:controller], :users) %>>
-             <%= link_to t('activerecord.models.user.other'), users_path %>
+             <%= link_to t('.links.users'), users_path %>
            </li>
            <li <%= set_selected(params[:controller], :quotas) %>>
-             <%= link_to t('activerecord.models.quota.other'), quotas_path %>
+             <%= link_to t('.links.quotas'), quotas_path %>
            </li>
          <% end %>
          <% if current_user.has_role?(:admin_user) %>
            <li <%= set_selected(params[:controller], :access_profiles) %>>
-             <%= link_to t('.links.profiles'), access_profiles_path %>
+             <%= link_to t('.links.access_profiles'), access_profiles_path %>
            </li>
            <li <%= set_selected(params[:controller], :resource_usage) %>>
-             <%= link_to t('layouts.common.usage'), resource_usage_index_path %>
+             <%= link_to t('.links.resource_usage'), resource_usage_index_path %>
            </li>
            <li <%= set_selected(params[:controller], :sites) %>>
-             <%= link_to t('activerecord.models.site.other'), sites_path %>
+             <%= link_to t('.links.sites'), sites_path %>
            </li>
            <li <%= set_selected(params[:controller], :exception_logs) %>>
-             <%= link_to t('activerecord.models.exception.other'), exception_logs_path %>
+             <%= link_to t('.links.exception_logs'), exception_logs_path %>
            </li>
            <li <%= set_selected(params[:controller], :signups) %>>
              <%=

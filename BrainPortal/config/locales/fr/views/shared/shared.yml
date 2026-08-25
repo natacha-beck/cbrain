@@ -15,6 +15,10 @@ fr:
       filter: "Filtre - %{name}"
       columns: "Colonnes"
       per_page: "par page."
+      links:
+        check: "Vérifier"
+        browse: "Parcourir"
+        report: "Rapport"
 
     error_messages:
       header_message: "%{object_errors} ont empêché l'enregistrement de ce %{object_name}:"

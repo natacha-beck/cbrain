@@ -15,6 +15,10 @@ en:
       filter: "Filter - %{name}"
       columns: "Columns"
       per_page: "per page."
+      links:
+        check: "Check"
+        browse: "Browse"
+        report: "Report"
 
     error_messages:
       header_message: "%{object_errors} prohibited this %{object_name} from being saved:"

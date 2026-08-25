@@ -323,7 +323,10 @@
 
       <%= button_with_dropdown_menu(t('.dropdowns.stop_services')) do %>
         <% html_colorize_text_stop_services = html_colorize(t('.stop_services.processing_in_orange_text'),"orange") %>
-        <%= t('.stop_services.paragraphs.stop_services_description_html', html_colorize_text: html_colorize_text_stop_services) %>
+        <%= sanitize(t('.stop_services.paragraphs.stop_services_description_html',
+               processing: t('.stop_services.processing'),
+               html_colorize_text: html_colorize_text_stop_services))
+        %>
         <hr>
         <div class="centered">
           <%= t('.stop_services.paragraphs.stop_activity_workers_description_html') %>
