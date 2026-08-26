@@ -9,6 +9,7 @@ en:
         color: "Color"
         description: "Description"
         projects: "Projects"
+        users: "Users"
 
       white: "white"
 

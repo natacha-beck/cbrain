@@ -37,32 +37,32 @@
   ) do |t|
 %>
   <%
-    t.column(t('activerecord.attributes.name'), :name,
+    t.column(t('.columns.name'), :name,
       :sortable => true,
     ) { |s| access_profile_label(s, :with_link => true) }
 
-    t.column(t('activerecord.attributes.color'), :color,
+    t.column(t('.columns.color'), :color,
       :sortable => true,
     ) { |s| s.color.presence || t('.white') }
 
 
-    t.column(t('activerecord.attributes.description'), :description,
+    t.column(t('.columns.description'), :description,
       :sortable => true,
     ) { |s| overlay_description(s.description) }
 
-    t.column(t('activerecord.models.group.other'), :projects) do |s|
+    t.column(t('.columns.projects'), :projects) do |s|
       if (s.groups.count > 4)
         s.groups[0..3].sort_by(&:name).map { |g| link_to_group_if_accessible(g) }.join(", ").html_safe.presence + " ... "
       else
-        s.groups.sort_by(&:name).map { |g| link_to_group_if_accessible(g) }.join(", ").html_safe.presence || "(#{t('none')})"
+        s.groups.sort_by(&:name).map { |g| link_to_group_if_accessible(g) }.join(", ").html_safe.presence || t('none_parentheses')
       end
     end
 
-    t.column(t('activerecord.models.user.other'), :users) do |s|
+    t.column(t('.columns.user'), :users) do |s|
       if (s.users.count > 4)
         s.users[0..3].sort_by(&:login).map { |u| link_to_user_if_accessible(u) }.join(", ").html_safe + " ... "
       else
-        s.users.sort_by(&:login).map { |u| link_to_user_if_accessible(u) }.join(", ").html_safe.presence || "(#{t('none')})"
+        s.users.sort_by(&:login).map { |u| link_to_user_if_accessible(u) }.join(", ").html_safe.presence || t('none_parentheses')
       end
     end
   %>

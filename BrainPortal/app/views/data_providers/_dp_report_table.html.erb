@@ -36,7 +36,7 @@
 
   user_ids    = @issues.map { |i| i[:user_id] }.uniq
   logins      = User.where(:id => user_ids).pluck(:id,:login).to_h
-  logins[nil] = "(#{t('none')})"
+  logins[nil] = t('none_parentheses')
   user_counts = @issues.each_with_object( Hash.new(0) ) { |issue, counts| counts[issue[:user_id]] += 1 }
 %>
 
@@ -69,10 +69,10 @@
     t.column(t('.columns.action'), :action,
       :sortable => true,
       :filters  => default_filters_for(@issues, :action)
-    ) { |issue| issue[:action] ? issue[:action].to_s.titleize : "(#{t('none')})" }
+    ) { |issue| issue[:action] ? issue[:action].to_s.titleize : t('none_parentheses') }
 
     t.column(t('.columns.file'), :userfile) do |issue|
-      next "(#{t('none')})" unless issue[:userfile]
+      next t('none_parentheses') unless issue[:userfile]
       link_to_userfile_if_accessible(issue[:userfile], current_user)
     end
 
