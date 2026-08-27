@@ -348,7 +348,7 @@
     </div>
     <div class="pagination_right_side">
       <% if @total_space_known > 0 %>
-        <%= t('.total_space', space: colored_pretty_size(@total_space_known))  %>
+        <%= t('.total_space_html', space: colored_pretty_size(@total_space_known))  %>
       <% end %>
       <% if @total_space_unkn  > 0 %>
         <%= t('.tasks_without_estimates', count: @total_space_unkn ) %>

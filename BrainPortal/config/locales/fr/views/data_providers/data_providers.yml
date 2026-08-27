@@ -37,7 +37,7 @@ fr:
         disk_usage_report: "Rapport d'utilisation du disque"
         disk_quotas: "Quotas disque"
       legends:
-        official_storage: "Stockage officiel de données"
+        official_storage: "Stockage officiel"
         user_site_storage: "Stockage utilisateur ou site"
 
     delete_button:

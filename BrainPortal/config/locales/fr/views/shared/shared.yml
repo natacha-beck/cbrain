@@ -19,6 +19,8 @@ fr:
         check: "Vérifier"
         browse: "Parcourir"
         report: "Rapport"
+        show: "Afficher"
+        on_word: "sur"
 
     error_messages:
       header_message: "%{object_errors} ont empêché l'enregistrement de ce %{object_name}:"

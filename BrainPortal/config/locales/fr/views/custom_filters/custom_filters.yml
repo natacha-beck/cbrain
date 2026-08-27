@@ -75,7 +75,7 @@ fr:
         data_providers: "Data Providers"
         archiving_status: "Statut d'archivage"
         synchronization_status: "Statut de synchronisation"
-        tags: "Étiquettes"
+        tags: "Labels"
 
     new:
       headings:
@@ -110,7 +110,7 @@ fr:
         data_providers: "Data Providers"
         archiving_status: "Statut d'archivage"
         synchronization_status: "Statut de synchronisation"
-        tags: "Étiquettes"
+        tags: "Labels"
         filtering_by_date: "Filtrage par date"
 
     show:

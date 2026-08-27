@@ -148,7 +148,7 @@ en:
         one: "%{count} task:"
         other: "%{count} tasks:"
 
-      total_space: "Total space used by tasks: %{space}"
+      total_space_html: "Total space used by tasks: %{space}"
       tasks_without_estimates:
         one: "(1 task without space estimates)"
         other: "(%{count} tasks without space estimates)"

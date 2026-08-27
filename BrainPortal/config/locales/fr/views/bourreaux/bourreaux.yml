@@ -49,7 +49,7 @@ fr:
         owner: "Propriétaire"
         project: "Projet"
         time_zone: "Fuseau horaire"
-        online: "En ligne?"
+        online: "En ligne ?"
         tasks: "Tâches"
         tasks_space: "Espace des tâches"
         cache_space:
@@ -175,7 +175,7 @@ fr:
               Notez que l'arrêt des Workers (quel que soit leur type) consiste à leur demander de s'arrêter proprement. S'ils sont en train de %{processing} quelque chose, ils finiront d'abord leur traitement. Les deux dernières colonnes du tableau indiquent s'ils sont actuellement occupés avec le mot %{html_colorize_text}. Dans certains cas, l'arrêt des Workers peut prendre du temps. Actualiser cette page indiquera quand ils sont arrêtés, mais gardez à l'esprit que le contenu de la page n'est normalement mis à jour que toutes les 30 secondes.
             </p>
             <p class="dropmenu_info">
-              Notez également que votre navigateur se bloque pendant le traitement de ces requêtes ; soyez patient et vérifiez la barre de progression du navigateur. N'effectuez pas d'opérations longues sur plusieurs serveurs d'exécution afin d'éviter des expirations.
+              Notez également que votre navigateur se bloque pendant le traitement de ces requêtes ; soyez patient et vérifiez la barre de progression du navigateur. N'effectuez pas d'opérations longues sur plusieurs bourreaux afin d'éviter des expirations.
             </p>
           stop_activity_workers_description_html: |
             <p class="dropmenu_info">
@@ -261,7 +261,7 @@ fr:
         for: "pour : %{duration}"
 
       index:
-        title: "Serveurs d'exécution"
+        title: "Bourreaux"
 
       new:
         title: "Ajouter un nouveau serveur"
@@ -294,7 +294,7 @@ fr:
             </div>
           cache_trust_expire_html: |
             <div class="field_explanation">
-              Cela signifie que, dans le cache du serveur d'exécution, les fichiers marqués comme 'InSync' mais dont le dernier accès remonte à plus de ce délai seront considérés comme non fiables et seront resynchronisés lors du prochain accès. Réglez ceci sur une valeur inférieure à <em>N</em> si la politique de fichiers du cluster supprime par exemple tous les fichiers temporaires âgés de plus de <em>N</em> jours.
+              Cela signifie que, dans le cache du bourreau, les fichiers marqués comme 'InSync' mais dont le dernier accès remonte à plus de ce délai seront considérés comme non fiables et seront resynchronisés lors du prochain accès. Réglez ceci sur une valeur inférieure à <em>N</em> si la politique de fichiers du cluster supprime par exemple tous les fichiers temporaires âgés de plus de <em>N</em> jours.
             </div>
           cms_shared_dir_html: |
             <div class="field_explanation">
@@ -550,7 +550,7 @@ fr:
           nh_support_email_html: "Si défini, le portail affichera un lien <em>mailto:</em> permettant aux utilisateurs de contacter le support NeuroHub."
           nh_system_from_email: "Si défini, les messages NeuroHub envoyés automatiquement par ce système contiendront cette adresse de retour."
           activity_workers_explanation_html: "En environnement de développement %{env_note} un seul Activity Worker suffit souvent. En production, un portail occupé peut nécessiter plus d'un Worker, mais un bourreau peut fonctionner correctement avec un seul."
-          cache_expiration_html: "Cela signifie que, dans le cache du serveur d'exécution, les fichiers marqués comme 'InSync' mais dont le dernier accès remonte à plus de ce délai seront considérés comme non fiables et seront resynchronisés lors du prochain accès. Réglez ceci sur une valeur inférieure à <em>N</em> si la politique de fichiers du cluster supprime par exemple tous les fichiers temporaires âgés de plus de <em>N</em> jours."
+          cache_expiration_html: "Cela signifie que, dans le cache du bourreau, les fichiers marqués comme 'InSync' mais dont le dernier accès remonte à plus de ce délai seront considérés comme non fiables et seront resynchronisés lors du prochain accès. Réglez ceci sur une valeur inférieure à <em>N</em> si la politique de fichiers du cluster supprime par exemple tous les fichiers temporaires âgés de plus de <em>N</em> jours."
           docker_executable_name: "Nom de l'exécutable Docker disponible sur les machines où les tâches s'exécuteront. Il doit toujours être défini si Docker est présent."
           singularity_executable_name: "Nom de l'exécutable Singularity disponible sur les machines où les tâches s'exécuteront. Il doit toujours être défini si Singularity est présent."
 
