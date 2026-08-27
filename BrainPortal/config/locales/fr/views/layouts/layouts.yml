@@ -21,8 +21,8 @@ fr:
           tool_versions: "Versions des outils"
           usage: "Usage"
           full_list: "Liste complète des outils et des jeux de données"
-          help_site: "Site d'aide"
-          email_support: "Assistance par courriel"
+          help_site: "Aide"
+          email_support: "Support e-mail"
           sign_out: "Se déconnecter"
           sign_in: "Se connecter"
 

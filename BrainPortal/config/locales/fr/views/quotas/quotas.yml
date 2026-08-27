@@ -28,7 +28,7 @@ fr:
       columns:
         user: "Utilisateur"
         project: "Projet"
-        execution_server: "Serveur d'exécution"
+        execution_server: "Bourreau"
         max_weekly_cpu: "CPU max hebdomadaire"
         max_monthly_cpu: "CPU max mensuel"
         max_cpu_total: "CPU max total"
@@ -43,7 +43,7 @@ fr:
         back_to_cpu_quotas: "Retour aux quotas CPU"
       headings:
         user: "Utilisateur"
-        execution_server: "Serveur d'exécution"
+        execution_server: "Bourreau"
         situation: "Situation"
         details: "Détails"
         quota_record: "Entrée de quota"

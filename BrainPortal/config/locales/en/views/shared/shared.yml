@@ -19,6 +19,8 @@ en:
         check: "Check"
         browse: "Browse"
         report: "Report"
+        show: "Show"
+        on_word: "on"
 
     error_messages:
       header_message: "%{object_errors} prohibited this %{object_name} from being saved:"

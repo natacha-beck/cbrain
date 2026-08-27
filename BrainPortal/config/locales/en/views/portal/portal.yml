@@ -295,7 +295,7 @@ en:
       title: "Welcome"
 
       headings:
-        main: "Welcome to %{name}"
+        main: "Welcome to CBRAIN %{name}"
         news: "CBRAIN News"
         system_info: "System Information"
         sessions: "Sessions"

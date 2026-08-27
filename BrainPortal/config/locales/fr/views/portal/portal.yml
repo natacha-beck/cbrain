@@ -291,7 +291,7 @@ fr:
       title: "Bienvenue"
 
       headings:
-        main: "Bienvenue sur %{name}"
+        main: "Bienvenue sur CBRAIN %{name}"
         news: "Actualités de CBRAIN"
         system_info: "Informations système"
         sessions: "Sessions"
