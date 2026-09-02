@@ -172,7 +172,6 @@ module ShowTableHelper
     #  Contents for the header cell to generate along with the field cell.
     #  Defaults to +field+ (field name).
     def attribute_cell(field, options = {})
-      puts_magenta("attribute_cell: field=#{field.inspect}, options=#{options.inspect}\n")
       header = options[:header] || cell_header_for(field)
       build_cell(ERB::Util.html_escape(header), ERB::Util.html_escape(@object.send(field)), options)
     end
@@ -190,7 +189,6 @@ module ShowTableHelper
     #  Contents for the header cell to generate along with the field cell.
     #  Defaults to +field+ (field name).
     def edit_cell(field, options = {}, &block)
-      puts_red("attribute_cell: field=#{field.inspect}, options=#{options.inspect}\n")
       header    = options.delete(:header) || cell_header_for(field)
       object    = @object
       options[:disabled] ||= @edit_disabled
@@ -411,3 +409,4 @@ module ShowTableHelper
   end
 
 end
+
