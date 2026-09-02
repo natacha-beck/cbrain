@@ -28,7 +28,7 @@ fr:
       columns:
         user: "Utilisateur"
         project: "Projet"
-        execution_server: "Bourreau"
+        execution_server: "Serveur de calcul"
         max_weekly_cpu: "CPU max hebdomadaire"
         max_monthly_cpu: "CPU max mensuel"
         max_cpu_total: "CPU max total"
@@ -43,7 +43,7 @@ fr:
         back_to_cpu_quotas: "Retour aux quotas CPU"
       headings:
         user: "Utilisateur"
-        execution_server: "Bourreau"
+        execution_server: "Serveur de calcul"
         situation: "Situation"
         details: "Détails"
         quota_record: "Entrée de quota"
@@ -72,7 +72,7 @@ fr:
       columns:
         user: "Utilisateur"
         default_for_all_users: "(Par défaut pour tous les utilisateurs)"
-        data_provider: "Data providers"
+        data_provider: "Serveurs de stockage"
         max_size: "Taille max"
         max_files: "Nombre max de fichiers"
         my_usage: "Ma consommation"
@@ -88,7 +88,7 @@ fr:
         show_edit_disk_quota: "Afficher/Modifier le quota disque"
       headings:
         user: "Utilisateur"
-        data_provider: "Data providers"
+        data_provider: "Serveurs de stockage"
         situation: "Situation"
         details: "Détails"
         quota_record: "Entrée de quota"
@@ -98,7 +98,7 @@ fr:
         num_files_quota: "Quota du nombre de fichiers"
       labels:
         user_quota: "(Quota utilisateur)"
-        dp_quota: "(Quota fournisseur de données)"
+        dp_quota: "(Quota serveur de stockage)"
 
     show_cpu_quota:
       titles:
@@ -117,10 +117,10 @@ fr:
       cells:
         user: "Utilisateur"
         project: "Projet"
-        execution_server: "Bourreau"
+        execution_server: "Serveur de calcul"
       blanks:
         any_project: "(N'importe quel projet)"
-        any_execution_server: "(N'importe quel bourreau)"
+        any_execution_server: "(N'importe quel serveur de calcul)"
         default_all_users: "(Par défaut pour tous les utilisateurs)"
       divs:
         user_html: |
@@ -157,11 +157,11 @@ fr:
           </div>
         max_active_tasks_html: |
           <div class="field_explanation">
-            Le nombre maximum de tâches qui peuvent être actives à tout moment sur le bourreau.
+            Le nombre maximum de tâches qui peuvent être actives à tout moment sur le serveur de calcul.
             Laissez vide pour ne pas fixer de limite. Une valeur de zéro empêchera toute tâche d'être lancée.
             Notez que les projets sont ignorés pour ces valeurs, et que si plusieurs entrées de quota s'appliquent
             à un utilisateur et diffèrent uniquement par le projet, la valeur minimale de cet ensemble sera utilisée.
-            Le compte administrateur principal est utilisé pour définir un nombre maximum de tâches AU TOTAL pour un bourreau
+            Le compte administrateur principal est utilisé pour définir un nombre maximum de tâches AU TOTAL pour un serveur de calcul
             (donc aucune limite spécifique à cet admin ne peut être spécifiée ici).
           </div>
 
@@ -173,7 +173,7 @@ fr:
       links:
         disk_quotas_table: "Tableau des disques quotas"
         new_disk_quota: "Nouveau disque quota"
-        new_quota_same_provider: "Nouveau quota avec le même data provider"
+        new_quota_same_provider: "Nouveau quota avec le même serveur de stockage"
         new_quota_same_user: "Nouveau quota pour le même utilisateur"
       headings:
         record: "Entrée de disque quota"
@@ -181,10 +181,10 @@ fr:
         max_num_files: "Nombre maximal de fichiers"
       columns:
         user: "Utilisateur"
-        data_provider: "Data provider"
+        data_provider: "Serveur de stockage"
       blanks:
         default_all_users: "(Par défaut pour tous les utilisateurs)"
-        select_data_provider: "(Sélectionner un data provider)"
+        select_data_provider: "(Sélectionner un serveur de stockage)"
       divs:
         max_bytes_html: |
           <div class="field_explanation">
@@ -215,10 +215,9 @@ fr:
         disk_quota_explanations_html: |
           <p class="long_paragraphs">
           Cette page affiche les limites pour la quantité d'espace disque et le nombre
-          de fichiers qui peuvent être stockés sur chaque data providers. Chaque ligne est
-          une entrée de quota qui s'applique à un utilisateur ou à tous les utilisateurs, pour un data provider.
-          Lorsqu'un utilisateur dépasse l'une des deux limites pour
-          un fournisseur, il ne pourra plus créer de nouveaux fichiers.
+          de fichiers qui peuvent être stockés sur chaque serveurs de stockage. Chaque ligne est
+          une entrée de quota qui s'applique à un utilisateur ou à tous les utilisateurs, pour un serveur de stockage.
+          Lorsqu'un utilisateur dépasse l'une des deux limites pour un fournisseur, il ne pourra plus créer de nouveaux fichiers.
         cpu_quota_explanations_html: |
           <p class="long_paragraphs">
           Cette page affiche les limites pour la quantité de temps CPU de traitement
@@ -226,10 +225,10 @@ fr:
           pour le temps CPU accumulé sur la semaine passée, sur le mois passé, et sur la durée de vie du compte.
           <p class="long_paragraphs">
           Chaque ligne contient une entrée de quota avec les trois limites. Les quotas
-          peuvent s'appliquer à un ou plusieurs bourreaux, et peuvent s'appliquer à
+          peuvent s'appliquer à un ou plusieurs serveurs de calcul, et peuvent s'appliquer à
           un utilisateur spécifique, à tous les utilisateurs, ou à tous les utilisateurs d'un
           projet particulier.
           <p class="long_paragraphs">
-          Lorsqu'un utilisateur a dépassé son quota sur un bourreau, ses
+          Lorsqu'un utilisateur a dépassé son quota sur un serveur de calcul, ses
           tâches en statut 'New' ne seront pas préparées, et resteront en 'New'
           jusqu'à ce que la fenêtre de quota progresse suffisamment pour libérer du temps.

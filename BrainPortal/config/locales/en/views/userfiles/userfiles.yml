@@ -41,6 +41,15 @@ en:
         file_type: "A file type..."
         keep_current: "Keep current %{attribute}"
 
+      actions:
+        proceed: "Proceed"
+
+      autodetect: "(autodetected)"
+      invalid: "Invalid!"
+      new_collection: "NewCollection"
+      qc_note: "Note that quality control (QC) requires files to be synchronized locally first."
+      unknown_file_type: "Unknown file type!"
+
       labels:
         extract: "Extract"
         as_single_collection: "As a single collection"
@@ -64,14 +73,6 @@ en:
         delete_file_html: "Are you sure you wish to delete these <span class='dlg-cfrm-cnt'></span> file(s)?"
         delete_tag_html: "Are you sure you wish to delete the tag <span class='dlg-cfrm-obj'></span> ?"
 
-      actions:
-        proceed: "Proceed"
-
-      new_collection: "NewCollection"
-      autodetect: "(autodetected)"
-      unknown_file_type: "Unknown file type!"
-      qc_note: "Note that quality control (QC) requires files to be synchronized locally first."
-      invalid: "Invalid!"
 
     file_menu:
       static_actions:

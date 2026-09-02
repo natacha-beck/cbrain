@@ -173,7 +173,7 @@ common:
           userfiles: "Fichiers"
           tasks: "Tâches"
           tools: "Outils"
-          data_providers: "Fournisseurs de données"
+          data_providers: "Serveurs de stockage"
           portal: "Portail"
           execution: "Exécution"
           members: "Membres"

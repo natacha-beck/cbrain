@@ -36,3 +36,56 @@ fr:
       select_all: "Tout sélectionner"
       select_all_on_all_pages_tooltip: "Tout sélectionner les %{item_name} sur toutes les pages"
       clear_tooltip: "Désélectionner les %{item_name}"
+
+    show_table:
+      cells:
+        login: "Identifiant"
+        last_connected: "Dernière connexion"
+        public_key: "Clé publique"
+        installation_sites: "Sites d'installation"
+        orcid_identity: "Identité ORCID"
+        active_sessions: "Sessions actives"
+        files: "Fichiers"
+        tasks: "Tâches"
+        tools: "Outils"
+        portal: "Portail"
+        execution: "Servers de calcul"
+        data_providers: "Serveurs de stockage"
+        historical_storage: "Stockage historique"
+        historical_cpu_time: "Temps CPU historique"
+      links:
+        change_password: "Changé le mot de passe"
+        neurohub_interface: "Interface NeuroHub"
+        generate_api_token: "Générer un nouveau jeton API"
+      headings:
+        ip_whitelist: "IP autorisées"
+        allowed_globus_provider_names: "Fournisseurs OpenID autorisés"
+        pref_data_provider_id: "Serveur de stockage par défaut"
+        pref_bourreau_id: "Serveur de calcul par défaut"
+        ip: "IP"
+        last_access: "Dernier accès"
+        zenodo_sandbox_token: "Jeton Sandbox Zenodo"
+        zenodo_official_token: "Jeton officiel Zenodo"
+      paragraphs:
+        ip_whitelist_html: |
+          <div class="field_explanation">
+            Liste d'adresses IP sources autorisées, séparées par des virgules (format X.X.X.X/XX) depuis lesquelles l'utilisateur peut se connecter.
+          </div>
+        allowed_globus_provider_names_html: |
+          <div class="field_explanation">
+            Si défini, doit être une liste de noms de fournisseurs d'identité OpenID séparés par des virgules. Un seul '*' est également autorisé pour signifier n'importe quel fournisseur.
+          </div>
+        zenodo_sandbox_token_html: |
+          <div class="wide_field_explanation">
+            Ce jeton peut être utilisé pour créer des dépôts de données Zenodo <strong>temporaires/de test</strong>.<p>
+            Vous pouvez créer un jeton sur <a href="https://sandbox.zenodo.org/account/settings/applications/" target="_blank">https://sandbox.zenodo.org/account/settings/applications/</a>.
+          </div>
+        zenodo_main_token_html: |
+          <div class="wide_field_explanation">
+            Ce jeton peut être utilisé pour créer des dépôts Zenodo <strong>réels, officiels et permanents</strong>.<p>
+            Vous pouvez créer un jeton sur <a href="https://zenodo.org/account/settings/applications/" target="_blank">https://zenodo.org/account/settings/applications/</a>.
+          </div>
+      prompts:
+        select_site: "(Sélectionner un site)"
+      no_orcid: "(Aucune identité ORCID liée à votre compte)"
+      orcid_note_html: "<strong>Remarque :</strong> Utilisez le %{link} pour gérer le lien d'identité ORCID"

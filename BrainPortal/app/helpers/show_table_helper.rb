@@ -172,7 +172,8 @@ module ShowTableHelper
     #  Contents for the header cell to generate along with the field cell.
     #  Defaults to +field+ (field name).
     def attribute_cell(field, options = {})
-      header = options[:header] || field.to_s.humanize
+      puts_magenta("attribute_cell: field=#{field.inspect}, options=#{options.inspect}\n")
+      header = options[:header] || cell_header_for(field)
       build_cell(ERB::Util.html_escape(header), ERB::Util.html_escape(@object.send(field)), options)
     end
 
@@ -189,7 +190,8 @@ module ShowTableHelper
     #  Contents for the header cell to generate along with the field cell.
     #  Defaults to +field+ (field name).
     def edit_cell(field, options = {}, &block)
-      header    = options.delete(:header) || field.to_s.humanize
+      puts_red("attribute_cell: field=#{field.inspect}, options=#{options.inspect}\n")
+      header    = options.delete(:header) || cell_header_for(field)
       object    = @object
       options[:disabled] ||= @edit_disabled
       wrapper = -> { @form_helper ? block.call(@form_helper) : block.call }
@@ -273,6 +275,19 @@ module ShowTableHelper
       html << "<td #{cell_atts} #{shared_atts}>#{ERB::Util.html_escape(content.to_s)}</td>"
       @cells << [ html.join("\n").html_safe, show_width ]
     end
+
+    private
+    # Used in order to have i18 working and
+    # look into the dictionnary
+    def cell_header_for(field)
+      name = field.to_s
+      return name.humanize if name =~ /\[/
+      klass = @object.class
+      klass.respond_to?(:human_attribute_name) ?
+        klass.human_attribute_name(name, :default => name.humanize) :
+        name.humanize
+    end
+
   end # class TableBuilder
 
   # Generate an input field for +attribute+ within +object+ which can be
@@ -396,4 +411,3 @@ module ShowTableHelper
   end
 
 end
-
