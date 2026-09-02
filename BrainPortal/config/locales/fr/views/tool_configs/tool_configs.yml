@@ -115,7 +115,7 @@ fr:
           <li>ou un basename d'overlay ext3capture (ex. <em>ext3capture:basename=SIZE</em> où SIZE est <em>12G</em> ou <em>12M</em>).</li>
           </ul>
           <p>
-          Dans le cas d'un Serveur de Stockage, les overlays seront les fichiers SquashFS utilisés par le fournisseur pour son stockage. Le fournisseur doit bien sûr être local au serveur de stockagecourant.
+          Dans le cas d'un Serveur de Stockage, les overlays seront les fichiers SquashFS utilisés par le fournisseur pour son stockage. Le fournisseur doit bien sûr être local au serveur de calcul.
           <p>
           Une spécification de bindmount est l'une des formes suivantes :
           <ul>
@@ -180,8 +180,8 @@ fr:
 
     boutiques_descriptor:
       title: "Descripteur Boutiques"
-      present_html: "Ceci est le descripteur Boutiques pour l'outil <strong>%{tool}</strong> sur le serveur de stockage<strong>%{server}</strong>."
-      absent_html: "Il n'y a pas de descripteur Boutiques pour l'outil <strong>%{tool}</strong> sur le serveur de stockage<strong>%{server}</strong>."
+      present_html: "Ceci est le descripteur Boutiques pour l'outil <strong>%{tool}</strong> sur le serveur de calcul<strong>%{server}</strong>."
+      absent_html: "Il n'y a pas de descripteur Boutiques pour l'outil <strong>%{tool}</strong> sur le serveur de calcul<strong>%{server}</strong>."
 
     index:
       title: "Outils et leurs versions"
@@ -225,7 +225,7 @@ fr:
       applies_to_all_tools_html: "Ce formulaire s'applique à <strong>TOUS les outils</strong>"
 
       running_on_all_servers_html: "s'exécutant sur <strong>TOUS les bourreaux</strong>."
-      running_on_server_html: "s'exécutant sur le serveur de stockage<strong>%{server}</strong>."
+      running_on_server_html: "s'exécutant sur le serveur de calcul<strong>%{server}</strong>."
 
       common_config_tool: "Configuration commune pour l'outil %{tool} sur TOUS les serveurs"
       common_config_server: "Configuration commune pour TOUS les outils sur le serveur %{server}"
@@ -237,6 +237,6 @@ fr:
         order: "Les commandes sont affichées dans l'ordre d'exécution."
 
       log:
-        global_bourreau: "Journal de la configuration globale du serveur de stockage#%{id}"
+        global_bourreau: "Journal de la configuration globale du serveur de calcul#%{id}"
         global_tool: "Journal de la configuration globale d'outil #%{id}"
         specific: "Journal de la configuration spécifique #%{id}"
