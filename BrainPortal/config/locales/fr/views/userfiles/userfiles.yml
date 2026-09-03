@@ -219,7 +219,8 @@ fr:
         modified_at: "Modifié le"
         immutable_file: "Fichier immuable"
         hidden_file: "Fichier masqué"
-
+        remote_full_path: "Chemin du repertoire distant"
+ 
       zenodo_publication:
         published: "Publié: %{link}"
         in_progress: "En cours: %{link}"

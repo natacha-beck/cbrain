@@ -16,8 +16,8 @@ fr:
         cpu_time: "Temps CPU"
         files_deltas: "Variations de fichiers"
         exceptions: "Exceptions"
-        servers: "Caches et tâches des serveurs de calcul"
-        dp: "Fichiers mis à jour des serveurs de stockage"
+        servers: "Caches et tâches des bourreaux"
+        dp: "Fichiers mis à jour des data providers"
       legends:
         portal_suffix: " (Portail)"
       labels:

@@ -102,6 +102,7 @@ module ShowTableHelper
 
       # Template code
       @block           = options[:block]
+      @virtual_path    = options[:virtual_path]
     end
 
     def is_for_new_record? #:nodoc:
@@ -111,8 +112,10 @@ module ShowTableHelper
     end
 
     def invoke_block #:nodoc:
-      @block.call(self)               if @block.arity == 1
-      @block.call(self, @form_helper) if @block.arity == 2 # in case we want the helper in the main block
+      ShowTableHelper.with_virtual_path(@template, @virtual_path) do
+        @block.call(self)               if @block.arity == 1
+        @block.call(self, @form_helper) if @block.arity == 2 # in case we want the helper in the main block
+      end
     end
 
     # Whether or not this table has editable content. An editable table will
@@ -363,7 +366,8 @@ module ShowTableHelper
     end
 
     tb = TableBuilder.new(object, self, options.merge(:block => block, :url => url,
-                                                      :edit_condition => edit_condition))
+                                                      :edit_condition => edit_condition,
+                                                      :virtual_path   => @virtual_path))
 
     render :partial => 'shared/show_table', :locals => { :tb => tb }
   end
@@ -394,7 +398,26 @@ module ShowTableHelper
       url   = url_for_object_form(object)
     end
 
-    render :partial => 'shared/show_table_context', :locals => { :object => object, :url => url, :method => method, :as => as, :block => block }
+    # Restore the caller's virtual path when the block is run from within
+    # the partial, so that lazy I18n lookups (t('.key')) resolve correctly.
+    caller_path   = @virtual_path
+    wrapped_block = lambda do |form_helper|
+      ShowTableHelper.with_virtual_path(self, caller_path) { block.call(form_helper) }
+    end
+
+    render :partial => 'shared/show_table_context', :locals => { :object => object, :url => url, :method => method, :as => as, :block => wrapped_block }
+  end
+
+  # Runs +block+ with the +template+'s @virtual_path temporarily set to
+  # +virtual_path+. Rails' translate helper uses @virtual_path to scope
+  # lazy lookups.
+  def self.with_virtual_path(template, virtual_path) #:nodoc:
+    return yield if virtual_path.blank?
+    saved = template.instance_variable_get(:@virtual_path)
+    template.instance_variable_set(:@virtual_path, virtual_path)
+    yield
+  ensure
+    template.instance_variable_set(:@virtual_path, saved) if virtual_path.present?
   end
 
   private

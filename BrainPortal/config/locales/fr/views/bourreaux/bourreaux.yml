@@ -86,18 +86,18 @@ fr:
         user_access_report: "Rapport d'accès utilisateur"
         disk_cache_report: "Rapport du cache disque"
         task_workdir_size_report: "Rapport sur la taille du répertoire de travail des tâches"
-        access_to_data_providers: "Accès aux serveurs de stockage"
+        access_to_data_providers: "Accès aux fournisseurs de données"
 
       buttons:
         start:
           tunnels: "1. Démarrer les tunnels"
-          execution_server: "2. Démarrer le serveur de calcul"
+          execution_server: "2. Démarrer le bourreau"
           task_workers: "3a. Démarrer les Task Workers"
           activity_workers: "3b. Démarrer les Activity Workers"
         stop:
           activity_workers: "1a. Arrêter les Activity Workers"
           task_workers: "1b. Arrêter les Task Workers"
-          execution_server: "2. Arrêter le serveur de calcul"
+          execution_server: "2. Arrêter le bourreau"
           tunnels: "3. Arrêter les tunnels"
 
       dropdowns:
@@ -106,10 +106,10 @@ fr:
 
       confirms:
         stop:
-          activity_workers: "Êtes-vous sûr de vouloir arrêter les serveurs de calcul ? Ils termineront d'abord ce qu'ils sont en train de faire."
+          activity_workers: "Êtes-vous sûr de vouloir arrêter les bourreaux ? Ils termineront d'abord ce qu'ils sont en train de faire."
           task_workers: "Êtes-vous sûr de vouloir arrêter les Task Workers ? Ils termineront d'abord ce qu'ils sont en train de faire."
           bourreau: "Êtes-vous sûr ? Notez que les exécuteurs s'arrêteront également une fois leur travail terminé, s'ils sont encore actifs."
-          tunnels: "Assurez-vous que les serveurs de calcul, les Task Workers et les Activity Workers sont tous arrêtés !"
+          tunnels: "Assurez-vous que les bourreaux, les Task Workers et les Activity Workers sont tous arrêtés !"
 
       # Start services panel
       # Panneau démarrage des services
@@ -118,10 +118,10 @@ fr:
           introduction_html: |
             <p class="dropmenu_info">
               Ces boutons démarrent les différentes couches de services nécessaires au démarrage
-              d'un serveur de calcul. Elles sont listées dans le même ordre dans lequel elles
+              d'un bourreau. Elles sont listées dans le même ordre dans lequel elles
               doivent être lancées. Les trois premiers boutons
-              ne s'applique qu'aux serveurs de calcul, tandis que <strong>Démarrer les Activity Workers</strong>
-              s'applique à la fois aux serveurs de calcul et aux portails.
+              ne s'appliquent qu'aux bourreaux, tandis que <strong>Démarrer les Activity Workers</strong>
+              s'applique à la fois aux bourreaux et aux portails.
             </p>
             <p class="dropmenu_info">
               Reportez‑vous aux quatre dernières colonnes du tableau pour savoir quels services
@@ -131,32 +131,32 @@ fr:
             <p class="dropmenu_info">
               Notez également que votre navigateur se bloque pendant le traitement de ces requêtes ;
               soyez patient et vérifiez la barre de progression du navigateur. N'effectuez pas
-              d'opérations longues sur plusieurs serveurs de calcul afin d'éviter des expirations.
+              d'opérations longues sur plusieurs bourreaux afin d'éviter des expirations.
             </p>
           tunnel_html: |
             <p class="dropmenu_info">
               Le tunnel est le principal canal de communication entre le portail
-              et le serveur distant sur lequel le serveur de calcul est configuré. Il est
-              nécessaire pour le serveur de calcul et les Task Workers. Démarrer le
-              tunnel marquera le serveur de calcul comme « en ligne » dans la base de données.
-              Notez que vous pouvez aussi démarrer le tunnel avec le bouton « Démarrer le serveur de calcul ».
+              et le serveur distant sur lequel le bourreau est configuré. Il est
+              nécessaire pour le bourreau et les Task Workers. Démarrer le
+              tunnel marquera le bourreau comme « en ligne » dans la base de données.
+              Notez que vous pouvez aussi démarrer le tunnel avec le bouton « Démarrer le bourreau ».
               Envisagez de démarrer uniquement le tunnel pour vérifier que les paramètres réseau
               sont valides (par ex. pour vérifier les noms d'hôte, les ports, les pare‑feu, etc.).
             </p>
           execution_server_html: |
             <p class="dropmenu_info">
-              Le serveur de calcul nécessite le tunnel mentionné ci‑dessus. Par commodité,
-              si le tunnel n'est pas démarré, démarrer le serveur de calcul lancera d'abord le tunnel.
+              Le bourreau nécessite le tunnel mentionné ci‑dessus. Par commodité,
+              si le tunnel n'est pas démarré, démarrer le bourreau lancera d'abord le tunnel.
             </p>
           start_task_workers_description_html: |
             <p class="dropmenu_info">
-              Les Task Workers nécessitent que le tunnel et le serveur de calcul soient opérationnels.
+              Les Task Workers nécessitent que le tunnel et le bourreau soient opérationnels.
             </p>
           start_activity_workers_description_html: |
             <p class="dropmenu_info">
               Les Activity Workers sont les seules services pouvant également être démarrés ou arrêtés
               sur les portails. Sur les portails, les Workers ne requièrent aucune des autres couches ci‑dessus.
-              Sur les serveurs de calcul, ces Workers nécessitent à la fois le tunnel et le serveur de calcul en fonctionnement.
+              Sur les bourreaux, ces Workers nécessitent à la fois le tunnel et le bourreau en fonctionnement.
             </p>
 
       stop_services:
@@ -166,7 +166,7 @@ fr:
         paragraphs:
           stop_services_description_html: |
             <p class="dropmenu_info">
-              Ces boutons arrêtent les différentes couches de services associées à un serveur de calcul. Elles sont listées dans le même ordre dans lequel elles doivent être arrêtées. Les trois derniers boutons ne s'appliquent qu'aux serveurs de calcul, tandis que <strong>Arrêter les Activity Workers</strong> s'applique à la fois aux serveurs de calcul et aux portails.
+              Ces boutons arrêtent les différentes couches de services associées à un bourreau. Elles sont listées dans le même ordre dans lequel elles doivent être arrêtées. Les trois derniers boutons ne s'appliquent qu'aux bourreaux, tandis que <strong>Arrêter les Activity Workers</strong> s'applique à la fois aux bourreaux et aux portails.
             </p>
             <p class="dropmenu_info">
               Reportez‑vous aux quatre dernières colonnes du tableau pour savoir quels services sont actuellement opérationnels. Les quatre boutons de ce panneau leur correspondent dans l'<em>ordre inverse</em> (de droite à gauche).
@@ -175,11 +175,11 @@ fr:
               Notez que l'arrêt des Workers (quel que soit leur type) consiste à leur demander de s'arrêter proprement. S'ils sont en train de %{processing} quelque chose, ils finiront d'abord leur traitement. Les deux dernières colonnes du tableau indiquent s'ils sont actuellement occupés avec le mot %{html_colorize_text}. Dans certains cas, l'arrêt des Workers peut prendre du temps. Actualiser cette page indiquera quand ils sont arrêtés, mais gardez à l'esprit que le contenu de la page n'est normalement mis à jour que toutes les 30 secondes.
             </p>
             <p class="dropmenu_info">
-              Notez également que votre navigateur se bloque pendant le traitement de ces requêtes ; soyez patient et vérifiez la barre de progression du navigateur. N'effectuez pas d'opérations longues sur plusieurs serveurs de calcul afin d'éviter des expirations.
+              Notez également que votre navigateur se bloque pendant le traitement de ces requêtes ; soyez patient et vérifiez la barre de progression du navigateur. N'effectuez pas d'opérations longues sur plusieurs bourreaux afin d'éviter des expirations.
             </p>
           stop_activity_workers_description_html: |
             <p class="dropmenu_info">
-              Les Activity Workers peuvent s'exécuter à la fois sur les portails et sur les serveurs de calcul. Les arrêter leur enverra un signal pour terminer leurs actions en cours, puis quitter.
+              Les Activity Workers peuvent s'exécuter à la fois sur les portails et sur les bourreaux. Les arrêter leur enverra un signal pour terminer leurs actions en cours, puis quitter.
             </p>
           stop_task_workers_description_html: |
             <p class="dropmenu_info">
@@ -187,7 +187,7 @@ fr:
             </p>
           stop_execution_server_description_html: |
             <p class="dropmenu_info">
-              Arrêter un serveur de calcul arrêtera également les Task Workers <strong>et</strong> les Activity Workers qui y fonctionnent. Assurez‑vous qu'ils ne sont pas en train de %{processing} quelque chose.
+              Arrêter un bourreau arrêtera également les Task Workers <strong>et</strong> les Activity Workers qui y fonctionnent. Assurez‑vous qu'ils ne sont pas en train de %{processing} quelque chose.
             </p>
           stop_tunnels_description_html: |
             <p class="dropmenu_info">
@@ -216,13 +216,13 @@ fr:
       notesbody_html: |
         <div id="notesbody" class="notesbox" style="display:none">
 
-            <h3>Quelques notes sur la configuration d'un serveur de calcul</h3>
+            <h3>Quelques notes sur la configuration d'un bourreau</h3>
 
-            Un serveur de calcul est une application Rails distante utilisée par le BrainPortal. Comme toutes les applications Rails, elle tourne sur un hôte quelque part, écoute des connexions HTTP sur un port et doit se connecter au même serveur de base de données que le BrainPortal.
+            Un bourreau est une application Rails distante utilisée par le BrainPortal. Comme toutes les applications Rails, elle tourne sur un hôte quelque part, écoute des connexions HTTP sur un port et doit se connecter au même serveur de base de données que le BrainPortal.
 
             <p>
 
-            Contrairement au BrainPortal, les connexions HTTP qu'elle attend ne proviennent pas du navigateur d'un utilisateur, mais sont des requêtes XML émises par le BrainPortal via un protocole Rails appelé ActiveResource. Il existe plusieurs manières d'indiquer au BrainPortal comment se connecter au serveur de calcul et le gérer, ce qui explique tous les champs de ce formulaire.
+            Contrairement au BrainPortal, les connexions HTTP qu'elle attend ne proviennent pas du navigateur d'un utilisateur, mais sont des requêtes XML émises par le BrainPortal via un protocole Rails appelé ActiveResource. Il existe plusieurs manières d'indiquer au BrainPortal comment se connecter au bourreau et le gérer, ce qui explique tous les champs de ce formulaire.
 
         </div>
 
@@ -261,7 +261,7 @@ fr:
         for: "pour : %{duration}"
 
     index:
-      title: "Serveurs de calcul"
+      title: "Bourreaux"
 
     new:
       title: "Ajouter un nouveau serveur"
@@ -297,7 +297,7 @@ fr:
           </div>
         dp_cache_dir_html: |
           <div class="field_explanation">
-            Attention ! Modifier ce champ réinitialisera le statut de synchronisation de tous les fichiers de tous les serveurs de stockage ! De plus, l'application Rails devra être redémarrée et tous les fichiers de ce répertoire seront effacés !
+            Attention ! Modifier ce champ réinitialisera le statut de synchronisation de tous les fichiers de tous les Data Providers ! De plus, l'application Rails devra être redémarrée et tous les fichiers de ce répertoire seront effacés !
           </div>
         spaced_dp_ignore_patterns_html: |
           <div class="field_explanation">
@@ -305,7 +305,7 @@ fr:
           </div>
         cache_trust_expire_html: |
           <div class="field_explanation">
-            Cela signifie que, dans le cache du serveur de calcul, les fichiers marqués comme 'InSync' mais dont le dernier accès remonte à plus de ce délai seront considérés comme non fiables et seront resynchronisés lors du prochain accès. Réglez ceci sur une valeur inférieure à <em>N</em> si la politique de fichiers du cluster supprime par exemple tous les fichiers temporaires âgés de plus de <em>N</em> jours.
+            Cela signifie que, dans le cache du bourreau, les fichiers marqués comme 'InSync' mais dont le dernier accès remonte à plus de ce délai seront considérés comme non fiables et seront resynchronisés lors du prochain accès. Réglez ceci sur une valeur inférieure à <em>N</em> si la politique de fichiers du cluster supprime par exemple tous les fichiers temporaires âgés de plus de <em>N</em> jours.
           </div>
         cms_shared_dir_html: |
           <div class="field_explanation">
@@ -340,7 +340,7 @@ fr:
         jump_user: "Utilisateur du JumpHost"
         jump_port: "Port du JumpHost"
         spaced_dp_ignore_patterns: "Motifs de noms de fichiers à ignorer"
-        dp_cache_dir: "Chemin vers les caches des serveurs de stockage"
+        dp_cache_dir: "Chemin vers les caches des Data Providers"
         cms_class: "Type de cluster"
         cms_shared_dir: "Chemin vers le répertoire de travail partagé"
         cms_default_queue: "Nom de la queue par défaut"
@@ -368,17 +368,17 @@ fr:
         task_workers_configuration: "Configuration des Task Workers"
         task_limits: "Nombre de tâches maximum par utilisateur"
 
-      tool_version_configuration_explanation: "Une configuration d'outil pour ce serveur de calcul peut être créée une fois le serveur créé."
-      task_limits_explanation: "Les limites de tâches peuvent être définies une fois que le serveur de calcul est créé."
+      tool_version_configuration_explanation: "Une configuration d'outil pour ce bourreau peut être créée une fois le serveur créé."
+      task_limits_explanation: "Les limites de tâches peuvent être définies une fois que le bourreau est créé."
 
       submit: "Créer un nouveau serveur"
 
     rr_access_dp:
-      title: "Accès des serveurs aux serveurs de stockage"
+      title: "Accès des serveurs aux Data Providers"
       headings:
-        main: "Accès des serveurs aux serveurs de stockage"
+        main: "Accès des serveurs aux Data Providers"
         servers: "Serveurs"
-        data_providers: "Serveurs de stockage"
+        data_providers: "Data Providers"
         name: "Nom"
         type: "Type"
         last_checked: "Dernière vérification"
@@ -386,21 +386,21 @@ fr:
       paragraphs:
         rr_access_explanation_html: |
           <p class="medium_paragraphs">
-          Cette page montre quels Serveurs (lignes) peuvent accéder à quels serveurs de stockage (colonnes).
+          Cette page montre quels Serveurs (lignes) peuvent accéder à quels Data Providers (colonnes).
           </p>
           <p class="medium_paragraphs">
-          Si vous souhaitez lancer des tâches sur un serveur de calcul particulier, assurez-vous qu'il est
-          configuré pour accéder aux fichiers des serveurs de stockage marqués par des cercles verts (&nbsp;%{o_icon}&nbsp;).
+          Si vous souhaitez lancer des tâches sur un bourreau particulier, assurez-vous qu'il est
+          configuré pour accéder aux fichiers des Data Providers marqués par des cercles verts (&nbsp;%{o_icon}&nbsp;).
           </p>
           <p class="medium_paragraphs">
-          Les serveurs de stockage identifiés sous leur nom par %{not_syncable}
+          Les Data Providers identifiés sous leur nom par %{not_syncable}
           indiquent que leurs fichiers peuvent encore être accédés via des API de streaming, mais ne pourront jamais être entièrement
           synchronisés sur un serveur.
           </p>
           <p class="medium_paragraphs">
           Les cellules marquées par %{no_access}
-          indiquent des serveurs qui ne sont pas autorisés à accéder aux fichiers du serveur de stockage
-          de quelque manière que ce soit (streaming ou synchronisation), même si le serveur de stockage semble en vie.
+          indiquent des serveurs qui ne sont pas autorisés à accéder aux fichiers du Data Provider
+          de quelque manière que ce soit (streaming ou synchronisation), même si le Data Provider semble en vie.
           </p>
       links:
         refresh_all: "Rafraîchir tout"
@@ -412,16 +412,16 @@ fr:
         alive: "en ligne"
         down: "down"
       legends:
-        data_provider_status: "Statut du serveur de stockage :"
-      data_providers_offline: "Serveurs de stockage hors ligne :"
+        data_provider_status: "Statut du Data Provider :"
+      data_providers_offline: "Data Providers hors ligne :"
       note_html: |
         <strong>Note : </strong>Cliquez sur <em>Rafraîchir</em> lance un processus en arrière-plan sur le serveur
-        qui interrogera chaque serveur de stockage ; cela peut prendre plusieurs minutes.
+        qui interrogera chaque Data Provider ; cela peut prendre plusieurs minutes.
 
     rr_access:
-      title: "Accès au serveur de calcul"
+      title: "Accès au bourreau"
       headings:
-        main: "Rapport d'accès au serveur de calcul"
+        main: "Rapport d'accès au bourreau"
       legends:
         accessible: "accessible"
         not_accessible: "non accessible"
@@ -431,7 +431,7 @@ fr:
       titles:
         server_log: "Log du serveur"
       headings:
-        main: "Statistiques d'utilisation disque des caches des serveurs de stockage du serveur"
+        main: "Statistiques d'utilisation disque des caches des Data Providers du serveur"
         no_entries: "(Il n'y a pas d'entrées dans ce rapport)"
         filter: "Filtrer ce rapport : fichiers rapportés au-dessus..."
       entry:
@@ -458,7 +458,7 @@ fr:
     show:
       titles:
         portal: "Infos du portail"
-        execution_server: "Infos du serveur de calcul"
+        execution_server: "Infos du bourreau"
         server_log: "Log du serveur"
 
       links:
@@ -507,10 +507,10 @@ fr:
         activity_workers_config: "Configuration des Activity Workers"
         activity_workers_number: "Nombre de Workers"
         cache_management: "Configuration de gestion du cache"
-        path_to_dp_caches: "Chemin vers les caches des serveurs de stockage"
+        path_to_dp_caches: "Chemin vers les caches des Data Providers"
         ignore_patterns: "Motifs de noms de fichiers à ignorer"
-        dp_options: "Options des serveurs de stockage"
-        persistent_ssh_masters: "Utiliser des masters SSH persistants pour les serveurs de stockage basés sur SSH"
+        dp_options: "Options des Data Providers"
+        persistent_ssh_masters: "Utiliser des masters SSH persistants pour les DataProviders basés sur SSH"
         cluster_config: "Configuration du cluster"
         type_of_cluster: "Type de cluster"
         default_queue_name: "Nom de la queue par défaut"
@@ -536,7 +536,7 @@ fr:
         cms_shared_dir_html: "Obligatoire. Ce répertoire doit être visible et modifiable depuis tous les nœuds.<br />C'est ici que seront créés les sous-répertoires de travail pour toutes les tâches."
         cms_default_queue: "Optionnel."
         cms_extra_qsub_args: "Optionnel. Attention : ceci est inséré tel quel dans la ligne de commande de soumission des jobs."
-        dp_cache_warning: "Attention ! Modifier ce champ réinitialisera le statut de synchronisation de tous les fichiers de tous les serveurs de stockage ! De plus, l'application Rails devra être redémarrée et tous les fichiers de ce répertoire seront effacés !"
+        dp_cache_warning: "Attention ! Modifier ce champ réinitialisera le statut de synchronisation de tous les fichiers de tous les Data Providers ! De plus, l'application Rails devra être redémarrée et tous les fichiers de ce répertoire seront effacés !"
         ignore_patterns: "Séparez plusieurs motifs par des espaces ; chaque motif peut contenir des '*' simples, mais pas de '/' ni de caractères spéciaux."
         name_note_bourreau_html: "Remarque importante : ce nom doit également être modifié en conséquence dans le fichier de configuration <em>Bourreau/config/initializers/config_bourreau.rb</em> pour que ce serveur puisse redémarrer correctement par la suite."
         name_note_portal_html: "Remarque importante : ce nom doit également être modifié en conséquence dans le fichier de configuration <em>BrainPortal/config/initializers/config_portal.rb</em> pour que ce serveur puisse redémarrer correctement par la suite."
@@ -550,24 +550,24 @@ fr:
         support_email_html: "Si défini, le portail affichera un lien <em>mailto:</em> permettant aux utilisateurs de contacter le support."
         nh_support_email_html: "Si défini, le portail affichera un lien <em>mailto:</em> permettant aux utilisateurs de contacter le support NeuroHub."
         nh_system_from_email: "Si défini, les messages NeuroHub envoyés automatiquement par ce système contiendront cette adresse de retour."
-        activity_workers_explanation_html: "En environnement de développement %{env_note} un seul Activity Worker suffit souvent. En production, un portail occupé peut nécessiter plus d'un Worker, mais un serveur de calcul peut fonctionner correctement avec un seul."
-        cache_expiration_html: "Cela signifie que, dans le cache du serveur de calcul, les fichiers marqués comme 'InSync' mais dont le dernier accès remonte à plus de ce délai seront considérés comme non fiables et seront resynchronisés lors du prochain accès. Réglez ceci sur une valeur inférieure à <em>N</em> si la politique de fichiers du cluster supprime par exemple tous les fichiers temporaires âgés de plus de <em>N</em> jours."
+        activity_workers_explanation_html: "En environnement de développement %{env_note} un seul Activity Worker suffit souvent. En production, un portail occupé peut nécessiter plus d'un Worker, mais un bourreau peut fonctionner correctement avec un seul."
+        cache_expiration_html: "Cela signifie que, dans le cache du bourreau, les fichiers marqués comme 'InSync' mais dont le dernier accès remonte à plus de ce délai seront considérés comme non fiables et seront resynchronisés lors du prochain accès. Réglez ceci sur une valeur inférieure à <em>N</em> si la politique de fichiers du cluster supprime par exemple tous les fichiers temporaires âgés de plus de <em>N</em> jours."
         docker_executable_name: "Nom de l'exécutable Docker disponible sur les machines où les tâches s'exécuteront. Il doit toujours être défini si Docker est présent."
         singularity_executable_name: "Nom de l'exécutable Singularity disponible sur les machines où les tâches s'exécuteront. Il doit toujours être défini si Singularity est présent."
 
       all_admins: "Tous les admins"
 
       paragraphs:
-        reverse_service_description_html: "Ceci est un mécanisme alternatif pour fournir au serveur de calcul une connexion distincte à la base de données et à l'agent SSH. Pour que cela fonctionne, un serveur accessible en SSH (fourni par nom d'hôte, numéro de port et nom d'utilisateur) doit être configuré pour accepter la clé principale du portail CBRAIN, et être visible depuis le serveur de calcul. Ce serveur doit disposer d'un agent SSH fournissant des clés sur un socket de domaine UNIX, et d'une connexion de base de données pour CBRAIN. La spécification de la connexion à la base de données peut être fournie soit comme chemin complet vers un socket de domaine UNIX, soit comme <em>localhost:port</em>."
+        reverse_service_description_html: "Ceci est un mécanisme alternatif pour fournir au Bourreau une connexion distincte à la base de données et à l'agent SSH. Pour que cela fonctionne, un serveur accessible en SSH (fourni par nom d'hôte, numéro de port et nom d'utilisateur) doit être configuré pour accepter la clé principale du portail CBRAIN, et être visible depuis le Bourreau. Ce serveur doit disposer d'un agent SSH fournissant des clés sur un socket de domaine UNIX, et d'une connexion de base de données pour CBRAIN. La spécification de la connexion à la base de données peut être fournie soit comme chemin complet vers un socket de domaine UNIX, soit comme <em>localhost:port</em>."
         reverse_service_defaults_html: "Certaines <strong>valeurs par défaut</strong> affichées sous les zones de saisie sont des <em>estimations</em> basées sur le portail actuellement en cours d'exécution. Elles sont utiles si le portail est justement le serveur vers lequel se reconnecter."
-        persistent_ssh_explanation: "Lorsqu'il est réglé sur 'toujours', les connexions SSH vers l'hôte d'un serveur de stockage persistent après la première utilisation. Cela rend les transferts de données successifs un peu plus rapides car la connexion n'a pas besoin d'être rouverte à chaque fois. Le comportement par défaut est activé ('toujours') pour les portails et désactivé ('jamais') pour les serveurs de calcul."
+        persistent_ssh_explanation: "Lorsqu'il est réglé sur 'toujours', les connexions SSH vers l'hôte d'un data provider persistent après la première utilisation. Cela rend les transferts de données successifs un peu plus rapides car la connexion n'a pas besoin d'être rouverte à chaque fois. Le comportement par défaut est activé ('toujours') pour les portails et désactivé ('jamais') pour les bourreaux."
 
       default_value: "Par défaut : %{value}"
 
       unknown_check_config: "(Inconnu, vérifiez votre configuration)"
       activity_workers_number_select:
         none: "Aucun (pour débogage)"
-        recommended_bourreaux: "1 (recommandé pour les serveurs de calcul)"
+        recommended_bourreaux: "1 (recommandé pour les Bourreaux)"
         recommended_portals: "3 (recommandé pour les Portails)"
       like_right_now: "(comme maintenant)"
       options:

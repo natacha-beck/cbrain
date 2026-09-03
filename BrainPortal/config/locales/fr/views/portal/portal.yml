@@ -184,8 +184,8 @@ fr:
         tasks_count: "Tâches - nombre"
         tasks_sum: "Tâches - somme de l'espace des répertoires de travail"
         tasks_combined: "Tâches - rapport combiné"
-        servers_count: "Serveurs de calcul - nombre"
-        dp_count: "Serveurs de stockage - nombre"
+        servers_count: "Bourreaux - nombre"
+        dp_count: "Data providers - nombre"
         users_count: "Utilisateurs - nombre"
         projects_count: "Projets - nombre"
         tools_count: "Outils - nombre"
@@ -351,8 +351,8 @@ fr:
 
       defaults:
         projects: "Projets auxquels vous appartenez :"
-        provider: "Votre serveur de stockage par défaut :"
-        server: "Votre serveur de calcul par défaut:"
+        provider: "Votre data provider par défaut :"
+        server: "Votre bourreau par défaut:"
 
       latest_tasks:
         active_count: "(%{count} actives)"

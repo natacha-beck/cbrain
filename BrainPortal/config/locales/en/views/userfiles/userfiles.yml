@@ -216,11 +216,12 @@ en:
         zenodo_publication: "Zenodo Publication"
         parent: "Parent"
         children: "Children"
-        provider_full_path: "Remote Data Provider path"
+        provider_full_path: "Local Data Provider (cache) path:"
+        remote_full_path: "Remote full path"
         modified_at: "Modified at"
         immutable_file: "Immutable file"
         hidden_file: "Hidden file"
-
+          
       zenodo_publication:
         published: "Published: %{link}"
         in_progress: "In progress: %{link}"

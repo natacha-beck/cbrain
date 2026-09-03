@@ -34,7 +34,7 @@ fr:
           </div>
       labels:
         common_config: "Configuration commune pour cet outil sur tous les serveurs :"
-        versions_installed: "Versions installées sur les serveurs de calcul suivants :"
+        versions_installed: "Versions installées sur les bourreaux suivants :"
       links:
         add_new: "Ajouter"
       datas:
