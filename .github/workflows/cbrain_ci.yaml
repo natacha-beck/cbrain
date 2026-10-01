@@ -20,6 +20,9 @@ jobs:
     runs-on: ubuntu-24.04
     env:
       RAILS_ENV: test
+    permissions:
+      contents: read
+      pull-requests: read
 
     ###########################################################
     services:
@@ -45,6 +48,16 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.2
+
+      ###########################################################
+      - name: Setup python
+        uses: actions/setup-python@v1
+
+      ###########################################################
+      - name: Setup python package Boutiques to install 'bosh'
+        uses: BSFishy/pip-action@v1
+        with:
+          packages: boutiques
 
       ###########################################################
       - name: Setup BrainPortal And Bourreau Names

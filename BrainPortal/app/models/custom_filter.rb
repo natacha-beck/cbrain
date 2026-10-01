@@ -142,7 +142,7 @@ class CustomFilter < ApplicationRecord
   end
 
   # Returns the table name associated with the filters.
-  # This is generally like the contoller name, but it COULD be
+  # This is generally like the controller name, but it COULD be
   # different. E.g. tasks vs cbrain_tasks
   def target_filtered_table
     filtered_class_controller
@@ -186,7 +186,7 @@ class CustomFilter < ApplicationRecord
     relative_to           = self.data_relative_to
     table_name            = self.target_filtered_table()
 
-    scope = add_time_condition_to_scope(scope, table_name,
+    add_time_condition_to_scope(scope, table_name,
             mode_is_absolute_from, mode_is_absolute_to,
             absolute_from,         absolute_to,
             relative_from,         relative_to,

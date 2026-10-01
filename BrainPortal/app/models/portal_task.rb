@@ -301,58 +301,6 @@ class PortalTask < CbrainTask
     {}
   end
 
-  #######################################################
-  # Task View API
-  #######################################################
-
-  # This method is used to display a progress bar in the task view
-  # interface. It returns a hash with the following content:
-  #   * :color: a string containing the color to use in the progress bar.
-  #   * :progress: an int between 0 and 100 that represents the progression percentage.
-  #   * :message: a string that contains an information message.
-  #   * :show_percentage: a boolean that indicates if the percentage has to be shown.
-  # Examples of returned hashes:
-  #     {
-  #      :color=>"blue",
-  #      :progress => 27,
-  #      :message => "Everything looks good",
-  #      :show_percentage => true
-  #     }
-  #     {
-  #      :color => "rgb(12,44,255)",
-  #      :progress => 42,
-  #      :message => "Oh no your data is corrupted",
-  #      :show_percentage => false
-  #     }
-  #
-  # This is a default implementation where the bar progresses based on
-  # the task status. Tasks may override it to show some task-specific
-  # progression. It is recommended to keep the following color
-  # convention: red is for failed tasks, blue for active ones, green
-  # for completed ones.
-  def progress_info
-    progress=15
-    color="blue"
-    if CbrainTask::RUNNING_STATUS.include?(self.status)
-      progress=15*(1+CbrainTask::RUNNING_STATUS.index(self.status))
-    end
-    if CbrainTask::COMPLETED_STATUS.include?(self.status)
-      color="green"
-      progress=100
-    end
-    if CbrainTask::FAILED_STATUS.include?(self.status)
-      color="red"
-      progress=100
-    end
-    return {:color => color, :progress => progress, :message => nil, :show_percentage => false }
-  end
-
-  # Returns true if progress bar has to be shown. Task must override this method
-  # when the progress bar has to be shown.
-  def show_progress_bar?
-    false
-  end
-
   ######################################################
   # Task properties directives
   ######################################################
@@ -619,7 +567,7 @@ class PortalTask < CbrainTask
     end
 
     def count #:nodoc:
-      inject(0) { |c| c += 1 }
+      inject(0) { |c, _| c + 1 }
     end
 
     def delete(paramspath) #:nodoc:
@@ -743,6 +691,17 @@ class PortalTask < CbrainTask
     @params_errors_cache
   end
 
+  # Needed in case of a dup()
+  def params_errors_clear #:nodoc:
+    @params_errors_cache = nil
+  end
+
+  def dup #:nodoc:
+    obj = super
+    obj.params_errors_clear
+    obj
+  end
+
   # This method returns a 'pretty' name for a params attributes.
   # This implementation will try to look up a hash table returned
   # by the class method pretty_params_names() first, so an
@@ -788,9 +747,11 @@ class PortalTask < CbrainTask
   # Contacts the Bourreau side and request a copy of the tasks's
   # STDOUT, STDERR and job script.
   def capture_job_out_err(run_number=nil,stdout_lim=2000,stderr_lim=2000)
-    cb_error "Cannot get task's stdout and stderr: this task is archived." if self.workdir_archived?
-    bourreau             = self.bourreau
-    control              = bourreau.send_command_get_task_outputs(self.id,run_number,stdout_lim,stderr_lim)
+    cb_error "Cannot get task's stdout and stderr: this task is archived."           if self.workdir_archived?
+    cb_error "Cannot get task's stdout and stderr: this task has no work directory." if self.cluster_workdir.blank?
+    bourreau  = self.bourreau
+    cb_error "Cannot get task's stdout and stderr: this execution server is not online." if bourreau.nil? || ! bourreau.online?
+    control = bourreau.send_command_get_task_outputs(self.id,run_number,stdout_lim,stderr_lim)
     self.cluster_stdout = control.cluster_stdout
     self.cluster_stderr = control.cluster_stderr
     self.script_text    = control.script_text

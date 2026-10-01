@@ -391,6 +391,38 @@ class User < ApplicationRecord
     SshKey.find(name) # will raise exception if files are not there
   end
 
+  # Stores the current date and time in the DB
+  # for the moment when the user's SSH key was pushed
+  # to the remote resource identified by +remote_resource_id+
+  def record_ssh_key_install_date(remote_resource_id = RemoteResource.current_resource.id)
+    self.meta["ssh_key_install_date_#{remote_resource_id}"] = Time.now
+  end
+
+  # Returns the date and time when the user's SSH key was last pushed
+  # to the remote resource identified by +remote_resource_id+ ; returns
+  # nil if the key was never pushed.
+  def get_ssh_key_install_date(remote_resource_id = RemoteResource.current_resource.id)
+    self.meta["ssh_key_install_date_#{remote_resource_id}"]
+  end
+
+  # Returns all the push dates for the user's SSH key as a hash
+  # with keys being the remote_resource IDs and the values, the datetimes.
+  # E.g. { 12 => "2000-01-01T123456", 23 => "2000-01-01T123456" }
+  # The values are Time objects
+  def all_ssh_key_install_dates
+    # Extract all valid remote_resource IDs out of meta data keys
+    rr_ids = self.meta.keys
+      .grep(/\Assh_key_install_date_/)
+      .map    { |key| key[/(\d+)\z/] }  # extract the digits at the end
+      .map(&:to_i)
+      .select { |rr_id| RemoteResource.where(:id => rr_id).exists? }
+    # Build the hash with Time objects as values
+    rr_ids.inject({}) do |hash,rr_id|
+      hash[rr_id] = self.meta["ssh_key_install_date_#{rr_id}"]
+      hash
+    end
+  end
+
   # After destroy callback: destroy the user's SSH key on the filesystem, if any.
   def destroy_user_ssh_key
     self.ssh_key.destroy
@@ -408,6 +440,30 @@ class User < ApplicationRecord
       .limit(1)
       .pluck(:updated_at)
       .first
+  end
+
+
+
+
+  ##############################################
+  # Shared Secret Methods
+  ##############################################
+
+  # Stores a secret for the users, for a named client.
+  def set_shared_secret_for_client(client, secret)
+    client = client.to_s
+    cb_error "Invalid client name" unless client =~ /\A[a-z][a-z0-9_]*[a-z]+\z/i
+    secret = secret.to_s
+    cb_error "Secret is too short"          if secret.length < 30
+    cb_error "Entropy of secret is too low" if Shannon::entropy(secret) < 3.0
+    self.meta["secret_for_client_#{client}"] = secret
+  end
+
+  # Returns the user's secret for a named client.
+  def get_shared_secret_for_client(client)
+    client = client.to_s
+    cb_error "Invalid client name" unless client =~ /\A[a-z][a-z0-9_]*[a-z]+\z/i
+    self.meta["secret_for_client_#{client}"]
   end
 
 

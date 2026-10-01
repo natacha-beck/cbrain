@@ -33,9 +33,12 @@ class QuotasController < ApplicationController
   before_action :admin_role_required, :except => [ :index ]
 
   def index #:nodoc:
-    @scope = scope_from_session
+    @mode  = cbrain_session[:quota_mode].presence&.to_sym
+    @mode  = :cpu  if params[:mode].to_s == 'cpu'
+    @mode  = :disk if params[:mode].to_s == 'disk' || @mode != :cpu
+    cbrain_session[:quota_mode] = @mode.to_s
 
-    @mode  = params[:mode].to_s == 'cpu' ? :cpu : :disk
+    @scope = scope_from_session("#{@mode}_quotas#index")
 
     @base_scope   = base_scope.includes([:user, :data_provider  ]) if @mode == :disk
     @base_scope   = base_scope.includes([:user, :remote_resource]) if @mode == :cpu
@@ -93,7 +96,7 @@ class QuotasController < ApplicationController
     # Try to find an existing quota record; nils will mean we fetch nothing
     @quota = model.where( atts ).first
 
-    # If we haven't found an existing quota entry, we intialize a new one.
+    # If we haven't found an existing quota entry, we initialize a new one.
     # It can contain nils for the attributes.
     @quota ||= model.new( atts )
 
@@ -151,15 +154,17 @@ class QuotasController < ApplicationController
       @quota.max_cpu_past_week  = guess_time_units(quota_params[:max_cpu_past_week])  if quota_params[:max_cpu_past_week].present?
       @quota.max_cpu_past_month = guess_time_units(quota_params[:max_cpu_past_month]) if quota_params[:max_cpu_past_month].present?
       @quota.max_cpu_ever       = guess_time_units(quota_params[:max_cpu_ever])       if quota_params[:max_cpu_ever].present?
+      @quota.max_active_tasks   = quota_params[:max_active_tasks].to_i if quota_params[:max_active_tasks].to_s =~ /\A\s*\d+\s*\z/
+      @quota.max_active_tasks   = nil                                  if quota_params[:max_active_tasks].blank?
     end
 
     new_record = @quota.new_record?
 
-    if @quota.save_with_logging(current_user, %w( max_bytes max_files max_cpu_past_week max_cpu_past_month max_cpu_ever ))
+    if @quota.save_with_logging(current_user, %w( max_bytes max_files max_cpu_past_week max_cpu_past_month max_cpu_ever max_active_tasks ))
       if new_record
-        flash[:notice] = "Quota entry was successfully created."
+        flash[:notice] = t('quotas.flash.created')
       else
-        flash[:notice] = "Quota entry was successfully updated."
+        flash[:notice] = t('quotas.flash.updated')
       end
       redirect_to quota_path(@quota)
       return
@@ -177,7 +182,7 @@ class QuotasController < ApplicationController
     @quota = Quota.find(id)
     @quota.destroy
 
-    flash[:notice] = "#{@quota.class.to_s.sub("Quota","")} quota entry deleted."
+    flash[:notice] = t('quotas.flash.deleted', type: @quota.class.to_s.sub("Quota",""))
 
     if @quota.is_a?(DiskQuota)
       redirect_to quotas_path(:mode => 'disk')
@@ -213,7 +218,7 @@ class QuotasController < ApplicationController
         .group(:user_id,:remote_resource_id).sum(:value)
     end
 
-    # These two lamdas transform the hashes above into new hashes
+    # These two lambdas transform the hashes above into new hashes
     # where the top level is a UID (user or bourreau) and the key is
     # a hash with a subset of the entries for each. It's darn complicated.
     # For help, try this in Ruby shell:
@@ -298,13 +303,13 @@ class QuotasController < ApplicationController
         .where(:data_provider_id => quota.data_provider_id)
         .group(:user_id)
         .sum(:size)
-        .select { |user_id,size| size >= quota.max_bytes }
+        .select { |user_id,size| size > 0 && size >= quota.max_bytes }
         .keys
       exceed_numfiles_user_ids = Userfile
         .where(:data_provider_id => quota.data_provider_id)
         .group(:user_id)
         .sum(:num_files)
-        .select { |user_id,num_files| num_files >= quota.max_files }
+        .select { |user_id,num_files| num_files > 0 && num_files >= quota.max_files }
         .keys
       union_ids  = exceed_size_user_ids | exceed_numfiles_user_ids
       union_ids -= DiskQuota
@@ -353,6 +358,7 @@ class QuotasController < ApplicationController
     params.require(:quota).permit(
       :user_id, :remote_resource_id, :group_id,
       :max_cpu_past_week, :max_cpu_past_month, :max_cpu_ever,
+      :max_active_tasks,
     )
   end
 
@@ -388,12 +394,11 @@ class QuotasController < ApplicationController
 
   # Tries to turn strings like '3 mb' into 3_000_000 etc.
   # Supported suffixes are T, G, M, K, TB, GB, MB, KB, B (case insensitive).
-  # Negative values are parsed, but the DiskQuota model only accepts the special -1
   def guess_size_units(sizestring)
-    match = sizestring.match(/\A\s*(-?\d*\.?\d+)\s*([tgmk]?)\s*b?\s*\z/i)
+    match = sizestring.match(/\A\s*(-?\d{1,5}(\.\d{1,2})?)\s*([tgmk]?)\s*b?\s*\z/i)
     return "" unless match # parsing error
     number = match[1]
-    suffix = match[2].presence&.downcase || 'u'
+    suffix = match[3].presence&.downcase || 'u'
     mult   = { 't' => 1_000_000_000_000, 'g' => 1_000_000_000, 'm' => 1_000_000, 'k' => 1_000, 'u' => 1 }
     totbytes = number.to_f * mult[suffix]
     totbytes = totbytes.to_i
@@ -402,12 +407,12 @@ class QuotasController < ApplicationController
 
   # Tries to turn strings like '2h' into 7200 (for 7200 seconds, etc).
   # Supported suffixes are s, h, d, m, w, and y (case insensitive).
-  # Minutes not supported because of the sad existance of months.
+  # Minutes not supported because of the sad existence of months.
   def guess_time_units(timestring)
-    match = timestring.match(/\A\s*(\d*\.?\d+)\s*([shdwmy]?)\s*\z/i)
+    match = timestring.match(/\A\s*(\d{1,4}(\.\d{1,2})?)\s*([shdwmy]?)\s*\z/i)
     return "" unless match # parsing error
     number = match[1]
-    suffix = match[2].presence&.downcase || 's'
+    suffix = match[3].presence&.downcase || 's'
     mult   = { 's' => 1.second, 'h' => 1.hour,  'd' => 1.day,
                'w' => 1.week,   'm' => 1.month, 'y' => 1.year, }
     tottime = number.to_f * mult[suffix].to_i

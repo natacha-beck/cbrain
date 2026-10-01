@@ -194,12 +194,11 @@ class NocController < ApplicationController
       since_when = [2,since_minutes,527040].sort[1].minutes.ago
     end
 
-    # Auto refresh: default every two minutes.
-    @refresh_every   = nil if @refresh_every.present? && @refresh_every < 10
-    @refresh_every ||= 120.seconds
+    # Auto refresh: minimum 1 minute
+    @refresh_every = nil if @refresh_every.present? && @refresh_every < 60
 
     # RemoteResources, including the portal itself
-    @myself        = RemoteResource.current_resource
+    @portals       = BrainPortal.where(:online => true).all.to_a # includes the current portal and any other
     acttasks_bids  = CbrainTask.active.group(:bourreau_id).pluck(:bourreau_id)
     updated_bids   = Bourreau.where([ "updated_at > ?", offline_resource_limit.ago ]).pluck(:id) # must have been toggled within a month.
     @bourreaux     = Bourreau.where(:id => (acttasks_bids | updated_bids)).order(:name).all
@@ -230,9 +229,6 @@ class NocController < ApplicationController
                        .group(:data_provider_id)
                        .sum(:value)
 
-    # This is used to adjust the color ranges
-    @num_hours     = (Time.now - since_when) / 24.hours; @num_hours = 1.0 if @num_hours < 1
-
     # This is used to debug layout issues by generating random numbers
     if fake
       @active_users  = rand(fake)
@@ -250,7 +246,7 @@ class NocController < ApplicationController
 
     # We also scan the BrainPortal, although it has no tasks, because
     # the caching logic is the same.
-    ([ @myself ] + @bourreaux ).each do |b| # b is a BrainPortal once, and a Bourreau for the rest
+    ( @portals + @bourreaux ).each do |b| # b is a BrainPortal once, and a Bourreau for the rest
       info  = @bourreau_info[b.id] = {}
 
       # Sum of task workdir space
@@ -310,7 +306,9 @@ class NocController < ApplicationController
       url_sequence = { 'daily' => 'weekly', 'weekly' => 'monthly', 'monthly' => 'daily' }
       myurl.sub!(/\/(daily|weekly|monthly)/) { |m| "/" + url_sequence[m.sub("/","")] }
     end
-    response.headers["Refresh"] = "#{@refresh_every};#{myurl}"
+    if @refresh_every.present?
+      response.headers["Refresh"] = "#{@refresh_every};#{myurl}"
+    end
 
     # Number of exceptions
     @num_exceptions = ExceptionLog.where([ "created_at > ?", since_when ]).count
@@ -330,7 +328,6 @@ class NocController < ApplicationController
 
   # Show IP address
   def fetch_ip_address
-    reqenv = request.env || {}
     @ip_address ||= cbrain_request_remote_ip rescue 'UnknownIP'
   end
 

@@ -106,7 +106,7 @@ class Userfile < ApplicationRecord
   attr_accessor           :sync_select_patterns
 
   # Utility named scopes
-  scope :name_like,     -> (n) { where("userfiles.name LIKE ?", "%#{n.strip}%") }
+  scope :name_like,     -> (n) { where("userfiles.name LIKE ? ESCAPE '!'", "%#{n.strip.gsub(/([%_!])/,'!\1')}%") }
 
   scope :has_no_parent, ->     { where(parent_id: nil) }
 
@@ -287,7 +287,7 @@ class Userfile < ApplicationRecord
   # by +user+. Actually returns a ActiveRecord::Relation.
   def get_tags_for_user(user)
     user = User.find(user) unless user.is_a?(User)
-    self.tags.where('tags.user_id' => user.id)
+    self.tags.where(:user_id => user.id).or(self.tags.where(:user_id => User.admin.id, :group_id => Group.everyone.id, :name => [ 'QC_PASS', 'QC_FAIL', 'QC_UNKNOWN']))
   end
 
   # Set the tags associated with this file to those
@@ -475,7 +475,7 @@ class Userfile < ApplicationRecord
   # as 'newer' on the cache side of the current
   # Rails application compared to whatever is in
   # the official data provider.
-  # Results in the the local sync status object
+  # Results in the local sync status object
   # to be marked as 'CacheNewer'.
   def cache_is_newer
     SyncStatus.ready_to_modify_cache(self) do
@@ -726,6 +726,23 @@ class Userfile < ApplicationRecord
   end
 
 
+
+  ##############################################
+  # API Support Methods
+  ##############################################
+
+  public
+
+  def for_api
+    tags = self.tags.order(:name).to_a
+    return super if tags.empty?
+    super.merge(
+      {
+        :tag_ids   => tags.map(&:id),
+        :tag_names => tags.map(&:name),
+      }
+    )
+  end
 
   ##############################################
   # Viewer Methods

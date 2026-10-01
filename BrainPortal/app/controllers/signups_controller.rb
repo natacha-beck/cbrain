@@ -26,6 +26,10 @@ class SignupsController < ApplicationController
   before_action :login_required,      :except => [:show, :new, :create, :edit, :destroy, :update, :confirm, :resend_confirm]
   before_action :admin_role_required, :except => [:show, :new, :create, :edit, :destroy, :update, :confirm, :resend_confirm]
 
+  spurious_params_ban_ip :show, :new, :edit, :destroy,
+                         :confirm        => [ :token ],
+                         :resend_confirm => []
+
   ################################################################
   # User-accessible action (do not need to be logged in)
   ################################################################
@@ -71,7 +75,7 @@ class SignupsController < ApplicationController
     end
 
     unless send_confirm_email(@signup)
-      flash[:error] = "It seems some error occurred. The email notification was probably not sent. There's nothing we can do about this."
+      flash[:error] = t('signups.flash.email_failed')
     end
 
     send_admin_notification(@signup)
@@ -106,7 +110,7 @@ class SignupsController < ApplicationController
       return
     end
 
-    flash[:notice] = "The account request has been updated."
+    flash[:notice] = t('signups.flash.updated')
 
     sleep 1
     redirect_to signup_path(@signup)
@@ -121,7 +125,7 @@ class SignupsController < ApplicationController
     end
 
     @signup.destroy
-    flash[:notice] = "The account request has been deleted."
+    flash[:notice] = t('signups.flash.deleted')
 
     if current_user && current_user.has_role?(:admin_user)
       redirect_to signups_path
@@ -170,9 +174,9 @@ class SignupsController < ApplicationController
     end
 
     if send_confirm_email(@signup)
-      flash[:notice] = "A new confirmation email has been sent."
+      flash[:notice] = t('signups.flash.confirmation_resent')
     else
-      flash[:error] = "It seems some error occurred. Email notification was probably not sent. Try again later, or contact the admins."
+      flash[:error]  = t('signups.flash.confirmation_resend_failed')
     end
 
     sleep 1
@@ -248,7 +252,7 @@ class SignupsController < ApplicationController
       count += 1 if req.destroy
     end
 
-    flash[:notice] = "Deleted " + view_pluralize(count, "record") + "."
+    flash[:notice] = t('signups.flash.deleted_records', count: count)
 
     redirect_to signups_path
   end
@@ -297,7 +301,7 @@ class SignupsController < ApplicationController
 
     @results.compact!
 
-    flash[:notice] = "Sent " + view_pluralize(count, "confirmation email") + "."
+    flash[:notice] = t('signups.flash.sent_confirmations', count: count)
     render :action => :multi_action
   end
 
@@ -314,8 +318,8 @@ class SignupsController < ApplicationController
     revealed = reqs.count - newly_hidden.count
 
     flash[:notice] ||= ""
-    flash[:notice]  += "Hidden "   + view_pluralize(newly_hidden.count, "record") + "\n" if newly_hidden.count > 0
-    flash[:notice]  += "Revealed " + view_pluralize(revealed,           "record") + "\n" if revealed           > 0
+    flash[:notice]  += t('signups.flash.hidden_records',   count: newly_hidden.count) if newly_hidden.count > 0
+    flash[:notice]  += t('signups.flash.revealed_records', count: revealed)           if revealed           > 0
 
     redirect_to signups_path
   end

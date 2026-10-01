@@ -57,21 +57,20 @@ class ToolsController < ApplicationController
     @tool   = current_user.available_tools.find(tool_id)
 
     # All accessible bourreaux for this tool
-    bourreau_ids  = @tool.bourreaux.map(&:id)
-    @bourreaux    = Bourreau.find_all_accessible_by_user(current_user).where( :id => bourreau_ids)
+    tool_bids     = @tool.bourreaux.pluck(:id)
+    @bourreaux    = Bourreau.find_all_accessible_by_user(current_user).where(:id => tool_bids)
     # All accessible tc for this tool on accessible bourreaux
     bourreaux_ids = @bourreaux.map(&:id)
-    @tool_configs = ToolConfig.find_all_accessible_by_user(current_user).where(:tool_id => tool_id, :bourreau_id => bourreau_ids)
+    @tool_configs = ToolConfig.find_all_accessible_by_user(current_user).where(:tool_id => tool_id, :bourreau_id => bourreaux_ids)
     # Reduce list of bourreaux, bourreaux need at least one config available
     bourreaux_ids = @tool_configs.map(&:bourreau_id)
     @bourreaux    = @bourreaux.where(:id => bourreaux_ids).all
 
-    # Select a specific tool_config
-    selected_by_default = current_user.meta["pref_bourreau_id"]
-    @tool_config = @tool_configs.where(:bourreau_id => selected_by_default).last if (
-      bourreaux_ids.include?(selected_by_default) &&
-      @bourreaux.detect? { |b| b.id == selected_by_default && b.online? }
-    )
+    # Select a specific tool_config based on user's preferred Bourreau
+    pref_bid = current_user.meta["pref_bourreau_id"].presence&.to_i # could be nil
+    if @bourreaux.any? { |b| b.id == pref_bid && b.online? }
+      @tool_config = @tool_configs.where(:bourreau_id => pref_bid).order(:id).last
+    end
 
     respond_to do |format|
       format.html { render :partial => 'tools/tool_config_select' }
@@ -80,7 +79,7 @@ class ToolsController < ApplicationController
 
   rescue
     # render :text  => "#{ex.class} #{ex.message}\n#{ex.backtrace.join("\n")}"
-    render html: '<strong style="color:red">No Execution Servers Available</strong>'.html_safe
+    render html: t('select_box.no_execution_servers_html').html_safe
   end
 
   def new #:nodoc:
@@ -113,7 +112,7 @@ class ToolsController < ApplicationController
     respond_to do |format|
       if @tool.errors.empty? && @tool.save
         @tool.addlog_context(self,"Created by #{current_user.login}")
-        flash[:notice] = 'Tool was successfully created.'
+        flash[:notice] = t('tools.flash.created')
         format.html { redirect_to :action => :index, :format => :html}
         format.xml  { render :xml => @tool, :status => :created, :location => @tool }
       else
@@ -144,7 +143,7 @@ class ToolsController < ApplicationController
     respond_to do |format|
       if @tool.update_attributes_with_logging(tool_params, current_user,
            %w( category cbrain_task_class_name select_menu_text url application_package_name application_type application_tags ) )
-        flash[:notice] = 'Tool was successfully updated.'
+        flash[:notice] = t('tools.flash.updated')
         format.html { redirect_to(edit_tool_path(@tool)) }
         format.xml  { head :ok }
       else
@@ -196,18 +195,18 @@ class ToolsController < ApplicationController
       if success
         successes << @tool
       else
-        failures += "#{cbrain_task_class_name} could not be added.\n"
+        failures += t('tools.flash.not_added', class_name: cbrain_task_class_name )
       end
     end
 
     respond_to do |format|
       if successes.size > 0
-        flash[:notice] = "#{view_pluralize(successes.size, "tool")} successfully registered:\n"
+        flash[:notice] = t('tools.flash.registered', count: successes.size )
         successes.each do |tool|
-          flash[:notice] += "Name: #{tool.name} Class: #{tool.cbrain_task_class_name}\n"
+          flash[:notice] += t('tools.flash.registered_line', name: tool.name, class_name: tool.cbrain_task_class_name)
         end
       else
-        flash[:notice] = "No unregistered tools found."
+        flash[:notice] = t('tools.flash.none_unregistered')
       end
       unless failures.blank?
         flash[:error] = failures

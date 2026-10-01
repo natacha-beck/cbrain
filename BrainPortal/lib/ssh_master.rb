@@ -378,6 +378,42 @@ class SshMaster
     true
   end
 
+  # Adds the configuration for using a jumphost before
+  # reaching the actual host defined during initialize().
+  # Optional. Only a single jumphost is supported here.
+  def add_jumphost(username, hostname, port = 22)
+
+    self.properly_registered?
+
+    @jumphost_user = username.to_s
+    @jumphost_host = hostname.to_s
+    @jumphost_port = (port.presence || 22).to_i
+
+    raise "SSH master's jumphost \"user\" is not a simple identifier." unless
+      @jumphost_user =~ /\A[a-zA-Z0-9][a-zA-Z0-9_\-\.]*\z/
+    raise "SSH master's jumphost \"host\" is not a simple host name." unless
+      @jumphost_host =~ /\A[a-zA-Z0-9][a-zA-Z0-9_\-\.]*\z/
+    raise "SSH master's jumphost \"port\" is not a port number." unless
+      @jumphost_port > 0 && @jumphost_port < 65535
+
+    self
+  end
+
+  # Remove the jumphost configuration that was added by
+  # add_jumphost().
+  def delete_jumphost
+    self.properly_registered?
+    @jumphost_user = @jumphost_host = @jumphost_port = nil
+    self
+  end
+
+  # Returns the string that will be used on the ssh command line
+  # for the -J option of jumphost, e.g. "lois@superman.example.com:22"
+  def get_jumphost_string
+    return nil unless @jumphost_user.present?
+    "#{@jumphost_user}@#{@jumphost_host}:#{@jumphost_port}"
+  end
+
   # Start the master SSH connection, including all tunnels if
   # necessary. The connection is maintained in a subprocess.
   # If a subprocess is already running, nothing will happen:
@@ -397,10 +433,14 @@ class SshMaster
     self.get_tunnels_strings(:forward).each { |spec| sshcmd += " -L #{spec}" }
     self.get_tunnels_strings(:reverse).each { |spec| sshcmd += " -R #{spec}" }
 
+    jumphost_spec = self.get_jumphost_string()
+    sshcmd += " -J #{jumphost_spec} " if jumphost_spec
+
     shared_options = self.ssh_shared_options("yes") # ControlMaster=yes
     sshcmd += " #{shared_options}"
 
-    unless self.write_pidfile("0",:check) # 0 means in the process of starting up subprocess
+    # 0 in the pidfile means in the process of starting up the subprocesses
+    unless self.write_pidfile("0",:check)
       self.read_pidfile
       return true if @pid # so it's already running, eh.
     end
@@ -415,7 +455,7 @@ class SshMaster
         subpid = Process.fork do
           begin
             Process.setpgrp rescue true
-            self.write_pidfile(Process.pid,:force)  # Overwrite
+            self.write_pidfile(Process.pid,:force)  # Overwrite : changes the 0 to a real PID
             $stdin.reopen( "/dev/null",    "r") # fd 0
             $stdout.reopen(self.diag_path, "a") # fd 1
             $stdout.sync = true
@@ -438,7 +478,10 @@ class SshMaster
     Process.waitpid(pid) # not the PID we want in @pid!
     pidfile = self.pidfile_path
     CONFIG[:SPAWN_WAIT_TIME].times do
-      break if File.exist?(socket) && File.exist?(pidfile)
+      break if File.exist?(socket)         &&
+               File.exists?(pidfile)       &&
+               File.size(pidfile)      > 0 &&
+               self.raw_read_pidfile  != 0  # a zero means not yet fully setup; a nil is an error and no need to wait further
       debugTrace("... waiting for confirmed creation of socket and PID file...")
       sleep 1
     end
@@ -451,6 +494,7 @@ class SshMaster
     # Something went wrong, kill it if it exists.
     debugTrace("Master did not start.")
     pid = self.raw_read_pidfile
+    pid = nil if pid == 0 # zero is the special value when trying to fork
     if pid
       debugTrace("Killing spurious process at PID #{pid}.")
       Process.kill("HUP",pid) rescue true
@@ -758,6 +802,7 @@ class SshMaster
       return nil
     end
     @pid = self.raw_read_pidfile # can be nil if it's incorrect
+    @pid = nil if @pid == 0
     @pid
   end
 
@@ -770,7 +815,7 @@ class SshMaster
       File.open(pidfile,"r") { |fh| line = fh.read }
       return nil unless line && line.match(/\A\d+/)
       pid = line.to_i
-      pid = nil if pid == 0 # leftover from :check mode of write_pidfile() ? Crash?
+      return pid if pid == 0 # when we're still in the process of forking
       pid = nil unless self.process_ok?(pid)
       return pid
     rescue

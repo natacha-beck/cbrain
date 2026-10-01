@@ -93,7 +93,7 @@
 #   # the values in invoke_structure
 #   desc.build_substitutions_by_tokens_hash(invoke_structure)
 #
-#   # Utility to perform the subsitutions of tokens in a string
+#   # Utility to perform the substitutions of tokens in a string
 #   desc.apply_substitutions(string, substitutions_by_tokens, to_strip=[])
 #
 #   # Returns a new descriptor with the attributes in a canonical beautiful order
@@ -107,7 +107,7 @@ module BoutiquesSupport
   Revision_info=CbrainFileRevision[__FILE__] #:nodoc:
 
   # Descriptor schema
-  SCHEMA_FILE = "#{Rails.root.to_s}/lib/cbrain_task_generators/schemas/boutiques.schema.json"
+  SCHEMA_FILE = "#{Rails.root.to_s}/lib/boutiques.schema.json"
 
   # Read schema, store it in the module.
   @schema = JSON.parse(File.read(SCHEMA_FILE))
@@ -187,6 +187,11 @@ module BoutiquesSupport
     def dup #:nodoc:
       copy = super
       copy.from_file = self.from_file
+      # We need to copy explicitely the 'cbrain_input_notes'
+      self.inputs = [] if self.inputs.nil?
+      copy.inputs.each_with_index do |input,idx|
+        input.cbrain_input_notes = self.inputs[idx].cbrain_input_notes.dup
+      end
       copy
     end
 
@@ -236,7 +241,7 @@ module BoutiquesSupport
     end
 
     def input_by_id(inputid)
-      inputs.detect { |x| x.id == inputid } or
+      inputs.detect { |x| x.id.to_s == inputid.to_s } or
         cb_error "No input found with ID '#{inputid}'"
     end
 
@@ -338,7 +343,7 @@ module BoutiquesSupport
       end.compact.to_h
     end
 
-    # Replaces in +string+ all occurences of the keys in
+    # Replaces in +string+ all occurrences of the keys in
     # +substitutions_by_tokens+ by the associated values.
     # This is typically used to build a templated string
     # using the "value-key" of the inputs of the descriptor.
@@ -539,7 +544,7 @@ module BoutiquesSupport
     # When dup'ing, also copy the special cbrain_input_notes
     def dup #:nodoc:
       copy = super
-      copy.cbrain_input_notes = self.cbrain_input_notes
+      copy.cbrain_input_notes = self.cbrain_input_notes.dup
       copy
     end
 

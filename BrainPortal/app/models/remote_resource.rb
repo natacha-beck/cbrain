@@ -69,24 +69,35 @@ class RemoteResource < ApplicationRecord
   validate              :proper_dp_ignore_patterns
   validate              :dp_cache_path_valid
 
-  validates_format_of   :cms_shared_dir, :with => /\A[\w\-\.\=\+\/]*\z/,
-                        :message  => 'is invalid as only paths with simple characters are valid: a-z, A-Z, 0-9, _, +, =, . and of course /',
+  validates_format_of   :cms_shared_dir, :with => /\A\/[\w\-\.\=\+\/]*\z/,
+                        :message  => 'is invalid as only paths with simple characters are accepted: a-z, A-Z, 0-9, _, +, =, . and of course /',
                         :allow_blank => true
 
-  validates_format_of   :dp_cache_dir, :with => /\A[\w\-\.\=\+\/]*\z/,
-                        :message  => 'is invalid as only paths with simple characters are valid: a-z, A-Z, 0-9, _, +, =, . and of course /',
+  validates_format_of   :dp_cache_dir, :with => /\A\/[\w\-\.\=\+\/]*\z/,
+                        :message  => 'is invalid as only paths with simple characters are accepted: a-z, A-Z, 0-9, _, +, =, . and of course /',
                         :allow_blank => true
 
   validates_format_of   :ssh_control_user, :with => /\A\w[\w\-\.]*\z/,
-                        :message  => 'is invalid as only the following characters are valid: alphanumeric characters, _, -, and .',
+                        :message  => 'is invalid as only the following characters are accepted: alphanumeric characters, _, -, and .',
                         :allow_blank => true
 
   validates_format_of   :ssh_control_host, :with => /\A\w[\w\-\.]*\z/,
-                        :message  => 'is invalid as only the following characters are valid: alphanumeric characters, _, -, and .',
+                        :message  => 'is invalid as only the following characters are accepted: alphanumeric characters, _, -, and .',
                         :allow_blank => true
 
-  validates_format_of   :ssh_control_rails_dir, :with => /\A[\w\-\.\=\+\/]*\z/,
-                        :message  => 'is invalid as only paths with simple characters are valid: a-z, A-Z, 0-9, _, +, =, . and of course /',
+  validates             :ssh_control_port, numericality: { only_integer: true, greater_than: 21, less_than: 65536 }, allow_blank: true
+
+  validates_format_of   :jumphost_host, :with => /\A\w[\w\-\.]*\z/,
+                        :message  => 'is invalid as only the following characters are accepted: alphanumeric characters, _, -, and .',
+                        :allow_blank => true
+  validates_format_of   :jumphost_user, :with => /\A\w[\w\-\.]*\z/,
+                        :message  => 'is invalid as only the following characters are accepted: alphanumeric characters, _, -, and .',
+                        :allow_blank => true
+  validates             :jumphost_port,    numericality: { only_integer: true, greater_than: 21, less_than: 65536 }, allow_blank: true
+  validate              :jumphost_config_is_valid
+
+  validates_format_of   :ssh_control_rails_dir, :with => /\A\/[\w\-\.\=\+\/]*\z/,
+                        :message  => 'is invalid as only paths with simple characters are accepted: a-z, A-Z, 0-9, _, +, =, . and of course /',
                         :allow_blank => true
 
   belongs_to            :user
@@ -181,6 +192,18 @@ class RemoteResource < ApplicationRecord
     all_ok
   end
 
+  # JumpHost config is optional, but if set, we need both the host and user
+  def jumphost_config_is_valid
+    return true if self.jumphost_host.blank? && self.jumphost_user.blank? && self.jumphost_port.blank? # most common sitch
+    self.errors.add(:jumphost_port, "cannot be present if no host and username are provided") if
+      self.jumphost_port.present? && (self.jumphost_host.blank? || self.jumphost_user.blank?)
+    self.errors.add(:jumphost_host, "is required if a username is provided") if
+      self.jumphost_host.blank? && self.jumphost_user.present?
+    self.errors.add(:jumphost_user, "is required if a host is provided") if
+      self.jumphost_user.blank? && self.jumphost_host.present?
+    return (self.errors[:jumphost_host].empty? && self.errors[:jumphost_user].empty? && self.errors[:jumphost_port].empty?)
+  end
+
   # Verify that the dp_cache_dir is correct, at least from
   # what we can see. It's possible to edit the path of an
   # external RemoteResource, so we can't check that the dir
@@ -226,15 +249,16 @@ class RemoteResource < ApplicationRecord
   def ssh_master
     # SSH connect options are normally just the default ones,
     # but an admin can override them in the meta data of the object.
-    # The SSH agent forwarding is mandatory however.
     ssh_options = (self.meta[:ssh_config_options].presence || {})
-                  .dup.merge( :ForwardAgent => 'yes' )
+                  .dup.merge( :ForwardAgent => "Yes" )
     # category: we add the UNIX userid so as not to conflict
-    # with any other user on the system when creating out socket in /tmp
+    # with any other user on the system when creating our socket in /tmp
     category = "#{self.class}_#{Process.uid}"
-    uniq     = "#{self.id}"
+    uniq     = "#{CBRAIN::SelfRemoteResourceId}_#{self.id}"
     master   = SshMaster.find_or_create(self.ssh_control_user,self.ssh_control_host,self.ssh_control_port || 22,
                :category => category, :uniq => uniq, :ssh_config_options => ssh_options )
+    master.add_jumphost(self.jumphost_user, self.jumphost_host, self.jumphost_port) if
+      self.jumphost_user.present? && self.jumphost_host.present?
     master
   end
 
@@ -256,21 +280,28 @@ class RemoteResource < ApplicationRecord
     master.delete_tunnels(:forward)
     master.delete_tunnels(:reverse)
 
-    # Setup DB reverse tunnel
-    myconfig        = self.class.current_resource_db_config
-    local_db_host   = myconfig["host"]  || "localhost"
-    local_db_port   = (myconfig["port"] || "3306").to_i
-    rnd             = 1000000+rand(9999999)
-    master.add_tunnel(:reverse,
-      (Pathname.new(self.ssh_control_rails_dir) + "tmp/sockets/db.#{rnd}.sock").to_s,
-      local_db_host,
-      local_db_port,
-      nil # nil is important here
-    )
+    # Reverse SSH is an alternate mechanism which handles the DB
+    # forwarding and the SSH Agent forwarding separately. So if
+    # we are NOT using that mechanism, we need to setup a DB
+    # tunnel ourselves right now.
+    if ! self.use_reverse_service?
+      # Setup DB reverse tunnel
+      myconfig        = self.class.current_resource_db_config
+      local_db_host   = myconfig["host"]  || "localhost"
+      local_db_port   = (myconfig["port"] || "3306").to_i
+      rnd             = 1000000+rand(9999999)
+      master.add_tunnel(:reverse,
+        (Pathname.new(self.ssh_control_rails_dir) + "tmp/sockets/db.#{rnd}.sock").to_s,
+        local_db_host,
+        local_db_port,
+        nil # nil is important here
+      )
+    end
 
     # Setup ActiveResource forward tunnel
-    local_port  = 3090+self.id # see also in site()
+    local_port = self.default_active_resource_port
     master.add_tunnel(:forward,
+      #"#{Rails.root}/tmp/sockets/#{self.name}.sock",
       local_port,
       nil, # nil is important here
       (Pathname.new(self.ssh_control_rails_dir) + "tmp/sockets/bourreau.sock").to_s
@@ -400,15 +431,61 @@ class RemoteResource < ApplicationRecord
   # Network Control Protocol Methods
   ############################################################################
 
+  # Returns the ActiveResource subclass to use
+  # to communicate with the current remote resource.
+  # Generally, the subclass returned will be something like
+  #
+  #   Bourreau::Control_N::Control # where N is the ID of self
+  #
+  # See the class method *control_subclass_for* , where
+  # these subclasses are generated on demand and cached in
+  # the class.
+  def control_subclass
+    self.class.control_subclass_for(self)
+  end
+
+  # Each RemoteResource instance +rr+ need a private
+  # ActiveResource subclass to communicate to the
+  # remote end. This class method here creates the subclass
+  # once, and cache it in a constant. The method
+  # returns it once created and cached. The constant
+  # is "{self}::Control_N::Control" where self
+  # is whatever class we currently invoke this method
+  # on, and the "N" is the ID of +rr+ . E.g.
+  #
+  #   Bourreau::Control_5::Control
+  #
+  # for the Bourreau with ID 5.
+  #
+  # The reason for this construction is that ActiveResource
+  # will use the LAST part of the full class name, 'Control',
+  # to generate its GET and POST URIs, but we still need a distinct
+  # Ruby subclass for each RemoteResource, so we can't just use
+  # Control itself.
+  def self.control_subclass_for(rr)
+    @_control_subclass ||= {}
+    return @_control_subclass[rr.id] if @_control_subclass[rr.id]
+    control_subclass = Class.new(Control)
+    # control_class.site = rr.site
+    @_control_subclass[rr.id] = control_subclass
+    control_n = "Control_#{rr.id}"
+    if ! self.const_defined?(control_n)
+      self.const_set(control_n, Module.new)
+    end
+    mod = self.const_get(control_n)
+    mod.const_set("Control", control_subclass)
+    control_subclass
+  end
+
   # Checks if this remote resource is available or not.
   # This must be a live check, not cached. A cached
   # way to check the state of the resource is to use the
   # info() method, which caches the information record.
-  def is_alive?(what = :ping)
+  def is_alive?(what = :ping, force = false)
     what = what.presence.try(:to_sym) || :ping
     self.reload
     return false if self.online == false
-    info_struct = Rails.cache.fetch(cache_key_for(what), :expires_in => 30.seconds) do
+    info_struct = Rails.cache.fetch(cache_key_for(what), :expires_in => 30.seconds, :force => force) do
       self.remote_resource_info(what) # what is 'info' or 'ping'
     end
     @info = info_struct if what == :info # caching within rails action
@@ -422,11 +499,17 @@ class RemoteResource < ApplicationRecord
   # Returns this RemoteResource's URL. This URL maps to a
   # connection tunnelled through a SSH master connection.
   # The connection is established to host localhost, on a port
-  # number equal to (3090 + the ID of the resource).
+  # number specified by the admin at config time.
   def site
     host = "localhost"
-    port = 3090+self.id  # see also in start_tunnels()
+    port = self.default_active_resource_port
     "http://#{host}:#{port}"
+  end
+
+  # Fetches from the attribute active_resource_local_port but provides
+  # a default of (3090+id)
+  def default_active_resource_port #:nodoc:
+    self.active_resource_control_port.presence || 3090+self.id
   end
 
   # Returns a RemoteResourceInfo object describing the
@@ -565,15 +648,26 @@ class RemoteResource < ApplicationRecord
       raise "Unknown info keyword '#{what}'."
     end
 
+    # For any BrainPortal other than us, we return a record with no info,
+    # except the ID and name. Portals don't know how to contact each other.
+    if self.is_a?(BrainPortal)
+      dummy = RemoteResourceInfo.dummy_record.merge(
+        :id   => self.id,
+        :name => self.name,
+      )
+      return dummy
+    end
+
     info = nil
     begin
       # We used to support direct ActiveResource connections to a Bourreau, but not anymore.
       # We expect them all to go through SSH tunnels, now.
-      if self.ssh_master && self.ssh_master.is_alive?
-        Control.site    = self.site
-        Control.timeout = (self.rr_timeout.blank? || self.rr_timeout < 30) ? 30 : self.rr_timeout
-        control_info = Control.find(what) # asks for controls/info.xml or controls/ping.xml
-        info = RemoteResourceInfo.new(control_info.attributes)
+      if self.start_tunnels # will do nothing if already started
+        kontrol         = self.control_subclass # class {self}::Control_N::Control
+        kontrol.site    = self.site
+        kontrol.timeout = (self.rr_timeout.blank? || self.rr_timeout < 30) ? 30 : self.rr_timeout
+        control_info    = kontrol.find(what) # net request, asks for controls/info.xml or controls/ping.xml
+        info            = RemoteResourceInfo.new(control_info.attributes) # repackage the response
       end
     rescue
       # Oops, it's dead
@@ -734,16 +828,19 @@ class RemoteResource < ApplicationRecord
     command.sender_token   = RemoteResource.current_resource.auth_token
     command.receiver_token = self.auth_token
 
-    # Send local
+    # Send local: just send to the processing method
     if self.id == CBRAIN::SelfRemoteResourceId
       self.class.process_command(command)
       return command
     end
 
-    # Send remote
-    Control.site    = self.site
-    Control.timeout = 20
-    control         = Control.new(command)
+    # Send remote: send through a XML/HTTP ActiveResource channel
+    kontrol         = self.control_subclass # class {self}::Control_N::Control
+    kontrol.site    = self.site
+    kontrol.timeout = 20
+
+    cb_error "Cannot start SSH control master for #{self.name}" unless self.start_tunnels # will do nothing if already started
+    control         = kontrol.new(command)
     control.save
 
     returned_command = RemoteCommand.new(control.attributes)
@@ -872,7 +969,7 @@ class RemoteResource < ApplicationRecord
     # Log install date
     user.addlog("User SSH key installed on #{myself.name}")
     myself.addlog("User SSH key for #{user.login} installed")
-    user.meta["ssh_key_install_date_#{myself.id}"] = Time.now
+    user.record_ssh_key_install_date(myself.id)
 
     true
   end
@@ -886,7 +983,7 @@ class RemoteResource < ApplicationRecord
     cb_error "Cannot start BAC workers: improper number of instances to start in config (must be 0..20)." unless
        num_workers && num_workers >= 0 && num_workers < 21
 
-    worker_name = myself.class.to_s + 'Activity'
+    worker_name = "BacWorker"
     baclogger = Log4r::Logger[worker_name]
     unless baclogger
       baclogger = Log4r::Logger.new(worker_name)
@@ -899,7 +996,7 @@ class RemoteResource < ApplicationRecord
 
     WorkerPool.create_or_find_pool(BackgroundActivityWorker,
        num_workers, # number of instances
-       { :name           => worker_name,
+       { :name           => "#{worker_name} #{myself.name}",
          :check_interval => 5,
          :worker_log     => baclogger,
        }

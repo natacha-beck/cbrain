@@ -82,6 +82,7 @@ Rails.application.routes.draw do
       get  'request_password'
       post 'send_password'
       post 'new_token'
+      post 'new_token_from_jwt'
     end
   end
 
@@ -101,7 +102,6 @@ Rails.application.routes.draw do
       post 'stop'
       get  'row_data'
       get  'info'
-      get  'cache_disk_usage'
     end
     collection do
       get  'load_info'

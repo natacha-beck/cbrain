@@ -40,11 +40,34 @@ module BackgroundActivitiesHelper
     'CancelledScheduled'               => "fuchsia",
   }
 
+  # Label for Backround activity status
+  def bac_status_label(status)
+    t("background_activities.statuses.#{status.underscore}", default: status.underscore.humanize)
+  end
 
   # Returns a HTML SPAN within which the text of the task +status+ is highlighted in color.
   def colored_bac_status(status)
     return h(status) unless StatesToColor.has_key?(status)
-    html_colorize(h(status.underscore.humanize),StatesToColor[status])
+    html_colorize(h(bac_status_label(status)),StatesToColor[status])
+  end
+
+  # Returns a colorized pretty version of the "repeat" keyword.
+  def bac_pretty_repeat(repeat)
+    return "" if repeat.blank?
+    return html_colorize(t('background_activities.one_shot'),"black") if repeat == "one_shot"
+    if repeat =~ /start\+(\d+)/
+      mins = Regexp.last_match[1]
+      return html_colorize(t('background_activities.every_X', count: pretty_elapsed(60*mins.to_i)),"orange")
+    end
+    if repeat =~ /(\S+)@(\d\d:\d\d)/
+      keyword = Regexp.last_match[1].capitalize
+      time    = Regexp.last_match[2]
+      keyword += "s" if keyword =~ /monday|tuesday|wednesday|thursday|friday|saturday|sunday/i
+      color = (keyword == "Tomorrow") ? "green" : "blue"
+      keyword = "Daily" if keyword == "Tomorrow"
+      return html_colorize("#{keyword} at #{time}",color)
+    end
+    html_colorize(repeat,"red") # unknown?!?
   end
 
 end

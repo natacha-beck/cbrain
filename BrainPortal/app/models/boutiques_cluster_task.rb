@@ -35,7 +35,7 @@ class BoutiquesClusterTask < ClusterTask
   end
 
   # This method returns the same descriptor as
-  # boutiques_descriptor(), by default, but can be overriden
+  # boutiques_descriptor(), by default, but can be overridden
   # by subclasses to change the behavior of what happens
   # in the setup() method.
   def descriptor_for_setup
@@ -43,7 +43,7 @@ class BoutiquesClusterTask < ClusterTask
   end
 
   # This method returns the same descriptor as
-  # boutiques_descriptor(), by default, but can be overriden
+  # boutiques_descriptor(), by default, but can be overridden
   # by subclasses to change the behavior of what happens
   # in the cluster_commands() method.
   def descriptor_for_cluster_commands
@@ -53,7 +53,7 @@ class BoutiquesClusterTask < ClusterTask
   end
 
   # This method returns the same descriptor as
-  # boutiques_descriptor(), by default, but can be overriden
+  # boutiques_descriptor(), by default, but can be overridden
   # by subclasses to change the behavior of what happens
   # in the save_results() method.
   def descriptor_for_save_results
@@ -118,22 +118,33 @@ class BoutiquesClusterTask < ClusterTask
     descriptor    = self.descriptor_for_cluster_commands
     invoke_struct = self.invoke_params.dup # as it is in the task's params
 
+    # Used when building absolute paths
+    workdir = Pathname.new(self.full_cluster_workdir)
+
     # Replace userfile IDs for file basenames in the invoke struct
     descriptor.file_inputs.each do |input|
       userfile_id = invoke_params[input.id]
       next if userfile_id.blank? # that happens when it's an optional file
-      userfile    = Userfile.find(userfile_id)
+      userfiles   = Array(Userfile.find(userfile_id)) # can be one or many
+      jsonfnames  = userfiles.map(&:name) # by default, the basename
+      jsonfnames  = jsonfnames.map { |base| (workdir + base).to_s } if input.uses_absolute_path
 
       # Most common situation
-      if ! input.list || ! userfile.is_a?(CbrainFileList)
-        invoke_struct[input.id] = (input.list ? [ userfile.name ] : userfile.name)
+      if ! input.list || ! userfiles.first.is_a?(CbrainFileList)
+        invoke_struct[input.id] = (input.list ? jsonfnames : jsonfnames.first )
         next
       end
 
       # In case the input is a list and is assigned a CbrainFileList
+      userfile = userfiles.first
+      cb_error "Expected a CbrainFileList as a single entry for input '#{input.name}'" if
+        userfiles.size > 1 || ! userfile.is_a?(CbrainFileList)
       userfile.sync_to_cache
       userfile_list = userfile.userfiles_accessible_by_user!(user, nil, nil, file_access_symbol)
       subnames = userfile_list.compact.map(&:name)  # [ 'userfilename1', 'userfilename2' ... ]
+      if input.uses_absolute_path
+        subnames = subnames.map { |base| (workdir + base).to_s }
+      end
       invoke_struct[input.id] = subnames
     end
 
@@ -174,10 +185,25 @@ class BoutiquesClusterTask < ClusterTask
       end
       simul_status = $? # a Process::Status object
       if ! simul_status.success?
-        cb_error "The 'bosh exec simulate' command failed with return code #{simul_status.exitstatus}"
+        bosh_message = simulout.split("\n").detect { |line| line =~ /ERROR/ }
+        bosh_message &&= ": #{bosh_message}"
+        cb_error "The 'bosh exec simulate' command failed with return code #{simul_status.exitstatus}#{bosh_message}"
       end
       simulout.sub!(/^Generated.*\n/,"") # header junk from simulate
-      commands = <<-COMMANDS
+
+      commands = ""
+      if descriptor.environment_variables.present?
+        commands = "# Environment variables defined by Boutiques descriptor\n"
+        descriptor.environment_variables.each do |struct|
+          ename  = (struct['name']  || struct[:name] ).to_s
+          evalue = (struct['value'] || struct[:value]).to_s
+          next if ename.blank? || ! ename.match(/\A[a-zA-Z]\w+\z/)
+          commands += "export #{ename.strip}=#{evalue.bash_escape}\n"
+        end
+        commands += "\n"
+      end
+
+      commands += <<-COMMANDS
         # Main tool command, generated with bosh exec simulate
         #{simulout.strip}
         status=$?
@@ -227,7 +253,7 @@ class BoutiquesClusterTask < ClusterTask
       status = out.strip.to_i
       descriptor.error_codes ||= []
       descriptor.error_codes.each do |err|  # note, 0 code is supported by boutiques
-        self.addlog err['description'] if err['code'] == status
+        self.addlog("Boutiques status code #{status} description: #{err['description']}") if err['code'] == status
       end
       if exit_status_means_failure?(status)
         self.addlog "Command failed, exit status #{status}"
@@ -283,6 +309,7 @@ class BoutiquesClusterTask < ClusterTask
         # Save the file
         outfile = safe_userfile_find_or_new(userfile_class, :name => name)
         new_out = outfile.new_record?
+        name    = outfile.name # in case safe_userfile_find_or_new, above, adjusted it
 
         unless outfile.save
           messages = outfile.errors.full_messages.join("; ")
@@ -366,6 +393,7 @@ class BoutiquesClusterTask < ClusterTask
     custom    = desc.custom || {} # 'custom' is not packaged as an object, just a hash
     idlist    = custom['cbrain:no-run-id-for-outputs'].presence # list of IDs where no run id inserted
     no_run_id = true if idlist && idlist.include?(output.id)
+    no_run_id = false unless self.results_data_provider.has_browse_path_capabilities?
 
     # Get basename, use it to guess the class
     name             = File.basename(pathname)

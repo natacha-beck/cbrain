@@ -72,10 +72,10 @@ module BoutiquesForcedOutputBrowsePath
     attlist[:name] = pn.basename.to_s  # "hello.txt"
     if dp.has_browse_path_capabilities?
       attlist[:browse_path] = pn.dirname.to_s   # "a/b/c"
-      self.addlog "BoutiquesForcedOutputBrowsePath: result DataProvider browse_path will be '#{pn.dirname}'"
+      self.addlog "Result DataProvider browse_path will be '#{pn.dirname}'"
     else
       attlist[:browse_path] = nil # ignore the browse_path
-      self.addlog "BoutiquesForcedOutputBrowsePath: result DataProvider doesn't have multi-level capabilities, ignoring forced browse_path '#{pn.dirname}'."
+      self.addlog "Result DataProvider doesn't have multi-level capabilities, ignoring forced browse_path '#{pn.dirname}'."
     end
 
     # Invoke the standard code
@@ -89,10 +89,12 @@ module BoutiquesForcedOutputBrowsePath
   # only AFTER any other overrides to this method (e.g. what
   # happens in the other module BoutiquesOutputFilenameRenamer )
   def name_and_type_for_output_file(output, pathname)
-    if self.getlog.to_s !~ /BoutiquesForcedOutputBrowsePath rev/
-      self.addlog("BoutiquesForcedOutputBrowsePath rev. #{Revision_info.short_commit}") # only log this once
+    dest_supports_browse_path = self.results_data_provider.has_browse_path_capabilities?
+    if ! dest_supports_browse_path && self.getlog.to_s !~ /ignoring all forced browse_path configured by the descriptor/
+      self.addlog("Result DataProvider doesn't have multi-level capabilities, ignoring all forced browse_path configured by the descriptor.")
     end
     name, type  = super # the standard names and types; the name will be replaced
+    return [ name, type ] if ! dest_supports_browse_path # when ignoring it all
     descriptor  = descriptor_for_save_results
     config      = descriptor.custom_module_info('BoutiquesForcedOutputBrowsePath') || {}
     browse_path = config[output.id]  # "a/b/c"

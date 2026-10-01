@@ -120,7 +120,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save
         @group.addlog_context(self,"Created by #{current_user.login}")
-        flash[:notice] = 'Project was successfully created.'
+        flash[:notice] = t('groups.flash.created')
         format.html { redirect_to :action => :index }
         format.xml  { render :xml  => @group.for_api, :status => :created }
         format.json { render :json => @group.for_api, :status => :created }
@@ -140,7 +140,7 @@ class GroupsController < ApplicationController
     @group = current_user.modifiable_groups.find(params[:id])
 
     unless @group.can_be_edited_by?(current_user)
-       flash[:error] = "You don't have permission to edit this project."
+       flash[:error] = t('groups.flash.no_edit_permission')
        respond_to do |format|
         format.html { redirect_to :action => :show }
         format.xml  { head :forbidden }
@@ -153,22 +153,27 @@ class GroupsController < ApplicationController
     original_creator  = @group.creator_id
 
     new_group_attr    = group_params
+    new_group_attr[:user_ids] ||= [] # in here, IDs are strings
+    new_group_attr[:user_ids].map! { |s| s.to_s }
 
-    unless current_user.has_role? :admin_user
-      new_group_attr[:site_id] = current_user.site_id
+    if ! current_user.has_role? :admin_user # if not admin...
+      new_group_attr[:site_id] = current_user.site_id # ... this stays the same no matter what
     end
 
-    unless params[:update_users].present?
-      new_group_attr[:user_ids] = @group.user_ids.map(&:to_s)
+    # add_users and remove_users are API options
+    if params[:add_users].present? # option: add users to existing list
+      new_group_attr[:user_ids] = original_user_ids.map(&:to_s) | new_group_attr[:user_ids]
+    elsif params[:remove_users].present? # option: remove users to existing list
+      new_group_attr[:user_ids] = original_user_ids.map(&:to_s) - new_group_attr[:user_ids]
+    elsif params[:update_users].blank? # web form with all users; if blank, no list of users provided at all
+      new_group_attr[:user_ids] = @group.user_ids.map(&:to_s) # use original list
     end
 
-    new_group_attr[:user_ids] ||= []
-
-    unless new_group_attr[:user_ids].blank?
+    if new_group_attr[:user_ids].present?
       if current_user.has_role? :normal_user
-        new_group_attr[:user_ids] &= @group.user_ids.map(&:to_s)
-      else
-        new_group_attr[:user_ids] &= current_user.visible_users.map{ |u| u.id.to_s  }
+        new_group_attr[:user_ids] &= original_user_ids.map(&:to_s) # validate only users that are already there
+      else # for admin user, or site admin, allow any visible user.
+        new_group_attr[:user_ids] &= current_user.visible_users.map { |u| u.id.to_s  }
       end
     end
 
@@ -188,7 +193,7 @@ class GroupsController < ApplicationController
         end
         @group.user_ids |= [ @group.creator.id ]
         @group.addlog_object_list_updated("Users", User, original_user_ids, @group.user_ids, current_user, :login)
-        flash[:notice] = 'Project was successfully updated.'
+        flash[:notice] = t('groups.flash.updated')
         format.html { redirect_to :action => "show" }
         format.xml  { head :ok }
         format.json { head :ok }
@@ -207,7 +212,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if current_user.id == @group.creator_id
-        flash[:error] = "You cannot be unregistered from a project you created."
+        flash[:error] = t('groups.flash.cannot_unregister_creator')
         format.html { redirect_to group_path(@group) }
         format.xml  { head :unprocessable_entity }
         format.json { head :unprocessable_entity }
@@ -216,7 +221,7 @@ class GroupsController < ApplicationController
         @group.user_ids   = @group.user_ids - [current_user.id]
         @group.addlog_object_list_updated("Users", User, original_user_ids, @group.user_ids, current_user, :login)
 
-        flash[:notice] = "You have been unregistered from project #{@group.name}."
+        flash[:notice] = t('groups.flash.unregistered', name: @group.name)
         format.html { redirect_to :action => "index" }
         format.xml  { head :ok }
         format.json { head :ok}
@@ -230,7 +235,7 @@ class GroupsController < ApplicationController
   def destroy  #:nodoc:
     @group = current_user.modifiable_groups.find(params[:id])
     if ! current_user.has_role?(:admin_user)
-      cb_error "Cannot destroy this project: you are not its creator." if current_user.id != @group.creator_id
+      cb_error t('groups.errors.not_creator') if current_user.id != @group.creator_id
     end
     @group.destroy
 
@@ -302,7 +307,7 @@ class GroupsController < ApplicationController
       return true
     end
     if current_user.unsigned_custom_licenses(@group).present?
-      flash[:error] = "Access to the project #{@group.name} is blocked due to licensing issues. Please consult with the project maintainer or support for details"
+      flash[:error] = t('groups.flash.license_blocked', name: @group.name)
       license_redirect
     end
   end

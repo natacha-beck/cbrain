@@ -26,7 +26,7 @@ class BackgroundActivityWorker < Worker
 
   # How much time to process a BAC before switching to another BAC.
   # Currently hardcoded, maybe one day it will be configurable.
-  BAC_SLICE_TIME=5.seconds
+  BAC_SLICE_TIME=15.seconds
 
   # Any BAC that had a lock on it and has not been updated in
   # this amount of time is considered 'dead' (process died?)
@@ -36,6 +36,7 @@ class BackgroundActivityWorker < Worker
     @myself    = RemoteResource.current_resource
     @myself_id = @myself.id
     worker_log.info "Starting BackgroundActivityWorker"
+    worker_log.info("BackgroundActivity rev. " + BackgroundActivity.revision_info.format)
   end
 
   def main_process_is_alive?

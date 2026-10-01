@@ -832,10 +832,13 @@ class CbrainTask < ApplicationRecord
   # Overrides the default behavior of the ActRecLog addlog method
   # so that caller information is provided by default.
   def addlog(message,options={})
-    caller_level = options[:caller_level] || 0
+    caller_level  = options[:caller_level] || 0
     caller_level += 1
-    no_caller    = options.has_key?(:no_caller) ? options[:no_caller] : false
-    super(message,options.dup.merge({ :no_caller => no_caller, :caller_level => caller_level }))
+    super(message,
+          options.dup
+            .merge( :caller_level => caller_level )
+            .reverse_merge( :show_method => true, :show_class => true )
+         )
   end
 
   # Records in the task's log the info about an exception.
@@ -854,7 +857,7 @@ class CbrainTask < ApplicationRecord
     self.addlog("#{message} #{exception.class}: #{exception.message}", :caller_level => 1)
     if backtrace_lines > 0 && ! exception.is_a?(CbrainException)
       backtrace_lines = exception.backtrace.size if backtrace_lines >= exception.backtrace.size
-      exception.cbrain_backtrace[0..backtrace_lines-1].each { |m| self.addlog(m, :no_caller => true) }
+      exception.cbrain_backtrace[0..backtrace_lines-1].each { |m| self.addlog(m, :show_method => false, :show_class => false) }
     end
     true
   end
@@ -1109,12 +1112,9 @@ class CbrainTask < ApplicationRecord
 
   # Patch: pre-load all model files for the subclasses
   def self.preload_subclasses
-    [ CBRAIN::TasksPlugins_Dir, CBRAIN::TaskDescriptorsPlugins_Dir ].each do |dir|
+    [ CBRAIN::TasksPlugins_Dir ].each do |dir|
       Dir.chdir(dir) do
         Dir.glob("*.rb").each do |rubyfile|
-          next if rubyfile == 'cbrain_task_class_loader.rb'      # skip that
-          next if rubyfile == 'cbrain_task_descriptor_loader.rb' # skip that
-
           model = rubyfile.sub(/.rb\z/, '')
           require_dependency "#{dir}/#{model}.rb" unless
             [ model.classify, model.camelize ].any? { |m| CbrainTask.const_defined?(m) rescue nil }

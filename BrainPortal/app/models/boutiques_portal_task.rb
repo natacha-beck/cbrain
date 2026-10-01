@@ -33,7 +33,7 @@ class BoutiquesPortalTask < PortalTask
   end
 
   # This method returns the same descriptor as
-  # boutiques_descriptor(), by default, but can be overriden
+  # boutiques_descriptor(), by default, but can be overridden
   # by subclasses to change the behavior of what happens
   # in the before_form() method.
   def descriptor_for_before_form
@@ -41,7 +41,7 @@ class BoutiquesPortalTask < PortalTask
   end
 
   # This method returns the same descriptor as
-  # boutiques_descriptor(), by default, but can be overriden
+  # boutiques_descriptor(), by default, but can be overridden
   # by subclasses to change the behavior of what happens
   # in the after_form() method.
   def descriptor_for_after_form
@@ -49,7 +49,7 @@ class BoutiquesPortalTask < PortalTask
   end
 
   # This method returns the same descriptor as
-  # boutiques_descriptor(), by default, but can be overriden
+  # boutiques_descriptor(), by default, but can be overridden
   # by subclasses to change the behavior of what happens
   # in the final_task_list() method.
   def descriptor_for_final_task_list
@@ -57,7 +57,7 @@ class BoutiquesPortalTask < PortalTask
   end
 
   # This method returns the same descriptor as
-  # boutiques_descriptor(), by default, but can be overriden
+  # boutiques_descriptor(), by default, but can be overridden
   # by subclasses to change the behavior of what happens
   # when generating the task's parameter page.
   def descriptor_for_form
@@ -65,7 +65,7 @@ class BoutiquesPortalTask < PortalTask
   end
 
   # This method returns the same descriptor as
-  # boutiques_descriptor(), by default, but can be overriden
+  # boutiques_descriptor(), by default, but can be overridden
   # by subclasses to change the behavior of what happens
   # when generating the task's "show" page.
   def descriptor_for_show_params
@@ -115,10 +115,12 @@ class BoutiquesPortalTask < PortalTask
 
     # return "Warning: you selected more files than this task requires, so you won't be able to assign them all."
     # Not available in case of descriptor qualified to launch multiple task
-    if !descriptor.qualified_to_launch_multiple_tasks? && (num_in_files < num_needed_inputs || num_in_files > num_needed_inputs+num_opt_inputs)
-      message = "This task requires #{num_needed_inputs} mandatory file(s) and #{num_opt_inputs} optional file(s)\n" +
-        input_infos
-      cb_error message
+    if num_in_files < num_needed_inputs || num_in_files > num_needed_inputs+num_opt_inputs
+      if (! descriptor.qualified_to_launch_multiple_tasks? || num_in_files == 0)
+        message = "This task requires #{num_needed_inputs} mandatory file(s) and #{num_opt_inputs} optional file(s)\n" +
+          input_infos
+        cb_error message
+      end
     end
 
     ""
@@ -299,6 +301,7 @@ class BoutiquesPortalTask < PortalTask
     # --------------------------------------
     if descriptor.file_inputs.size == 1 || descriptor.qualified_to_launch_multiple_tasks?
       input = descriptor.file_inputs.first
+      input = descriptor.sole_mandatory_file_input if descriptor.qualified_to_launch_multiple_tasks?
 
       fillTask = lambda do |userfile,tsk,extra_params=nil|
         tsk.params[:interface_userfile_ids] |= [ userfile.id.to_s ]
@@ -341,6 +344,10 @@ class BoutiquesPortalTask < PortalTask
           subtasks # an array of tasks
         end
       end
+
+      # Re-introduce the file IDs of the task list, in case the main form
+      # needs to be re-rendered.
+      self.params[:interface_userfile_ids] |= task_array_userfiles_ids
 
       return tasklist.flatten
     end # When only one file input
@@ -441,6 +448,8 @@ class BoutiquesPortalTask < PortalTask
         next if isInactive(input)
         userfile_id = invoke_params[input.id]
         next if userfile_id.blank?
+        next if userfile_id.is_a?(Array) && userfile_id.size > 1 # list = true
+        userfile_id = userfile_id.first if userfile_id.is_a?(Array)
         userfile = Userfile.find_accessible_by_user(userfile_id, self.user, :access_requested => file_access_symbol())
         next unless ( userfile.is_a?(CbrainFileList) || (userfile.suggested_file_type || Object) <= CbrainFileList )
         [ input, userfile ]
@@ -505,8 +514,8 @@ class BoutiquesPortalTask < PortalTask
   # Ensure that the +input+ parameter is not null and matches a generic tool
   # parameter type (:file, :numeric, :string or :flag) before converting the
   # parameter's value to the corresponding Ruby type (if appropriate).
-  # For example, sanitize_param(someinput) where someinput's name is 'deviation'
-  # and someinput's type is 'numeric' would validate that
+      # For example, sanitize_param(someinput) where someinput's name is 'deviation'
+      # and someinput's type is 'numeric' would validate that
   # self.params['invoke']['deviation'] is a number and then convert it to a Ruby Float or
   # Integer.
   #
@@ -525,9 +534,30 @@ class BoutiquesPortalTask < PortalTask
     descriptor = self.descriptor_for_after_form
     empty_string_allowed = Array(descriptor.custom['cbrain:allow_empty_strings']).include?(name)
 
+    # Exceptional regex validation for a String input; this overrides the default rule
+    custom_regexes = descriptor.custom['cbrain:override-input-string-ruby-regex'] || {}
+    charset_regex  = custom_regexes[name] # could be nil; then a default will be assigned. Also as a string it's fine
+
+    # Some presets for convenience; at most one 'if' will trigger because regex != string always
+    charset_regex  = /\A[\w,\.\:\-]+\z/                       if charset_regex == ':basename:'        # "a0_,.:-"
+    charset_regex  = /\A[\w,\.\:\-\?\*]+\z/                   if charset_regex == ':basename-pattern:'  # "a0_,.:-*?"
+    charset_regex  = /\A[\w,\.\/\:\-]+(\/[\w,\.\:\-]+)*\/?\z/ if charset_regex == ':relative-path:'   # "base" or "/base/base/..."
+    charset_regex  = /\A\S+\z/                                if charset_regex == ':any-no-blanks:'   # can be dangerous! YOU MUST VALIDATE TOOL'S ESCAPING PROPERLY!
+    charset_regex  = /\A[\w,\.\:\-\{\}]+\z/                   if charset_regex == ':id-with-curlies:' # allows "abc" and "abc-{4}" etc
+    charset_regex  = /\A[\w,\.\:\-\+]+(\ +[\w,\.\:\-\+]+)*\z/ if charset_regex == ':ids-with-spaces:' # allows "abc" and "abc def xyz" etc
+    charset_regex  = /\A[\w,\.\/\:\-\ \*\{\}\(\)\%\@\=\+]\z/  if charset_regex == ':description:'     # single line text with spaces, no bash special characters
+
+    # Default check is pretty strict, but works for most applications.
+    charset_regex ||= /\A[\w,\.\/\:\-\+]+\z/ # letters, digits, underscores, commas, periods, slashes, colons, dashes, plusses "a0_,./:-+"
+
+    # These two lines force anchoring, in case the person maintaining the descriptor
+    # forgot them in the values of custom['cbrain:override-input-string-ruby-regex']
+    charset_regex = '\A'+charset_regex      if charset_regex.is_a?(String) && !charset_regex.starts_with?('\A')
+    charset_regex =      charset_regex+'\z' if charset_regex.is_a?(String) && !charset_regex.ends_with?('\z')
+
     # Taken userfile names. An error will be raised if two input files have the
     # same name.
-    @taken_files ||= Set.new
+    @taken_files ||= {}
 
     # Fetch the parameter and convert to an Enumerable if required
     values = invoke_params[name]
@@ -543,7 +573,9 @@ class BoutiquesPortalTask < PortalTask
       when :number
         if value.blank?
           params_errors.add(invokename, ": value missing")
-        elsif (number = Integer(value) rescue Float(value) rescue nil)
+        elsif (value.is_a?(Integer) || value.is_a?(Float))
+          value
+        elsif (number = (Integer(value) rescue Float(value) rescue nil))
           value = number
         else
           params_errors.add(invokename, ": not a number (#{value})")
@@ -551,14 +583,20 @@ class BoutiquesPortalTask < PortalTask
 
       # Nothing special required for strings, bar for symbols being acceptable strings.
       when :string
-        value = value.to_s if value.is_a?(Symbol)
-        params_errors.add(invokename, " not a string (#{value})")      unless value.is_a?(String)
-        params_errors.add(invokename, " is blank")                         if value.blank? && !empty_string_allowed
-        # The following two checks are to prevent cases when
-        # a string param is used as a path
-        params_errors.add(invokename, " cannot contain newlines")          if value.to_s =~ /[\n\r]/
-        params_errors.add(invokename, " cannot start with this character") if value.to_s =~ /^[\.\/]+/
-        params_errors.add(invokename, " cannot move up dirs")              if value.to_s.include? "/../"
+        value = value.to_s                                                  if value.is_a?(Symbol)
+        params_errors.add(invokename, " is not a string")               unless value.is_a?(String)
+        value = value.to_s.strip # now force it
+        params_errors.add(invokename, " is blank")                           if value.blank? && !empty_string_allowed
+        # The following checks are to prevent cases when a string param is used as a path
+        if value.present?
+          params_errors.add(invokename, " cannot contain newlines")          if value =~ /[\n\r]/
+          params_errors.add(invokename, " cannot start with this character") if value =~ /^[\.\/]+/
+          params_errors.add(invokename, " cannot move up dirs")              if value.include? "/../"
+        end
+        # Finally, check allowed characters
+        if value.present? && input.value_choices.blank? # valid value choices are checked elsewhere
+          params_errors.add(invokename, " contains invalid characters")  unless value.match?(charset_regex) # we can use a string in the match method
+        end
 
       # Try to match against various common representation of true and false
       when :flag
@@ -583,10 +621,10 @@ class BoutiquesPortalTask < PortalTask
           next nil # remove bad value
         end
 
-        if @taken_files.include?(file.id)
+        if @taken_files[file.id].present? && @taken_files[file.id] != input.id
           params_errors.add(invokename, ": file name already in use (#{file.name})")
         else
-          @taken_files.add(file.id)
+          @taken_files[file.id] = input.id
         end
 
       end
@@ -599,7 +637,7 @@ class BoutiquesPortalTask < PortalTask
   end
 
   def check_enum_param(input)
-    value = invoke_params[input.id]
+    value = invoke_params[input.id] || input.default_value
     string_values  = Array(value).map(&:to_s)
     allowed_values = input.value_choices.map(&:to_s)
     return if (string_values - allowed_values).empty? # I hope that comparing the sets as strings is OK
@@ -635,7 +673,7 @@ class BoutiquesPortalTask < PortalTask
       ok = values.all? { |v| v <  input.maximum.to_f } if clusive == 'exclusive'
       ok = values.all? { |v| v <= input.maximum.to_f } if clusive == 'inclusive'
       if ! ok
-        params_errors.add(input.cb_invoke_name, "violates #{clusive} maximum value #{input.minimum}")
+        params_errors.add(input.cb_invoke_name, "violates #{clusive} maximum value #{input.maximum}")
       end
     end
 
@@ -685,7 +723,7 @@ class BoutiquesPortalTask < PortalTask
   # MAYBE IN COMMON
 
   def invoke_params
-    self.params[:invoke] ||= {}
+    self.params[:invoke] ||= {}.with_indifferent_access
   end
 
   # In the case of a misconfiguration of the portal, or if the file for

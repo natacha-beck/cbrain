@@ -16,7 +16,6 @@ namespace :cbrain do
     userfiles_plugins_dir   = installed_plugins_dir + "userfiles"
     views_plugins_dir       = installed_plugins_dir + "views"
     tasks_plugins_dir       = installed_plugins_dir + "cbrain_task"
-    descriptors_plugins_dir = installed_plugins_dir + "cbrain_task_descriptors"
     boutiques_plugins_dir   = installed_plugins_dir + "boutiques_descriptors"
     lib_plugins_dir         = installed_plugins_dir + "lib"
 
@@ -151,16 +150,9 @@ namespace :cbrain do
             setup.('cbrain_task/*', 'task', tasks_plugins_dir,
               condition: lambda { |f| File.directory?(f) },
               after: lambda do |symlink_location|
-                File.symlink "cbrain_task_class_loader.rb", "#{symlink_location}.rb"
-              end
-            )
-
-            # Setup each cbrain_task descriptor plugin
-            erase_dead_symlinks.('descriptor', descriptors_plugins_dir)
-            setup.('cbrain_task_descriptors/*', 'descriptor', descriptors_plugins_dir,
-              condition: lambda { |f| File.extname(f) == '.json' },
-              after: lambda do |symlink_location|
-                File.symlink "cbrain_task_descriptor_loader.rb", "#{symlink_location.sub(/.json$/, '.rb')}"
+                if ! File.symlink?("#{symlink_location}.rb")
+                  File.symlink "cbrain_task_class_loader.rb", "#{symlink_location}.rb"
+                end
               end
             )
 
@@ -254,33 +246,6 @@ namespace :cbrain do
         end
       end
 
-      # Generate help files for Boutiques tasks
-      # Note: changes here should be synced with SchemaTaskGenerator if necessary
-      Rake::Task["environment"].invoke
-
-      Dir.chdir(descriptors_plugins_dir) do
-        helpFileDir = File.join( "cbrain_plugins", "cbrain_tasks", "help_files/" )
-        basePath    = Rails.root.join( File.join('public/', helpFileDir) )
-        FileUtils.mkdir_p( basePath.to_s ) # creates directory if needed
-        schema = SchemaTaskGenerator.default_schema # read in the Boutiques schema
-        # For each JSON decriptor of a tool, write a help file
-        Dir.glob("*").select { |f| f.end_with? '.json' }.each do |f|
-          absFile = File.absolute_path(f.to_s)
-          # Generate the task from the templates and JSON descriptor
-          generatedTask = SchemaTaskGenerator.generate(schema, absFile)
-          next if generatedTask.nil? # this happens with bad descriptors
-          helpFileName  = SchemaTaskGenerator.classify(generatedTask.name) + "_help.html"
-          helpFilePath  = basePath.join(helpFileName).to_s
-          # Prevent broken symlinks from stopping the whole rake task
-          next unless File.exist?(File.realpath( absFile ))
-          # Write the help file
-          File.open( helpFilePath , "w" ){ |h|
-            h.write( generatedTask.source[:edit_help] )
-          }
-          FileUtils.chmod(0775, helpFilePath)
-        end
-      end
-
     end # task :public_assets
 
     end # namespace install
@@ -322,7 +287,6 @@ namespace :cbrain do
       erase.('userfile',   userfiles_plugins_dir)
       erase.('views',      views_plugins_dir)
       erase.('task',       tasks_plugins_dir)
-      erase.('descriptor', descriptors_plugins_dir)
       erase.('boutiques',  boutiques_plugins_dir)
       erase.('lib',        lib_plugins_dir)
 

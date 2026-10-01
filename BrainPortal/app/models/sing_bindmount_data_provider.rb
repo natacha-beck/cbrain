@@ -45,7 +45,7 @@
 #
 # This class hardcode the values for /my/mount/point to be "/cbrain"
 # and /inside/dir to be "/". The value of the data provider
-# attribute 'containerized_path' is used to narrow down wich part
+# attribute 'containerized_path' is used to narrow down which part
 # of the mounted filesystem is accessed by CBRAIN, and so normally
 # should always start with '/cbrain' too.
 #
@@ -300,7 +300,7 @@ class SingBindmountDataProvider < SshDataProvider
   end
 
   def singularity_exec_prefix #:nodoc:
-    "cd #{self.real_remote_dir.to_s.bash_escape} && singularity -s exec #{self.local_bind_opt} #{SINGULARITY_IMAGE_BASENAME}"
+    "cd #{self.real_remote_dir.to_s.bash_escape} && singularity -s exec -c #{self.local_bind_opt} #{SINGULARITY_IMAGE_BASENAME}"
   end
 
   def local_bind_opt #:nodoc:
@@ -321,7 +321,7 @@ class SingBindmountDataProvider < SshDataProvider
 
   # Builds a prefix for a +rsync+ command, such as
   #
-  #   "rsync -e 'ssh -x -o a=b -o c=d -p port --rsync-path='singularity exec overlay_or_bind_options_here img rsync' user@host'"
+  #   "rsync -e 'ssh -x -o a=b -o c=d -p port --rsync-path='singularity exec -c overlay_or_bind_options_here img rsync' user@host'"
   #
   # Note that this means that remote file specifications for
   # rsync MUST start with a bare ":" :

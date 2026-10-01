@@ -1275,7 +1275,16 @@ module ViewScopes
       common     = params.to_unsafe_hash.slice(*att_list)
       scopes     = {
           name => { 'f' =>
-            common.map { |attr,value| { 'a' => attr.to_s, 'v' => value.to_s } }
+            common.map { |attr,value|
+              if value.is_a?(Array)
+                { 'a' => attr.to_s, 'v' => value.to_a.map(&:to_s), 'o' => 'in' }
+              elsif value.to_s =~ /^([<>]=?)\s*(.+)\z/  # ">2020-01-01", "<= 34" etc
+                comparison,val = Regexp.last_match[1..2]
+                { 'a' => attr.to_s, 'v' => val, 'o' => comparison }
+              else
+                { 'a' => attr.to_s, 'v' => value.to_s }
+              end
+            }
           }
         } if common.present?
 

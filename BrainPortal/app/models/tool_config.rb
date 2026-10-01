@@ -135,7 +135,7 @@ class ToolConfig < ApplicationRecord
     self.tool     && self.tool.can_be_accessed_by?(user)
   end
 
-  # Returns the verion name or the first line of the description.
+  # Returns the version name or the first line of the description.
   # This is used to represent the 'name' of the version.
   def short_description
     description = self.description || ""
@@ -151,7 +151,7 @@ class ToolConfig < ApplicationRecord
 
   # Sets in the current Ruby process all the environment variables
   # defined in the object. If +use_extended+ is true, the
-  # set of variables provided by +extended_environement+ will be
+  # set of variables provided by +extended_environment+ will be
   # applied instead.
   def apply_environment(use_extended = false)
     env   = (use_extended ? self.extended_environment : self.env_array) || []
@@ -194,10 +194,10 @@ class ToolConfig < ApplicationRecord
   end
 
   # Generates a partial BASH script that initializes environment
-  # variables and is followed a the script prologue stored in the
+  # variables and is followed by the script prologue stored in the
   # object. For singularity prologues, special prefixes are added to
   # variable names to ensure they will be propagated to the container
-  # even in presence of --cleanenv parameteres and such
+  # even in presence of --cleanenv parameters and such
   def to_bash_prologue(singularity=false)
     tool     = self.tool
     bourreau = self.bourreau
@@ -247,7 +247,7 @@ class ToolConfig < ApplicationRecord
 
       ENV_HEADER
       script += vars_to_export_script("SINGULARITYENV_")
-      script += vars_to_export_script("APPTAINERENV_")  #  SINGULARITYENV is to be depricated
+      script += vars_to_export_script("APPTAINERENV_")  #  SINGULARITYENV is to be deprecated
 
     end
     script += "\n" if env.size > 0
@@ -269,7 +269,7 @@ class ToolConfig < ApplicationRecord
     script
   end
 
-  # Generates a partial BASH script that unitializes
+  # Generates a partial BASH script that uninitializes
   # what the script_prologue did. Unlike for to_bash_prologue,
   # it doesn't undo the settings of the environment variables.
   def to_bash_epilogue
@@ -384,8 +384,10 @@ class ToolConfig < ApplicationRecord
   #         dp:1234
   #      # CBRAIN db registered file
   #         userfile:1234
-  #      # A ext3 capture filesystem, will NOT be returned here as an overlay
+  #      # A ext3 capture filesystem, will NOT be returned here as an overlay (see method ext3capture_basenames() instead)
   #         ext3capture:basename=12G
+  #      # A bind mount, will NOT be returned here as an overlay (see method bindmount_paths() instead)
+  #        bindmount:/local/basename:/container/basename
   def singularity_overlays_full_paths
     specs = parsed_overlay_specs
     specs.map do |knd, id_or_name|
@@ -410,6 +412,8 @@ class ToolConfig < ApplicationRecord
         { userfile.cache_full_path() =>  "registered userfile" }
       when 'ext3capture'
         []  # handled separately
+      when 'bindmount'
+        []  # handled separately
       else
         cb_error "Invalid '#{knd}:#{id_or_name}' overlay."
       end
@@ -417,7 +421,7 @@ class ToolConfig < ApplicationRecord
   end
 
   # Returns an array of the data providers that are
-  # specified in the attribute singularity_overlays_specs,
+  # specified in the attribute +singularity_overlays_specs+,
   # ignoring all other overlay specs for normal files.
   def data_providers_with_overlays
     return @_data_providers_with_overlays_ if @_data_providers_with_overlays_
@@ -426,6 +430,39 @@ class ToolConfig < ApplicationRecord
     @_data_providers_with_overlays_ = specs.map do |kind, id_or_name|
       DataProvider.where_id_or_name(id_or_name).first if kind == 'dp'
     end.compact
+  end
+
+  # Returns an array of pairs extracted from the attribute
+  # +singularity_overlays_specs+ , ignoring all other overlay
+  # specs for normal files.
+  def bindmount_paths
+    specs = parsed_overlay_specs.presence || []
+
+    # Pairs of paths obtained from the ToolConfig's "overlay" configuration.
+    tc_paths = specs
+      .map { |pair| pair[1] if pair[0] == 'bindmount' }
+      .compact
+      .map { |frompath_contpath| frompath_contpath.split(":",2) }
+
+    # One additional bindmount path from the plugins directory where the tool
+    # comes from. Available ONLY if tool is configured with
+    # a boutiques descriptor. The following lines of code make
+    # a bunch of checks and as soon as a check fails, we just
+    # return with the array tc_paths computed above.
+    descriptor = self.boutiques_descriptor rescue nil
+    return tc_paths if descriptor.blank?
+    container_mountpoint = descriptor.custom["cbrain:plugins-container-bindmount"]
+    return tc_paths if container_mountpoint.blank?
+    desc_file = descriptor.from_file         # "/path/to/RailsApp/cbrain-plugins/installed_plugins/boutiques_descriptors/toolname.json"
+    return tc_paths if desc_file.blank?
+    real_path = File.realpath(desc_file)     # "/path/to/RailsApp/cbrain-plugins/plugin-name/boutiques_descriptors/toolname.json"
+    parent1 = Pathname.new(real_path).parent # "/path/to/RailsApp/cbrain-plugins/plugin-name/boutiques_descriptors"
+    return tc_paths if parent1.basename.to_s != "boutiques_descriptors" # check plugins convention
+    plugin_path = parent1.parent             # "/path/to/RailsApp/cbrain-plugins/plugin-name"
+    plugin_containerized_dir = plugin_path + "container_mnt" # special plugins folder to mount
+    return tc_paths if ! File.directory?(plugin_containerized_dir.to_s)
+    tc_paths << [ plugin_containerized_dir.to_s, container_mountpoint + ":ro" ]
+    return tc_paths
   end
 
   # Returns pairs [ [ basename, size], ...] as in [ [ 'work', '28g' ]
@@ -468,14 +505,15 @@ class ToolConfig < ApplicationRecord
         errors[:container_index_location] = "is invalid for container engine Singularity. Should end in '://'."
       end
     elsif self.container_engine.present? && self.container_engine == "Docker"
-      if self.container_index_location.present? && self.container_index_location !~ /\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}\z/i
+      if self.container_index_location.present? && self.container_index_location !~ /\Adocker:\/\/\z|\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}\z/i
         errors[:container_index_location] = "is invalid for container engine Docker. Should be a valid hostname."
       end
     end
     return errors.empty?
   end
 
-  # breaks down overlay spec onto a list of overlays
+  # Breaks down the singularity_overlays_specs attribute, and returns a list of pairs [ type, value ] e.g.
+  #   [ [ 'userfile', '1234' ], [ 'file', '/hello/bye/data.sqs' ], [ 'bindmount', '/some/data/dir:/mount/this/here' ] ]
   def parsed_overlay_specs
     specs = self.singularity_overlays_specs
     return [] if specs.blank?
@@ -486,8 +524,9 @@ class ToolConfig < ApplicationRecord
   end
 
   # Verifies that the admin has entered a set of
-  # overlay specifications properly. One or several of:
+  # overlay and bindmount specifications properly. One or several of:
   #
+  #    #### the overlay rules
   #    file:/full/path/to/something.squashfs
   #    file:/full/path/to/pattern*/data?.squashfs
   #    userfile:333
@@ -496,6 +535,8 @@ class ToolConfig < ApplicationRecord
   #    ext3capture:basename=SIZE
   #    ext3capture:work=30G
   #    ext3capture:tool_1.1.2=15M
+  #
+  #    bindmount:/bourreau/path/to:/container/path/to     # bindmount rules ( additionally introduced )
   #
   def validate_overlays_specs #:nodoc:
     specs = parsed_overlay_specs
@@ -542,6 +583,10 @@ class ToolConfig < ApplicationRecord
           self.errors.add(:singularity_overlays_specs, "contains invalid ext3capture specification (must be like ext3capture:basename=1g or 2m etc)")
         end
 
+      when 'bindmount' # this is for binding to container rather than overlays
+        if id_or_name !~ /\A\/\w[\w\.\-\/]+:\/\w[\w\.\-\/]+(:ro)?\z/
+          self.errors.add(:singularity_overlays_specs, "contains invalid bindmount specification (must be like 'bindmount:/path/in/bourreau:/path/in/container' with or without a final ':ro') and free from special characters")
+        end
       else
         # Other errors
         self.errors.add(:singularity_overlays_specs, "contains invalid specification '#{kind}:#{id_or_name}'")
@@ -597,7 +642,7 @@ class ToolConfig < ApplicationRecord
   def boutiques_descriptor
     path = boutiques_descriptor_path.presence
     if ! path
-      return self.class.registered_boutiques_descriptor(self.tool.name, self.version_name)
+      return self.class.registered_boutiques_descriptor(self.tool.descriptor_name, self.version_name)
     end
     return @_descriptor_ if @_descriptor_
     path = Pathname.new(path)
@@ -608,10 +653,10 @@ class ToolConfig < ApplicationRecord
   def boutiques_descriptor_origin_keyword
     manual     = self.boutiques_descriptor_path.presence
     registered = self.class.registered_boutiques_descriptor(self.tool.name, self.version_name)
-    return [ :overriden, manual ]               if registered && manual
-    return [ :manual,    manual ]               if manual
-    return [ :automatic, registered.from_file ] if registered
-    return [ :none,      "" ]
+    return [ :overridden, manual ]               if registered && manual
+    return [ :manual,     manual ]               if manual
+    return [ :automatic,  registered.from_file ] if registered
+    return [ :none,       "" ]
   end
 
   def self.create_from_descriptor(bourreau, tool, descriptor, record_path=false)

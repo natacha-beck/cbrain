@@ -34,12 +34,22 @@ class BoutiquesBootIntegrator
 
   def self.link_from_json_file(path)
     descriptor   = BoutiquesSupport::BoutiquesDescriptor.new_from_file(path)
+    self.link_from_descriptor(descriptor)
+  end
+
+  def self.link_from_descriptor(descriptor)
+    path         = descriptor.from_file.presence || "unknown.json"
     tool_name    = descriptor.name
     tool_version = descriptor.tool_version
     myself       = RemoteResource.current_resource
 
     # Create Tool if necessary
     tool = Tool.create_from_descriptor(descriptor) # does nothing if it already exists
+    if tool.cbrain_task_class_name =~ /^CbrainTask::/
+      basename = Pathname.new(path).basename
+      raise "ERROR: old integraton of Boutiques JSON: #{basename} Class: #{tool.cbrain_task_class_name}"
+    end
+
     # Create ToolConfig if necessary
     if myself.is_a?(Bourreau)
       ToolConfig.create_from_descriptor(myself, tool, descriptor) # does nothing if it already exists
@@ -76,18 +86,35 @@ class BoutiquesBootIntegrator
     end
 
     # Add special module functionality if necessary
+    framework_methods = BoutiquesPortalTask.instance_methods | BoutiquesClusterTask.instance_methods
+    seen_methods      = {}  # method_name => module_name; to detect conflicts
     custom_modules = descriptor.custom['cbrain:integrator_modules'] || {}
     custom_modules.keys.each do |modname|   # "MySuperModule"
-      mod = modname.constantize
+      mod        = modname.constantize
+      modmethods = mod.instance_methods - framework_methods # all local methods of the module
+      modmethods.each do |method|
+        if ! seen_methods[method]
+          seen_methods[method] = modname
+          next
+        end
+        cb_error "Method conflict detected: module '#{modname}' implements method '#{method}' which will hide the method of the same name in module '#{seen_methods[method]}'"
+      end
       klass.include(mod)                    # like 'include MySuperModule'
     end
 
     # Boot process messages
     basename = Pathname.new(path).basename
-    puts "B> Boutiques JSON: #{basename} Class: #{klass_name} Tool: #{tool_name} ToolConfigs: #{tool_configs.count}"
+    num_bourreaux = tool_configs.to_a.map(&:bourreau_id).uniq.count
+    if myself.is_a?(BrainPortal)
+      tc_message = "#{tool_configs.count} configs on #{num_bourreaux} servers"
+    else
+      local_tcs = tool_configs.to_a.select { |tc| tc.bourreau_id == myself.id }
+      tc_message = "#{local_tcs.count} local / #{tool_configs.count} total on #{num_bourreaux} servers"
+    end
+    puts "T> Boutiques JSON: #{basename} Class: #{klass_name} Tool: #{tool_name} Version: #{tool_version} ToolConfigs: #{tc_message}"
   rescue => ex
     Rails.logger.error(
-      "An error occured while trying to integrate descriptor '#{path}'"
+      "An error occurred while trying to integrate descriptor '#{path}'"
     )
     raise ex
   end

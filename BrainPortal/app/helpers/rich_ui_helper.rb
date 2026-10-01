@@ -39,7 +39,7 @@ module RichUiHelper
     return h(cropped_header) if cropped_header.present? && body.present? && (cropped_header == body)
 
     link = h(cropped_header) + " " +
-      html_tool_tip(link_to("(more)", "#"), :offset_x => 0, :offset_y => 20) do
+      html_tool_tip(link_to(t('more_parentheses'), "#"), :offset_x => 0, :offset_y => 20) do
         pre_body = body.blank? ? "" : "\n<pre>" + h(body) + "</pre>"
         ("<h4>#{h(header)}</h4>#{pre_body}").html_safe
       end
@@ -213,6 +213,7 @@ module RichUiHelper
     offset_y = options[:offset_y] || 0
 
     content           = capture(&block) # here, new calls to html_tool_tip can be made.
+    return text if content.blank?
     content_class     = options.delete(:tooltip_div_class) || "html_tool_tip"
     content_signature = Digest::MD5.hexdigest(content_class + content)
 
@@ -349,11 +350,11 @@ module RichUiHelper
   def copy_to_clipboard_button(txt, options={})
     options   = options.dup
     message   = options.delete(:message)
-    message ||= 'Copied!'
+    message ||= t('rich_ui.copied')
     prefix    = options.delete(:prefix)
     prefix  ||= clipboard_icon
     label     = options.delete(:label)
-    label   ||= 'copy to clipboard'
+    label   ||= t('rich_ui.copy_to_clipboard')
 
     options['class']          = "copy-button #{options['class']}".strip
     options['data-clipboard'] = txt
