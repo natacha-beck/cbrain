@@ -34,7 +34,7 @@
     name        = group.name
     description = (group.description.presence || "").strip
     description = "" if description.downcase == name.strip.downcase
-    if (group.public?)
+    if category == :open
       access = html_colorize(t('portal.common.open'), 'green')
     else
       access = html_colorize(t('portal.common.restricted'), 'red')
@@ -49,4 +49,3 @@
 <% end %>
 
 </table>
-

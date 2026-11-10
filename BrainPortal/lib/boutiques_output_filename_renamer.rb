@@ -36,7 +36,7 @@
 #       }
 #   }
 #
-# The key "outname_inputid1" is the ID of an entry in
+# The key "outputid1" is the ID of an entry in
 # the "output-files" section of the descriptor, and it indicates
 # which physical file in the work directory will be saved with the
 # newly generated name.
@@ -201,9 +201,9 @@ module BoutiquesOutputFilenameRenamer
       fake_inputname  = (1..100).to_a.join("-") # A string like "1-2-3-4...-100"
       fake_outname    = output_name_from_pattern(outname_pattern, fake_inputname)
       if not Userfile.is_legal_filename?(fake_outname)
-        params_errors.add(outnameinputid, "is not a pattern that generates a proper output file name")
+        params_errors.add(outnameinputid, I18n.t('activerecord.errors.models.boutiques_portal_task.bad_output_name_pattern'))
       elsif fake_outname =~ /[{}]/
-        params_errors.add(outnameinputid, "is a pattern that seems to have unreplaced components")
+        params_errors.add(outnameinputid, I18n.t('activerecord.errors.models.boutiques_portal_task.unreplaced_output_name_pattern'))
       end
     end
     message

@@ -214,7 +214,7 @@ module SelectBoxHelper
          end
          opt_pair #  [ "DpName", "3" ]    or   [ "DpName (offline)", "3", { :disabled => "true" } ]
        end
-       grouped_oplists << [ group_title, options_dps ]  # [ "GroupName", [  [ dp1, 1 ], [dp2, 2] ] ]
+       grouped_oplists << [ t("select_box.storage_groups.#{group_title.parameterize(:separator => '_')}"), options_dps ]  # [ "GroupName", [  [ dp1, 1 ], [dp2, 2] ] ]
     end
     grouped_options = grouped_options_for_select(grouped_oplists.compact, selected)
 
@@ -435,9 +435,8 @@ module SelectBoxHelper
     [ "Standard Cycle", "Waiting","Failed", "Restarting", "Recovering", "Other"].each do |category|
       next unless status_grouped[category]
       sorted_statuses = status_grouped[category].sort { |a,b| cmp_status_order(a,b) }
-      options = sorted_statuses.map { |status| [ status_label(status), status ] }
-      grouped_by_category << [ t("select_box.task_status_groups.#{category.parameterize(:separator => '_')}", :default => category), options ]
-
+      sorted_labels = sorted_statuses.map { |status| [ status_label(status), status ] }
+      grouped_by_category << [ t("select_box.task_status_groups.#{category.parameterize(:separator => '_')}", :default => category), sorted_labels ]
     end
 
     grouped_options = grouped_options_for_select grouped_by_category, selected
@@ -591,7 +590,8 @@ module SelectBoxHelper
 
     user_by_lock_status_hash.sort.each do |status,users_by_status|
       user_name_id = users_by_status.sort_by { |u| u.login }.map { |u| ["#{u.login} (#{u.full_name})" , u.id] }
-      ordered_by_lock_status << [status, user_name_id]
+      status_label = t("select_box.user_status_groups.#{status.parameterize(:separator => '_')}")
+      ordered_by_lock_status << [ status_label , user_name_id ]
     end
 
     ordered_by_lock_status
